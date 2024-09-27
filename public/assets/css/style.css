@@ -1,0 +1,645 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color:  #F4F5FA !important;
+
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    border-radius: 10px;
+    margin: 4px 20px;
+    color: #333;
+    padding: 15px 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+.sidebar .nav-link.active{
+    border-radius: 10px;
+background-color: black;
+color: #fff;
+}
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar .nav-link i {
+    font-size: 20px;
+}
+
+.sidebar .nav-link span {
+    display: inline-block;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.sidebar.collapsed .nav-link span {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    display: none;
+}
+
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+
+.main-content.collapsed {
+    margin-left: 80px;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 55px;
+    left: 270px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: left 0.3s;
+}
+
+.collapsed + .main-content .toggle-btn {
+    left: 80px;
+}
+
+.card {
+
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+    border: none !important;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px !important;
+    padding: 20px;
+    height: auto;
+}
+.card-2{
+    width: 48%;
+}
+.bottomContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    text-align: justify;
+}
+.sales{
+    font-size: 13px;
+    color: #ad9f9f;
+    margin: 0;
+    padding: 0;
+}
+.bold{
+    margin: 0;
+    padding-top: 8px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.rates{
+    font-size: 11px;
+    color: #519C66;
+}
+.dashboard-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+.alignemnt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.alignemnt img{
+    width: 30px;
+}
+.alignemnt .side-text{
+    color: #ad9f9f;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+.alignemnt .leftAlignement{
+    display: flex;
+    gap: 7px;
+}
+.alignemnt .leftAlignement img{
+    width: 10px;
+}
+.chart-placeholder {
+    background-color: #f8f9fa;
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 20px;
+}
+
+.chart-container {
+    width: 70%;  /* Adjust the width */
+    margin: auto;
+}
+.legend-container {
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly */
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Make it a circle */
+    margin-right: 5px;  /* Space between color and label */
+}
+
+/* //bar chart */
+.custom-chart-container {
+    width: 100%;
+    margin: auto;
+}
+
+.custom-form-container {
+    width: 100%;
+    margin: 20px auto;
+}
+
+
+.custom-chart-card {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative; /* Relative for z-index */
+    z-index: 1; /* Above the background */
+}
+.sec-section{
+    width: 49%;
+}
+.container-2{
+    border: none !important;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px !important;
+    padding: 20px 23px !important;
+    height: auto;
+    margin-left: 10px !important;
+
+}
+
+.form-control{
+    outline: none !important;
+    border-radius: 14px !important;
+    background-color: #f2f4fe !important;
+    color: rgb(94, 94, 252) !important;
+    border: none !important;
+    font-size: 14px !important;
+}
+
+   .form-control2{
+    outline: none !important;
+    color: rgb(192, 190, 190) !important;
+    border-radius: 14px !important;
+    background-color: #ffffff !important;
+    border: none !important;
+    font-size: 12px !important;
+   }
+
+   .form-control3{
+    outline: none !important;
+   padding: 5px 20px;
+    color: rgb(20, 17, 17) !important;
+    border-radius: 14px !important;
+    background-color: #d8d8d8 !important;
+    border: none !important;
+    font-size: 12px !important;
+}
+.dropdown-icon{
+    position: absolute;
+    right: 11px;
+    top: 5px;
+}
+.layout{
+    width: 100%;
+}
+.rightSideContent{
+    width: 60%;
+}
+.section-three{
+    width: 100%;
+
+}
+.alignmentOfPIChart{
+    width: 49%;
+}
+
+.leftSideContent{
+    width: 40%;
+}
+.side_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    border: none !important;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px !important;
+    padding: 20px;
+    height: 100%;
+    text-align: center;
+
+}
+.side_card p{
+    font-size: 12px;
+}
+.side_card img{
+    width: 30%;
+}
+.productBtn{
+    background-color: #ffd014;
+    color: black;
+    border: none;
+    border-radius: 14px;
+    padding: 10px 16px;
+}
+.order-btn{
+    color: white;
+    background-color: black;
+    padding: 9px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+
+}
+
+.order-btn2{
+    color: black;
+    background-color: #ffd014;
+    border: 1px solid #ffd014;
+    padding: 3px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+
+}
+
+/* Custom Checkbox Styling */
+.custom-checkbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox img {
+    width: 20px;
+    height: 20px;
+    display: none;
+    border-radius: 3px;
+}
+
+.custom-checkbox input:checked ~ .checkmark img {
+    display: block;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.head{
+    font-size: 13px;
+    font-weight: 500;
+}
+.table thead th {
+    font-size: 13px;
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+.table tr{
+    font-size: 12px;
+}
+.table thead th {
+    background-color: #f8f9fa; /* Light gray background for headers */
+    font-weight: bold;
+    text-align: left;
+    padding: 12px;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Add hover effect */
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    background-color: #f1f1f1; /* Default background */
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background-color: #007bff; /* Change to blue when checked */
+    border-color: #a9cef7;
+}
+.search-bar{
+border: 1px solid rgb(207, 207, 207);
+border-radius: 8px;
+padding: 2px 6px
+}
+.search-bar img{
+    width: 14px;
+}
+.search-bar input{
+    border: none;
+    outline: none;
+    font-size: 13px;
+
+}
+.filter-btn{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 8px;
+    background-color: white;
+    padding: 2px 6px;
+    font-size: 13px;
+
+}
+.filter-btn img{
+    width: 13px;
+}
+.filter-dropdown{
+    outline: none;
+    border-radius: 8px;
+}
+.ProductDropdown{
+
+    gap: 9px;
+    background: black;
+    color: white;
+    border-radius: 12px;
+    padding: 8px 20px;
+}
+.ProductDropdownLayout{
+    position: relative;
+    display: flex;
+
+}
+.ProductDropdownLayout img{
+    position: absolute;
+    right: 9px;
+    top: 18px;
+    width: 9px;
+}
+.date{
+    width: 100%;
+    outline: none;
+    background-color: #eeeef0;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 19px;
+    font-size: 13px;
+}
+.dateTime p{
+    margin-top: 10px;
+    color: #8f8787;
+    padding: 0;
+    font-size: 13px;
+
+}
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table thead th,
+    .table tbody td {
+        font-size: 0.875rem; /* Smaller font on small screens */
+        padding: 8px; /* Smaller padding */
+    }
+
+    .checkmark {
+        width: 16px;
+        height: 16px; /* Smaller checkboxes */
+    }
+}
+.mainBar{
+    background-color: white;
+
+    border-radius: 13px;
+    padding: 1.5rem;
+}
+.leftBar{
+    background-color: white;
+    border-radius: 13px;
+    padding: 1rem;
+    width: 40%;
+}
+
+.subFormleft{
+    width: calc(54% - 10px);
+}
+.rightForm{
+    width: calc(50% - 10px);
+}
+.subFormleft textarea{
+    font-size: 13px;
+    border-radius: 10px;
+    border: 1px solid  #eeeef0;
+    background:  #eeeef0;
+    padding: 9px ;
+}
+.product{
+    outline: none;
+    width: 100%;
+border: none;
+font-size: 13px;
+border-radius: 11px;
+padding: 9px ;
+    background-color: #eeeef0;
+}
+.ProductList{
+color: #8f8787;
+    border: none;
+font-size: 13px;
+border-radius: 11px;
+padding: 9px ;
+    background-color: #eeeef0;
+}
+.image-uploader2{
+    padding:20px 13px;
+    width: 100%;
+    color: #8f8787;
+    border: none;
+font-size: 13px;
+border-radius: 11px;
+    background-color: #eeeef0;
+}
+
+.image-uploader3{
+    width: 100%;
+    border: 1px dashed #585757 !important;
+    color: #8f8787;
+font-size: 13px;
+border-radius: 11px;
+padding: 9px ;
+    background-color: #ffffff;
+}
+.image-uploader{
+
+    height: 240px;
+    color: #8f8787;
+    border: none;
+font-size: 13px;
+border-radius: 11px;
+padding: 9px ;
+    background-color: #eeeef0;
+}
+.image-uploader .previewImage{
+    width: 40px;
+}
+.image-uploader p{
+    font-size: 13px;
+}
+.bold2{
+    font-weight: 500;
+}
+
+.switch {
+    position: relative;
+    top: 5px;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ddd;
+    border-radius: 34px;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  .switch input:checked + .slider {
+    background-color: #007bff;
+  }
+
+  .switch input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+
+  .discount{
+    padding: 0;
+    margin: 0;
+   text-align: center;
+    font-size: 13px;
+  }
+  .editor-toolbar{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    flex-wrap: wrap;
+    gap: 3px;
+    display: flex;
+  }
+  .editor-toolbar button {
+    font-size: 13px;
+    background-color: #eeeef0;
+
+    border: 1px solid  #eeeef0;;
+  }
+  .Productform-control{
+    border-radius: 0 !important;
+    border-bottom-left-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    color: #8f8787 !important;
+  }
+
+  #productDescription {
+
+    /*  */
+    background-color: #eeeef0 !important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 150px;
+  }
+  .Description{
+    font-size: 14px;
+  }
+  .Fonts{
+
+    width: 94px;
+    font-size: 12px;
+    border-radius: 9px !important;
+    border: 1px solid #ddd !important;
+padding: 4px 10px;
+  }
