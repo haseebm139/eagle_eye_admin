@@ -37,7 +37,14 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::get('/', function () {
     return view('user.pages.index');
-})->name('welcome');
+})->name('home');
+Route::get('/equipments', function () {
+    return view('user.pages.equipments');
+})->name('equipments');
+
+Route::get('/product-detail', function () {
+    return view('user.pages.product_detail');
+})->name('product_detail');
 
 // Route::get('/home', function () {
 //     return view('admin.pages.dashboard');
