@@ -46,6 +46,10 @@ Route::get('/product-detail', function () {
     return view('user.pages.product_detail');
 })->name('product_detail');
 
+Route::get('/about-us', function () {
+    return view('user.pages.about_us');
+})->name('about.us');
+
 // Route::get('/home', function () {
 //     return view('admin.pages.dashboard');
 // })->name('home');

@@ -124,7 +124,7 @@ font-size: 14px;
 .topAlignment{
     padding-top: 4rem !important;
 }
-.btn1{
+.btn1,.btn2{
     background-color: #ffffff;
     padding: 10px 13px;
     border-radius: 20px;
@@ -134,7 +134,12 @@ font-size: 14px;
     transform: rotate(180deg);
 }
 
-.btn2{
+.btn2:hover{
+
+    background-color: #FFC107;
+
+}
+.btn1:hover{
 
     background-color: #FFC107;
 
@@ -150,9 +155,7 @@ font-size: 14px;
     width: 100%;
     height: 100%;
   }
-  .swiper-wrapper {
-    gap: 2.5rem;
-  }
+
   .swiper-slide {
     gap: 10px;
     text-align: center;
@@ -168,7 +171,7 @@ font-size: 14px;
     border: 1px solid gainsboro;
     border-radius: 20px;
     display: block;
-    width: 300px;
+    width: 100%;
     height: 370px;
     object-fit: cover;
   }
@@ -228,7 +231,7 @@ font-size: 14px;
     align-items: flex-end;
 }
   .map{
-    width: 80% !important;
+    width: 80%;
   }
   .color{
     color: gray;
@@ -311,14 +314,14 @@ width: 28%;
             padding-right:100px;
             margin-bottom:20px;
         }
-        #Equipment_section .product_title{
+      .product_title{
             font-family: 'GilroyRegular'; 
             font-size: 20px;
         }
-        #Equipment_section .Equipment_product_img{
-            width: 100%;
+     .Equipment_product_img{
+            width: 100% !important;
         }
-        #Equipment_section .Product_content_wrapper{
+        .Product_content_wrapper{
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -589,5 +592,11 @@ width: 28%;
             }
             #product_page_description_section .description_item_wrapper img{
                 width:100%;
+            }
+            .box{
+                width:100%;
+            }
+            .flex-direcction-column{
+                flex-direction:column;
             }
         }

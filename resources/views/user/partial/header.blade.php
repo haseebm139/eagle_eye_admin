@@ -16,7 +16,7 @@
 </div>
 <nav class="navbar navbar-expand-lg bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <img class="logo" src="{{ asset('assets/admin/images/image 715.png') }}" alt="Logo">
 
         </a>
@@ -39,7 +39,7 @@
                     <a class="nav-link" href="#">Our Story</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
                 </li>
             </ul>
             <a href="{{ route('login') }}" class="btn btn-warning ms-lg-3">Login</a>

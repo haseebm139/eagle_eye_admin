@@ -1,4 +1,4 @@
-<div class="container  d-flex mt-5 topAlignment">
+<div class="container  d-flex mt-5 topAlignment flex-direcction-column">
     <div class="d-flex flex-column para2   mb-2">
         <h2>Products Offered</h2>
         <p class="para">
@@ -15,14 +15,14 @@
                     alt="Next" /></button>
         </div>
     </div>
-    <div class="swiper mySwiper2 mt-3">
+    <div class="swiper mySwiper23 mt-3">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div>
                     <img src="{{ asset('assets/website/images/image (1).png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <img src="{{ asset('assets/website/images/image (2).png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
 
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
 
@@ -58,7 +58,7 @@
                     <img src="{{ asset('assets/website/images/image4.png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <img src="{{ asset('assets/website/images/image (1).png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <img src="{{ asset('assets/website/images/image (2).png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <img src="{{ asset('assets/website/images/image (1).png') }} " />
                     <div class="d-flex justify-content-start align-items-center">
                         <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                        <a href="#" class="btn1 btn2"><img
+                        <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
                                 src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                     </div>
                 </div>

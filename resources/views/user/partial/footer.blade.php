@@ -1,5 +1,5 @@
 <div class="footer">
-    <div class="container d-flex">
+    <div class="container d-flex flex-direcction-column">
         <div class="d-flex flex-column gap-2 footerLeft">
             <div class="d-flex  flex-column">
                 <h5>OFFICE ADDRESS</h5>

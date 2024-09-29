@@ -3,7 +3,7 @@
 
 @section('style')@endsection
 @section('content')
-      
+
  <section class="Equipment" id="Equipment_section">
     <div  class="container">
         <div class="row">
@@ -25,7 +25,7 @@
                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
                     <p> 5 Epson S60600 64" Eco-Solvent</p>
                     <p> 5  Agfa Titan HS 60" X 120" Flatbed UV Printer</p>
-    
+
                 </div>
             </div>
             <div class="col-xxl-8 col-xm-8 col-lg-8 col-md-12 col-sm-12">
@@ -35,27 +35,27 @@
                             <img class="Equipment_product_img" src="{{ asset('assets/website/images/image (1).png') }}" />
                             <div class="Product_content_wrapper">
                                 <p class="product_title"> 1 Mimaki UJV100-160 64"  <br/> UV printer</p>
-                                <a href="#" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
+                                <a href="{{ route('product_detail') }}" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                        
+
                         <div class="outer  mb-3">
                             <img class="Equipment_product_img" src="{{ asset('assets/website/images/image (2).png') }}" />
                             <div  class="Product_content_wrapper">
                                 <p class="product_title"> 1 CTE 126" UV printer</p>
-                                <a href="#" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
+                                <a href="{{ route('product_detail') }}" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                        
+
                         <div class="outer  mb-3">
                             <img class="Equipment_product_img" src="{{ asset('assets/website/images/image (3).png') }}" />
                             <div  class="Product_content_wrapper">
                                 <p class="product_title"> 1 Mimaki UJV100-160 64" <br/> UV printer</p>
-                                <a href="#" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
+                                <a href="{{ route('product_detail') }}" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
                             </div>
                         </div>
                     </div>
@@ -66,31 +66,31 @@
                             <img class="Equipment_product_img" src="{{ asset('assets/website/images/image4.png') }} " />
                             <div class="Product_content_wrapper">
                                 <p class="product_title">5 Epson S60600 64"  <br/> Eco-Solvent</p>
-                                <a href="#" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
+                                <a href="{{ route('product_detail') }}" class="arrow_btn"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                        
-                        
+
+
                         <div class="outer mb-3">
                             <div>
                                 <img class="Equipment_product_img" src="{{ asset('assets/website/images/image (2).png') }}" />
                                 <div class="Product_content_wrapper">
                                     <p class="product_title"> 5  Agfa Titan HS 60" X  <br/> 120" Flatbed UV Printer</p>
-                                    <a href="#" class="arrow_btn "><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
+                                    <a href="{{ route('product_detail') }}" class="arrow_btn "><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"/></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
 
  </section>
-   
+
 
     @include('user.partial.product_offer')
 

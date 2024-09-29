@@ -10,32 +10,82 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @font-face {
-                font-family: 'InterMedium';
-                src: url('https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
-            }
+            font-family: 'InterMedium';
+            src: url('https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+        }
 
-            @font-face {
-                font-family: 'GilroyMedium';
-                
-                src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
-            }
+        @font-face {
+            font-family: 'GilroyMedium';
 
-            @font-face {
-                font-family: 'GilroyBold'; 
+            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'GilroyBold';
             src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Bold.ttf') format('truetype');
-                
-            }
 
-            @font-face {
-                font-family: 'GilroyLight';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Light.ttf') format('truetype'); 
-            }
-            @font-face {
-                font-family: 'GilroyRegular';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');  
-            }
+        }
+
+        @font-face {
+            font-family: 'GilroyLight';
+            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Light.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'GilroyRegular';
+            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+        }
     </style>
     @yield('style')
+    <style>
+        @media(max-width:600px) {
+            .box {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .flex-direcction-column {
+                flex-direction: column;
+            }
+
+            .footerLeft {
+                width: 100%;
+            }
+
+            .footerRight .map {
+                width: 100%;
+            }
+
+            .RightBottom {
+                margin-left: 0px;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .inner {
+                width: 100%;
+            }
+
+            .hero {
+                background-position: top;
+                background-size: cover;
+            }
+
+            .heading {
+                font-size: 28px;
+
+            }
+
+            .para2 {
+                width: 100%;
+
+            }
+
+            .subTopbar p {
+                font-size: 8px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -55,24 +105,14 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/website/js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 4, // Number of slides visible at a time
-            spaceBetween: 30, // Space between each slide
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".next", // Your custom "next" button
-                prevEl: ".prev", // Your custom "prev" button
-            },
-        });
-
-        var swiper2 = new Swiper(".mySwiper2", {
-            slidesPerView: 3, // Number of slides visible at a time
-            spaceBetween: 30, // Space between each slide
+        var swiper = new Swiper(".mySwiper23", {
+            slidesPerView: 1, // Default number of slides visible at a time
+            spaceBetween: 20, // Space between each slide
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -80,6 +120,28 @@
             navigation: {
                 nextEl: ".next2", // Your custom "next" button
                 prevEl: ".prev2", // Your custom "prev" button
+            },
+            breakpoints: {
+                // When window width is >= 1200px
+                1200: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                // When window width is >= 992px
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                // When window width is >= 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                // When window width is < 768px
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
             },
         });
     </script>
