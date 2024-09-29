@@ -12,8 +12,16 @@
     <div class="dashboard-header d-flex align-items-center justify-content-between">
         <h3>Dashboard</h3>
         <div class="d-flex align-items-center gap-3">
-            <span>John Doe</span>
-            <img src="https://i.imgur.com/hczKIze.jpg" class="avatar" alt="Avatar">
+            <div class="dropdown-container position-relative">
+                <select id="data-category" class="form-control3 d-inline w-auto">
+                    <option value="Revenue">Eagle eye</option>
+                    <option value="Expenses">This Week</option>
+                    <option value="Profit Margin">This Week</option>
+                </select>
+                <span class="dropdown-icon"></span>
+                <!-- Down arrow icon -->
+            </div>
+            <img src="{{ asset('assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
         </div>
     </div>
     <div class="container-fluid">
@@ -161,7 +169,7 @@
                                 <img src="{{ asset('assets/images/svg/Folder.svg') }}" />
                                 <div class="leftAlignement">
                                     <!-- <p class="side-text">This Week</p>
-                                                                                                             <img src="{{ asset('assets/images/svg/Vector.svg') }}" /> -->
+                                                                                                                                     <img src="{{ asset('assets/images/svg/Vector.svg') }}" /> -->
                                 </div>
                             </div>
 
@@ -262,7 +270,7 @@
                     <div>
                         <h6>No Orders Yet?</h6>
                         <p>Add products to your store and start <br /> selling to see orders here.</p>
-                        <button class="productBtn">+ New Product</button>
+                        <a href="{{ route('add.product') }}" class="productBtn">+ New Product</a>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SocialLogin;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\Admin\AuthController;
 
 
 
-Route::controller(SocialLogin::class)->group(function(){
+Route::middleware(['guest'])->controller(SocialLogin::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 
@@ -34,26 +35,37 @@ Route::controller(AuthController::class)->group(function(){
 
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.pages.dashboard');
-    })->name('welcome');
+Route::get('/', function () {
+    return view('user.pages.index');
+})->name('welcome');
 
-    Route::get('/home', function () {
-        return view('admin.pages.dashboard');
-    })->name('home');
+// Route::get('/home', function () {
+//     return view('admin.pages.dashboard');
+// })->name('home');
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    // Route::get('/', function () {
+    //     return view('admin.pages.dashboard');
+    // })->name('welcome');
+
+    // Route::get('/dashboard', function () {
+    //     return view('admin.pages.dashboard');
+    // })->name('dashboard');
+
+    // Route::get('/products', function () {
+    //     return view('admin.pages.products');
+    // })->name('product');
+
+    // Route::get('/add/product', function () {
+    //     return view('admin.pages.add_new_product');
+    // })->name('add.product');
+
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/', 'dashboard');
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
+        Route::get('/products', 'product')->name('product');
+        Route::get('/add/product', 'addProduct')->name('add.product');
 
 
 
-    Route::get('/dashboard', function () {
-        return view('admin.pages.dashboard');
-    })->name('dashboard');
-
-    Route::get('/products', function () {
-        return view('admin.pages.products');
-    })->name('product');
-
-    Route::get('/add/product', function () {
-        return view('admin.pages.add_new_product');
-    })->name('add.product');
+    });
 });
