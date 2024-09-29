@@ -12,24 +12,24 @@
                             High-Quality <br /> Custom Banners. <br /><span class="thin-text">Fast, Reliable <br />
                                 Printing</span>
                         </p>
-                        <img src="{{ asset('assets/images/auth/image 726.png') }}" />
+                        <img src="{{ asset('admin/assets/images/auth/image 726.png') }}" />
                     </div>
                 </div>
                 <div class="col bg-alignment2">
                     <div class="d-flex flex-column justify-content-center align-items-center inner-alignment2">
 
                         <div class="layer font-styling">
-                            <img src="{{ asset('assets/images/auth/image 715.png') }}" />
+                            <img src="{{ asset('admin/assets/images/auth/image 715.png') }}" />
                             <h5>Login Credentials</h5>
                             <form id="loginform" action="{{ route('login.process') }}" method="POST">
                                 @csrf
                                 <div class="inputLayout input-group">
-                                    <img src="{{ asset('assets/images/auth/svg/client.svg') }}" />
+                                    <img src="{{ asset('admin/assets/images/auth/svg/client.svg') }}" />
                                     <input class="login" name="email" id="email" type="email" required
                                         placeholder="Email Address" />
                                 </div>
                                 <div class="inputLayout input-group">
-                                    <img src="{{ asset('assets/images/auth/svg/key.svg') }}" />
+                                    <img src="{{ asset('admin/assets/images/auth/svg/key.svg') }}" />
                                     <input class="login" type="password" name="password" id="password" required
                                         placeholder="Password" />
                                 </div>
@@ -45,14 +45,16 @@
 
                                 <div class="d-flex justify-content-center gap-2 align-items-center">
                                     <a href="{{ route('auth.google') }}">
-                                        <img src="{{ asset('assets/images/auth/Group 9.png') }}" class="socialLinks" />
+                                        <img src="{{ asset('admin/assets/images/auth/Group 9.png') }}"
+                                            class="socialLinks" />
                                     </a>
 
                                     {{-- {{ route('auth.facebook') }} --}}
-                                    <img src="{{ asset('assets/images/auth/Group 10.png') }}" class="socialLinks" />
+                                    <img src="{{ asset('admin/assets/images/auth/Group 10.png') }}" class="socialLinks" />
 
                                     <a href="{{ route('auth.facebook') }}"><img
-                                            src="{{ asset('assets/images/auth/Group 11.png') }}" class="socialLinks" /></a>
+                                            src="{{ asset('admin/assets/images/auth/Group 11.png') }}"
+                                            class="socialLinks" /></a>
                                 </div>
                                 <p>Haven’t Account? <a href="{{ route('register') }}"><span class="bold"> Create a new
                                             account!</span></a></p>

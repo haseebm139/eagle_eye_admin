@@ -7,7 +7,7 @@
 
     <div class="toggle-btn" id="toggle-btn">
 
-        <img src="{{ asset('assets/images/svg/Home.svg') }}" />
+        <img src="{{ asset('admin/assets/images/svg/Home.svg') }}" />
     </div>
     <div class="dashboard-header d-flex align-items-center justify-content-between">
         <h3>Dashboard</h3>
@@ -21,7 +21,7 @@
                 <span class="dropdown-icon"></span>
                 <!-- Down arrow icon -->
             </div>
-            <img src="{{ asset('assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
+            <img src="{{ asset('admin/assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
         </div>
     </div>
     <div class="container-fluid">
@@ -29,7 +29,7 @@
             <div class="" style="width: 30%;">
                 <div class="card text-center">
                     <div class="alignemnt">
-                        <img src="{{ asset('assets/images/svg/icon1.svg') }}" />
+                        <img src="{{ asset('admin/assets/images/svg/icon1.svg') }}" />
                         <div class="leftAlignement">
 
                             <div class="dropdown-container position-relative">
@@ -62,7 +62,7 @@
             <div class=" " style="width: 30%;">
                 <div class="card text-center">
                     <div class="alignemnt">
-                        <img src="{{ asset('assets/images/svg/icon2.svg') }}" />
+                        <img src="{{ asset('admin/assets/images/svg/icon2.svg') }}" />
                         <div class="leftAlignement">
 
                             <div class="dropdown-container position-relative">
@@ -93,7 +93,7 @@
             <div class="" style="width: 40%;">
                 <div class="card text-center">
                     <div class="alignemnt">
-                        <img src="{{ asset('assets/images/svg/icon2.svg') }}" />
+                        <img src="{{ asset('admin/assets/images/svg/icon2.svg') }}" />
                         <div class="leftAlignement">
 
                             <div class="dropdown-container position-relative">
@@ -166,10 +166,10 @@
 
                         <div class="card text-center">
                             <div class="alignemnt">
-                                <img src="{{ asset('assets/images/svg/Folder.svg') }}" />
+                                <img src="{{ asset('admin/assets/images/svg/Folder.svg') }}" />
                                 <div class="leftAlignement">
                                     <!-- <p class="side-text">This Week</p>
-                                                                                                                                     <img src="{{ asset('assets/images/svg/Vector.svg') }}" /> -->
+                                                                                                                                         <img src="{{ asset('admin/assets/images/svg/Vector.svg') }}" /> -->
                                 </div>
                             </div>
 
@@ -191,10 +191,10 @@
 
                         <div class="card text-center ">
                             <div class="alignemnt">
-                                <img src="{{ asset('assets/images/svg/cart.svg') }}" />
+                                <img src="{{ asset('admin/assets/images/svg/cart.svg') }}" />
                                 <div class="leftAlignement">
                                     <p class="side-text">This Week</p>
-                                    <img src="{{ asset('assets/images/svg/Vector.svg') }}" />
+                                    <img src="{{ asset('admin/assets/images/svg/Vector.svg') }}" />
                                 </div>
                             </div>
 
@@ -239,7 +239,7 @@
                                         <option value="Profit Margin">Profit Margin</option>
                                     </select>
                                     <span class="dropdown-icon"><img
-                                            src="{{ asset('assets/images/svg/fi_chevron-down.svg') }}" /></span>
+                                            src="{{ asset('admin/assets/images/svg/fi_chevron-down.svg') }}" /></span>
                                     <!-- Down arrow icon -->
                                 </div>
                             </div>
@@ -266,7 +266,7 @@
 
             <div class="leftSideContent ">
                 <div class="side_card">
-                    <img src="{{ asset('assets/images/iconContainer.png') }}" class="lock" />
+                    <img src="{{ asset('admin/assets/images/iconContainer.png') }}" class="lock" />
                     <div>
                         <h6>No Orders Yet?</h6>
                         <p>Add products to your store and start <br /> selling to see orders here.</p>

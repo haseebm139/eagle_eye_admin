@@ -6,7 +6,7 @@
 
 
     <div class="toggle-btn" id="toggle-btn">
-        <img src="{{ asset('assets/images/svg/Home.svg') }} " />
+        <img src="{{ asset('admin/assets/images/svg/Home.svg') }} " />
     </div>
     <div class="dashboard-header d-flex align-items-center justify-content-between">
         <h3 id="page-title">Add Product</h3>
@@ -20,7 +20,7 @@
                 <span class="dropdown-icon"></span>
                 <!-- Down arrow icon -->
             </div>
-            <img src="{{ asset('assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
+            <img src="{{ asset('admin/assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
         </div>
     </div>
     <div id="dynamic-content">
@@ -32,7 +32,7 @@
                         <div class="" style="width: 30%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon1.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon1.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -64,7 +64,7 @@
                         <div class=" " style="width: 30%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -97,7 +97,7 @@
                         <div class="" style="width: 40%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -160,7 +160,7 @@
                                 <div class="sec-section d-flex flex-column gap-3">
                                     <div class="card text-center">
                                         <div class="alignemnt">
-                                            <img src="{{ asset('assets/images/svg/Folder.svg') }} " />
+                                            <img src="{{ asset('admin/assets/images/svg/Folder.svg') }} " />
                                             <div class="leftAlignement">
 
                                             </div>
@@ -183,10 +183,10 @@
 
                                     <div class="card text-center">
                                         <div class="alignemnt">
-                                            <img src="{{ asset('assets/images/svg/cart.svg') }}" />
+                                            <img src="{{ asset('admin/assets/images/svg/cart.svg') }}" />
                                             <div class="leftAlignement">
                                                 <p class="side-text">This Week</p>
-                                                <img src="{{ asset('assets/images/svg/Vector.svg') }} " />
+                                                <img src="{{ asset('admin/assets/images/svg/Vector.svg') }} " />
                                             </div>
                                         </div>
 
@@ -224,7 +224,7 @@
                                                     </option>
                                                 </select>
                                                 <span class="dropdown-icon"><img
-                                                        src="{{ asset('assets/images/svg/fi_chevron-down.svg') }} " /></span>
+                                                        src="{{ asset('admin/assets/images/svg/fi_chevron-down.svg') }} " /></span>
                                                 <!-- Down arrow icon -->
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
 
                         <div class="leftSideContent">
                             <div class="side_card">
-                                <img src="{{ asset('assets/images/iconContainer.png') }} " class="lock" />
+                                <img src="{{ asset('admin/assets/images/iconContainer.png') }} " class="lock" />
                                 <div>
                                     <h6>No Orders Yet?</h6>
                                     <p>
@@ -283,7 +283,7 @@
                         <div class="" style="width: 50%">
                             <div class="card text-center" style="background-color: black">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/Stroke 1.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/Stroke 1.svg') }} " />
                                 </div>
 
                                 <div class="d-flex align-items-start text-left justify-content-between"
@@ -305,7 +305,7 @@
                         <div class=" " style="width: 50%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/stroke 2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/stroke 2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -349,19 +349,19 @@
                             <h6>Products</h6>
                             <div class="d-flex gap-2">
                                 <div class="search-bar">
-                                    <img src="{{ asset('assets/images/svg/Search.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/Search.svg') }} " />
                                     <input type="text" placeholder="Search.." />
                                 </div>
                                 <button class="filter-btn">
-                                    <img src="{{ asset('assets/images/svg/filter1.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/filter1.svg') }} " />
                                     Filter
                                 </button>
                                 <button class="filter-btn">
-                                    <img src="{{ asset('assets/images/svg/Calendar.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/Calendar.svg') }} " />
                                     Filter
                                 </button>
                                 <button class="filter-btn">
-                                    <img src="{{ asset('assets/images/svg/Send.svg') }} " /> send
+                                    <img src="{{ asset('admin/assets/images/svg/Send.svg') }} " /> send
                                 </button>
                                 <div>
                                     <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
@@ -404,7 +404,7 @@
                                                 </label>
 
                                             </td>
-                                            <td><img src="{{ asset('assets/images/Rectangle 3.png') }} "></td>
+                                            <td><img src="{{ asset('admin/assets/images/Rectangle 3.png') }} "></td>
                                             <td>CET 126" UV Printer</td>
                                             <td>Printer</td>
                                             <td>$1,500</td>
@@ -443,7 +443,7 @@
                                                 </label>
 
                                             </td>
-                                            <td><img src="{{ asset('assets/images/Rectangle 3.png') }}"></td>
+                                            <td><img src="{{ asset('admin/assets/images/Rectangle 3.png') }}"></td>
                                             <td>Graphtec FC8000 Cutter</td>
                                             <td>Cutter</td>
                                             <td>$2,000</td>
@@ -481,7 +481,7 @@
                                                 </label>
 
                                             </td>
-                                            <td><img src="{{ asset('assets/images/Rectangle 3.png') }}"></td>
+                                            <td><img src="{{ asset('admin/assets/images/Rectangle 3.png') }}"></td>
                                             <td>Graphtec FC9000</td>
                                             <td>Cutter</td>
                                             <td>$2,500</td>

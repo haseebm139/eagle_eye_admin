@@ -8,7 +8,7 @@
 
 
     <div class="toggle-btn" id="toggle-btn">
-        <img src="{{ asset('assets/images/svg/Home.svg') }} " />
+        <img src="{{ asset('admin/assets/images/svg/Home.svg') }} " />
     </div>
     <div class="dashboard-header d-flex align-items-center justify-content-between">
         <h3 id="page-title">Add Product</h3>
@@ -22,7 +22,7 @@
                 <span class="dropdown-icon"></span>
                 <!-- Down arrow icon -->
             </div>
-            <img src="{{ asset('assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
+            <img src="{{ asset('admin/assets/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
         </div>
     </div>
     <div id="dynamic-content">
@@ -34,7 +34,7 @@
                         <div class="" style="width: 30%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon1.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon1.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -66,7 +66,7 @@
                         <div class=" " style="width: 30%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -99,7 +99,7 @@
                         <div class="" style="width: 40%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -162,7 +162,7 @@
                                 <div class="sec-section d-flex flex-column gap-3">
                                     <div class="card text-center">
                                         <div class="alignemnt">
-                                            <img src="{{ asset('assets/images/svg/Folder.svg') }} " />
+                                            <img src="{{ asset('admin/assets/images/svg/Folder.svg') }} " />
                                             <div class="leftAlignement">
 
                                             </div>
@@ -185,10 +185,10 @@
 
                                     <div class="card text-center">
                                         <div class="alignemnt">
-                                            <img src="{{ asset('assets/images/svg/cart.svg') }}" />
+                                            <img src="{{ asset('admin/assets/images/svg/cart.svg') }}" />
                                             <div class="leftAlignement">
                                                 <p class="side-text">This Week</p>
-                                                <img src="{{ asset('assets/images/svg/Vector.svg') }} " />
+                                                <img src="{{ asset('admin/assets/images/svg/Vector.svg') }} " />
                                             </div>
                                         </div>
 
@@ -226,7 +226,7 @@
                                                     </option>
                                                 </select>
                                                 <span class="dropdown-icon"><img
-                                                        src="{{ asset('assets/images/svg/fi_chevron-down.svg') }} " /></span>
+                                                        src="{{ asset('admin/assets/images/svg/fi_chevron-down.svg') }} " /></span>
                                                 <!-- Down arrow icon -->
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
 
                         <div class="leftSideContent">
                             <div class="side_card">
-                                <img src="{{ asset('assets/images/svg/iconContainer.svg') }} " class="lock" />
+                                <img src="{{ asset('admin/assets/images/svg/iconContainer.svg') }} " class="lock" />
                                 <div>
                                     <h6>No Orders Yet?</h6>
                                     <p>
@@ -280,7 +280,7 @@
                         <div class="" style="width: 35%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon1.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon1.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -312,7 +312,7 @@
                         <div class=" " style="width: 35%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -345,7 +345,7 @@
                         <div class="" style="width: 30%">
                             <div class="card text-center">
                                 <div class="alignemnt">
-                                    <img src="{{ asset('assets/images/svg/icon2.svg') }} " />
+                                    <img src="{{ asset('admin/assets/images/svg/icon2.svg') }} " />
                                     <div class="leftAlignement">
                                         <div class="dropdown-container position-relative">
                                             <select id="data-category" class="form-control2 d-inline w-auto">
@@ -395,7 +395,7 @@
                                 <option value="5">Save as Draft</option>
                                 <option value="10">Save as Draft</option>
                             </select>
-                            <img src="{{ asset('assets/images/svg/whiteDropdown.svg') }} " />
+                            <img src="{{ asset('admin/assets/images/svg/whiteDropdown.svg') }} " />
                         </div>
                         <button class="order-btn2 d-flex align-items-center">
                             save & Publish
@@ -489,15 +489,15 @@
                                         <button class="btn btn-light" onclick="formatText('bold')"><b>B</b></button>
                                         <button class="btn btn-light" onclick="formatText('underline')"><u>U</u></button>
                                         <button class="btn btn-light" onclick="formatText('italic')"><img
-                                                src="{{ asset('assets/images/svg/fi_italic.svg') }} " /></button>
+                                                src="{{ asset('admin/assets/images/svg/fi_italic.svg') }} " /></button>
                                         <button class="btn btn-light" onclick="formatText('justifyCenter')"><img
-                                                src="{{ asset('assets/images/svg/fi_align-justify.svg') }} " /></button>
+                                                src="{{ asset('admin/assets/images/svg/fi_align-justify.svg') }} " /></button>
                                         <button class="btn btn-light" onclick="formatText('justifyRight')"><img
-                                                src="{{ asset('assets/images/svg/fi_align-right.svg') }} " /></button>
+                                                src="{{ asset('admin/assets/images/svg/fi_align-right.svg') }} " /></button>
                                         <button class="btn btn-light" onclick="formatText('justifyLeft')"><img
-                                                src="{{ asset('assets/images/svg/fi_align-left.svg') }} " /></button>
+                                                src="{{ asset('admin/assets/images/svg/fi_align-left.svg') }} " /></button>
                                         <button class="btn btn-light" onclick="formatText('createLink')"><img
-                                                src="{{ asset('assets/images/svg/fi_link-2.svg') }} " /></button>
+                                                src="{{ asset('admin/assets/images/svg/fi_link-2.svg') }} " /></button>
                                     </div>
                                     {{-- <div id="toolbar">
                                         <!-- Font options -->
@@ -560,10 +560,11 @@
                         <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
                             id="imageUploader" onclick="document.getElementById('imageInput').click()">
                             <!-- Preview Image Container -->
-                            <img id="previewImage" class="previewImage" src="{{ asset('assets/images/Image.png') }} " />
+                            <img id="previewImage" class="previewImage"
+                                src="{{ asset('admin/assets/images/Image.png') }} " />
 
                             <div class="d-flex justify-content-center align-items-center gap-2" id="uploadPlaceholder">
-                                <img src="{{ asset('assets/images/svg/fi_upload-cloud.svg') }} " />
+                                <img src="{{ asset('admin/assets/images/svg/fi_upload-cloud.svg') }} " />
                                 <h6>Upload Image</h6>
                             </div>
 
@@ -586,11 +587,11 @@
                                     id="imageUploader" onclick="document.getElementById('imageInput').click()">
                                     <!-- Preview Image Container -->
                                     <img id="previewImage" class="previewImage"
-                                        src="{{ asset('assets/images/Image.png') }} " style="width: 30px;" />
+                                        src="{{ asset('admin/assets/images/Image.png') }} " style="width: 30px;" />
 
                                     <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
                                         id="uploadPlaceholder">
-                                        <img src="{{ asset('assets/images/svg/fi_upload-cloud.svg') }} "
+                                        <img src="{{ asset('admin/assets/images/svg/fi_upload-cloud.svg') }} "
                                             style="width: 16px;" />
                                         <p class="bold2 p-0 m-0">Upload Image</p>
                                     </div>
@@ -606,7 +607,7 @@
                                     id="imageUploader" onclick="document.getElementById('imageInput').click()">
                                     <!-- Preview Image Container -->
                                     <img id="previewImage" class="previewImage"
-                                        src="{{ asset('assets/images/Image.png') }} " style="display: none;" />
+                                        src="{{ asset('admin/assets/images/Image.png') }} " style="display: none;" />
 
                                     <!-- Hidden Input for Image Upload -->
                                     <input type="file" id="imageInput" style="display: none;"
@@ -768,24 +769,24 @@
                     // Custom classes for status
                     const row =
                         `
-                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                  <td>
-                                                                                                                                                                                                        <label class="custom-checkbox">
-                                                                                                                                                                                                                          <input type="checkbox" class="product-checkbox" data-id="${product.id}">
-                                                                                                                                                                                                                          <span class="checkmark"></span>
-                                                                                                                                                                                                                      </label>
+                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                      <td>
+                                                                                                                                                                                                            <label class="custom-checkbox">
+                                                                                                                                                                                                                              <input type="checkbox" class="product-checkbox" data-id="${product.id}">
+                                                                                                                                                                                                                              <span class="checkmark"></span>
+                                                                                                                                                                                                                          </label>
 
-                                                                                                                                                                                                      </td>
-                                                                                                                                                                                                  <td><img src="{{ asset('assets/images/Rectangle 3.png') }} " /></td>
-                                                                                                                                                                                                  <td>${product.name}</td>
-                                                                                                                                                                                                  <td>${product.category}</td>
-                                                                                                                                                                                                  <td>${product.price}</td>
-                                                                                                                                                                                                  <td>${product.stock}</td>
-                                                                                                                                                                                                  <td>${product.discount}</td>
-                                                                                                                                                                                                  <td>${product.value}</td>
-                                                                                                                                                                                                  <td>
-                                                                                                                                                                                                       <div class="dropdown">
-                                                                                                                                                                                                      <button style="
+                                                                                                                                                                                                          </td>
+                                                                                                                                                                                                      <td><img src="{{ asset('admin/assets/images/Rectangle 3.png') }} " /></td>
+                                                                                                                                                                                                      <td>${product.name}</td>
+                                                                                                                                                                                                      <td>${product.category}</td>
+                                                                                                                                                                                                      <td>${product.price}</td>
+                                                                                                                                                                                                      <td>${product.stock}</td>
+                                                                                                                                                                                                      <td>${product.discount}</td>
+                                                                                                                                                                                                      <td>${product.value}</td>
+                                                                                                                                                                                                      <td>
+                                                                                                                                                                                                           <div class="dropdown">
+                                                                                                                                                                                                          <button style="
                       padding: 5px .75rem;
                       font-size: 12px;
                       color: #000;
@@ -793,17 +794,17 @@
   border-radius: 21px;
   background-color: #989ea3;
                       " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                                                                                                                                          Action
-                                                                                                                                                                                                      </button>
-                                                                                                                                                                                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                                                                                                                                                          <li><a style="font-size: 13px;" class="dropdown-item" href="#">Edit</a></li>
-                                                                                                                                                                                                          <li><a style="font-size: 13px;" class="dropdown-item" href="#">Delete</a></li>
-                                                                                                                                                                                                          <li><a style="font-size: 13px;" class="dropdown-item" href="#">View</a></li>
-                                                                                                                                                                                                      </ul>
-                                                                                                                                                                                                  </div>
-                                                                                                                                                                                                      </td>
-                                                                                                                                                                                                  <td><p class="${statusClass}">${product.status}</p></td>
-                                                                                                                                                                                              </tr>`;
+                                                                                                                                                                                                              Action
+                                                                                                                                                                                                          </button>
+                                                                                                                                                                                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                                                                                                                                                              <li><a style="font-size: 13px;" class="dropdown-item" href="#">Edit</a></li>
+                                                                                                                                                                                                              <li><a style="font-size: 13px;" class="dropdown-item" href="#">Delete</a></li>
+                                                                                                                                                                                                              <li><a style="font-size: 13px;" class="dropdown-item" href="#">View</a></li>
+                                                                                                                                                                                                          </ul>
+                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                          </td>
+                                                                                                                                                                                                      <td><p class="${statusClass}">${product.status}</p></td>
+                                                                                                                                                                                                  </tr>`;
                     tableBody.insertAdjacentHTML("beforeend", row);
                 });
                 updatePaginationInfo();
