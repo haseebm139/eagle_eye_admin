@@ -50,6 +50,9 @@ Route::get('/about-us', function () {
     return view('user.pages.about_us');
 })->name('about.us');
 
+Route::get('/our-story', function () {
+    return view('user.pages.our_story');
+})->name('our.story');
 // Route::get('/home', function () {
 //     return view('admin.pages.dashboard');
 // })->name('home');

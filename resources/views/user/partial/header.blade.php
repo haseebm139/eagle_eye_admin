@@ -36,7 +36,7 @@
                     <a class="nav-link" href="#">Products Offered</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Our Story</a>
+                    <a class="nav-link" href="{{ route('our.story') }}">Our Story</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
