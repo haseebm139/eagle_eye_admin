@@ -18,22 +18,26 @@ use App\Http\Controllers\Admin\AdminController;
 
 
 
-Route::middleware(['guest'])->controller(SocialLogin::class)->group(function(){
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
+Route::middleware(['guest'])->group(function(){
+    Route::controller(SocialLogin::class)->group(function(){
 
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+        Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+        Route::get('auth/google/callback', 'handleGoogleCallback');
+
+        Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+        Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    });
+    Route::controller(AuthController::class)->group(function(){
+        Route::get('login', 'login')->name('login');
+        Route::get('register', 'register')->name('register');
+
+        Route::post('login', 'loginProcess')->name('login.process');
+        Route::post('register', 'registerProcess')->name('register.process');
+        Route::get('logout', 'logout')->name('logout');
+
+    });
 });
-Route::controller(AuthController::class)->group(function(){
-    Route::get('login', 'login')->name('login');
-    Route::get('register', 'register')->name('register');
 
-    Route::post('login', 'loginProcess')->name('login.process');
-    Route::post('register', 'registerProcess')->name('register.process');
-    Route::get('logout', 'logout')->name('logout');
-
-});
 
 Route::get('/', function () {
     return view('user.pages.index');
