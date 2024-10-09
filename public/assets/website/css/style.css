@@ -1,6 +1,6 @@
 
 
-            
+
 
 
 .price{
@@ -298,24 +298,24 @@ width: 28%;
             padding:50px 0px;
         }
         #Equipment_section .Equipment_heading{
-            font-family: 'GilroyBold'; 
+            font-family: 'GilroyBold';
             font-size: 68px;
-            
+
         }
         #Equipment_section .Equipment_para{
-            font-family: 'GilroyLight'; 
+            font-family: 'GilroyLight';
             font-size: 16px;
             line-height: 31px;
         }
         #Equipment_section .Equipment_para_text p{
-            font-family: 'GilroyRegular'; 
+            font-family: 'GilroyRegular';
             font-size: 26px;
             line-height: 43px;
             padding-right:100px;
             margin-bottom:20px;
         }
       .product_title{
-            font-family: 'GilroyRegular'; 
+            font-family: 'GilroyRegular';
             font-size: 20px;
         }
      .Equipment_product_img{
@@ -331,8 +331,8 @@ width: 28%;
             background: rgba(0,0,0,0);
             border: 1px solid gainsboro;
             width: 40px;
-            height:40px; 
-            border-radius: 50px;   
+            height:40px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -341,10 +341,10 @@ width: 28%;
             background: #FFD014;
             border-color: #FFD014;
         }
-        
-        
-        
-        
+
+
+
+
     #back_btn_sec .product_back_btn{
         display: flex;
         align-items: center;
@@ -367,7 +367,7 @@ width: 28%;
             display: flex;
             gap:20px;
         }
-        #products_details_sec .product_images_wrapper .product_extra_images_wrapper{ 
+        #products_details_sec .product_images_wrapper .product_extra_images_wrapper{
             width:210px;
             display: flex;
             flex-direction: column;
@@ -504,7 +504,7 @@ width: 28%;
             justify-content: center;
             text-decoration: none;
         }
-      
+
         /* product description section */
         #product_page_description_section{
             background:#D9D9D9;

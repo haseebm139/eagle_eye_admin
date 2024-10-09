@@ -53,6 +53,10 @@ Route::get('/about-us', function () {
 Route::get('/our-story', function () {
     return view('user.pages.our_story');
 })->name('our.story');
+
+Route::get('/cart', function () {
+    return view('user.pages.cart');
+})->name('cart');
 // Route::get('/home', function () {
 //     return view('admin.pages.dashboard');
 // })->name('home');

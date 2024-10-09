@@ -24,7 +24,7 @@
         </div>
         <div>
             <div class="footerRight">
-                <img src="{{ asset('assets/website/images/Rectangle 4126.png') }} " class="map" />
+                <img src="{{ asset('assets/website/images/Rectangle_4126.png') }} " class="map" />
             </div>
 
             <div class="d-flex justify-content-start RightBottom">
@@ -67,16 +67,16 @@
                             <img src="{{ asset('assets/website/images/fb.png') }} " class="pb-1" />
                         </a>
                         <a href="#">
-                            <img src="{{ asset('assets/website/images/Group (1).png') }} " class="pb-1" />
+                            <img src="{{ asset('assets/website/images/Group_(1).png') }} " class="pb-1" />
                         </a>
                         <a href="#"></a>
-                        <img src="{{ asset('assets/website/images/Group (2).png') }}" />
+                        <img src="{{ asset('assets/website/images/Group_(2).png') }}" />
                         </a>
                         <a href="#"></a>
-                        <img src="{{ asset('assets/website/images/Group (3).png') }}" />
+                        <img src="{{ asset('assets/website/images/Group_(3).png') }}" />
                         </a>
                         <a href="#"></a>
-                        <img src="{{ asset('assets/website/images/Group (4).png') }}" />
+                        <img src="{{ asset('assets/website/images/Group_(4).png') }}" />
                         </a>
                     </div>
                 </div>

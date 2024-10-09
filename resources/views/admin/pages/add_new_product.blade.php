@@ -2,6 +2,416 @@
 @section('title', 'Add New Product')
 
 @section('style')
+    <style>
+        .custom-active {
+            background-color: #5570f129;
+            /* Custom green */
+            color: rgb(0, 0, 0);
+
+            padding: 5px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .custom-inactive {
+            background-color: #fff2e2;
+            /* Custom red */
+            color: rgb(0, 0, 0);
+            padding: 5px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .ql-container {
+            background-color: #eeeef0;
+            height: 20vh;
+            border-bottom-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+
+        .ql-toolbar.ql-snow {
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            background-color: #eeeef0;
+        }
+
+        .product {
+            background: white;
+            margin: 20px 0;
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .dropdownbtn {
+            padding: 5px .75rem;
+            font-size: 12px;
+            color: #000;
+            border-color: none;
+            border-radius: 21px;
+            background-color: #989ea3;
+        }
+
+        .Width {
+            width: 100%;
+        }
+
+        .Width span {
+            font-size: 17px;
+            font-weight: 700
+        }
+
+        .cancel {
+            border-radius: 20px;
+            padding: 3px 2px;
+            border: none;
+        }
+
+        .NewCompany {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Dark semi-transparent background */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            /* Ensure it appears above other content */
+        }
+
+
+        .model {
+            border-radius: 20px;
+            background-color: white;
+            width: 400px;
+
+            padding: 1.5rem 1.2rem;
+            z-index: 2;
+        }
+
+        .model span {
+            font-family: poppinsBold;
+        }
+
+        .model p {
+            margin-top: none;
+            margin-bottom: 0;
+            color: #8B8D97;
+            padding: 6px 0;
+            font-size: 13px;
+            font-family: poppinsMedium;
+        }
+
+        .iti {
+            margin: 5px 0;
+        }
+
+        .inputBox {
+            margin: 5px 0;
+            width: 100%;
+            border: none;
+            color: #8B8D97;
+            background-color: #EFF1F9;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .companyAddress {
+            color: #8B8D97;
+            font-size: 11px;
+        }
+
+        .addressSection {
+            display: none;
+        }
+
+        .orderCard {
+            height: 100vh;
+        }
+
+
+        .Assigned {
+
+            background-color: #D9D9D9;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: #8B8D97;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .dropdown-like {
+            display: none;
+            /* Initially hidden */
+            position: absolute;
+            right: 79px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            z-index: 100;
+        }
+
+        .dropdown-like input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .dropdown-like ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-like ul li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-like ul li:hover {
+            background-color: #D9D9D9;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-like ul li label {
+            font-family: InterMedium;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8B8D97;
+        }
+
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        /* Visible state of dropdown */
+        .dropdown-like.show {
+            display: block;
+        }
+
+        .modal-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            margin: 10% auto;
+            padding: 4px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content2 {
+            display: none;
+            position: absolute;
+            background-color: white;
+            margin: 7% auto;
+            padding: 16px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            font-family: InterMedium;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            color: #53545C;
+            font-family: InterMedium;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .filter-group2 label {
+            font-family: InterLight !important;
+
+        }
+
+
+        .amount-fields {
+            display: flex;
+            gap: 10px;
+        }
+
+        .select {
+            outline: none;
+            border: 1px solid #D9D9D9;
+            width: 100%;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .amount-fields input {
+            width: 100px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .filter-btn-submit {
+            background-color: #FFD014;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            color: rgb(0, 0, 0);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .year-select {
+            border: none;
+            color: gray;
+            font-size: 14px;
+        }
+
+        .calendar {
+            top: 1rem;
+            margin: 0 auto;
+            width: 300px;
+            background: #fff;
+
+        }
+
+        .mainCalendar {
+            background-color: #f4f5fa;
+            border-radius: 13px;
+        }
+
+        .calendar header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .calendar nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .calendar ul {
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .calendar ul li {
+            width: calc(100% / 7);
+            position: relative;
+            z-index: 2;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #prev,
+        #next {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #prev::before,
+        #next::before {
+            content: "";
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-style: solid;
+            border-width: 0.25em 0.25em 0 0;
+            border-color: #ccc;
+        }
+
+        #next::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        #prev::before {
+            transform: translate(-50%, -50%) rotate(-135deg);
+        }
+
+        #prev:hover::before,
+        #next:hover::before {
+            border-color: #000;
+        }
+
+        .days {
+            font-weight: 600;
+        }
+
+        .dates li.today {
+            color: #000000;
+        }
+
+        .dates li.today::before {
+            content: "";
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .dates li.inactive {
+            color: #ccc;
+        }
+
+        .selected-range {
+
+            background-color: #b4ddff;
+            /* Light blue to indicate selection */
+            color: black;
+        }
+
+        .start-date {
+            border-radius: 50%;
+            background-color: #000000;
+            /* Green background for start date */
+            color: white;
+        }
+
+
+        .end-date {
+            border-radius: 50%;
+            background-color: #000000;
+            /* Red background for end date */
+            color: white;
+        }
+    </style>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @endsection
 @section('content')
@@ -470,36 +880,7 @@
                                     <label for="productDescription" class="form-label Description ">Product Long
                                         Description</label>
 
-                                    <div class="editor-toolbar " style="background-color:#eeeef0;">
-                                        <select id="fontFamily" class="form-select d-inline-block  ProductList Fonts">
-                                            <option selected>Roboto</option>
-                                            <option>Arial</option>
-                                            <option>Times New Roman</option>
-                                            <option>Verdana</option>
-                                        </select>
-
-                                        <select id="fontSize" class="form-select d-inline-block  ProductList Fonts">
-                                            <option selected>Paragraph</option>
-                                            <option>Heading 1</option>
-                                            <option>Heading 2</option>
-                                            <option>Heading 3</option>
-                                        </select>
-
-                                        <!-- Formatting Buttons -->
-                                        <button class="btn btn-light" onclick="formatText('bold')"><b>B</b></button>
-                                        <button class="btn btn-light" onclick="formatText('underline')"><u>U</u></button>
-                                        <button class="btn btn-light" onclick="formatText('italic')"><img
-                                                src="{{ asset('assets/admin/images/svg/fi_italic.svg') }} " /></button>
-                                        <button class="btn btn-light" onclick="formatText('justifyCenter')"><img
-                                                src="{{ asset('assets/admin/images/svg/fi_align-justify.svg') }} " /></button>
-                                        <button class="btn btn-light" onclick="formatText('justifyRight')"><img
-                                                src="{{ asset('assets/admin/images/svg/fi_align-right.svg') }} " /></button>
-                                        <button class="btn btn-light" onclick="formatText('justifyLeft')"><img
-                                                src="{{ asset('assets/admin/images/svg/fi_align-left.svg') }} " /></button>
-                                        <button class="btn btn-light" onclick="formatText('createLink')"><img
-                                                src="{{ asset('assets/admin/images/svg/fi_link-2.svg') }} " /></button>
-                                    </div>
-                                    {{-- <div id="toolbar">
+                                    <div id="toolbar">
                                         <!-- Font options -->
                                         <select class="ql-font"></select>
                                         <!-- Paragraph format -->
@@ -518,16 +899,12 @@
                                         <button class="ql-align" value="right"></button>
                                     </div>
                                     <div id="editor">
-                                        <p>Your text goes here</p>
-                                    </div> --}}
-                                    <!-- Editable Content Area -->
-                                    <div id="productDescription" class="form-control Productform-control"
-                                        contenteditable="true">
-                                        Your text goes here
+
                                     </div>
 
-                                    <div class="form-text mt-2 " style="color: #8f8787">Add a long description for
-                                        your product</div>
+
+                                    <div class="form-text mt-2 " style="color: #8f8787">Add a long description for your
+                                        product</div>
                                 </div>
 
                                 <div class="d-flex justify-content-between align-items-center">
@@ -587,12 +964,13 @@
                                     id="imageUploader" onclick="document.getElementById('imageInput').click()">
                                     <!-- Preview Image Container -->
                                     <img id="previewImage" class="previewImage"
-                                        src="{{ asset('assets/admin/images/Image.png') }} " style="width: 30px;" />
+                                        src="{{ asset('assets/admin/images/Image.png') }}" style="width: 30px;" />
 
                                     <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
                                         id="uploadPlaceholder">
-                                        <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
-                                            style="width: 16px;" />
+                                        <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }}"
+                                            style="width:
+                                            16px;" />
                                         <p class="bold2 p-0 m-0">Upload Image</p>
                                     </div>
 
@@ -607,7 +985,7 @@
                                     id="imageUploader" onclick="document.getElementById('imageInput').click()">
                                     <!-- Preview Image Container -->
                                     <img id="previewImage" class="previewImage"
-                                        src="{{ asset('assets/admin/images/Image.png') }} " style="display: none;" />
+                                        src="{{ asset('assets/admin/images/Image.png') }}" style="display: none;" />
 
                                     <!-- Hidden Input for Image Upload -->
                                     <input type="file" id="imageInput" style="display: none;"
@@ -633,11 +1011,15 @@
 @section('script')
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
+        function getStatusClass(status) {
+            return status === "Active" ? "custom-active" : "custom-inactive";
+        }
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
                 toolbar: '#toolbar'
-            }
+            },
+            placeholder: 'Your text goes here'
         });
     </script>
     <script>
@@ -769,24 +1151,24 @@
                     // Custom classes for status
                     const row =
                         `
-                                                                                                                                                                                                      <tr>
-                                                                                                                                                                                                          <td>
-                                                                                                                                                                                                                <label class="custom-checkbox">
-                                                                                                                                                                                                                                  <input type="checkbox" class="product-checkbox" data-id="${product.id}">
-                                                                                                                                                                                                                                  <span class="checkmark"></span>
-                                                                                                                                                                                                                              </label>
+                                                                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                                                                          <td>
+                                                                                                                                                                                                                                                                                                <label class="custom-checkbox">
+                                                                                                                                                                                                                                                                                                                  <input type="checkbox" class="product-checkbox" data-id="${product.id}">
+                                                                                                                                                                                                                                                                                                                  <span class="checkmark"></span>
+                                                                                                                                                                                                                                                                                                              </label>
 
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                          <td><img src="{{ asset('assets/admin/images/Rectangle 3.png') }} " /></td>
-                                                                                                                                                                                                          <td>${product.name}</td>
-                                                                                                                                                                                                          <td>${product.category}</td>
-                                                                                                                                                                                                          <td>${product.price}</td>
-                                                                                                                                                                                                          <td>${product.stock}</td>
-                                                                                                                                                                                                          <td>${product.discount}</td>
-                                                                                                                                                                                                          <td>${product.value}</td>
-                                                                                                                                                                                                          <td>
-                                                                                                                                                                                                               <div class="dropdown">
-                                                                                                                                                                                                              <button style="
+                                                                                                                                                                                                                                                                                              </td>
+                                                                                                                                                                                                                                                                                          <td><img src="{{ asset('assets/admin/images/Rectangle_3.png') }} " /></td>
+                                                                                                                                                                                                                                                                                          <td>${product.name}</td>
+                                                                                                                                                                                                                                                                                          <td>${product.category}</td>
+                                                                                                                                                                                                                                                                                          <td>${product.price}</td>
+                                                                                                                                                                                                                                                                                          <td>${product.stock}</td>
+                                                                                                                                                                                                                                                                                          <td>${product.discount}</td>
+                                                                                                                                                                                                                                                                                          <td>${product.value}</td>
+                                                                                                                                                                                                                                                                                          <td>
+                                                                                                                                                                                                                                                                                               <div class="dropdown">
+                                                                                                                                                                                                                                                                                              <button style="
                       padding: 5px .75rem;
                       font-size: 12px;
                       color: #000;
@@ -794,17 +1176,17 @@
   border-radius: 21px;
   background-color: #989ea3;
                       " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                                                                                                                                                  Action
-                                                                                                                                                                                                              </button>
-                                                                                                                                                                                                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">Edit</a></li>
-                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">Delete</a></li>
-                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">View</a></li>
-                                                                                                                                                                                                              </ul>
-                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                          <td><p class="${statusClass}">${product.status}</p></td>
-                                                                                                                                                                                                      </tr>`;
+                                                                                                                                                                                                                                                                                                  Action
+                                                                                                                                                                                                                                                                                              </button>
+                                                                                                                                                                                                                                                                                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                                                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">Edit</a></li>
+                                                                                                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">Delete</a></li>
+                                                                                                                                                                                                                                                                                                  <li><a style="font-size: 13px;" class="dropdown-item" href="#">View</a></li>
+                                                                                                                                                                                                                                                                                              </ul>
+                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                              </td>
+                                                                                                                                                                                                                                                                                          <td><p class="${statusClass}">${product.status}</p></td>
+                                                                                                                                                                                                                                                                                      </tr>`;
                     tableBody.insertAdjacentHTML("beforeend", row);
                 });
                 updatePaginationInfo();

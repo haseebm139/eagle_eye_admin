@@ -49,7 +49,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div>
-                        <img src="{{ asset('assets/website/images/image (1).png') }} " />
+                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
                             <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
@@ -60,7 +60,7 @@
                 <div class="swiper-slide">
 
                     <div>
-                        <img src="{{ asset('assets/website/images/image (2).png') }}" />
+                        <img src="{{ asset('assets/website/images/image_(2).png') }}" />
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
                             <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
@@ -71,7 +71,7 @@
 
                 <div class="swiper-slide">
                     <div>
-                        <img src="{{ asset('assets/website/images/image (3).png') }}" />
+                        <img src="{{ asset('assets/website/images/image_(3).png') }}" />
 
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div>
-                        <img src="{{ asset('assets/website/images/image (1).png') }} " />
+                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
                             <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
@@ -108,7 +108,7 @@
                 <div class="swiper-slide">
 
                     <div>
-                        <img src="{{ asset('assets/website/images/image (2).png') }} " />
+                        <img src="{{ asset('assets/website/images/image_(2).png') }} " />
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
                             <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
@@ -120,7 +120,7 @@
 
                 <div class="swiper-slide">
                     <div>
-                        <img src="{{ asset('assets/website/images/image (1).png') }} " />
+                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
                         <div class="d-flex justify-content-start align-items-center">
                             <p> 1 Mimaki UJV100-160 64" UV printer</p>
                             <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image4.png') }} " /></div>
-                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image (1).png') }} " /></div>
+                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image_(1).png') }} " /></div>
             </div>
             <!-- <div class="swiper-pagination"></div> -->
         </div>

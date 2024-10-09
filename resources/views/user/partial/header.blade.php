@@ -3,12 +3,12 @@
         <p class="contact">Contact us</p>
         <div class="leftbar">
             <div class="flexing">
-                <img src="{{ asset('assets/website/images/svg/Mask group.svg') }}" />
+                <img src="{{ asset('assets/website/images/svg/Mask_group.svg') }}" />
                 <p>Talk To Us  (844) 983-0416</p>
 
             </div>
             <div class="flexing">
-                <img src="{{ asset('assets/website/images/svg/Mask group (1).svg') }}" />
+                <img src="{{ asset('assets/website/images/svg/Mask_group_(1).svg') }}" />
                 <p>Email: info@eagleeye.com</p>
             </div>
         </div>
@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
-            <img class="logo" src="{{ asset('assets/admin/images/image 715.png') }}" alt="Logo">
+            <img class="logo" src="{{ asset('assets/admin/images/image_715.png') }}" alt="Logo">
 
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -42,6 +42,26 @@
                     <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
                 </li>
             </ul>
+            <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
+                    src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
+                25</a>
+
+
+
+            <div class="dropdown">
+                <!-- The dropdown toggle -->
+                <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow -->
+                    <img src="{{ asset('assets/website/images/fb.png') }} " alt="User Image" id="profile-image">
+                </div>
+                <!-- The dropdown menu -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </div>
             <a href="{{ route('login') }}" class="btn btn-warning ms-lg-3">Login</a>
         </div>
     </div>

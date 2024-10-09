@@ -15,7 +15,7 @@
                             High-Quality <br /> Custom Banners. <br /><span class="thin-text">Fast, Reliable <br />
                                 Printing</span>
                         </p>
-                        <img src="{{ asset('assets/admin/images/auth/image 726.png') }}" />
+                        <img src="{{ asset('assets/admin/images/auth/image_726.png') }}" />
                     </div>
                 </div>
                 <div class="col bg-alignment2">
@@ -23,7 +23,7 @@
                         @csrf
                         <div class="d-flex flex-column justify-content-center align-items-center inner-alignment2">
                             <div class="layer font-styling">
-                                <img src="{{ asset('assets/admin/images/auth/image 715.png') }}" />
+                                <img src="{{ asset('assets/admin/images/auth/image_715.png') }}" />
                                 <h5>Register Now</h5>
                                 <div class="inputLayout input-group">
                                     <input class="login" name="name" id="name" placeholder="First Name" required />
@@ -44,7 +44,7 @@
                                             required />
                                         <!-- <button class="button" id="btn" type="button">Validate</button> -->
                                         <!-- <span id="valid-msg" class="hide"></span>
-                                                                                                                                                                                                                                                                                                                                                                                            <span id="error-msg" class="hide"></span> -->
+                                                                                                                                                                                                                                                                                                                                                                                                <span id="error-msg" class="hide"></span> -->
                                     </form>
                                 </div>
                                 <div class="inputLayout input-group">

@@ -95,7 +95,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
             const width = bar.width; // Bar width
             const height = chartArea.bottom - chartArea.top; // Full chart height
 
-            // Draw background rectangle behind each bar
+            // Draw background  Rectangle_ behind each bar
             ctx.fillRect(x, y, width, height);
         });
 
@@ -141,7 +141,24 @@ document.querySelectorAll('.nav-link').forEach(link => {
         plugins: [backgroundPlugin] // Register the custom background plugin
     });
 
+    // Handling form submission to add data dynamically
+    document.getElementById('custom-data-form').addEventListener('submit', function(e) {
+        e.preventDefault();
 
+        const customDate = document.getElementById('custom-date-input').value;
+        const customValue = parseInt(document.getElementById('custom-value-input').value);
+
+        if (customDate && customValue) {
+            // Add data to chart
+            customLabels.push(customDate);
+            customDataValues.push(customValue);
+            customBarChart.update();
+
+            // Clear input fields
+            document.getElementById('custom-date-input').value = '';
+            document.getElementById('custom-value-input').value = '';
+        }
+    });
 
     // Update chart when dropdowns are changed
     document.getElementById('data-category').addEventListener('change', function() {
@@ -160,41 +177,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
         customBarChart.data.datasets[0].data = updatedValues;
         customBarChart.update();
     });
-
-
-
-    function formatText(command) {
-        if (command === 'createLink') {
-          const url = prompt("Enter the URL");
-          document.execCommand(command, false, url);
-        } else {
-          document.execCommand(command, false, null);
-        }
-      }
-
-      document.getElementById('fontFamily').addEventListener('change', function() {
-        document.execCommand('fontName', false, this.value);
-      });
-
-      document.getElementById('fontSize').addEventListener('change', function() {
-        let size;
-        switch (this.value) {
-          case 'Heading 1':
-            size = 'h1';
-            break;
-          case 'Heading 2':
-            size = 'h2';
-            break;
-          case 'Heading 3':
-            size = 'h3';
-            break;
-          default:
-            size = 'p';
-        }
-        document.execCommand('formatBlock', false, size);
-      });
-
-
 
 
       function previewUploadedFile(event) {
@@ -219,5 +201,15 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 
 
+    const fromBtn = document.getElementById('from-btn');
+    const toBtn = document.getElementById('to-btn');
 
+    fromBtn.addEventListener('click', () => {
+      fromBtn.classList.add('active');
+      toBtn.classList.remove('active');
+    });
 
+    toBtn.addEventListener('click', () => {
+      toBtn.classList.add('active');
+      fromBtn.classList.remove('active');
+    });
