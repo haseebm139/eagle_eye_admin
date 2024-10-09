@@ -661,11 +661,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                    width: 10px;
-                                                                                                                                                    }
-                                                                                                                                                    ::-webkit-scrollbar-track{
-                                                                                                                                                    background-color: #000;
-                                                                                                                                                    } */
+                                                                                                                                                                                    width: 10px;
+                                                                                                                                                                                    }
+                                                                                                                                                                                    ::-webkit-scrollbar-track{
+                                                                                                                                                                                    background-color: #000;
+                                                                                                                                                                                    } */
     </style>
 @endsection
 @section('content')
@@ -716,11 +716,11 @@
             <div class="container cart">
                 <div class="d-flex justify-content-start align-items-start gap-3 mt-5">
                     <span class="d-flex gap-2 justify-content-center align-items-center">
-                        <img src="{{ asset('assets/website/images/svg/delete 1.svg') }} " />
+                        <img src="{{ asset('assets/website/images/svg/delete_1.svg') }} " />
                         <p class="p-0 m-0">Remove Item</p>
                     </span>
                     <span class="d-flex gap-2 justify-content-center align-items-center">
-                        <img src="{{ asset('assets/website/images/svg/delete 1 (1).svg') }} " />
+                        <img src="{{ asset('assets/website/images/svg/delete_1_(1).svg') }} " />
                         <p class="p-0 m-0">Edit</p>
                     </span>
                 </div>
@@ -775,7 +775,7 @@
                                 <td>
                                     <div class="upload-container">
                                         <div class="d-flex justify-content gap-3 align-items-center">
-                                            <img src="{{ asset('assets/website/images/svg/image 727.svg') }} " />
+                                            <img src="{{ asset('assets/website/images/svg/image_727.svg') }} " />
                                             <span>
                                                 <p>Upload Image</p>
                                                 <p class="size">Max size: 200 MB</p>
@@ -1027,7 +1027,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1129,7 +1129,7 @@
                             <div class="cardAlign mt-3 mb-3">
                                 <div class="card">
                                     <input type="number" placeholder="Card Number" />
-                                    <img src="./assests/svg/Icon (1).svg" />
+                                    <img src="{{ asset('assets/website/images/svg/Icon_(1).svg') }} " />
                                 </div>
 
                                 <div class="d-flex gap-1 mt-2">
@@ -1138,7 +1138,7 @@
                                     </div>
                                     <div class="card">
                                         <input type="number" placeholder="CVV" />
-                                        <img src="./assests/svg/date.svg" />
+                                        <img src="{{ asset('assets/website/images/svg/date.svg') }} " />
                                     </div>
                                 </div>
                             </div>
@@ -1152,10 +1152,10 @@
 
                                 </div>
                                 <div class="d-flex justify-content-center gap-1 align-items-center visa">
-                                    <img src="{{ asset('assets/website/images/Ellipse 14.png ') }} " />
+                                    <img src="{{ asset('assets/website/images/Group_3703.png ') }} " />
                                     <img src="{{ asset('assets/website/images/Group_3704.png ') }} " />
                                     <img src="{{ asset('assets/website/images/Group_3705.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/Group_3706.png ') }} " />
+                                    <img src="{{ asset('assets/website/images/Ellipse_14.png ') }} " />
                                 </div>
                             </div>
                         </div>
@@ -1303,7 +1303,8 @@
                                 <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
                                 </div>
                             </div>
                         </div>
@@ -1313,7 +1314,8 @@
                                 <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                                 </div>
                             </div>
                         </div>
@@ -1324,7 +1326,8 @@
 
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                                 </div>
 
                             </div>
@@ -1336,7 +1339,8 @@
                                 <img src="{{ asset('assets/website/images/image4.png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                                 </div>
                             </div>
                         </div>
@@ -1345,7 +1349,8 @@
                                 <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
                                 </div>
                             </div>
                         </div>
@@ -1357,7 +1362,8 @@
                                 <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
                                 </div>
                             </div>
                         </div>
@@ -1368,7 +1374,8 @@
                                 <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img src="./assests/svg/Vector.svg" /></a>
+                                    <a href="#" class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
                                 </div>
                             </div>
                         </div>
