@@ -5,11 +5,11 @@
                 <h5>OFFICE ADDRESS</h5>
                 <p class="para p-0 m-0"> (By Appointment Only)</p>
             </div>
-            <p class="d-flex gap-2 para mt-3"> <img src="{{ asset('assets/website/images/svg/image 469.svg') }}" />Lorem
+            <p class="d-flex gap-2 para mt-3"> <img src="{{ asset('assets/website/images/svg/image_469.svg') }}" />Lorem
                 Ipsum is simply
                 dummy text of the printing and typesetting industry</p>
 
-            <p class="d-flex gap-2 para"> <img src="{{ asset('assets/website/images/svg/image 469.svg') }}" />Lorem
+            <p class="d-flex gap-2 para"> <img src="{{ asset('assets/website/images/svg/image_469.svg') }}" />Lorem
                 Ipsum is simply dummy
                 text of the printing and typesetting industry</p>
             <ul class="ul">
