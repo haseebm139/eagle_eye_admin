@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <title>Eagle Eye | @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -27,7 +28,7 @@
     <script src="{{ asset('assets/admin/js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/toastr.min.css') }}" />
     <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
 
     <script>

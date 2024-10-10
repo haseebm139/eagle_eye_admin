@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SocialLogin;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,4 +91,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
 
     });
+
+    Route::controller(ProductController::class)->name('product.')->group(function(){
+        Route::post('/upload-product', 'uploadProduct')->name('add');
+        Route::Get('/product-list', 'productList')->name('list');
+
+
+
+    });
+
 });
