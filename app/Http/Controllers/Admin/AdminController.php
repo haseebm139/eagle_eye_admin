@@ -14,6 +14,9 @@ class AdminController extends Controller
     public function product(){
         return view('admin.pages.products');
     }
+    public function customers(){
+        return view('admin.pages.customer');
+    }
     public function addProduct(){
         return view('admin.pages.add_new_product');
     }

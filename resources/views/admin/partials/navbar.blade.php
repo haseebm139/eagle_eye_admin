@@ -10,7 +10,7 @@
             <a href="#" class="nav-link">
                 <img src="{{ asset('assets/admin/images/svg/Bag.svg') }}" /> <span>Orders</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('customers') }}" class="nav-link">
                 <img src="{{ asset('assets/admin/images/svg/2_User.svg') }}" /><span>Customers</span>
             </a>
             <a href="{{ route('product') }}" class="nav-link @if (Route::is('product') || Route::is('add.product')) active @endif ">

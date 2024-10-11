@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\SocialLogin;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::get('/', 'dashboard');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/products', 'product')->name('product');
+        Route::get('/customer-summary', 'customers')->name('customers');
         Route::get('/add/product', 'addProduct')->name('add.product');
 
 
@@ -97,8 +99,12 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::Get('/product-list', 'productList')->name('list');
         Route::post('/products/{id}/status', 'updateStatus')->name('change.status');
 
-
+    });
+    Route::controller(CustomerController::class)->name('customer.')->group(function(){
+        Route::post('/add-customer', 'create')->name('create');
+        Route::Get('/customers', 'index')->name('index');
 
     });
+
 
 });
