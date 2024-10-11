@@ -95,6 +95,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::controller(ProductController::class)->name('product.')->group(function(){
         Route::post('/upload-product', 'uploadProduct')->name('add');
         Route::Get('/product-list', 'productList')->name('list');
+        Route::post('/products/{id}/status', 'updateStatus')->name('change.status');
 
 
 

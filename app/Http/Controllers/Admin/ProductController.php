@@ -78,24 +78,26 @@ class ProductController extends Controller
     public function productList(Request $request){
 
         $perPage = $request->input('items_per_page', 10);
-        $query = Product::query(); // Start a query for the Product model
+
+        // Start a query for the Product model
+        $query = Product::where('status', '!=', 0);
 
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
                 $q->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('category', 'LIKE', "%{$search}%")
-                  ->orWhere('short_description', 'LIKE', "%{$search}%")
-                  ->orWhere('long_description', 'LIKE', "%{$search}%")
-                  ->orWhere('cost_price', 'LIKE', "%{$search}%")
-                  ->orWhere('sell_price', 'LIKE', "%{$search}%")
-                  ->orWhere('stock', 'LIKE', "%{$search}%");
+                ->orWhere('category', 'LIKE', "%{$search}%")
+                ->orWhere('short_description', 'LIKE', "%{$search}%")
+                ->orWhere('long_description', 'LIKE', "%{$search}%")
+                ->orWhere('cost_price', 'LIKE', "%{$search}%")
+                ->orWhere('sell_price', 'LIKE', "%{$search}%")
+                ->orWhere('stock', 'LIKE', "%{$search}%");
             });
         }
 
         // Pagination
-        $products = $query->paginate($perPage); // This handles pagination for you
+        $products = $query->paginate($perPage); // This handles pagination
 
         return response()->json([
             'products' => $products->items(),
@@ -105,7 +107,21 @@ class ProductController extends Controller
         ]);
     }
 
+    public function updateStatus(Request $request,$id){
+        try {
+            //code...
+            $product = Product::findOrFail($id);
+            // Change status based on the action
+            $product->status = $request->status??$product->status;
 
+
+            $product->save();
+
+            return response()->json(['success' => true, 'message' => 'Product status updated successfully']);
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Something went worng']);
+        }
+    }
 
 
 }

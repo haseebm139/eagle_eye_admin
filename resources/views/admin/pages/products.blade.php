@@ -654,7 +654,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    <tr>
+                                    {{-- <tr>
                                         <td>
                                             <label class="custom-checkbox">
                                                 <input type="checkbox" class="product-checkbox" data-id="1">
@@ -690,14 +690,15 @@
                                         <td>
                                             <p class="custom-active">Publish</p>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
 
 
                                 </tbody>
                             </table>
 
                             <!-- Pagination Controls -->
-                            <div class="pagination-container d-flex justify-content-between align-items-center">
+                            <div id="product-pagination"
+                                class="pagination-container d-flex justify-content-between align-items-center d-none">
                                 <!-- Items per page dropdown -->
                                 <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
                                     <select id="itemsPerPage1"
@@ -773,10 +774,11 @@
 
                         renderTable(response.products); // Assume your API returns the product array
                         updatePagination(response.total); // Update pagination based on total products
+
                     },
                     error: function(xhr) {
-                        console.error('Error fetching products:', xhr);
-                        alert('Failed to fetch products. Please try again.');
+
+                        updatePagination(1)
                     },
                 });
             }
@@ -799,7 +801,7 @@
                         "{{ asset('assets/admin/images/Image.png') }}"
 
                     const row = `
-                <tr>
+                <tr data-id="${id}">
                     <td>
                         <label class="custom-checkbox">
                             <input type="checkbox" class="product-checkbox" data-id="${id}">
@@ -825,7 +827,7 @@
                         </div>
                     </td>
                     <td>
-                        <p class="custom-${status == 1 ? 'active' : 'inactive'}">${status == 1 ? 'Publish' : 'Unpublish'} </p>
+                        <p class="status-text custom-${status == 1 ? 'active' : 'inactive'}">${status == 1 ? 'Publish' : 'Unpublish'} </p>
                     </td>
                 </tr>`;
                     tableBody.append(row);
@@ -844,6 +846,8 @@
                 $('#prev-page').toggleClass('disabled', currentPage === 1);
                 $('#next-page').toggleClass('disabled', currentPage === totalPages);
             }
+
+
 
             // Handle pagination button clicks
             $('#prev-page').click(function() {
@@ -884,8 +888,59 @@
                 currentPage = 1; // Reset to first page
                 fetchProducts(currentPage, itemsPerPage, searchQuery); // Fetch products with search
             });
+
+
             // Initial fetch of products
             fetchProducts(currentPage, itemsPerPage, searchQuery);
         });
+    </script>
+    <script>
+        function publishProduct(id) {
+
+            updateProductStatus(id, 1);
+        }
+
+        function unpublishProduct(id) {
+
+            updateProductStatus(id, 2);
+        }
+
+        function updateProductStatus(id, status) {
+            var url = "{{ route('product.change.status', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+
+                method: 'POST',
+                data: {
+                    status: status,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message); // Show success message
+
+                        // Optionally, you can refresh the product list or update the status in the table dynamically
+                        // Example: Change the status text in the table
+                        const statusText = status == 1 ? 'Publish' : 'Unpublish';
+                        const statusClass = status == 1 ? 'custom-active' : 'custom-inactive';
+                        $ele = $(`tr[data-id="${id}"] .status-text`);
+
+                        $ele.text(statusText)
+                        $ele.removeClass('custom-active custom-inactive')
+                            .addClass(statusClass);
+                    }
+                    if (!response.success) {
+                        toastr.error(response.message); // Show success message
+
+
+                    }
+                },
+                error: function(xhr) {
+                    toastr.error('Failed to update product status'); // Handle errors
+                }
+            });
+
+        }
     </script>
 @endsection
