@@ -4,6 +4,10 @@
 @section('style')
 
     <style>
+        .step {
+            margin: 50px 0px;
+        }
+
         .custom-dropdown {
             display: flex;
             align-items: center;
@@ -53,9 +57,6 @@
             width: 20px;
         }
 
-        .container {
-            text-align: center;
-        }
 
         .stepper-wrapper {
             position: relative;
@@ -80,11 +81,11 @@
         }
 
         .stepper-outer p {
-            font-family: InterMedium;
+            font-family: 'InterMedium';
         }
 
         .cart p {
-            font-family: InterMedium;
+            font-family: 'InterMedium';
         }
 
         .stepper-wrapper::before {
@@ -134,7 +135,7 @@
             height: 3px;
             background-color: rgb(68, 72, 73);
             position: absolute;
-            z-index: -1;
+            z-index: 1111111;
             transition: width 1s;
         }
 
@@ -215,14 +216,14 @@
         }
 
         .table .header {
-            font-family: InterMedium;
+            font-family: 'InterMedium';
             background-color: #D9D9D9 !important;
 
             font-size: 13px;
         }
 
         .upload-container {
-            width: 35%;
+            width: 42%;
             background-color: #D9D9D9;
             position: absolute;
             right: 2rem;
@@ -286,19 +287,23 @@
 
         .table td h5 {
 
-            font-family: InterBold;
-            font-size: 20px;
+
+            font-size: 32px;
         }
 
         .table td p {
-            font-size: 13px;
+            font-size: 14px;
             margin: 0;
             padding: 5px 0;
-            font-family: InterBold;
+            font-family: 'GilroyBold';
+        }
+
+        .table td {
+            text-align: left;
         }
 
         .table td .span {
-            font-family: InterMedium;
+            font-family: 'InterMedium';
         }
 
         .table-responsive {
@@ -319,7 +324,7 @@
         .btn-font {
             padding: 10px;
             width: 130px;
-            font-family: InterBold;
+            font-family: 'InterBold';
         }
 
         .visa img {
@@ -368,7 +373,7 @@
 
         .paymentForm label {
             font-size: 14px;
-            font-family: InterMedium;
+            font-family: 'InterMedium';
             color: black;
 
         }
@@ -386,7 +391,7 @@
 
         .header2 {
             width: 25%;
-            font-family: InterMedium;
+            font-family: 'InterMedium';
             background-color: #D9D9D9 !important;
             font-size: 13px;
 
@@ -394,12 +399,47 @@
 
         .bottom {
             width: 25%;
-            font-family: InterMedium;
-            color: white;
+            font-family: 'InterMedium';
+            color: white !important;
             background-color: #000 !important;
-            font-size: 13px;
+            font-size: 18px;
+
 
         }
+
+        .stepper-header input[type="radio"] {
+            transform: scale(1.9);
+            /* Adjust the scale to make it bigger */
+            margin: 10px;
+            /* Optional: adds space around the radio button */
+            cursor: pointer;
+            /* Change cursor on hover */
+        }
+
+        .step input[type="radio"] {
+            /* ...existing styles */
+            display: grid;
+            place-content: center;
+        }
+
+        .step input[type="radio"]::before {
+            content: "";
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--form-control-color);
+        }
+
+        .step input[type="radio"]:checked::before {
+            transform: scale(1);
+            background-color: black;
+            /* Change checked color to black */
+            border: 2px solid black;
+            /* Change outline to black */
+        }
+
 
         th.header:first-child {
             border-top-left-radius: 12px;
@@ -440,6 +480,7 @@
         #product_page_description_section {
             background: #D9D9D9;
             padding: 30px 0px;
+            margin-top: 300px;
         }
 
         #product_page_description_section .products_details_sec_title {
@@ -516,7 +557,7 @@
 
         .card {
             border: 1px solid rgb(173, 173, 173);
-            font-family: InterMedium;
+            font-family: 'InterMedium';
             color: #000;
             border-radius: 10px;
             width: 100%;
@@ -624,7 +665,7 @@
             }
         }
 
-        @media only screen and (max-width: 425px) {
+        @media (max-width: 425px) {
             .stepper-outer {
                 width: 95%;
 
@@ -641,16 +682,14 @@
             width: 140px;
         }
 
-        .table td h5 {
-            font-size: 18px;
-        }
 
         .table td p {
-            font-size: 12px;
+            font-size: 14px;
+            font-family: 'GilroyBold';
         }
 
         .uppertext {
-            font-family: InterMedium;
+            font-family: 'InterMedium';
             font-size: 13px;
         }
 
@@ -660,12 +699,21 @@
             color: #888;
         }
 
+        .cart_qty {
+            background: #fff;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            text-align: center;
+            width: 10px;
+        }
+
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                    width: 10px;
-                                                                                                                                                                                    }
-                                                                                                                                                                                    ::-webkit-scrollbar-track{
-                                                                                                                                                                                    background-color: #000;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                      width: 10px;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        ::-webkit-scrollbar-track{
+                                                                                                                                                                                        background-color: #000;
+                                                                                                                                                                                        } */
     </style>
 @endsection
 @section('content')
@@ -711,22 +759,23 @@
         </div>
 
     </div>
-    <form id="stepperForm">
-        <div class="step">
-            <div class="container cart">
-                <div class="d-flex justify-content-start align-items-start gap-3 mt-5">
-                    <span class="d-flex gap-2 justify-content-center align-items-center">
-                        <img src="{{ asset('assets/website/images/svg/delete_1.svg') }} " />
-                        <p class="p-0 m-0">Remove Item</p>
-                    </span>
-                    <span class="d-flex gap-2 justify-content-center align-items-center">
-                        <img src="{{ asset('assets/website/images/svg/delete_1_(1).svg') }} " />
-                        <p class="p-0 m-0">Edit</p>
-                    </span>
-                </div>
-            </div>
+    <form id="stepperForm" action="" method="#" enctype='multipart/form-data'>
+        <div class="step" id="step01">
+
 
             <div class="container">
+                <div class="container cart">
+                    <div class="d-flex justify-content-start align-items-start gap-3 mt-5">
+                        <span class="d-flex gap-2 justify-content-center align-items-center">
+                            <img src="{{ asset('assets/website/images/svg/delete_1.svg') }} " />
+                            <p class="p-0 m-0">Remove Item</p>
+                        </span>
+                        <span class="d-flex gap-2 justify-content-center align-items-center">
+                            <img src="{{ asset('assets/website/images/svg/delete_1_(1).svg') }} " />
+                            <p class="p-0 m-0">Edit</p>
+                        </span>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -745,7 +794,7 @@
                                 </td>
                                 <td>
                                     <div class="productDetails">
-                                        <h5>Flatbed Printing</h5>
+                                        <h5 class="heading">Flatbed Printing</h5>
                                         <p>Height: <Span class="span">50</Span></p>
                                         <p>Width: <Span class="span">50</Span></p>
                                         <p>Material: <Span class="span">Ultraboard 3/16" (up to 60x120)</Span></p>
@@ -756,13 +805,14 @@
                                 <td>
                                     <p class="span">Price $500</p>
                                     <p class="span">Additional File Notes <span class="astrik">*</span> </p>
-                                    <input type="number" placeholder="height" />
+                                    <input type="number" placeholder="height" name="height" />
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-start align-items-center gap-2 quantity">
-                                        <button class="btn">-</button>
-                                        2
-                                        <button class="btn">+</button>
+                                        <a class="btn minus">-</a>
+                                        <Input type="text" class="cart_qty" value="2" readonly>
+                                        <Input type="text" name="quantity" class="cart_qty" value="2" hidden>
+                                        <a class="btn plus">+</a>
                                     </div>
                                 </td>
                                 <td>
@@ -774,21 +824,26 @@
                             <tr class="imageBox">
                                 <td>
                                     <div class="upload-container">
-                                        <div class="d-flex justify-content gap-3 align-items-center">
-                                            <img src="{{ asset('assets/website/images/svg/image_727.svg') }} " />
+                                        <div class="d-flex justify-content-center gap-3 align-items-center">
+                                            <img id="preview-image"
+                                                src="{{ asset('assets/website/images/svg/image_727.svg') }}"
+                                                style="width:50px;height:50px;object-fit:contain" />
                                             <span>
                                                 <p>Upload Image</p>
                                                 <p class="size">Max size: 200 MB</p>
                                             </span>
                                         </div>
-                                        <input type="file" id="file-input" style="display: none;"
+                                        <input type="file" id="file-input" name="file" style="display: none;"
                                             onchange="handleFileUpload(event)" />
                                     </div>
+
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
+
             </div>
 
             <div class="container mb-5">
@@ -805,33 +860,35 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <h5>Shipping</h5>
+                                    <h5 class="heading">Shipping</h5>
                                 </td>
                                 <td>
                                     <div>
 
                                         <div class="d-flex gap-2">
-                                            <input type="radio" />
+                                            <input type="radio" name="shipping_rate" value="Pickup from Eagle Eye" />
                                             <p>Pickup from Eagle Eye</p>
                                         </div>
                                         <div class="d-flex gap-2">
-                                            <input type="radio" />
-                                            <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
+                                            <input type="radio" name="shipping_rate"
+                                                value="Flat Rate Shipping: $15.99" />
+                                            <p> Flat Rate Shipping: <Span class="span">$15.99</Span></p>
                                         </div>
                                         <div class="d-flex gap-2">
-                                            <input type="radio" />
-                                            <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
+                                            <input type="radio" name="shipping_rate" value="Flat Rate: Over 47":
+                                                $36.95" />
+                                            <p> Flat Rate: Over 47":<Span class="span">$36.95</Span></p>
                                         </div>
                                         <div class="d-flex gap-2">
-                                            <input type="radio" />
+                                            <input type="radio" name="shipping_rate" value="Use My Carrier" />
                                             <p> Use My Carrier</p>
                                         </div>
                                         <div class="d-flex gap-2">
-                                            <input type="radio" />
-                                            <p> Air Freight: <span class="span">  $150.00</span></p>
+                                            <input type="radio" name="shipping_rate" value="Air Freight: $150.00" />
+                                            <p> Air Freight: <span class="span"> $150.00</span></p>
                                         </div>
                                         <p class="span">
-                                            Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
+                                            Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                         </p>
                                     </div>
                                 </td>
@@ -844,112 +901,206 @@
 
                             </tr>
                             <tr class="bottom">
-                                <td>Total</td>
-                                <td>$904.51</td>
+                                <td class="bottom">Total</td>
+                                <td class="bottom">$904.51</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <button class="btn btn-warning ms-lg-3 next-step">Process to Checkout
+                    <a class="btn btn-warning ms-lg-3 next-step" data-step="1">Process to Checkout
                         <img src= "{{ asset('assets/website/images/Arrow 1.png') }} " />
-                    </button>
+                    </a>
                 </div>
             </div>
 
 
         </div>
-        <div class="step">
+        <div class="step" id="step02">
 
             <div class="container">
-                <div class="d-flex gap-5">
-                    <div class="formOuter">
-                        <form class="">
-                            <div class="  paymentForm">
-                                <div class="d-flex flex-column  align-items-start">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="formOuter">
+                            <div class="paymentForm">
+                                <div class="d-flex flex-column align-items-start">
                                     <label>First Name *</label>
-                                    <input placeholder="Enter Height" />
+                                    <input placeholder="Full Name" type="text" name="fname" id="fname" />
                                 </div>
                                 <div class="d-flex flex-column align-items-start">
                                     <label>Last Name *</label>
-                                    <input placeholder="Enter Width" />
+                                    <input placeholder="Last Name" type="text" name="lname" id="lname" />
                                 </div>
                             </div>
 
-                            <div class="d-flex  align-items-start  paymentForm">
-
+                            <div class="d-flex align-items-start paymentForm">
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>Company name (optional)</label>
-                                    <input placeholder="Enter Height" />
+                                    <label>Company name (optional)</label>
+                                    <input placeholder="Company Name" type="text" name="cname" id="cname" />
                                 </div>
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>Country / Region *</label>
-                                    <input placeholder="United Kingdom" />
+                                    <label>Country / Region *</label>
+                                    <input placeholder="United Kingdom" type="text" name="region" id="region" />
                                 </div>
                             </div>
-
 
                             <div class="d-flex flex-column align-items-start paymentForm paymentForm2">
-                                <label>Street address *</label>
-                                <input placeholder="13375 N Stemmons" />
-                                <input placeholder="Apartment , Suit, Unit etc" />
+                                <label>Street address *</label>
+                                <input placeholder="13375 N Stemmons" type="text" name="streetone" id="streetone" />
+                                <input placeholder="Apartment, Suit, Unit etc" type="text" name="streettwo"
+                                    id="streettwo" />
                             </div>
 
-
-                            <div class="  paymentForm">
-                                <div class="d-flex flex-column  align-items-start">
-                                    <label>Town / City  *</label>
-                                    <input placeholder="Enter Height" />
+                            <div class="paymentForm">
+                                <div class="d-flex flex-column align-items-start">
+                                    <label>Town / City *</label>
+                                    <input placeholder="City" type="text" name="city" id="city" />
                                 </div>
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>County (optional)</label>
-                                    <input placeholder="Enter Width" />
+                                    <label>Country (optional)</label>
+                                    <input placeholder="Country (optional)" type="text" name="country"
+                                        id="country" />
                                 </div>
                             </div>
-                            <div class="  paymentForm">
-                                <div class="d-flex flex-column  align-items-start">
-                                    <label>Postcode *</label>
-                                    <input placeholder="123456" />
+
+                            <div class="paymentForm">
+                                <div class="d-flex flex-column align-items-start">
+                                    <label>Postcode *</label>
+                                    <input placeholder="123456" type="number" name="postcode" id="postcode" />
                                 </div>
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>Phone *</label>
-                                    <input placeholder="+1 000 000054" />
+                                    <label>Phone *</label>
+                                    <input placeholder="+1 000 000054" type="number" name="phone" id="phone" />
                                 </div>
                             </div>
 
-
-                            <div class="  paymentForm">
-                                <div class="d-flex flex-column  align-items-start">
+                            <div class="paymentForm">
+                                <div class="d-flex flex-column align-items-start">
                                     <label>Email Address *</label>
-                                    <input placeholder="123456" />
+                                    <input placeholder="example@example.com" type="text" name="email"
+                                        id="email" />
                                 </div>
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>Eagle Eye Location*</label>
-                                    <input placeholder="Select Location" />
+                                    <label>Eagle Eye Location *</label>
+                                    <input placeholder="Select Location" type="text" name="location"
+                                        id="location" />
                                 </div>
                             </div>
 
-                            <div class="  paymentForm">
+                            <div class="paymentForm">
                                 <div class="d-flex flex-column align-items-start">
-                                    <label>Notes (optional)</label>
-                                    <input placeholder="Your Order Note Here" />
+                                    <label>Notes (optional)</label>
+                                    <input placeholder="Your Order Note Here" type="text" name="notes"
+                                        id="notes" />
                                 </div>
-
                             </div>
-                        </form>
 
 
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="table3">
+                            <div class="d-flex flex-column align-items-start">
+                                <div class="d-flex  align-items-start gap-2 address">
+                                    <input type="checkbox" />
+                                    <p class="p-0 m-0">Ship to a different address?</p>
+                                </div>
+                                <p class="note pt-2">Your Order Note Here</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table3">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col" class="header2">subTotal</th>
+                                            <th scope="col" class="header2">$907.46</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h5 class="heading">Shipping</h5>
+                                            </td>
+                                            <td>
+                                                <div>
+
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio" name="shipping_rate2" id="onee" />
+                                                        <p>Pickup from Eagle Eye</p>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio" name="shipping_rate2" id="twoo" />
+                                                        <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio"name="shipping_rate2" id="threee" />
+                                                        <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio" name="shipping_rate2" id="fourr" />
+                                                        <p> Use My Carrier</p>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio"name="shipping_rate2" id="fivee" />
+                                                        <p> Air Freight: <span class="span"> $150.00</span></p>
+                                                    </div>
+                                                    <p class="span">
+                                                        Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="bottom">
+                                            <td class="bottom">Total</td>
+                                            <td class="bottom">$904.51</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex flex-column align-items-start">
+                                <h6>Rush Services (only select one)</h6>
+                                <div class="d-flex  align-items-start gap-2 address">
+                                    <input type="checkbox" />
+                                    <p class="p-0 m-0">Ship to a different address?</p>
+                                </div>
+                                <div class="d-flex  align-items-start gap-2 address">
+                                    <input type="checkbox" />
+                                    <p class="p-0 m-0">Same Day Rush for an additional $904.51</p>
+                                </div>
+                                <div class="d-flex mt-3 justify-content-start align-items-start">
+
+                                    <a class="pay prev-step btn-font btn  btn-warning ms-lg-3 next-step-back"
+                                        data-step="2">
+                                        Back
+                                    </a>
+                                    <a class="btn-font next-step btn  btn-warning ms-lg-3 next-step" data-step="2">
+                                        Next
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="table3">
-                        <div class="d-flex flex-column align-items-start">
-                            <div class="d-flex  align-items-start gap-2 address">
-                                <input type="checkbox" />
-                                <p class="p-0 m-0">Ship to a different address?</p>
-                            </div>
-                            <p class="note pt-2">Your Order Note Here</p>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table3">
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                                                                                                                                                                        <button type="button" class="btn btn-primary next-step">Next</button> -->
+
+
+        </div>
+        <div class="step" id="step03">
+
+            <div class="flex justify-content-center align-items-center">
+                <div class="container ">
+                    <div class="row  justify-content-center mb-5">
+                        <div class="col-md-6 col-sm-12">
+                            <table class="table table3 m-0">
                                 <thead>
                                     <tr>
 
@@ -961,431 +1112,136 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h5>Shipping</h5>
+                                            <h5 class="heading">Shipping</h5>
                                         </td>
                                         <td>
                                             <div>
 
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" />
+                                                    <input type="radio" name="shipping_rate1" id="one" />
                                                     <p>Pickup from Eagle Eye</p>
                                                 </div>
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" />
-                                                    <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
+                                                    <input type="radio" name="shipping_rate1" id="two" />
+                                                    <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
                                                 </div>
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" />
-                                                    <p> Flat Rate: Over 47" : <Span class="span">$36.95</Span></p>
+                                                    <input type="radio" name="shipping_rate1" id="three" />
+                                                    <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
                                                 </div>
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" />
+                                                    <input type="radio" name="shipping_rate1" id="four" />
                                                     <p> Use My Carrier</p>
                                                 </div>
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" />
-                                                    <p> Air Freight: <span class="span">  $150.00</span></p>
+                                                    <input type="radio" name="shipping_rate1" id="five" />
+                                                    <p> Air Freight: <span class="span"> $150.00</span></p>
                                                 </div>
                                                 <p class="span">
-                                                    Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
+                                                    Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                                 </p>
                                             </div>
                                         </td>
+
+
+
+
+
+
+
                                     </tr>
                                     <tr class="bottom">
-                                        <td>Total</td>
-                                        <td>$904.51</td>
+                                        <td class="bottom">Total</td>
+                                        <td class="bottom">$904.51</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="d-flex flex-column align-items-start">
-                            <h6>Rush Services (only select one)</h6>
-                            <div class="d-flex  align-items-start gap-2 address">
-                                <input type="checkbox" />
-                                <p class="p-0 m-0">Ship to a different address?</p>
-                            </div>
-                            <div class="d-flex  align-items-start gap-2 address">
-                                <input type="checkbox" />
-                                <p class="p-0 m-0">Same Day Rush for an additional $904.51</p>
-                            </div>
-                            <div class="d-flex mt-3 justify-content-start align-items-start">
-
-                                <button class="pay prev-step btn-font btn  btn-warning ms-lg-3 next-step">
-                                    Back
-                                </button>
-                                <button class="btn-font next-step btn  btn-warning ms-lg-3 next-step">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
-
-
-        </div>
-        <div class="step">
-
-            <div class="flex justify-content-center align-items-center">
-                <div class="container d-flex justify-content-center align-items-center gap-3 mb-5">
-                    <div class="table-responsive">
-                        <table class="table table3">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col" class="header2">subTotal</th>
-                                    <th scope="col" class="header2">$907.46</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h5>Shipping</h5>
-                                    </td>
-                                    <td>
-                                        <div>
-
-                                            <div class="d-flex gap-2">
-                                                <input type="radio" />
-                                                <p>Pickup from Eagle Eye</p>
-                                            </div>
-                                            <div class="d-flex gap-2">
-                                                <input type="radio" />
-                                                <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
-                                            </div>
-                                            <div class="d-flex gap-2">
-                                                <input type="radio" />
-                                                <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
-                                            </div>
-                                            <div class="d-flex gap-2">
-                                                <input type="radio" />
-                                                <p> Use My Carrier</p>
-                                            </div>
-                                            <div class="d-flex gap-2">
-                                                <input type="radio" />
-                                                <p> Air Freight: <span class="span">  $150.00</span></p>
-                                            </div>
-                                            <p class="span">
-                                                Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
-                                            </p>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="payment-outer d-flex flex-column">
+                                <div class="payment d-flex flex-column  align-items-start">
+                                    <h5>Payment Methods</h5>
+                                    <div class="d-flex gap-2 align-items-start">
+                                        <input type="radio" name="pay_type" value="Pay on Delivery" checked />
+                                        <div class="d-flex flex-column align-items-start">
+                                            <p class="p-0 m-0 uppertext">Pay on Delivery</p>
+                                            <p class="p-0 m-0 lowertext">Pay with cash on delivery</p>
                                         </div>
-                                    </td>
 
-
-
-
-
-
-
-                                </tr>
-                                <tr class="bottom">
-                                    <td>Total</td>
-                                    <td>$904.51</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
-                    </div>
-
-
-                    <div class="payment-outer d-flex flex-column">
-                        <div class="payment d-flex flex-column  align-items-start">
-                            <h5>Payment Methods</h5>
-                            <div class="d-flex gap-2 align-items-start">
-                                <input type="radio" />
-                                <div class="d-flex flex-column align-items-start">
-                                    <p class="p-0 m-0 uppertext">Pay on Delivery</p>
-                                    <p class="p-0 m-0 lowertext">Pay with cash on delivery</p>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="d-flex justify-content-between visa-align">
-                                <div class="d-flex gap-2 align-items-start">
-                                    <input type="radio" />
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="p-0 m-0 uppertext">Credit/Debit Cards</p>
-                                        <p class="p-0 m-0 lowertext">Pay with your Credit / Debit Card</p>
                                     </div>
 
-                                </div>
-                                <div class="d-flex justify-content-center gap-1 align-items-center visa">
-                                    <img src="{{ asset('assets/website/images/image_3.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/image_4.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/image_5.png ') }} " />
-                                </div>
-                            </div>
-                            <div class="cardAlign mt-3 mb-3">
-                                <div class="card">
-                                    <input type="number" placeholder="Card Number" />
-                                    <img src="{{ asset('assets/website/images/svg/Icon_(1).svg') }} " />
-                                </div>
 
-                                <div class="d-flex gap-1 mt-2">
-                                    <div class="card">
-                                        <input type="date" placeholder="MM/YY" />
-                                    </div>
-                                    <div class="card">
-                                        <input type="number" placeholder="CVV" />
-                                        <img src="{{ asset('assets/website/images/svg/date.svg') }} " />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between visa-align">
-                                <div class="d-flex gap-2 align-items-start">
-                                    <input type="radio" />
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="p-0 m-0 uppertext">Other Payment Methods</p>
-                                        <p class="p-0 m-0 lowertext">Make payment through Gpay, Paypal, Paytm etc</p>
-                                    </div>
 
+                                    <div class="d-flex justify-content-between visa-align">
+                                        <div class="d-flex gap-2 align-items-start">
+                                            <input type="radio" name="pay_type" value="Credit/Debit Cards" />
+                                            <div class="d-flex flex-column align-items-start">
+                                                <p class="p-0 m-0 uppertext">Credit/Debit Cards</p>
+                                                <p class="p-0 m-0 lowertext">Pay with your Credit / Debit Card</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex justify-content-center gap-1 align-items-center visa">
+                                            <img src="{{ asset('assets/website/images/image_3.png ') }} " />
+                                            <img src="{{ asset('assets/website/images/image_4.png ') }} " />
+                                            <img src="{{ asset('assets/website/images/image_5.png ') }} " />
+                                        </div>
+                                    </div>
+                                    <div class="cardAlign mt-3 mb-3">
+                                        <div class="card">
+                                            <input type="number" placeholder="Card Number" name="card_number"
+                                                id="card_number" />
+                                            <img src="{{ asset('assets/website/images/svg/Icon_(1).svg') }} " />
+                                        </div>
+
+                                        <div class="d-flex gap-1 mt-2">
+                                            <div class="card">
+                                                <input type="date" placeholder="MM/YY" name="exp_date"
+                                                    id="exp_date" />
+                                            </div>
+                                            <div class="card">
+                                                <input type="number" placeholder="CVV" name="cvv" id="cvv" />
+                                                <img src="{{ asset('assets/website/images/svg/date.svg') }} " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between visa-align">
+                                        <div class="d-flex gap-2 align-items-start">
+                                            <input type="radio" name="pay_type" value="Other Payment Methods" />
+                                            <div class="d-flex flex-column align-items-start">
+                                                <p class="p-0 m-0 uppertext">Other Payment Methods</p>
+                                                <p class="p-0 m-0 lowertext">Make payment through Gpay, Paypal, Paytm etc
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex justify-content-center gap-1 align-items-center visa">
+                                            <img src="{{ asset('assets/website/images/Group_3703.png ') }} " />
+                                            <img src="{{ asset('assets/website/images/Group_3704.png ') }} " />
+                                            <img src="{{ asset('assets/website/images/Group_3705.png ') }} " />
+                                            <img src="{{ asset('assets/website/images/Ellipse_14.png ') }} " />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-center gap-1 align-items-center visa">
-                                    <img src="{{ asset('assets/website/images/Group_3703.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/Group_3704.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/Group_3705.png ') }} " />
-                                    <img src="{{ asset('assets/website/images/Ellipse_14.png ') }} " />
+                                <div class="d-flex mt-3 justify-content-start align-items-start">
+                                    <a class="btn-font btn  prev-step  btn-warning ms-lg-3 next-step-back" data-step="3">
+                                        Back
+                                    </a>
+                                    <a class="pay btn-font btn btn-success btn-warning ms-lg-3 next-step" data-step="3">
+                                        Pay
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex mt-3 justify-content-start align-items-start">
-                            <button class="btn-font btn  prev-step  btn-warning ms-lg-3 next-step">
-                                Back
-                            </button>
-                            <button class="pay btn-font btn btn-success btn-warning ms-lg-3 next-step">
-                                Pay
-                            </button>
-                        </div>
                     </div>
+
+
+
+
 
                 </div>
 
 
-            </div>
-            <section id="product_page_description_section">
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="products_details_sec_title">
-                                Description
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="row  align-items-center">
-                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
-                            <div class="description_item_wrapper">
-                                <img src="{{ asset('assets/website/images/Group_1597881064.png ') }} ">
-                                <div class="description_item_content">
-                                    <h1 class="description_item_content_heading">Dibond</h1>
-                                    <p class="description_item_content_paragraph">An excellent and durable material
-                                        originally designed for building facades.  It consists of a black polyethylene core
-                                        with .012″ aluminum faces on both sides.  Easy to cut and shape with a pleasing
-                                        gloss enamel white finish on both sides. It won’t bow or oil can like standard
-                                        metals.</p>
-                                    <ul class="description_item_list">
-                                        <li>
-                                            <b>Thickness:</b> 3mm (3/16″)
-                                        </li>
-                                        <li>
-                                            <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
-                                        </li>
-                                        <li><b>Color Front/Back:</b> White/White</li>
-                                        <li><b>Finish:</b> Gloss</li>
-                                        <li><b>Durability:</b> Long Term</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
-                            <div class="description_item_wrapper">
-                                <img src="{{ asset('assets/website/images/Group_1597881065.png ') }} ">
-                                <div class="description_item_content">
-                                    <h1 class="description_item_content_heading">Coroplast</h1>
-                                    <p class="description_item_content_paragraph">An excellent and durable material
-                                        originally designed for building facades.  It consists of a black polyethylene core
-                                        with .012″ aluminum faces on both sides.  Easy to cut and shape with a pleasing
-                                        gloss enamel white finish on both sides. It won’t bow or oil can like standard
-                                        metals.</p>
-                                    <ul class="description_item_list">
-                                        <li>
-                                            <b>Thickness:</b> 3mm (3/16″)
-                                        </li>
-                                        <li>
-                                            <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
-                                        </li>
-                                        <li><b>Color Front/Back:</b> White/White</li>
-                                        <li><b>Finish:</b> Gloss</li>
-                                        <li><b>Durability:</b> Long Term</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
-                            <div class="description_item_wrapper">
-                                <img src="{{ asset('assets/website/images/Group_1597881066.png ') }} ">
-                                <div class="description_item_content">
-                                    <h1 class="description_item_content_heading">Lusterboard</h1>
-                                    <p class="description_item_content_paragraph">An excellent and durable material
-                                        originally designed for building facades.  It consists of a black polyethylene core
-                                        with .012″ aluminum faces on both sides.  Easy to cut and shape with a pleasing
-                                        gloss enamel white finish on both sides. It won’t bow or oil can like standard
-                                        metals.</p>
-                                    <ul class="description_item_list">
-                                        <li>
-                                            <b>Thickness:</b> 3mm (3/16″)
-                                        </li>
-                                        <li>
-                                            <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
-                                        </li>
-                                        <li><b>Color Front/Back:</b> White/White</li>
-                                        <li><b>Finish:</b> Gloss</li>
-                                        <li><b>Durability:</b> Long Term</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
-                            <div class="description_item_wrapper">
-                                <img src="{{ asset('assets/website/images/Group_1597881067.png ') }} ">
-                                <div class="description_item_content">
-                                    <h1 class="description_item_content_heading">PVC aka Sintra</h1>
-                                    <p class="description_item_content_paragraph">An excellent and durable material
-                                        originally designed for building facades.  It consists of a black polyethylene core
-                                        with .012″ aluminum faces on both sides.  Easy to cut and shape with a pleasing
-                                        gloss enamel white finish on both sides. It won’t bow or oil can like standard
-                                        metals.</p>
-                                    <ul class="description_item_list">
-                                        <li>
-                                            <b>Thickness:</b> 3mm (3/16″)
-                                        </li>
-                                        <li>
-                                            <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
-                                        </li>
-                                        <li><b>Color Front/Back:</b> White/White</li>
-                                        <li><b>Finish:</b> Gloss</li>
-                                        <li><b>Durability:</b> Long Term</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-12 d-flex align-items-center justify-content-center">
-                            <a href="#" class="description_see_more_btn">
-                                See More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="container cart">
-                <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
-                    <h2>Similar Equipment</h2>
-                </div>
-                <div class="swiper mySwiper ">
-                    <div class="swiper-wrapper swiper-wrapper3 ">
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(3).png ') }} " />
-
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset('assets/website/images/image4.png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="swiper-slide">
-
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                                    <a href="#" class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image4.png ') }} " /></div>
-                        <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
-                        </div>
-                    </div>
-                    <!-- <div class="swiper-pagination"></div> -->
-                </div>
             </div>
 
 
@@ -1398,6 +1254,220 @@
     </form>
 
 
+    <section id="product_page_description_section">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="products_details_sec_title">
+                        Description
+                    </h1>
+                </div>
+            </div>
+            <div class="row  align-items-center">
+                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
+                    <div class="description_item_wrapper">
+                        <img src="{{ asset('assets/website/images/Group_1597881064.png ') }} ">
+                        <div class="description_item_content">
+                            <h1 class="description_item_content_heading">Dibond</h1>
+                            <p class="description_item_content_paragraph">An excellent and durable material
+                                originally designed for building facades. It consists of a black polyethylene core
+                                with .012″ aluminum faces on both sides. Easy to cut and shape with a pleasing
+                                gloss enamel white finish on both sides. It won’t bow or oil can like standard
+                                metals.</p>
+                            <ul class="description_item_list">
+                                <li>
+                                    <b>Thickness:</b>3mm (3/16″)
+                                </li>
+                                <li>
+                                    <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
+                                </li>
+                                <li><b>Color Front/Back:</b> White/White</li>
+                                <li><b>Finish:</b> Gloss</li>
+                                <li><b>Durability:</b> Long Term</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
+                    <div class="description_item_wrapper">
+                        <img src="{{ asset('assets/website/images/Group_1597881065.png ') }} ">
+                        <div class="description_item_content">
+                            <h1 class="description_item_content_heading">Coroplast</h1>
+                            <p class="description_item_content_paragraph">An excellent and durable material
+                                originally designed for building facades. It consists of a black polyethylene core
+                                with .012″ aluminum faces on both sides. Easy to cut and shape with a pleasing
+                                gloss enamel white finish on both sides. It won’t bow or oil can like standard
+                                metals.</p>
+                            <ul class="description_item_list">
+                                <li>
+                                    <b>Thickness:</b> 3mm (3/16″)
+                                </li>
+                                <li>
+                                    <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
+                                </li>
+                                <li><b>Color Front/Back:</b> White/White</li>
+                                <li><b>Finish:</b>Gloss</li>
+                                <li><b>Durability:</b> Long Term</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
+                    <div class="description_item_wrapper">
+                        <img src="{{ asset('assets/website/images/Group_1597881066.png ') }} ">
+                        <div class="description_item_content">
+                            <h1 class="description_item_content_heading">Lusterboard</h1>
+                            <p class="description_item_content_paragraph">An excellent and durable material
+                                originally designed for building facades. It consists of a black polyethylene core
+                                with .012″ aluminum faces on both sides. Easy to cut and shape with a pleasing
+                                gloss enamel white finish on both sides. It won’t bow or oil can like standard
+                                metals.</p>
+                            <ul class="description_item_list">
+                                <li>
+                                    <b>Thickness:</b>3mm (3/16″)
+                                </li>
+                                <li>
+                                    <b>Sheet Size:</b>48″ x 96, Special order up to 60″ x 120″
+                                </li>
+                                <li><b>Color Front/Back:</b>White/White</li>
+                                <li><b>Finish:</b>Gloss</li>
+                                <li><b>Durability:</b>Long Term</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
+                    <div class="description_item_wrapper">
+                        <img src="{{ asset('assets/website/images/Group_1597881067.png ') }} ">
+                        <div class="description_item_content">
+                            <h1 class="description_item_content_heading">PVC aka Sintra</h1>
+                            <p class="description_item_content_paragraph">An excellent and durable material
+                                originally designed for building facades. It consists of a black polyethylene core
+                                with .012″ aluminum faces on both sides. Easy to cut and shape with a pleasing
+                                gloss enamel white finish on both sides. It won’t bow or oil can like standard
+                                metals.</p>
+                            <ul class="description_item_list">
+                                <li>
+                                    <b>Thickness:</b> 3mm (3/16″)
+                                </li>
+                                <li>
+                                    <b>Sheet Size:</b> 48″ x 96, Special order up to 60″ x 120″
+                                </li>
+                                <li><b>Color Front/Back:</b> White/White</li>
+                                <li><b>Finish:</b> Gloss</li>
+                                <li><b>Durability:</b> Long Term</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 d-flex align-items-center justify-content-center">
+                    <a href="#" class="description_see_more_btn">
+                        See More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container cart">
+        <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
+            <h2>Similar Equipment</h2>
+        </div>
+        <div class="swiper mySwiper ">
+            <div class="swiper-wrapper swiper-wrapper3 ">
+                <div class="swiper-slide">
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(3).png ') }} " />
+
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide">
+                    <div>
+                        <img src="{{ asset('assets/website/images/image4.png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide">
+
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(2).png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide">
+                    <div>
+                        <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
+                        <div class="d-flex justify-content-start align-items-center">
+                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
+                            <a href="#" class="btn1 btn2"><img
+                                    src="{{ asset('assets/website/images/svg/Vector.svg') }} " /></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image4.png ') }} " /></div>
+                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image_(1).png ') }} " />
+                </div>
+            </div>
+            <!-- <div class="swiper-pagination"></div> -->
+        </div>
+    </div>
 
 
 @endsection
@@ -1423,67 +1493,224 @@
             document.getElementById('file-input').click();
         });
 
-        // Function to handle the file input change (optional)
+        // Function to handle the file input change
         function handleFileUpload(event) {
             const file = event.target.files[0];
             if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Update the src of the preview image with the uploaded image
+                    document.getElementById('preview-image').src = e.target.result;
+                };
+                reader.readAsDataURL(file); // Convert the file to a data URL
                 alert(`Selected file: ${file.name}`);
-                // You can add more functionality here, like displaying the selected image
             }
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let currentStep = 0;
-            const steps = document.querySelectorAll(".step");
-            const stepRadios = document.querySelectorAll(".stepper-header input[type='radio']");
-            const stepperWrapper = document.querySelector(".stepper-wrapper");
+        $(document).ready(function() {
+            $('#step1').prop('checked', true);
+            $('#step1').prop('disabled', false);
+            $('#step01').show();
+            $('#step02').hide();
+            $('#step03').hide();
+            $('.next-step').on('click', function(e) {
+                e.preventDefault();
 
-            function showStep(stepIndex) {
-                // Hide all steps
-                steps.forEach(step => step.classList.remove("active"));
-                // Show the current step
-                steps[stepIndex].classList.add("active");
+                if ($('input[name="shipping_rate"]:checked').length === 0) {
+                    event.preventDefault(); // Prevent form submission
+                    alert('Please select a shipping rate.');
+                } else {
+                    var shippingRate = $('input[name="shipping_rate"]:checked').val();
 
-                // Update stepper radio buttons
-                stepRadios.forEach((radio, index) => {
-                    radio.checked = index === stepIndex;
-                    radio.disabled = index !== stepIndex;
-                });
+                    // Reset all checkboxes and enable them initially
+                    $('.shipping-checkbox').prop('checked', false).prop('disabled', false);
 
-                // Update the progress width based on the current step
-                const progressWidth = (stepIndex / (stepRadios.length - 1)) * 100;
-                stepperWrapper.style.setProperty('--progress-width', `${progressWidth}%`);
-            }
+                    // Define shipping options and their corresponding checkboxes
+                    var options = {
+                        'Pickup from Eagle Eye': ['#one', '#onee'],
+                        'Flat Rate Shipping: $15.99': ['#two', '#twoo'],
+                        'Flat Rate: Over 47': ['#three', '#threee'],
+                        'Use My Carrier': ['#four', '#fourr'],
+                        'Air Freight: $150.00': ['#five', '#fivee']
+                    };
 
-            // Next step button event
-            document.querySelectorAll(".next-step").forEach(button => {
-                button.addEventListener("click", function() {
-                    if (currentStep < steps.length - 1) {
-                        currentStep++;
-                        showStep(currentStep);
+                    // Check and enable the corresponding checkboxes based on the selected shipping rate
+                    if (options[shippingRate]) {
+                        options[shippingRate].forEach(function(id) {
+                            $(id).prop('checked', true);
+                        });
+
+                        // Disable all other checkboxes
+                        for (var key in options) {
+                            if (key !== shippingRate) {
+                                options[key].forEach(function(id) {
+                                    $(id).prop('disabled', true);
+                                });
+                            }
+                        }
                     }
-                });
-            });
 
-            // Previous step button event
-            document.querySelectorAll(".prev-step").forEach(button => {
-                button.addEventListener("click", function() {
-                    if (currentStep > 0) {
-                        currentStep--;
-                        showStep(currentStep);
+                    var step = $(this).data('step');
+                    if (step == 1) {
+                        $('#step01').hide();
+                        $('#step02').show();
+                        $('#step03').hide();
+                        $('#step2').prop('checked', true);
+                        $('#step2').prop('disabled', false);
+                        $('.progress').css('background-color', '#000');
+                        $('.progress').css('width', '50%');
                     }
-                });
-            });
+                }
+                if (step == 2) {
+                    // Array of required fields (only using IDs)
+                    // Save field values into separate variables
+                    const fname = $("#fname").val().trim();
+                    const lname = $("#lname").val().trim();
+                    const cname = $("#cname").val().trim();
+                    const region = $("#region").val().trim();
+                    const streetone = $("#streetone").val().trim();
+                    const streettwo = $("#streettwo").val().trim();
+                    const city = $("#city").val().trim();
+                    const country = $("#country").val().trim();
+                    const postcode = $("#postcode").val().trim();
+                    const phone = $("#phone").val().trim();
+                    const email = $("#email").val().trim();
+                    const location = $("#location").val().trim();
+                    const notes = $("#notes").val().trim();
 
-            // Submit form event
-            document.getElementById("stepperForm").addEventListener("submit", function(event) {
-                event.preventDefault();
-                alert("Form submitted!");
-            });
+                    // Array of field values and corresponding selectors for error highlighting
+                    const fields = [{
+                            value: fname,
+                            selector: '#fname'
+                        },
+                        {
+                            value: lname,
+                            selector: '#lname'
+                        },
+                        {
+                            value: region,
+                            selector: '#region'
+                        },
+                        {
+                            value: streetone,
+                            selector: '#streetone'
+                        },
+                        {
+                            value: city,
+                            selector: '#city'
+                        },
+                        {
+                            value: postcode,
+                            selector: '#postcode'
+                        },
+                        {
+                            value: phone,
+                            selector: '#phone'
+                        },
+                        {
+                            value: email,
+                            selector: '#email'
+                        },
+                        {
+                            value: location,
+                            selector: '#location'
+                        }
+                    ];
 
-            // Initial display of the first step
-            showStep(currentStep);
-        });
+                    let isValid = true;
+
+                    // Clear previous red borders
+                    $(fields.map(field => field.selector).join(',')).css('border', '');
+
+                    // Validate required fields
+                    $.each(fields, function(index, field) {
+                        if (field.value === '') {
+                            $(field.selector).css('border', '2px solid red');
+                            isValid = false;
+                        }
+                    });
+
+                    // Validate email format
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(email)) {
+                        $('#email').css('border', '2px solid red');
+                        isValid = false;
+                    }
+                    if (isValid) {
+                        $('#step01').hide();
+                        $('#step02').hide();
+                        $('#step03').show();
+                        $('.progress').css('background-color', '#000');
+                        $('.progress').css('width', '100%');
+                        $('#step3').prop('checked', true);
+                        $('#step3').prop('disabled', false);
+                    } else {
+                        console.log("Form has errors, please correct them.");
+                    }
+
+
+
+                }
+                if (step == 3) {
+                    // Clear previous borders
+                    $('#card_number, #exp_date, #cvv').css('border', '');
+
+                    // Get values
+                    var cardNumber = $('#card_number').val().trim();
+                    var expDate = $('#exp_date').val().trim();
+                    var cvv = $('#cvv').val().trim();
+
+                    // Validate fields
+                    let valid = true;
+
+                    if (cardNumber === '') {
+                        $('#card_number').css('border', '2px solid red');
+                        valid = false;
+                    }
+                    if (expDate === '') {
+                        $('#exp_date').css('border', '2px solid red');
+                        valid = false;
+                    }
+                    if (cvv === '') {
+                        $('#cvv').css('border', '2px solid red');
+                        valid = false;
+                    }
+
+                    // If all fields are valid, submit the form
+                    if (valid) {
+                        // You can submit the form or call another function here
+                        $('#stepperForm').submit();
+                        // For example, you could use:
+                        // this.submit();
+                    }
+                }
+            })
+
+            $('.next-step-back').on('click', function(e) {
+                e.preventDefault();
+                var step = $(this).data('step');
+                if (step == 2) {
+
+                    $('#step01').show();
+                    $('#step02').hide();
+                    $('#step03').hide();
+                    $('#step2').prop('checked', false);
+                    $('#step2').prop('disabled', true);
+                    $('.progress').css('background-color', 'rgb(68, 72, 73)');
+                    $('.progress').css('width', '0%');
+
+                }
+                if (step == 3) {
+                    $('#step01').hide();
+                    $('#step02').show();
+                    $('#step03').hide();
+                    $('.progress').css('background-color', 'rgb(68, 72, 73)');
+                    $('.progress').css('width', '50%');
+                    $('#step3').prop('checked', false);
+                    $('#step3').prop('disabled', true);
+                }
+            })
+        })
     </script>
 @endsection
