@@ -92,7 +92,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/orders/view', 'orderView')->name('orders.view');
         Route::get('/settings', 'settings')->name('settings');
-
+        Route::post('update-profile','updateProfile')->name('profile');
 
 
     });

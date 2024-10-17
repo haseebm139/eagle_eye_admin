@@ -11,7 +11,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Block, 1 = Active')->after('type');
+            $table->string('profile')->nullable()->after('type');
+            $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Block, 1 = Active')->after('profile');
             $table->string('country')->nullable()->after('status');
             $table->string('state')->nullable()->after('country');
             $table->string('city')->nullable()->after('state');
@@ -28,6 +29,9 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
 
             Schema::table('users', function (Blueprint $table) {
+                if (Schema::hasColumn('users', 'status')) {
+                    $table->dropColumn('status');
+                }
                 if (Schema::hasColumn('users', 'country')) {
                     $table->dropColumn('country');
                 }
@@ -42,6 +46,10 @@ return new class extends Migration
                 }
                 if (Schema::hasColumn('users', 'since')) {
                     $table->dropColumn('since');
+                }
+
+                if (Schema::hasColumn('users', 'profile')) {
+                    $table->dropColumn('profile');
                 }
             });
 

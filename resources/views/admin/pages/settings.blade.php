@@ -671,38 +671,45 @@
                                 <h6 class="SettingHeading">
                                     Account Settings
                                 </h6>
-                                <button class="order-btn2">
+                                <button class="order-btn2" onclick="submitForm()">
                                     Update
                                 </button>
                             </div>
-                            <form class="p-4">
+                            <form class="p-4" id="updateForm" action="{{ route('profile') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="d-flex gap-5">
                                     <div>
                                         <div>
                                             <label class="Label">First Name</label>
                                             <div class="inputBox">
                                                 <img src="{{ asset('assets/admin/images/svg/Profile.svg') }}" />
-                                                <input class="settingInput" placeholder="Osborn" />
+                                                <input class="settingInput" name="name"
+                                                    value="{{ auth()->user()->name ?? '' }}" placeholder="Osborn" />
                                             </div>
                                         </div>
                                         <div>
                                             <label class="Label">Last Name</label>
                                             <div class="inputBox">
                                                 <img src="{{ asset('assets/admin/images/svg/Profile.svg') }}" />
-                                                <input class="settingInput" placeholder="Osborn" />
+                                                <input class="settingInput"
+                                                    value="{{ auth()->user()->last_name ?? '' }}" name="last_name"
+                                                    placeholder="Osborn" />
                                             </div>
                                         </div>
                                         <div>
                                             <label class="Label">Email</label>
                                             <div class="inputBox">
                                                 <img src="{{ asset('assets/admin/images/svg/Message.svg') }}" />
-                                                <input class="settingInput" placeholder="Davisbuchanan@gmail.com" />
+                                                <input class="settingInput" placeholder="Davisbuchanan@gmail.com"
+                                                    value="{{ auth()->user()->email ?? '' }}" />
                                             </div>
                                         </div>
                                         <div>
                                             <label class="Label">Phone Number</label>
                                             <div class="inputBox">
-                                                <input class="settingInput" id="phone2" name="phone" type="tel"
+                                                <input class="settingInput" name="phone" id="phone2" name="phone"
+                                                    value="{{ auth()->user()->phone ?? '' }}" type="tel"
                                                     value="" />
                                             </div>
 
@@ -711,15 +718,19 @@
                                             <label class="Label">Address</label>
                                             <div class="inputBox">
                                                 <img src="{{ asset('assets/admin/images/svg/Location.svg') }} " />
-                                                <input class="settingInput" placeholder="No. 93 Skyfield Apartments" />
+                                                <input class="settingInput" name="address"
+                                                    value="{{ auth()->user()->address ?? '' }}"
+                                                    placeholder="No. 93 Skyfield Apartments" />
                                             </div>
                                         </div>
                                         <div>
                                             <!--Country -->
                                             <div class="select-something">
                                                 <label class="Label">Country</label>
-                                                <select class="inputBox" name="state" id="countySel" size="1">
-                                                    <option value="" selected="selected">Country</option>
+                                                <select class="inputBox" name="country" id="countySel" size="1">
+                                                    <option value="{{ auth()->user()->country ?? '' }}"
+                                                        selected="selected">Country
+                                                    </option>
                                                 </select>
                                             </div>
                                             <!--State -->
@@ -729,9 +740,10 @@
                                                     <label class="Label">State</label>
                                                     <div class="inputBox">
 
-                                                        <select class="settingInput" name="country" id="stateSel"
+                                                        <select class="settingInput" name="state" id="stateSel"
                                                             size="1">
-                                                            <option value="" selected="selected">state</option>
+                                                            <option value="{{ auth()->user()->state ?? '' }}"
+                                                                selected="selected">state</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -741,9 +753,10 @@
                                                     <label class="Label">City</label>
                                                     <div class="inputBox">
 
-                                                        <select class="settingInput" name="district" id="districtSel"
+                                                        <select class="settingInput" name="city" id="districtSel"
                                                             size="1">
-                                                            <option value="" selected="selected">city</option>
+                                                            <option value="{{ auth()->user()->city ?? '' }}"
+                                                                selected="selected">city</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -755,8 +768,12 @@
                                             id="imageUploader5"
                                             onclick="document.getElementById('imageInput5').click()">
                                             <!-- Preview Image Container -->
-                                            <img id="previewImage5" class="previewImage"
-                                                src="{{ asset('assets/admin/images/Image.png') }} "
+                                            @php
+
+                                                $img = auth()->user()->profile ?? 'assets/admin/images/Image.png';
+
+                                            @endphp
+                                            <img id="previewImage5" class="previewImage" src="{{ asset($img) }} "
                                                 alt="Additional Image Preview 1"
                                                 style="width: 0px; transition: all 0.5s ease" />
 
@@ -775,7 +792,7 @@
                                             </div>
 
                                             <!-- Hidden Input for Image Upload -->
-                                            <input type="file" id="imageInput5" name="additionalImage5"
+                                            <input type="file" id="imageInput5" name="profile"
                                                 style="display: none" accept="image/jpeg, image/png"
                                                 onchange="previewUploadedFile5(event)" />
                                         </div>
@@ -889,6 +906,10 @@
 @section('script')
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
+    function submitForm() {
+
+        document.getElementById("updateForm").submit(); // Submits the form
+    }
     var quill = new Quill("#editor", {
         theme: "snow",
         modules: {
