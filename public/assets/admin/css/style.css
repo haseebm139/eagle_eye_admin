@@ -6,18 +6,28 @@ body {
 
 /* Custom styles */
 @font-face {
+    font-family: poppinsMedium;
+    src: url("./assests/Poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
     font-family: InterMedium;
-    src: url("https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Medium.ttf");
+    src: url("./website/assests/Inter/static/Inter_18pt-Medium.ttf");
 }
 
 @font-face {
     font-family: InterLight;
-    src: url("https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-ExtraLight.ttf");
+    src: url("./website/assests/Inter/static/Inter_18pt-ExtraLight.ttf");
 }
 
 @font-face {
     font-family: InterBold;
-    src: url("https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Bold.ttf");
+    src: url("./website/assests/Inter/static/Inter_18pt-Bold.ttf");
+}
+
+@font-face {
+    font-family: InterRegular;
+    src: url('./website/assests/Inter/static/Inter_18pt-Regular.ttf')
 }
 
 @font-face {
@@ -30,18 +40,85 @@ body {
     src: url('./assests/gilroy/Gilroy-Bold.ttf');
 }
 
+.invoice-header {
+    margin-bottom: 20px;
+}
+
+.invoice-table th {
+    background-color: #f8f9fa;
+}
+
+.invoice-footer {
+    margin-top: 20px;
+}
+
+.address-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.icon-envelope {
+    margin-top: 10px;
+}
+
+.settingsSubTabs {
+
+    padding: 4px 23px;
+    border-radius: 12px;
+    background-color: white;
+}
+
 .mediumFont {
 
     font-family: InterMedium;
+    font-size: 16px;
+}
+
+.SettingHeading {
+    font-size: 20px;
+    font-family: poppinsMedium;
+
+}
+
+.settingInput {
+    font-family: InterRegular;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.image-uploader5 {
+    position: relative;
+    overflow: hidden;
+    height: 130px;
+    width: 130px;
+    color: #8f8787;
+    border: none;
     font-size: 13px;
+    border-radius: 11px;
+    background-color: #fbfbfb;
+}
+
+.Label {
+    font-family: InterRegular;
+    color: #ABAFB1;
+    font-size: 12px;
+    margin: 0;
 }
 
 .mediumFontBorder {
+    border-top-left-radius: 12px;
     background-color: white;
     border: none;
+    color: #ABAFB1;
     text-align: center;
-    font-family: InterMedium;
-    font-size: 12px;
+    font-family: InterRegular;
+    font-size: 15px;
     padding: 15px 20px;
     margin-right: 25px;
 }
@@ -49,9 +126,10 @@ body {
 .mediumFontBorder.active {
     background-color: white;
     text-align: center;
+    color: #000;
     border-bottom: 2px solid black;
-    font-family: InterMedium;
-    font-size: 12px;
+    font-family: InterRegular;
+    font-size: 15px;
     padding: 15px 20px;
     margin-right: 25px;
 }
@@ -60,7 +138,12 @@ body {
 
     font-family: InterMedium;
     font-size: 12px;
-    color: #8f8787;
+    color: #333232;
+}
+
+.LightFont2 {
+    font-family: InterLight;
+    font-size: 12px;
 }
 
 .CustomerStatus {
@@ -94,7 +177,7 @@ body {
 
 .LightFont {
     font-family: InterLight;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .sidebar {
@@ -168,7 +251,7 @@ body {
 }
 
 .card {
-    height: 180px !important;
+    height: 160px !important;
     display: flex;
     justify-content: space-between;
     gap: 2.5rem;
@@ -182,6 +265,39 @@ body {
 
 .card-2 {
     width: 48%;
+}
+
+.orderLeftConatiner {
+    width: 300px;
+}
+
+.NoteDescription {
+    margin: 9px 0;
+    padding: 10px;
+    background-color: #f6f7fb;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #ABAFB1;
+    font-family: InterLight;
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.orderImage {
+    width: 26px;
+    height: 27px;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+.orderImage img {
+    width: 100%;
+    height: 100%;
 }
 
 .bottomContent {
@@ -205,7 +321,7 @@ body {
     font-family: InterBold;
     margin: 0;
     padding-top: 8px;
-    font-size: 20px;
+    font-size: 15px;
 
 }
 
@@ -229,7 +345,7 @@ body {
 
 .rates {
     font-family: InterLight;
-    font-size: 11px;
+    font-size: 12px;
     color: #519C66;
 }
 
@@ -244,9 +360,9 @@ body {
 }
 
 .ProductHeading {
-    font-size: 17px;
+    font-size: 16px;
     color: #45464E;
-    font-family: InterBold;
+    font-family: InterMedium;
 }
 
 .bottomSpan {
@@ -319,7 +435,7 @@ body {
     padding: 0;
     margin: 0;
     color: #A6A8B1;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .ProductSpan {
@@ -424,14 +540,14 @@ body {
 
 .form-control4 {
     font-family: InterMedium;
-    padding: 0 13px;
+    /* padding: 0 13px; */
     display: flex;
     outline: none !important;
     color: rgb(255 255 255) !important;
     border-radius: 14px !important;
     background-color: #000000 !important;
     border: none !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
 }
 
 .dropdown-icon {
@@ -441,6 +557,8 @@ body {
 }
 
 .layout {
+    display: flex;
+    gap: 10px;
     width: 100%;
 }
 
@@ -490,6 +608,7 @@ body {
 }
 
 .productBtn {
+    font-size: 15px;
     background-color: #ffd014;
     color: black;
     border: none;
@@ -503,7 +622,7 @@ body {
     background-color: black;
     padding: 9px 20px;
     border-radius: 12px;
-    font-size: 13px;
+    font-size: 14px;
 
 }
 
@@ -512,7 +631,7 @@ body {
     background-color: #CC0000;
     padding: 9px 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-family: InterMedium;
     font-size: 13px;
 }
@@ -539,15 +658,14 @@ body {
 }
 
 .order-btn2 {
-    font-family: InterMedium;
+    font-family: InterRegular;
     color: black;
     background-color: #ffd014;
     border: 1px solid #ffd014;
-    padding: 3px 24px;
+    padding: 8px 28px;
     border-radius: 12px;
     font-weight: 700;
-    font-size: 13px;
-    font-family: InterMedium;
+    font-size: 14px;
 
 
 }
@@ -720,19 +838,20 @@ body {
 }
 
 .filter-btn {
+    font-family: InterRegular;
     display: flex;
     align-items: center;
     gap: 4px;
     border: 1px solid rgb(207, 207, 207);
     border-radius: 8px;
     background-color: white;
-    padding: 2px 6px;
+    padding: 4px 6px;
     font-size: 13px;
 
 }
 
 .filter-btn img {
-    width: 13px;
+    width: 22px;
 }
 
 .filter-dropdown {
@@ -857,12 +976,13 @@ body {
 }
 
 .ShotDescription {
+    background-color: #f6f7fb;
     width: 100%;
     border: none;
     outline: none;
     color: #ABAFB1;
     font-family: InterLight;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .ql-snow .ql-picker {
@@ -910,7 +1030,41 @@ body {
     background-color: #f6f7fb;
 }
 
+
+.image-uploader5 {
+    position: relative;
+    overflow: hidden;
+    height: 130px;
+    width: 130px;
+    color: #8f8787;
+    border: none;
+    font-size: 13px;
+    border-radius: 11px;
+    background-color: #f6f7fb;
+}
+
 .image-uploader2 .previewImage {
+
+    width: 30px;
+    /* Initial small size */
+    height: 30px;
+    /* Initial small size */
+    object-fit: cover;
+    /* Maintain aspect ratio */
+    transition: all 0.5s ease;
+    /* Smooth transition */
+}
+
+.layer {
+    top: 10px;
+    position: absolute;
+    display: flex;
+    gap: 6px;
+
+    right: 11px;
+}
+
+.image-uploader5 .previewImage {
 
     width: 30px;
     /* Initial small size */
@@ -1157,4 +1311,148 @@ body {
 
 .toggle-option:focus {
     outline: none;
+}
+
+.layer1 {
+    display: flex;
+    gap: 10px;
+}
+
+.dasboardCard {
+    width: 30%;
+}
+
+.dasboardCard2 {
+    width: 40%;
+}
+
+.chartCard {
+    display: flex;
+    gap: 10px;
+}
+
+.customDropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .leftSideContent {
+        width: 100%;
+    }
+
+    .legend-container {
+        flex-wrap: wrap;
+    }
+
+    .chart-container {
+        width: 100%;
+        height: 68%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .rightSideContent {
+        width: 100%;
+    }
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .layer1 {
+        flex-direction: column;
+    }
+
+    .dasboardCard {
+        width: 100%;
+    }
+
+    .dasboardCard2 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .form-control3 {
+        padding: 5px 6px;
+    }
+
+    .toggle-btn {
+        top: 42px;
+    }
+
+    h3 {
+        font-size: 1rem !important;
+    }
+
+    .customDropdown {
+
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .chartCard {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-left: 77px !important;
+    }
+
+    .alignmentOfPIChart {
+        width: 100%;
+    }
+
+    .sec-section {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .productBtn {
+        font-size: 12px;
+    }
+
+    .sales {
+        font-size: 12px;
+    }
+
+    .bold {
+        font-size: 12px;
+    }
+
+    .rates {
+        font-size: 9px;
+    }
+
+    .customDropdown h6 {
+        font-size: 12px;
+    }
+
+    .alignmentOfPIChart h6 {
+        font-size: 12px;
+    }
+
+    .legend-item span {
+        font-size: 12px;
+    }
+
+    .form-control {
+        font-size: 12px !important;
+    }
+
+    .container-2 {
+        padding: 20px 13px !important;
+    }
+
+    .custom-chart-card {
+        padding: 0px;
+    }
+
+    .custom-chart-card {
+        font-size: 12px !important;
+    }
 }

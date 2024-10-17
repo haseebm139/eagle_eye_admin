@@ -19,7 +19,24 @@
 
     @include('admin.partials.navbar')
     <div class="main-content" id="main-content">
-
+        <div class="toggle-btn" id="toggle-btn">
+            <img src="{{ asset('assets/admin/images/svg/Home.svg') }} " />
+        </div>
+        <div class="dashboard-header d-flex align-items-center justify-content-between">
+            <h3 id="page-title">@yield('heading')</h3>
+            <div class="d-flex align-items-center gap-3">
+                <div class="dropdown-container position-relative">
+                    <select id="data-category" class="form-control3 d-inline w-auto">
+                        <option value="Revenue">Eagle eye</option>
+                        <option value="Expenses">This Week</option>
+                        <option value="Profit Margin">This Week</option>
+                    </select>
+                    <span class="dropdown-icon"></span>
+                    <!-- Down arrow icon -->
+                </div>
+                <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
+            </div>
+        </div>
         @yield('content')
     </div>
 
@@ -35,6 +52,9 @@
     <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
 
     <script>
+        const appUrl = "{{ url('/') }}";;
+
+
         var type = "{{ Session::get('type') }}";
         switch (type) {
             case 'info':

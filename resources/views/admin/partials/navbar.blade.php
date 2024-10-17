@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
                 <img src="{{ asset('assets/admin/images/svg/Category.svg') }}" /> <span>Dashboard</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('orders') }}" class="nav-link">
                 <img src="{{ asset('assets/admin/images/svg/Bag.svg') }}" /> <span>Orders</span>
             </a>
             <a href="{{ route('customers') }}" class="nav-link">
@@ -16,7 +16,7 @@
             <a href="{{ route('product') }}" class="nav-link @if (Route::is('product') || Route::is('add.product')) active @endif ">
                 <img src="{{ asset('assets/admin/images/svg/Folder.svg') }}" /><span>Inventory</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('settings') }}" class="nav-link">
                 <img src="{{ asset('assets/admin/images/svg/Setting.svg') }}" /><span>Settings</span>
             </a>
         </div>

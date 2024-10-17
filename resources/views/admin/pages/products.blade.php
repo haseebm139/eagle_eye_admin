@@ -510,151 +510,136 @@
 @section('content')
 
 
-    <div class="toggle-btn" id="toggle-btn">
-        <img src="{{ asset('assets/admin/images/svg/Home.svg') }} " />
-    </div>
-    <div class="dashboard-header d-flex align-items-center justify-content-between">
-        <h3 id="page-title">Add Product</h3>
-        <div class="d-flex align-items-center gap-3">
-            <div class="dropdown-container position-relative">
-                <select id="data-category" class="form-control3 d-inline w-auto">
-                    <option value="Revenue">Eagle eye</option>
-                    <option value="Expenses">This Week</option>
-                    <option value="Profit Margin">This Week</option>
-                </select>
-                <span class="dropdown-icon"></span>
-                <!-- Down arrow icon -->
+
+@section('heading', 'Add Product')
+
+<div id="dynamic-content">
+
+
+
+
+    <div class="green" id="products">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
+                <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">Product Summary</span>
+                <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center">
+                    +
+                    <pre></pre>
+                    Add a New Product
+                </a>
             </div>
-            <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
-        </div>
-    </div>
-    <div id="dynamic-content">
 
+            <div class="d-flex gap-3">
+                <div class="" style="width: 50%">
+                    <div class="card text-center" style="background-color: black">
+                        <div class="alignemnt">
+                            <img src="{{ asset('assets/admin/images/svg/stroke_1.svg') }} " />
+                        </div>
 
-
-
-        <div class="green" id="products">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
-                    <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">Product Summary</span>
-                    <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center">
-                        +
-                        <pre></pre>
-                        Add a New Product
-                    </a>
-                </div>
-
-                <div class="d-flex gap-3">
-                    <div class="" style="width: 50%">
-                        <div class="card text-center" style="background-color: black">
-                            <div class="alignemnt">
-                                <img src="{{ asset('assets/admin/images/svg/stroke_1.svg') }} " />
-                            </div>
-
-                            <div class="d-flex align-items-start text-left justify-content-between" style="color: white">
-                                <span>
-                                    <p class="sales" style="color: white">All Products</p>
-                                    <p class="bold">800s</p>
-                                </span>
-                                <span>
-                                    <p class="sales" style="color: white">Active</p>
-                                    <p class="bold">
-                                        316
-                                        <span class="rates" style="color: white">+20.00%</span>
-                                    </p>
-                                </span>
-                            </div>
+                        <div class="d-flex align-items-start text-left justify-content-between" style="color: white">
+                            <span>
+                                <p class="sales" style="color: white">All Products</p>
+                                <p class="bold">800s</p>
+                            </span>
+                            <span>
+                                <p class="sales" style="color: white">Active</p>
+                                <p class="bold">
+                                    316
+                                    <span class="rates" style="color: white">+20.00%</span>
+                                </p>
+                            </span>
                         </div>
                     </div>
-                    <div class=" " style="width: 50%">
-                        <div class="card text-center">
-                            <div class="alignemnt">
-                                <img src="{{ asset('assets/admin/images/svg/stroke_2.svg') }} " />
-                                <div class="leftAlignement">
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
-                                        </select>
-                                        <span class="dropdown-icon"></span>
-                                        <!-- Down arrow icon -->
-                                    </div>
+                </div>
+                <div class=" " style="width: 50%">
+                    <div class="card text-center">
+                        <div class="alignemnt">
+                            <img src="{{ asset('assets/admin/images/svg/stroke_2.svg') }} " />
+                            <div class="leftAlignement">
+                                <div class="dropdown-container position-relative">
+                                    <select id="data-category" class="form-control2 d-inline w-auto">
+                                        <option value="Revenue">This Week</option>
+                                        <option value="Expenses">This Week</option>
+                                        <option value="Profit Margin">This Week</option>
+                                    </select>
+                                    <span class="dropdown-icon"></span>
+                                    <!-- Down arrow icon -->
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="bottomContent">
-                                <span>
-                                    <p class="sales" style="color: red">Low Stock Alert</p>
-                                    <p class="bold">23</p>
-                                </span>
-                                <span>
-                                    <p class="sales">Expired</p>
-                                    <p class="bold">3</p>
-                                </span>
+                        <div class="bottomContent">
+                            <span>
+                                <p class="sales" style="color: red">Low Stock Alert</p>
+                                <p class="bold">23</p>
+                            </span>
+                            <span>
+                                <p class="sales">Expired</p>
+                                <p class="bold">3</p>
+                            </span>
 
-                                <span>
-                                    <p class="sales">1 Start Rating</p>
-                                    <p class="bold">2</p>
-                                </span>
-                            </div>
+                            <span>
+                                <p class="sales">1 Start Rating</p>
+                                <p class="bold">2</p>
+                            </span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div style=" background: white; margin: 20px 0; padding: 1rem; border-radius: 15px; ">
-                    <div class="d-flex justify-content-between">
-                        <h6>Products</h6>
-                        <div class="d-flex gap-2">
-                            <div class="search-bar">
-                                <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                                <input type="text" id="searchInput" placeholder="Search.." />
-                            </div>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> send
-                            </button>
-                            <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                    style="width: auto">
-                                    <option value="3">bulk Action</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
-                                </select>
-                            </div>
+            <div style=" background: white; margin: 20px 0; padding: 1rem; border-radius: 15px; ">
+                <div class="d-flex justify-content-between">
+                    <h6>Products</h6>
+                    <div class="d-flex gap-2">
+                        <div class="search-bar">
+                            <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
+                            <input type="text" id="searchInput" placeholder="Search.." />
+                        </div>
+                        <button class="filter-btn">
+                            <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " />
+                            Filter
+                        </button>
+                        <button class="filter-btn">
+                            <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
+                            Filter
+                        </button>
+                        <button class="filter-btn">
+                            <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> send
+                        </button>
+                        <div>
+                            <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
+                                style="width: auto">
+                                <option value="3">bulk Action</option>
+                                <option value="5">page</option>
+                                <option value="10">per page</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="container mt-4">
-                        <div class="table-responsive">
-                            <table class="table mt-3">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" id="select-all">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
-                                        <th></th>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">In-Stock</th>
-                                        <th scope="col">Discount</th>
-                                        <th scope="col">Total Value</th>
-                                        <th scope="col">Action</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body">
-                                    {{-- <tr>
+                </div>
+                <div class="container mt-4">
+                    <div class="table-responsive">
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <label class="custom-checkbox">
+                                            <input type="checkbox" id="select-all">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </th>
+                                    <th></th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">In-Stock</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col">Total Value</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                {{-- <tr>
                                         <td>
                                             <label class="custom-checkbox">
                                                 <input type="checkbox" class="product-checkbox" data-id="1">
@@ -693,114 +678,113 @@
                                     </tr> --}}
 
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
-                            <!-- Pagination Controls -->
-                            <div id="product-pagination"
-                                class="pagination-container d-flex justify-content-between align-items-center d-none">
-                                <!-- Items per page dropdown -->
-                                <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
-                                    <select id="itemsPerPage1"
-                                        class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <p>Items per page</p>
-                                    <p class="TotalItems">1-10 of 100 items</p>
-                                </div>
-
-                                <!-- Showing results text -->
-                                <div id="showing-info" class="text-muted"></div>
-
-                                <!-- Pagination -->
-                                <nav class="d-flex justify-content align-items-center gap-2"
-                                    aria-label="Page navigation ">
-                                    <select id="itemsPerPage"
-                                        class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                        <option value="3">1</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <p class="TotalItems">1-10 of 100 items</p>
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript:void(0);" id="prev-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }}" />
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript:void(0);" id="next-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }}" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                        <!-- Pagination Controls -->
+                        <div id="product-pagination"
+                            class="pagination-container d-flex justify-content-between align-items-center d-none">
+                            <!-- Items per page dropdown -->
+                            <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
+                                <select id="itemsPerPage1"
+                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <p>Items per page</p>
+                                <p class="TotalItems">1-10 of 100 items</p>
                             </div>
+
+                            <!-- Showing results text -->
+                            <div id="showing-info" class="text-muted"></div>
+
+                            <!-- Pagination -->
+                            <nav class="d-flex justify-content align-items-center gap-2" aria-label="Page navigation ">
+                                <select id="itemsPerPage"
+                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                    <option value="3">1</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <p class="TotalItems">1-10 of 100 items</p>
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);" id="prev-page">
+                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }}" />
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);" id="next-page">
+                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }}" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
+
     </div>
-    </div>
+
+</div>
+
 
 
 
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
-            let currentPage = 1;
-            let itemsPerPage = 3; // Default items per page
-            let searchQuery = '';
-            // Function to fetch products from the server
-            function fetchProducts(page, itemsPerPage, search) {
+<script>
+    $(document).ready(function() {
+        let currentPage = 1;
+        let itemsPerPage = 3; // Default items per page
+        let searchQuery = '';
+        // Function to fetch products from the server
+        function fetchProducts(page, itemsPerPage, search) {
 
-                $.ajax({
-                    url: "{{ route('product.list') }}",
-                    type: 'GET',
-                    data: {
-                        page: page,
-                        items_per_page: itemsPerPage,
-                        search: search,
-                    },
-                    success: function(response) {
+            $.ajax({
+                url: "{{ route('product.list') }}",
+                type: 'GET',
+                data: {
+                    page: page,
+                    items_per_page: itemsPerPage,
+                    search: search,
+                },
+                success: function(response) {
 
 
-                        renderTable(response.products); // Assume your API returns the product array
-                        updatePagination(response.total); // Update pagination based on total products
+                    renderTable(response.products); // Assume your API returns the product array
+                    updatePagination(response.total); // Update pagination based on total products
 
-                    },
-                    error: function(xhr) {
+                },
+                error: function(xhr) {
 
-                        updatePagination(1)
-                    },
-                });
-            }
+                    updatePagination(1)
+                },
+            });
+        }
 
-            // Function to render the product table
-            function renderTable(products) {
-                const tableBody = $('#table-body');
-                tableBody.empty(); // Clear previous data
+        // Function to render the product table
+        function renderTable(products) {
+            const tableBody = $('#table-body');
+            tableBody.empty(); // Clear previous data
 
-                products.forEach(product => {
-                    const id = product.id || null
-                    const name = product.name || 'N/A'
-                    const category = product.category || 'N/A'
-                    const unit_price = product.sell_price || 1.00
-                    const stock = product.stock || 0
-                    const discount = product.discount || '0.00'
-                    const status = product.status || 0
-                    const total_value = stock * unit_price
-                    const image = "{{ asset('assets/admin/images/Image.png') }}" ||
-                        "{{ asset('assets/admin/images/Image.png') }}"
+            products.forEach(product => {
+                const id = product.id || null
+                const name = product.name || 'N/A'
+                const category = product.category || 'N/A'
+                const unit_price = product.sell_price || 1.00
+                const stock = product.stock || 0
+                const discount = product.discount || '0.00'
+                const status = product.status || 0
+                const total_value = stock * unit_price
+                const image = "{{ asset('assets/admin/images/Image.png') }}" ||
+                    "{{ asset('assets/admin/images/Image.png') }}"
 
-                    const row = `
+                const row = `
                 <tr data-id="${id}">
                     <td>
                         <label class="custom-checkbox">
@@ -830,117 +814,117 @@
                         <p class="status-text custom-${status == 1 ? 'active' : 'inactive'}">${status == 1 ? 'Publish' : 'Unpublish'} </p>
                     </td>
                 </tr>`;
-                    tableBody.append(row);
-                });
+                tableBody.append(row);
+            });
+        }
+
+        // Function to update pagination info
+        function updatePagination(total) {
+            const totalItems = total; // Total products from API response
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            $(".TotalItems").text(
+                `Showing ${((currentPage - 1) * itemsPerPage) + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} items`
+            );
+
+            // Disable/Enable pagination buttons
+            $('#prev-page').toggleClass('disabled', currentPage === 1);
+            $('#next-page').toggleClass('disabled', currentPage === totalPages);
+        }
+
+
+
+        // Handle pagination button clicks
+        $('#prev-page').click(function() {
+            if (currentPage > 1) {
+                currentPage--;
+
+
+                fetchProducts(currentPage, itemsPerPage, searchQuery);
             }
+        });
 
-            // Function to update pagination info
-            function updatePagination(total) {
-                const totalItems = total; // Total products from API response
-                const totalPages = Math.ceil(totalItems / itemsPerPage);
-                $(".TotalItems").text(
-                    `Showing ${((currentPage - 1) * itemsPerPage) + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} items`
-                );
+        $('#next-page').click(function() {
+            currentPage++;
 
-                // Disable/Enable pagination buttons
-                $('#prev-page').toggleClass('disabled', currentPage === 1);
-                $('#next-page').toggleClass('disabled', currentPage === totalPages);
-            }
-
-
-
-            // Handle pagination button clicks
-            $('#prev-page').click(function() {
-                if (currentPage > 1) {
-                    currentPage--;
-
-
-                    fetchProducts(currentPage, itemsPerPage, searchQuery);
-                }
-            });
-
-            $('#next-page').click(function() {
-                currentPage++;
-
-                fetchProducts(currentPage, itemsPerPage, searchQuery);
-            });
-
-            // Handle items per page change
-            $(document).on('change', '#itemsPerPage', function() {
-
-                itemsPerPage = $(this).val();
-                currentPage = 1; // Reset to first page
-
-                fetchProducts(currentPage, itemsPerPage, searchQuery);
-            });
-
-            $(document).on('change', '#itemsPerPage1', function() {
-
-                itemsPerPage = $(this).val();
-                currentPage = 1; // Reset to first page
-
-                fetchProducts(currentPage, itemsPerPage, searchQuery);
-            });
-
-            $('#searchInput').on('input', function() {
-
-                searchQuery = $(this).val(); // Update search query
-                currentPage = 1; // Reset to first page
-                fetchProducts(currentPage, itemsPerPage, searchQuery); // Fetch products with search
-            });
-
-
-            // Initial fetch of products
             fetchProducts(currentPage, itemsPerPage, searchQuery);
         });
-    </script>
-    <script>
-        function publishProduct(id) {
 
-            updateProductStatus(id, 1);
-        }
+        // Handle items per page change
+        $(document).on('change', '#itemsPerPage', function() {
 
-        function unpublishProduct(id) {
+            itemsPerPage = $(this).val();
+            currentPage = 1; // Reset to first page
 
-            updateProductStatus(id, 2);
-        }
+            fetchProducts(currentPage, itemsPerPage, searchQuery);
+        });
 
-        function updateProductStatus(id, status) {
-            var url = "{{ route('product.change.status', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                url: url,
+        $(document).on('change', '#itemsPerPage1', function() {
 
-                method: 'POST',
-                data: {
-                    status: status,
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    if (response.success) {
-                        toastr.success(response.message); // Show success message
+            itemsPerPage = $(this).val();
+            currentPage = 1; // Reset to first page
 
-                        // Optionally, you can refresh the product list or update the status in the table dynamically
-                        // Example: Change the status text in the table
-                        const statusText = status == 1 ? 'Publish' : 'Unpublish';
-                        const statusClass = status == 1 ? 'custom-active' : 'custom-inactive';
-                        $ele = $(`tr[data-id="${id}"] .status-text`);
+            fetchProducts(currentPage, itemsPerPage, searchQuery);
+        });
 
-                        $ele.text(statusText)
-                        $ele.removeClass('custom-active custom-inactive')
-                            .addClass(statusClass);
-                    }
-                    if (!response.success) {
-                        toastr.error(response.message); // Show success message
+        $('#searchInput').on('input', function() {
+
+            searchQuery = $(this).val(); // Update search query
+            currentPage = 1; // Reset to first page
+            fetchProducts(currentPage, itemsPerPage, searchQuery); // Fetch products with search
+        });
 
 
-                    }
-                },
-                error: function(xhr) {
-                    toastr.error('Failed to update product status'); // Handle errors
+        // Initial fetch of products
+        fetchProducts(currentPage, itemsPerPage, searchQuery);
+    });
+</script>
+<script>
+    function publishProduct(id) {
+
+        updateProductStatus(id, 1);
+    }
+
+    function unpublishProduct(id) {
+
+        updateProductStatus(id, 2);
+    }
+
+    function updateProductStatus(id, status) {
+        var url = "{{ route('product.change.status', ':id') }}";
+        url = url.replace(':id', id);
+        $.ajax({
+            url: url,
+
+            method: 'POST',
+            data: {
+                status: status,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    toastr.success(response.message); // Show success message
+
+                    // Optionally, you can refresh the product list or update the status in the table dynamically
+                    // Example: Change the status text in the table
+                    const statusText = status == 1 ? 'Publish' : 'Unpublish';
+                    const statusClass = status == 1 ? 'custom-active' : 'custom-inactive';
+                    $ele = $(`tr[data-id="${id}"] .status-text`);
+
+                    $ele.text(statusText)
+                    $ele.removeClass('custom-active custom-inactive')
+                        .addClass(statusClass);
                 }
-            });
+                if (!response.success) {
+                    toastr.error(response.message); // Show success message
 
-        }
-    </script>
+
+                }
+            },
+            error: function(xhr) {
+                toastr.error('Failed to update product status'); // Handle errors
+            }
+        });
+
+    }
+</script>
 @endsection

@@ -213,361 +213,345 @@
 @section('content')
 
 
-    <div class="toggle-btn" id="toggle-btn">
-        <img src="{{ asset('assets/admin/images/svg/Home.svg') }} " />
-    </div>
-    <div class="dashboard-header d-flex align-items-center justify-content-between">
-        <h3 id="page-title">Add Product</h3>
-        <div class="d-flex align-items-center gap-3">
-            <div class="dropdown-container position-relative">
-                <select id="data-category" class="form-control3 d-inline w-auto">
-                    <option value="Revenue">Eagle eye</option>
-                    <option value="Expenses">This Week</option>
-                    <option value="Profit Margin">This Week</option>
-                </select>
-                <span class="dropdown-icon"></span>
-                <!-- Down arrow icon -->
+
+@section('heading', 'Products')
+<div id="dynamic-content">
+    <div class="tab-content" id="myTabContent">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
+                <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">New Product</span>
+                <div class="d-flex gap-3">
+                    <div class="ProductDropdownLayout">
+                        <select id="itemsPerPage" class="form-select form-select-sm ProductDropdown"
+                            style="width: auto">
+                            <option value="3">Save as Draft</option>
+                            <option value="5">Save as Draft</option>
+                            <option value="10">Save as Draft</option>
+                        </select>
+                        <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
+                    </div>
+                    <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
+                        save & Publish
+                    </button>
+                </div>
             </div>
-            <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
-        </div>
-    </div>
-    <div id="dynamic-content">
-        <div class="tab-content" id="myTabContent">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
-                    <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">New Product</span>
-                    <div class="d-flex gap-3">
-                        <div class="ProductDropdownLayout">
-                            <select id="itemsPerPage" class="form-select form-select-sm ProductDropdown"
-                                style="width: auto">
-                                <option value="3">Save as Draft</option>
-                                <option value="5">Save as Draft</option>
-                                <option value="10">Save as Draft</option>
-                            </select>
-                            <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
+
+            <form class="container-fluid d-flex gap-3 mb-5" id="product-form" action="" method="post"
+                enctype="multipart/form-data">
+
+                <div class="mainBar">
+                    <div class="d-flex gap-5">
+                        <div class="d-flex flex-column gap-3 rightForm">
+                            <div class="inpuBox">
+                                <input name="name" class="product" placeholder="Product Name" />
+                            </div>
+
+                            <div class="">
+                                <select id="itemsPerPage" name="category"
+                                    class="form-select form-select-sm ProductList">
+                                    <option value="3">Select Product Category</option>
+                                    <option value="5">page</option>
+                                    <option value="10">per page</option>
+                                </select>
+                            </div>
+
+                            <div class="inpuBox d-flex gap-2">
+                                <input class="product" name="sell_price" placeholder="Selling Price" />
+                                <input class="product" name="cost_price" placeholder="Cost Price" />
+                            </div>
+
+                            <div class="inpuBox product-wrapper">
+                                <input type="number" class="product quantityInput" name="stock" id="quantityInput"
+                                    placeholder="Quantity in Stock" />
+
+
+                                <div class="quantity-controls">
+                                    <img class="up-btn" id="increaseBtn" aria-label="Increase quantity"
+                                        src="{{ asset('assets/admin/images/svg/Polygon_1_(1).svg') }}" />
+                                    <img class="down-btn" id="decreaseBtn" aria-label="Decrease quantity"
+                                        src="{{ asset('assets/admin/images/svg/Polygon_1.svg') }}" />
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <select id="itemsPerPage" class="form-select form-select-sm ProductList">
+                                    <option value="3">Order Type</option>
+                                    <option value="5">page</option>
+                                    <option value="10">per page</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6>Discount</h6>
+                                <div class="d-flex align-items-center gap-3">
+                                    <p class="discount">Add Discount</p>
+                                    <div class="">
+                                        <label class="switch">
+                                            <input type="checkbox" name="discount" id="toggleSwitch" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6>Expiry Date</h6>
+                                <div class="d-flex align-items-center gap-3">
+                                    <p class="discount">Add Expiry Date</p>
+                                    <div class="">
+                                        <label class="switch">
+                                            <input type="checkbox" name="expiry_date" id="toggleSwitch1" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
-                            save & Publish
-                        </button>
+
+                        <div class="subFormleft">
+                            <textarea id="w3review" name="short_description" rows="4" cols="50" placeholder="Short Description"></textarea>
+
+                            <div class="mb-3 mt-3" style="width: 100%;">
+                                <label for="productDescription" class="form-label Description ">Product Long
+                                    Description</label>
+
+                                <div id="toolbar">
+                                    <!-- Font options -->
+                                    <select class="ql-font"></select>
+                                    <!-- Paragraph format -->
+                                    <select class="ql-header">
+                                        <option selected></option>
+                                        <option value="1"></option>
+                                        <option value="2"></option>
+                                    </select>
+                                    <!-- Text formatting options -->
+                                    <button class="ql-bold"></button>
+                                    <button class="ql-underline"></button>
+                                    <button class="ql-italic"></button>
+                                    <!-- Alignment options -->
+                                    <button class="ql-align" value=""></button>
+                                    <button class="ql-align" value="center"></button>
+                                    <button class="ql-align" value="right"></button>
+                                </div>
+                                <div id="editor">
+
+                                </div>
+
+
+                                <div class="form-text mt-2 " style="color: #8f8787">Add a long description for
+                                    your
+                                    product</div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6>Return Policy</h6>
+                                <div class="d-flex align-items-center gap-3">
+                                    <p class="discount">Add Discount</p>
+                                    <div class="">
+                                        <label class="switch">
+                                            <input type="checkbox" name="discount2" id="toggleSwitch2" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column dateTime">
+                                <p>Date & Time</p>
+                                <div class="d-flex gap-3">
+                                    <input name="date" type="date" class="date" value="2024-01-01" />
+                                    <input name="time" type="time" class="date" value="00:00" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="leftBar">
+
+
+                    <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
+                        id="imageUploader" onclick="document.getElementById('imageInput').click()">
+                        <!-- Preview Image Container -->
+                        <img id="previewImage" class="previewImage"
+                            src="{{ asset('assets/admin/images/Image.png') }} "
+                            style="width: 30px; transition: all 0.5s ease;" />
+
+                        <div class="d-flex justify-content-center align-items-center gap-2" id="uploadPlaceholder">
+                            <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} " />
+                            <h6>Upload Image</h6>
+                        </div>
+
+                        <p class="text-center">Upload a cover image for your product. <br />
+                            File Format <span class="bold2">jpeg, png </span>Recommended Size <span
+                                class="bold2">600x600
+                                (1:1)</span>
+                        </p>
+
+                        <!-- Hidden Input for Image Upload -->
+                        <input type="file" name="image[]" id="imageInput" style="display: none;"
+                            accept="image/jpeg, image/png" onchange="previewUploadedFile(event)" />
+                    </div>
+
+
+
+                    <div class="mt-3">
+                        <h6>Additional Images</h6>
+                        <div class="d-flex flex-wrap gap-3 ">
+
+                            <div class="d-flex flex-column justify-content-center align-items-center image-uploader2 gap-3"
+                                id="imageUploader2" onclick="document.getElementById('imageInput2').click()">
+                                <!-- Preview Image Container -->
+                                <img id="previewImage2" class="previewImage"
+                                    src="{{ asset('assets/admin/images/Image.png') }} "
+                                    style="width: 30px; transition: all 0.5s ease;" />
+
+                                <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
+                                    id="uploadPlaceholder2">
+                                    <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
+                                        style="width: 16px;" />
+                                    <p class="bold2 p-0 m-0">Upload Image</p>
+                                </div>
+
+                                <!-- Hidden Input for Image Upload -->
+                                <input type="file" name="image[]" id="imageInput2" style="display: none;"
+                                    accept="image/jpeg, image/png" onchange="previewUploadedFile2(event)" />
+                            </div>
+
+
+                            <div class="d-flex flex-column justify-content-center align-items-center image-uploader3 gap-3"
+                                id="imageUploader3" onclick="document.getElementById('imageInput3').click()">
+                                <!-- Preview Image Container -->
+                                <img id="previewImage3" class="previewImage"
+                                    src="{{ asset('assets/admin/images/Image.png') }} "
+                                    style="width: 0px; transition: all 0.5s ease;" />
+
+                                <!-- Hidden Input for Image Upload -->
+                                <input type="file" name="image[]" id="imageInput3" style="display: none;"
+                                    accept="image/jpeg, image/png" onchange="previewUploadedFile3(event)" />
+                            </div>
+
+
+
+
+
+                        </div>
                     </div>
                 </div>
 
-                <form class="container-fluid d-flex gap-3 mb-5" id="product-form" action="" method="post"
-                    enctype="multipart/form-data">
-
-                    <div class="mainBar">
-                        <div class="d-flex gap-5">
-                            <div class="d-flex flex-column gap-3 rightForm">
-                                <div class="inpuBox">
-                                    <input name="name" class="product" placeholder="Product Name" />
-                                </div>
-
-                                <div class="">
-                                    <select id="itemsPerPage" name="category"
-                                        class="form-select form-select-sm ProductList">
-                                        <option value="3">Select Product Category</option>
-                                        <option value="5">page</option>
-                                        <option value="10">per page</option>
-                                    </select>
-                                </div>
-
-                                <div class="inpuBox d-flex gap-2">
-                                    <input class="product" name="sell_price" placeholder="Selling Price" />
-                                    <input class="product" name="cost_price" placeholder="Cost Price" />
-                                </div>
-
-                                <div class="inpuBox product-wrapper">
-                                    <input type="number" class="product quantityInput" name="stock" id="quantityInput"
-                                        placeholder="Quantity in Stock" />
-
-
-                                    <div class="quantity-controls">
-                                        <img class="up-btn" id="increaseBtn" aria-label="Increase quantity"
-                                            src="{{ asset('assets/admin/images/svg/Polygon_1_(1).svg') }}" />
-                                        <img class="down-btn" id="decreaseBtn" aria-label="Decrease quantity"
-                                            src="{{ asset('assets/admin/images/svg/Polygon_1.svg') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="">
-                                    <select id="itemsPerPage" class="form-select form-select-sm ProductList">
-                                        <option value="3">Order Type</option>
-                                        <option value="5">page</option>
-                                        <option value="10">per page</option>
-                                    </select>
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6>Discount</h6>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <p class="discount">Add Discount</p>
-                                        <div class="">
-                                            <label class="switch">
-                                                <input type="checkbox" name="discount" id="toggleSwitch" />
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6>Expiry Date</h6>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <p class="discount">Add Expiry Date</p>
-                                        <div class="">
-                                            <label class="switch">
-                                                <input type="checkbox" name="expiry_date" id="toggleSwitch1" />
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="subFormleft">
-                                <textarea id="w3review" name="short_description" rows="4" cols="50" placeholder="Short Description"></textarea>
-
-                                <div class="mb-3 mt-3" style="width: 100%;">
-                                    <label for="productDescription" class="form-label Description ">Product Long
-                                        Description</label>
-
-                                    <div id="toolbar">
-                                        <!-- Font options -->
-                                        <select class="ql-font"></select>
-                                        <!-- Paragraph format -->
-                                        <select class="ql-header">
-                                            <option selected></option>
-                                            <option value="1"></option>
-                                            <option value="2"></option>
-                                        </select>
-                                        <!-- Text formatting options -->
-                                        <button class="ql-bold"></button>
-                                        <button class="ql-underline"></button>
-                                        <button class="ql-italic"></button>
-                                        <!-- Alignment options -->
-                                        <button class="ql-align" value=""></button>
-                                        <button class="ql-align" value="center"></button>
-                                        <button class="ql-align" value="right"></button>
-                                    </div>
-                                    <div id="editor">
-
-                                    </div>
-
-
-                                    <div class="form-text mt-2 " style="color: #8f8787">Add a long description for
-                                        your
-                                        product</div>
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6>Return Policy</h6>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <p class="discount">Add Discount</p>
-                                        <div class="">
-                                            <label class="switch">
-                                                <input type="checkbox" name="discount2" id="toggleSwitch2" />
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex flex-column dateTime">
-                                    <p>Date & Time</p>
-                                    <div class="d-flex gap-3">
-                                        <input name="date" type="date" class="date" value="2024-01-01" />
-                                        <input name="time" type="time" class="date" value="00:00" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="leftBar">
-
-
-                        <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
-                            id="imageUploader" onclick="document.getElementById('imageInput').click()">
-                            <!-- Preview Image Container -->
-                            <img id="previewImage" class="previewImage"
-                                src="{{ asset('assets/admin/images/Image.png') }} "
-                                style="width: 30px; transition: all 0.5s ease;" />
-
-                            <div class="d-flex justify-content-center align-items-center gap-2" id="uploadPlaceholder">
-                                <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} " />
-                                <h6>Upload Image</h6>
-                            </div>
-
-                            <p class="text-center">Upload a cover image for your product. <br />
-                                File Format <span class="bold2">jpeg, png </span>Recommended Size <span
-                                    class="bold2">600x600
-                                    (1:1)</span>
-                            </p>
-
-                            <!-- Hidden Input for Image Upload -->
-                            <input type="file" name="image[]" id="imageInput" style="display: none;"
-                                accept="image/jpeg, image/png" onchange="previewUploadedFile(event)" />
-                        </div>
-
-
-
-                        <div class="mt-3">
-                            <h6>Additional Images</h6>
-                            <div class="d-flex flex-wrap gap-3 ">
-
-                                <div class="d-flex flex-column justify-content-center align-items-center image-uploader2 gap-3"
-                                    id="imageUploader2" onclick="document.getElementById('imageInput2').click()">
-                                    <!-- Preview Image Container -->
-                                    <img id="previewImage2" class="previewImage"
-                                        src="{{ asset('assets/admin/images/Image.png') }} "
-                                        style="width: 30px; transition: all 0.5s ease;" />
-
-                                    <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
-                                        id="uploadPlaceholder2">
-                                        <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
-                                            style="width: 16px;" />
-                                        <p class="bold2 p-0 m-0">Upload Image</p>
-                                    </div>
-
-                                    <!-- Hidden Input for Image Upload -->
-                                    <input type="file" name="image[]" id="imageInput2" style="display: none;"
-                                        accept="image/jpeg, image/png" onchange="previewUploadedFile2(event)" />
-                                </div>
-
-
-                                <div class="d-flex flex-column justify-content-center align-items-center image-uploader3 gap-3"
-                                    id="imageUploader3" onclick="document.getElementById('imageInput3').click()">
-                                    <!-- Preview Image Container -->
-                                    <img id="previewImage3" class="previewImage"
-                                        src="{{ asset('assets/admin/images/Image.png') }} "
-                                        style="width: 0px; transition: all 0.5s ease;" />
-
-                                    <!-- Hidden Input for Image Upload -->
-                                    <input type="file" name="image[]" id="imageInput3" style="display: none;"
-                                        accept="image/jpeg, image/png" onchange="previewUploadedFile3(event)" />
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
+            </form>
         </div>
-
     </div>
+
+</div>
 
 
 
 
 @endsection
 @section('script')
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script>
-        function getStatusClass(status) {
-            return status === "Active" ? "custom-active" : "custom-inactive";
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    function getStatusClass(status) {
+        return status === "Active" ? "custom-active" : "custom-inactive";
+    }
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: '#toolbar'
+        },
+        placeholder: 'Your text goes here'
+    });
+</script>
+<script>
+    const quantityInput = document.getElementById('quantityInput');
+    const increaseBtn = document.getElementById('increaseBtn');
+    const decreaseBtn = document.getElementById('decreaseBtn');
+
+    // Function to increase value
+    increaseBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value) || 0;
+        quantityInput.value = currentValue + 1;
+    });
+
+    // Function to decrease value
+    decreaseBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value) || 0;
+        if (currentValue > 0) {
+            quantityInput.value = currentValue - 1;
         }
-        var quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: '#toolbar'
-            },
-            placeholder: 'Your text goes here'
-        });
-    </script>
-    <script>
-        const quantityInput = document.getElementById('quantityInput');
-        const increaseBtn = document.getElementById('increaseBtn');
-        const decreaseBtn = document.getElementById('decreaseBtn');
+    });
+</script>
 
-        // Function to increase value
-        increaseBtn.addEventListener('click', () => {
-            const currentValue = parseInt(quantityInput.value) || 0;
-            quantityInput.value = currentValue + 1;
-        });
 
-        // Function to decrease value
-        decreaseBtn.addEventListener('click', () => {
-            const currentValue = parseInt(quantityInput.value) || 0;
-            if (currentValue > 0) {
-                quantityInput.value = currentValue - 1;
+{{-- Haseeb Memon --}}
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                    'content') // Assuming you have the token in a meta tag
             }
         });
-    </script>
+
+        function saveProduct(data) {
+            $.ajax({
+                url: "{{ route('product.add') }}",
+                type: 'POST',
+                data: data,
+                processData: false, // Prevent jQuery from processing the data
+                contentType: false, // Prevent jQuery from setting contentType
+                success: function(response) {
 
 
-    {{-- Haseeb Memon --}}
-    <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                        'content') // Assuming you have the token in a meta tag
-                }
-            });
+                    if (response.success == true) {
+                        toastr.success(response.message);
+                        $('#product-form')[0].reset();
 
-            function saveProduct(data) {
-                $.ajax({
-                    url: "{{ route('product.add') }}",
-                    type: 'POST',
-                    data: data,
-                    processData: false, // Prevent jQuery from processing the data
-                    contentType: false, // Prevent jQuery from setting contentType
-                    success: function(response) {
+                        // If you're using a rich text editor like Quill, reset the editor content
+                        quill.root.innerHTML = '';
+
+                    }
+
+                    if (response.success == false) {
+
+                        toastr.error(response.message);
 
 
-                        if (response.success == true) {
-                            toastr.success(response.message);
-                            $('#product-form')[0].reset();
-
-                            // If you're using a rich text editor like Quill, reset the editor content
-                            quill.root.innerHTML = '';
-
-                        }
-
-                        if (response.success == false) {
-
-                            toastr.error(response.message);
+                    }
 
 
-                        }
-
-
-                    },
-
-                });
-
-            }
-            $('#saveProductFormBtn').on('click', function(e) {
-                e.preventDefault(); // Prevent default form submission
-
-                // Collect form data
-                let formData = new FormData($('#product-form')[0]);
-                formData.append('status', 1);
-                let description = quill.root.innerHTML; // Get the editor content
-                formData.append('long_description', description);
-
-                // let discountChecked = $('#toggleSwitch').is(':checked'); // Check if the checkbox is checked
-                // formData.append('is_discount', discountChecked ? '1' :
-                //     '0'); // Append '1' if checked, '0' if unchecked
-
-                // let expiryChecked = $('#toggleSwitch1').is(':checked'); // Check if the checkbox is checked
-                // formData.append('is_expire', expiryChecked ? '1' :
-                //     '0'); // Append '1' if checked, '0' if unchecked
-
-                // let discountChecked1 = $('#toggleSwitch3').is(
-                //     ':checked'); // Check if the checkbox is checked
-                // formData.append('is_discount2', discountChecked1 ? '1' :
-                //     '0'); // Append '1' if checked, '0' if unchecked
-                saveProduct(formData)
-
-                // Post the form data via AJAX
+                },
 
             });
+
+        }
+        $('#saveProductFormBtn').on('click', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            let formData = new FormData($('#product-form')[0]);
+            formData.append('status', 1);
+            let description = quill.root.innerHTML; // Get the editor content
+            formData.append('long_description', description);
+
+            // let discountChecked = $('#toggleSwitch').is(':checked'); // Check if the checkbox is checked
+            // formData.append('is_discount', discountChecked ? '1' :
+            //     '0'); // Append '1' if checked, '0' if unchecked
+
+            // let expiryChecked = $('#toggleSwitch1').is(':checked'); // Check if the checkbox is checked
+            // formData.append('is_expire', expiryChecked ? '1' :
+            //     '0'); // Append '1' if checked, '0' if unchecked
+
+            // let discountChecked1 = $('#toggleSwitch3').is(
+            //     ':checked'); // Check if the checkbox is checked
+            // formData.append('is_discount2', discountChecked1 ? '1' :
+            //     '0'); // Append '1' if checked, '0' if unchecked
+            saveProduct(formData)
+
+            // Post the form data via AJAX
+
         });
-    </script>
+    });
+</script>
 @endsection

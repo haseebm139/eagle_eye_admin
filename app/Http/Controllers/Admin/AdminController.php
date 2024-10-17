@@ -20,4 +20,15 @@ class AdminController extends Controller
     public function addProduct(){
         return view('admin.pages.add_new_product');
     }
+
+    public function settings(){
+        return view('admin.pages.settings');
+    }
+    public function orders(){
+        return view('admin.pages.orders');
+    }
+    public function orderView(){
+        return view('admin.pages.show_order');
+    }
 }
+

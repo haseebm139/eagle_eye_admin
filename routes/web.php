@@ -89,6 +89,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::get('/products', 'product')->name('product');
         Route::get('/customer-summary', 'customers')->name('customers');
         Route::get('/add/product', 'addProduct')->name('add.product');
+        Route::get('/orders', 'orders')->name('orders');
+        Route::get('/orders/view', 'orderView')->name('orders.view');
+        Route::get('/settings', 'settings')->name('settings');
 
 
 
