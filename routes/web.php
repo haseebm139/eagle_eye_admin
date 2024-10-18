@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserProductController  ;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,17 @@ Route::controller(HomeController::class)->group(function(){
 
 
 });
+Route::controller(UserProductController::class)->group(function(){
+    // Route::get('add-to-cart/{id}', 'addToCart')->name('add.to.cart');
+    // Route::patch('update-cart', 'update')->name('update.cart');
+    // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
+});
 
+Route::controller(CartController::class)->group(function(){
+    Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
+    // Route::patch('update-cart', 'update')->name('update.cart');
+    // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
+});
 Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
 // Route::get('/', function () {

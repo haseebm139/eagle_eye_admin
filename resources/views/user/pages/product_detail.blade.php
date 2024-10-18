@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 @extends('layout.app')
 @section('title', 'Home')
 
@@ -39,10 +42,18 @@
                 </div>
                 <div class="col-xxl-5 col-xm-5 col-lg-5 col-md-12 col-sm-12 mt-sm-5 mt-lg-0">
                     <div class="product_details_wrapper">
-                        <h1 class="product_title">Flatbed Printing</h1>
-                        <p class="product_price">$<span id="product_price">0.00</span> /per piece</p>
+                        <h1 class="product_title">{{ Str::ucfirst($product->name ?? '') }}</h1>
+                        <p class="product_price">$<span
+                                id="product_price">{{ number_format($product->is_discount ? $product->sell_price : $product->cost_price, 2) }}</span>
+                            /per piece</p>
                         <p class="extra_paragraph">Flatbed printed materials with UV ink</p>
-                        <form action="" method="post" class="product_details_form">
+                        <form action="{{ route('add.to.cart') }}" method="POST" class="product_details_form"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            {{-- <input type="hidden" name="product_name" value="{{ $product->name }}">
+                            <input type="hidden" name="product_price"
+                                value="{{ number_format($product->is_discount ? $product->sell_price : $product->cost_price, 2) }}"> --}}
                             <div class="row">
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
                                     <label for="height" class="form-label">Height<span
@@ -60,7 +71,7 @@
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
                                     <label for="material" class="form-label">Material<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="Material" name="Material"
+                                    <input type="text" class="form-control" id="Material" name="material"
                                         placeholder="Enter Material" required />
                                 </div>
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
@@ -94,12 +105,12 @@
                                     <label for="flute_direction" class="form-label">Quantity<span
                                             class="text-danger">*</span></label>
                                     <div class="quantity_selector mt-2">
-                                        <button id="plus_quantity" type="button" class="qty_buttons"><img
+                                        <button id="minus_quantitiy" type="button" class="qty_buttons"><img
                                                 src="{{ asset('assets/website/images/svg/minus.svg') }}"
                                                 width="20px"></button>
                                         <input type="text" class="qty_selector" id="selector" name="qty"
                                             value="1" min="1">
-                                        <button id="minus_quantitiy" type="button" class="qty_buttons"><img
+                                        <button id="plus_quantity" type="button" class="qty_buttons"><img
                                                 src="{{ asset('assets/website/images/svg/plus.svg') }} "
                                                 width="20px"></button>
                                     </div>
@@ -123,7 +134,7 @@
                                     <label for="Additional_file_notes" class="form-label">Additional File Notes<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control " id="Additional_file_notes"
-                                        name="Additional_file_notes" placeholder="Enter Height" required />
+                                        name="additional_file_notes" placeholder="Enter Height" required />
                                 </div>
 
                             </div>
@@ -136,7 +147,7 @@
                                             id="preview_image">
                                     </div>
                                     <!-- Hidden file input -->
-                                    <input type="file" name="Additional_file" id="image_input" accept="image/*"
+                                    <input type="file" name="additional_file" id="image_input" accept="image/*"
                                         style="display:none;">
                                     <!-- Image preview area -->
                                 </div>
@@ -144,8 +155,8 @@
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <div class="add-to-cart-button-wrapper mt-3">
-                                        <input type="submit" value="Add To Cart" class="add-to-cart-btn"
-                                            name="add-to-cart" id="add-to-cart">
+                                        <button type="submit" class="add-to-cart-btn" id="add-to-cart">Add To
+                                            Cart</button>
                                         <a href="{{ route('home') }}" class="back_btn">Back</a>
                                     </div>
 
@@ -371,6 +382,27 @@
                 }
                 // Read the selected file as DataURL
                 reader.readAsDataURL(event.target.files[0]);
+            });
+
+            // Handle the minus button click
+            $('#minus_quantitiy').click(function() {
+
+                let qtyInput = $('#selector');
+                let currentValue = parseInt(qtyInput.val());
+
+                // Decrease the quantity but ensure it doesn't go below 1
+                if (currentValue > 1) {
+                    qtyInput.val(currentValue - 1);
+                }
+            });
+
+            // Handle the plus button click
+            $('#plus_quantity').click(function() {
+                let qtyInput = $('#selector');
+                let currentValue = parseInt(qtyInput.val());
+
+                // Increase the quantity
+                qtyInput.val(currentValue + 1);
             });
         });
     </script>

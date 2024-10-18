@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('assets/website/css/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/toastr.min.css') }}" />
     <style>
         @font-face {
             font-family: 'InterMedium';
@@ -108,7 +109,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ asset('assets/website/js/script.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
+    <script>
+        var type = "{{ Session::get('type') }}";
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
 
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+
+        }
+    </script>
     <script>
         const baseUrl = "{{ url('/') }}";
         var swiper = new Swiper(".mySwiper23", {
