@@ -90,7 +90,9 @@
 </head>
 
 <body>
-
+    @php
+        $total_cart_item = count(\Cart::getContent());
+    @endphp
     @include('user.partial.header')
 
     @yield('content')

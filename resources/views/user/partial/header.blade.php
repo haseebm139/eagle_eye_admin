@@ -46,7 +46,7 @@
 
                 <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
                         src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
-                    25</a>
+                    {{ $total_cart_item }}</a>
 
 
 

@@ -33,70 +33,31 @@
                 </div>
                 <div class="col-xxl-8 col-xm-8 col-lg-8 col-md-12 col-sm-12">
                     <div class="row ">
-                        <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                            <div class="outer  mb-3">
-                                <img class="Equipment_product_img"
-                                    src="{{ asset('assets/website/images/image_(1).png') }}" />
-                                <div class="Product_content_wrapper">
-                                    <p class="product_title"> 1 Mimaki UJV100-160 64" <br /> UV printer</p>
-                                    <a href="{{ route('product_detail') }}" class="arrow_btn"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
 
-                            <div class="outer  mb-3">
-                                <img class="Equipment_product_img"
-                                    src="{{ asset('assets/website/images/image_(2).png') }}" />
-                                <div class="Product_content_wrapper">
-                                    <p class="product_title"> 1 CTE 126" UV printer</p>
-                                    <a href="{{ route('product_detail') }}" class="arrow_btn"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
+                        @if (isset($data['products'][0]))
+                            @foreach ($data['products'] as $item)
+                                @php
+                                    $img = $item->image->path ?? 'assets/website/images/image_(1).png';
+                                @endphp
+                                <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
+                                    <div class="outer  mb-3">
+                                        <img class="Equipment_product_img" src="{{ asset($img) }}" />
+                                        <div class="Product_content_wrapper">
+                                            <p class="product_title">
+                                                {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}
 
-                            <div class="outer  mb-3">
-                                <img class="Equipment_product_img"
-                                    src="{{ asset('assets/website/images/image_(3).png') }}" />
-                                <div class="Product_content_wrapper">
-                                    <p class="product_title"> 1 Mimaki UJV100-160 64" <br /> UV printer</p>
-                                    <a href="{{ route('product_detail') }}" class="arrow_btn"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                            <div class="outer  mb-3">
-                                <img class="Equipment_product_img" src="{{ asset('assets/website/images/image4.png') }} " />
-                                <div class="Product_content_wrapper">
-                                    <p class="product_title">5 Epson S60600 64" <br /> Eco-Solvent</p>
-                                    <a href="{{ route('product_detail') }}" class="arrow_btn"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-
-
-                            <div class="outer mb-3">
-                                <div>
-                                    <img class="Equipment_product_img"
-                                        src="{{ asset('assets/website/images/image_(2).png') }}" />
-                                    <div class="Product_content_wrapper">
-                                        <p class="product_title"> 5 Agfa Titan HS 60" X <br /> 120" Flatbed UV Printer</p>
-                                        <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                                src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                                                <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
+                                                    class="arrow_btn"><img
+                                                        src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
+
 
                     </div>
+
                 </div>
             </div>
         </div>

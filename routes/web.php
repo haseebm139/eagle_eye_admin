@@ -60,6 +60,7 @@ Route::controller(UserProductController::class)->group(function(){
 
 Route::controller(CartController::class)->group(function(){
     Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
+    Route::POST('/place-order', 'placeOrder')->name('place.order');
     // Route::patch('update-cart', 'update')->name('update.cart');
     // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
 });
@@ -90,7 +91,13 @@ Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::controller(HomeController::class)->group(function(){
 
+        Route::get('/cart', 'cart')->name('cart');
+
+
+
+    });
 
     // Admin Routes
     Route::middleware([ 'admin'])->prefix('admin')->group(function () {

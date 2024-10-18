@@ -11,7 +11,8 @@ class HomeController extends Controller
         return view('user.pages.index',compact('data'));
     }
     public function equipments(){
-        return view('user.pages.equipments');
+        $data['products'] = Product::with('image')->select('id','name','slug' )->get();
+        return view('user.pages.equipments',compact('data'));
     }
     public function productDetail($slug){
         $product = Product::with('images')->where('slug', $slug)->firstOrFail();
@@ -26,7 +27,8 @@ class HomeController extends Controller
         return view('user.pages.our_story');
     }
     public function cart(){
-        return view('user.pages.cart');
+          $data['cart'] = \Cart::getContent();
+        return view('user.pages.cart',compact('data'));
     }
 
 }
