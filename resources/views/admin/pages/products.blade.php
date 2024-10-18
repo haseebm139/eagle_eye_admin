@@ -756,6 +756,8 @@
                 success: function(response) {
 
 
+
+
                     renderTable(response.products); // Assume your API returns the product array
                     updatePagination(response.total); // Update pagination based on total products
 
@@ -772,7 +774,10 @@
             const tableBody = $('#table-body');
             tableBody.empty(); // Clear previous data
 
+
             products.forEach(product => {
+
+
                 const id = product.id || null
                 const name = product.name || 'N/A'
                 const category = product.category || 'N/A'
@@ -781,8 +786,11 @@
                 const discount = product.discount || '0.00'
                 const status = product.status || 0
                 const total_value = stock * unit_price
-                const image = "{{ asset('assets/admin/images/Image.png') }}" ||
-                    "{{ asset('assets/admin/images/Image.png') }}"
+                // const imgPath = product.images[0].path || 'assets/admin/images/Image.png'
+                const imageUrl = product.images[0]?.path ? appUrl + '/' + product.images[0].path :
+                    appUrl + '/assets/admin/images/Image.png';
+
+
 
                 const row = `
                 <tr data-id="${id}">
@@ -792,7 +800,7 @@
                             <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td><img src="${image}" alt="${ name}"></td>
+                    <td><img src="${imageUrl}" alt="${ name}"></td>
                     <td>${ name}</td>
                     <td>${ category}</td>
                     <td>$${ unit_price}</td>

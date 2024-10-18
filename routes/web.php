@@ -35,11 +35,13 @@ Route::middleware(['guest'])->group(function(){
 
         Route::post('login', 'loginProcess')->name('login.process');
         Route::post('register', 'registerProcess')->name('register.process');
-        Route::get('logout', 'logout')->name('logout');
+
 
     });
+
 });
 
+Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('/', function () {
     return view('user.pages.index');

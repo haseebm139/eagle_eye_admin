@@ -20,11 +20,17 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('type', ['user', 'admin'])->nullable()->default('user');
+            $table->string('profile')->default('assets/profile.png')->nullable() ;
+            $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Block, 1 = Active');
+            $table->string('country')->nullable() ;
+            $table->string('state')->nullable() ;
+            $table->string('city')->nullable() ;
+            $table->string('address')->nullable() ;
+            $table->date('since')->nullable()->default(now()) ;
 
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('apple_id')->nullable();
-
 
             $table->rememberToken();
             $table->timestamps();

@@ -43,6 +43,7 @@
     <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
 
     <script>
+        const baseUrl = "{{ url('/') }}";
         var type = "{{ Session::get('type') }}";
         switch (type) {
             case 'info':

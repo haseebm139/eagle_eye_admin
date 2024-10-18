@@ -44,12 +44,12 @@ class AuthController extends Controller
                 return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
             }else if(auth()->user()->type == 'user')
             {
-                return redirect()->route('welcome')->with(array('message'=>'Login success','type'=>'success'));
+                return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
 
             }
             else{
                 Auth::logout();
-                return redirect()->route('welcome');
+                return redirect()->route('home');
             }
         }else{
             return redirect()->back()->with(array('message'=>'Invalid email or Password','type'=>'error'));
@@ -72,7 +72,7 @@ class AuthController extends Controller
             return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
         }
 
-        $users = $request->except(['password','password_confirmation'],$request->all());
+        $users = $request->except(['password','confirm_password','checkbox'],$request->all());
 
 
         $users['password'] = Hash::make($request->password);

@@ -42,27 +42,36 @@
                     <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
                 </li>
             </ul>
-            <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
-                    src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
-                25</a>
+            @auth
+
+                <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
+                        src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
+                    25</a>
 
 
 
-            <div class="dropdown">
-                <!-- The dropdown toggle -->
-                <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow -->
-                    <img src="{{ asset('assets/website/images/fb.png') }} " alt="User Image" id="profile-image">
+                <div class="dropdown">
+                    <!-- The dropdown toggle -->
+                    @php
+                        $profile = auth()->user()->profile ?? 'assets/profile.png';
+                    @endphp
+                    <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow -->
+                        <img src="{{ asset($profile) }} " alt="User Image" id="profile-image">
+                    </div>
+                    <!-- The dropdown menu -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
                 </div>
-                <!-- The dropdown menu -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Logout</a>
-                </div>
-            </div>
-            <a href="{{ route('login') }}" class="btn btn-warning ms-lg-3">Login</a>
+            @endauth
+
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-warning ms-lg-3">Login</a>
+            @endguest
         </div>
     </div>
 </nav>

@@ -11,7 +11,7 @@
             <div class="product_page_top_bar">
                 <a href="{{ route('home') }}" class="product_back_btn">
 
-                    <img src="{{ asset('assets/website/images/back.svg') }}" alt="error" />
+                    <img src="{{ asset('assets/website/images/svg/back.svg') }}" alt="error" />
 
                     Back
                 </a>
@@ -95,12 +95,12 @@
                                             class="text-danger">*</span></label>
                                     <div class="quantity_selector mt-2">
                                         <button id="plus_quantity" type="button" class="qty_buttons"><img
-                                                src="{{ asset('assets/website/images/minus.svg') }}"
+                                                src="{{ asset('assets/website/images/svg/minus.svg') }}"
                                                 width="20px"></button>
                                         <input type="text" class="qty_selector" id="selector" name="qty"
                                             value="1" min="1">
                                         <button id="minus_quantitiy" type="button" class="qty_buttons"><img
-                                                src="assets/website/images/plus.svg" width="20px"></button>
+                                                src="assets/website/images/svg/plus.svg" width="20px"></button>
                                     </div>
                                 </div>
 
@@ -131,7 +131,7 @@
                                     <div class="uploader_area " id="upload_image_area">
                                         <img id="preview_image"
                                             style="display:none; max-width: 100px; max-height: 100px;">
-                                        <img src="assets/website/images/upload_image.svg" id="preview_image">
+                                        <img src="assets/website/images/svg/upload_image.svg" id="preview_image">
                                     </div>
                                     <!-- Hidden file input -->
                                     <input type="file" name="Additional_file" id="image_input" accept="image/*"

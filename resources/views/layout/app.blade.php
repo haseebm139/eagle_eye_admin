@@ -110,6 +110,7 @@
     <script src="{{ asset('assets/website/js/script.js') }}"></script>
 
     <script>
+        const baseUrl = "{{ url('/') }}";
         var swiper = new Swiper(".mySwiper23", {
             slidesPerView: 1, // Default number of slides visible at a time
             spaceBetween: 20, // Space between each slide

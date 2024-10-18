@@ -80,7 +80,7 @@ class ProductController extends Controller
         $perPage = $request->input('items_per_page', 10);
 
         // Start a query for the Product model
-        $query = Product::where('status', '!=', 0);
+        $query = Product::with('images')->where('status', '!=', 0);
 
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
