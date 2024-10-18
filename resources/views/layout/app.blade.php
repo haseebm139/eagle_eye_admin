@@ -11,29 +11,29 @@
     <style>
         @font-face {
             font-family: 'InterMedium';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+            src: url('fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'GilroyMedium';
 
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
+            src: url('fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'GilroyBold';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Bold.ttf') format('truetype');
+            src: url('fonts/gilroy/Gilroy-Bold.ttf') format('truetype');
 
         }
 
         @font-face {
             font-family: 'GilroyLight';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Light.ttf') format('truetype');
+            src: url('fonts/gilroy/Gilroy-Light.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'GilroyRegular';
-            src: url('https://eagleeye.trangotechdevs.com/public/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+            src: url('fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
         }
     </style>
     @yield('style')

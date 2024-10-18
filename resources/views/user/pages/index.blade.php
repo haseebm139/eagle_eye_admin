@@ -18,7 +18,10 @@
                 </p>
 
                 <div class="d-flex gap-3 mt-5">
-                    <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
+                    @guest
+
+                        <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
+                    @endguest
                     <a href="{{ route('about.us') }}" class="btn btn-warning2 ">Contact Us</a>
                 </div>
 
@@ -47,90 +50,24 @@
         </div>
         <div class="swiper mySwiper111 mt-3">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                @if (isset($data['products'][0]))
+                    @foreach ($data['products'] as $item)
+                        @php
+                            $img = $item->image->path ?? 'assets/website/images/image_(1).png';
+                        @endphp
+                        <div class="swiper-slide">
+                            <div>
+                                <img src="{{ asset($img) }} " />
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <p> {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}</p>
+                                    <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
+                                        class="btn1 btn2"><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(2).png') }}" />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(3).png') }}" />
-
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-                    <div>
-                        <img src="{{ asset('assets/website/images/image4.png') }} " />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(2).png') }} " />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-                    <div>
-                        <img src="{{ asset('assets/website/images/image_(1).png') }} " />
-                        <div class="d-flex justify-content-start align-items-center">
-                            <p> 1 Mimaki UJV100-160 64" UV printer</p>
-                            <a href="{{ route('product_detail') }}" class="btn1 btn2"><img
-                                    src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image4.png') }} " /></div>
-                <div class="swiper-slide"> <img src="{{ asset('assets/website/images/image_(1).png') }} " /></div>
+                    @endforeach
+                @endif
             </div>
             <!-- <div class="swiper-pagination"></div> -->
         </div>

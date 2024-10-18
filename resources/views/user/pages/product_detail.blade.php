@@ -48,26 +48,26 @@
                                     <label for="height" class="form-label">Height<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="height" name="height"
-                                        placeholder="Enter Height" required />
+                                        placeholder="Height" required />
                                 </div>
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
-                                    <label for="height" class="form-label">Width<span class="text-danger">*</span></label>
+                                    <label for="width" class="form-label">Width<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="Width" name="Width"
                                         placeholder="Enter Width" required />
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
-                                    <label for="Material" class="form-label">Material<span
+                                    <label for="material" class="form-label">Material<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="Material" name="Material"
-                                        placeholder="Enter Height" required />
+                                        placeholder="Enter Material" required />
                                 </div>
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
                                     <label for="printed_sides" class="form-label">Printed Sides<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="printed_sides" name="printed_sides"
-                                        placeholder="Enter Width" required />
+                                        placeholder="Enter Printed Sides" required />
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -75,7 +75,7 @@
                                     <label for="flute_direction" class="form-label">Flute Direction<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="flute_direction" name="flute_direction"
-                                        placeholder="Enter Height" required />
+                                        placeholder="Enter Flute Direction" required />
                                 </div>
 
                             </div>
@@ -85,7 +85,7 @@
                                     <label for="special_instructions" class="form-label">Special Instructions<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control mt-4" id="special_instructions"
-                                        name="special_instructions" placeholder="Enter Height" required />
+                                        name="special_instructions" placeholder="Enter Special Instructions" required />
                                 </div>
 
                             </div>
@@ -100,7 +100,8 @@
                                         <input type="text" class="qty_selector" id="selector" name="qty"
                                             value="1" min="1">
                                         <button id="minus_quantitiy" type="button" class="qty_buttons"><img
-                                                src="assets/website/images/svg/plus.svg" width="20px"></button>
+                                                src="{{ asset('assets/website/images/svg/plus.svg') }} "
+                                                width="20px"></button>
                                     </div>
                                 </div>
 
@@ -131,7 +132,8 @@
                                     <div class="uploader_area " id="upload_image_area">
                                         <img id="preview_image"
                                             style="display:none; max-width: 100px; max-height: 100px;">
-                                        <img src="assets/website/images/svg/upload_image.svg" id="preview_image">
+                                        <img src="{{ asset('assets/website/images/svg/upload_image.svg') }} "
+                                            id="preview_image">
                                     </div>
                                     <!-- Hidden file input -->
                                     <input type="file" name="Additional_file" id="image_input" accept="image/*"
@@ -167,7 +169,7 @@
             <div class="row  align-items-center">
                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
                     <div class="description_item_wrapper">
-                        <img src="assets/website/images/Group_1597881064.png">
+                        <img src="{{ asset('assets/website/images/Group_1597881064.png') }} ">
                         <div class="description_item_content">
                             <h1 class="description_item_content_heading">Dibond</h1>
                             <p class="description_item_content_paragraph">An excellent and durable material originally
@@ -190,7 +192,7 @@
                 </div>
                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12  mt-4">
                     <div class="description_item_wrapper">
-                        <img src="assets/website/images/Group_1597881065.png">
+                        <img src="{{ asset('assets/website/images/Group_1597881065.png') }} ">
                         <div class="description_item_content">
                             <h1 class="description_item_content_heading">Coroplast</h1>
                             <p class="description_item_content_paragraph">An excellent and durable material originally
@@ -215,7 +217,7 @@
             <div class="row align-items-center">
                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
                     <div class="description_item_wrapper">
-                        <img src="assets/website/images/Group_1597881066.png">
+                        <img src="{{ asset('assets/website/images/Group_1597881066.png') }} ">
                         <div class="description_item_content">
                             <h1 class="description_item_content_heading">Lusterboard</h1>
                             <p class="description_item_content_paragraph">An excellent and durable material originally
@@ -238,7 +240,7 @@
                 </div>
                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 mt-4">
                     <div class="description_item_wrapper">
-                        <img src="assets/website/images/Group_1597881067.png">
+                        <img src="{{ asset('assets/website/images/Group_1597881067.png') }} ">
                         <div class="description_item_content">
                             <h1 class="description_item_content_heading">PVC aka Sintra</h1>
                             <p class="description_item_content_paragraph">An excellent and durable material originally
@@ -276,86 +278,25 @@
         </div>
         <div class="swiper  " id="Simmilar_Equipments_sec">
             <div class="swiper-wrapper swiper-wrapper3 ">
-                <div class="swiper-slide">
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/1.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="" class="arrow_btn "><img src="/assets/website/images/svg/Vector.svg"></a>
+                @if (isset($data['products'][0]))
+                    @foreach ($data['products'] as $item)
+                        @php
+                            $img = $item->image->path ?? 'assets/website/images/image_(1).png';
+                        @endphp
+                        <div class="swiper-slide">
+                            <div>
+                                <img class="Equipment_product_img" src="{{ asset($img) }}" />
+                                <div class="Product_content_wrapper">
+                                    <p class="product_title"> {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}
+                                    </p>
+                                    <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
+                                        class="arrow_btn "><img
+                                            src="{{ asset('assets/website/images/svg/Vector.svg') }} "></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/2.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/3.png" />
-
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/4.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div>
-                        <img class="Equipment_product_img"src="assets/website/images/1.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/2.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-                    <div>
-                        <img class="Equipment_product_img" src="assets/website/images/1.png" />
-                        <div class="Product_content_wrapper">
-                            <p class="product_title"> 5 Agfa Titan HS 60" X <br> 120" Flatbed UV Printer</p>
-                            <a href="{{ route('product_detail') }}" class="arrow_btn "><img
-                                    src="/assets/website/images/svg/Vector.svg"></a>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
 
 
             </div>

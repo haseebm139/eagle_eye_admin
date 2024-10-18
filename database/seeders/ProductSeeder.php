@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Product; // Ensure you have this model
 use App\Models\ProductImage; // Ensure you have this model
 use Faker\Factory as Faker;
+use Str;
 class ProductSeeder extends Seeder
 {
     /**
@@ -19,8 +20,24 @@ class ProductSeeder extends Seeder
         // Create 10 fake products
         foreach (range(1, 10) as $index) {
             // Create the product
+            $productName = $faker->word();
+
+            // Create initial slug
+            $slug = Str::slug($productName);
+
+            // Check if slug exists in the database
+            $originalSlug = $slug;
+            $count = 1;
+
+            // Modify slug if it already exists in the database
+            while (Product::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
             $product = Product::create([
-                'name' => $faker->word(), // Product name
+                'name' => $productName, // Product name
+                'slug' => $slug, // Generate slug using Str::slug()
                 'category' => $faker->word(), // Product category
                 'cost_price' => $faker->randomFloat(2, 1, 100), // Cost price
                 'sell_price' => $faker->randomFloat(2, 1, 100), // Selling price
