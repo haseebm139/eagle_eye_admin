@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserProductController  ;
@@ -66,28 +67,7 @@ Route::controller(CartController::class)->group(function(){
 });
 Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
-// Route::get('/', function () {
-//     return view('user.pages.index');
-// })->name('home');
-// Route::get('/equipments', function () {
-//     return view('user.pages.equipments');
-// })->name('equipments');
 
-// Route::get('/product-detail', function () {
-//     return view('user.pages.product_detail');
-// })->name('product_detail');
-
-// Route::get('/about-us', function () {
-//     return view('user.pages.about_us');
-// })->name('about.us');
-
-// Route::get('/our-story', function () {
-//     return view('user.pages.our_story');
-// })->name('our.story');
-
-// Route::get('/cart', function () {
-//     return view('user.pages.cart');
-// })->name('cart');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -107,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/dashboard', 'dashboard')->name('dashboard');
             Route::get('/products', 'product')->name('product');
             Route::get('/customer-summary', 'customers')->name('customers');
+            Route::get('/customer-view/{id}', 'customersView')->name('customers.view');
             Route::get('/add/product', 'addProduct')->name('add.product');
             Route::get('/orders', 'orders')->name('orders');
             Route::get('/orders/view', 'orderView')->name('orders.view');
@@ -125,6 +106,13 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(CustomerController::class)->name('customer.')->group(function(){
             Route::post('/add-customer', 'create')->name('create');
             Route::Get('/customers', 'index')->name('index');
+            Route::POST('/users/toggle-status/{id}', 'toggleStatus')->name('toggle-status');
+
+
+        });
+        Route::controller(OrderController::class)->name('order.')->group(function(){
+            Route::Get('/order-customer', 'orderCustomer')->name('customer');
+
 
         });
     });

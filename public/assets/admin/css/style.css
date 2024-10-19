@@ -155,6 +155,15 @@ body {
     color: #408553;
 }
 
+.CustomerStatusInactive {
+    background-color: #e9370e;
+    padding: 4px 9px;
+    font-size: 12px;
+    border: none;
+    border-radius: 12px;
+    color: #eef0fa;
+}
+
 .CustomerStatusPending {
     background-color: #eef0fa;
     padding: 4px 9px;
@@ -629,6 +638,16 @@ body {
 .suspension-btn {
     color: rgb(255, 255, 255);
     background-color: #CC0000;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 14px;
+    font-family: InterMedium;
+    font-size: 13px;
+}
+
+.unsuspension-btn {
+    color: rgb(255, 255, 255);
+    background-color: #9ee7cc;
     padding: 9px 20px;
     border: none;
     border-radius: 14px;

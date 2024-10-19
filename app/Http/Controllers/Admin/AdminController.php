@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 class AdminController extends Controller
 {
     public function dashboard(){
@@ -16,6 +17,25 @@ class AdminController extends Controller
     }
     public function customers(){
         return view('admin.pages.customer');
+    }
+    public function customersView($id){
+        $data['user'] = User::with('orders')->find($id);
+        if ($data['user']) {
+            # code...
+            $data['orders'] = Order::get();
+            $data['totalAmount'] = Order::sum('total');
+            $data['all_order_count'] = Order::count();
+            $data['order_pending'] = Order::where('status',0)->count();
+            $data['order_complete'] = Order::where('status',1)->count();
+            $data['order_delivered'] = Order::where('status',2)->count();
+            $data['order_cancel'] = Order::where('status',3)->count();
+            $data['order_return'] = Order::where('status',4)->count();
+            $data['order_shipped'] = Order::where('status',5)->count();
+            // return $data;
+            return view('admin.pages.customer_view',compact('data'));
+        }
+        return redirect()->back()->with(array('message'=>'Invalid User','type'=>'error'));
+
     }
     public function addProduct(){
         return view('admin.pages.add_new_product');

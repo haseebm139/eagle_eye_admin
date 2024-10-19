@@ -69,4 +69,25 @@ class CustomerController extends Controller
         return redirect()->back()->with(array('message'=>'Customer created successfully','type'=>'success'));
 
     }
+
+    public function toggleStatus($id)
+    {
+        try {
+
+            $user = User::findOrFail($id);
+            if (!$user) {
+                return redirect()->back()->with(array('message'=>'User not Found!','type'=>'error'));
+            }
+
+            $user->status = $user->status == '0' ? '1' : '0';
+            $user->save();
+
+            return redirect()->back()->with(array('message'=>'User status updated successfully!','type'=>'success'));
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect()->back()->with(array('message'=>'Something Went Wrong','type'=>'error'));
+        }
+
+
+    }
 }
