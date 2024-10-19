@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Hash;
+use Carbon\Carbon;
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class UserFactory extends Factory
+class EmployeeFactory extends Factory
 {
 
-    protected $model = \App\Models\User::class;
-
+    protected $model = User::class;
     /**
      * Define the model's default state.
      *
@@ -26,29 +27,16 @@ class UserFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),  // or Hash::make('password')
-
-            'type' => $this->faker->randomElement(['emp', 'user']), // Randomly choose 'emp' or 'user'
+            'password' => Hash::make('password'), // You can use a default password
+            'type' => 'emp', // Assuming 'emp' for employee type
             'country' => $this->faker->country(),
             'state' => $this->faker->state(),
             'city' => $this->faker->city(),
             'address' => $this->faker->address(),
-            'since' => $this->faker->date(),
+            'since' => Carbon::now(),
             'job_title' => $this->faker->jobTitle(),
             'employee_id' => 'E' . $this->faker->unique()->randomNumber(5, true),
             'job_type' => $this->faker->randomElement(['fulltime', 'parttime']),
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return $this
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->enum('type', ['user', 'admin'])->nullable()->default('user');
+            $table->enum('type', ['user', 'admin','emp'])->nullable()->default('user');
             $table->string('profile')->default('assets/profile.png')->nullable() ;
             $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Block, 1 = Active');
             $table->string('country')->nullable() ;
@@ -31,7 +31,9 @@ return new class extends Migration
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('apple_id')->nullable();
-
+            $table->string('job_title')->nullable();
+            $table->string('employee_id')->nullable();
+            $table->enum('job_type', ['fulltime', 'parttime'])->nullable()->default('fulltime');
             $table->rememberToken();
             $table->timestamps();
         });

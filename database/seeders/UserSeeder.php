@@ -47,6 +47,6 @@ class UserSeeder extends Seeder
             'since' => now(),
         ]);
 
-        User::factory()->count(10)->create();
+        User::factory()->count(40)->create();
     }
 }
