@@ -813,7 +813,7 @@
                                             class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center">
                                             <div>
                                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }}" />
-                                                <input type="text" class="w-search" id="searchInput"
+                                                <input type="text" class="w-search"
                                                     placeholder="Search Employee by name, role, ID or any related keywords" />
                                             </div>
                                             <div class="d-flex justify-content-around w-buttoon">
@@ -861,32 +861,51 @@
                                         </tr>
                                     </thead>
                                     <tbody id="table-body-emp-role">
+                                        <tr>
+                                            <td>
+                                                <label class="custom-checkbox">
+                                                    <input type="checkbox" class="emp-role-checkbox" data-id=" ">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
 
+                                            <td class="d-flex">
+
+                                                <img src=" /assets/admin/images/svg/Avatar.svg" />
+                                                <div class="pl-3">
+                                                    <p class="semi-bold-name mb-0 pb-1 ">aaaa</p>
+                                                    <small class="mb-0">aaa</small>
+                                                </div>
+                                            </td>
+                                            <td><span class="custom-blue">aaaa</span></td>
+                                            <td>
+                                                <p class="semi-bold-name mb-0 pb-1 ">aaaa</p>
+                                                <small class="mb-0">aaa</small>
+                                            </td>
+                                            <td>
+                                                <p class=" ">aaaa</p>
+                                            </td>
+                                            <td>
+                                                <img src= />
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
 
-                                <nav class="d-flex justify-content align-items-center gap-2"
-                                    aria-label="Page navigation ">
-                                    <select id="itemsPerPage"
-                                        class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                        <option value="3">1</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <p class="TotalItems">1-10 of 100 items</p>
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" id="prev-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" id="next-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                            </a>
-                                        </li>
+                                <div
+                                    class="pagination-container d-flex justify-content-between align-items-center mt-3">
+                                    <a class="page-link" href="#" id="prev-page-emp-role">Previous</a>
+                                    <!-- Left aligned -->
+
+                                    <ul class="pagination mb-0 justify-content-center"
+                                        id="pagination-numbers-emp-role" style="flex-grow: 1; text-align: center;">
+                                        <!-- Page numbers will be dynamically inserted here -->
                                     </ul>
-                                </nav>
+
+                                    <a class="page-link" href="#" id="next-page-emp-role"
+                                        style="text-align: right;">Next</a>
+                                    <!-- Right aligned -->
+                                </div>
                             </div>
                         </div>
 
@@ -969,151 +988,164 @@
     validatePhoneInput(input2, iti2, document.querySelector("#error-msg2"), document.querySelector("#valid-msg2"));
 </script>
 <script>
-    $(document).ready(function() {
-        let currentPage = 1;
-        let itemsPerPage = 10; // Default items per page
-        let searchQuery = '';
-        // Function to fetch customers from the server
-        function fetchCustomer(page, itemsPerPage, search) {
+    const employeeRoles = [{
+            id: 1,
+            name: 'John Doe',
+            email: 'john@gmail.com',
+            empId: 'E12394332',
+            role: 'Manager',
+            timing: "Full",
+            status: 'Active',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        },
+        {
+            id: 2,
+            name: 'Jane Smith',
+            email: 'jane@gmail.com',
+            empId: 'E12434344',
+            role: 'Engineer',
+            timing: "contract",
+            status: 'Inactive',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        },
+        {
+            id: 3,
+            name: 'Sam Green',
+            email: 'sam@gmail.com',
+            empId: 'E12544343',
+            role: 'HR',
+            timing: "contract",
+            status: 'Active',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        },
+        {
+            id: 4,
+            name: 'Sara Blue',
+            email: 'sara@gmail.com',
+            empId: 'E12643433',
+            role: 'Designer',
+            timing: "contract",
+            status: 'Active',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        },
+        {
+            id: 5,
+            name: 'Tom Brown',
+            email: 'tom@gmail.com',
+            empId: 'E12743443',
+            role: 'Sales',
+            timing: "contract",
+            status: 'Inactive',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        },
+        {
+            id: 6,
+            name: 'Alex White',
+            email: 'alex@gmail.com',
+            empId: 'E12843343',
+            role: 'Technician',
+            timing: "contract",
+            status: 'Active',
+            dots: "/assets/admin/images/svg/TableIcon.svg"
+        }
 
-            $.ajax({
-                url: "{{ route('employee.index') }}",
-                type: 'GET',
-                data: {
-                    page: page,
-                    items_per_page: itemsPerPage,
-                    search: search,
-                },
-                success: function(response) {
+    ];
+    let currentPageEmpRole = 1;
+    const rowsPerPageEmpRole = 2; // Fixed number of rows per page
 
+    function renderEmployeeRoleTable(employeeRoles) {
+        const tableBody = document.getElementById('table-body-emp-role');
+        tableBody.innerHTML = ""; // Clear existing rows
 
+        const start = (currentPageEmpRole - 1) * rowsPerPageEmpRole;
+        const end = Math.min(start + rowsPerPageEmpRole, employeeRoles.length);
+        const rolesToDisplay = employeeRoles.slice(start, end);
 
+        rolesToDisplay.forEach(role => {
+            const statusClass = role.status === 'Active' ? 'custom-active' : 'custom-inactive';
+            const row = `
+        <tr>
+          <td>
+            <label class="custom-checkbox">
+              <input type="checkbox" class="emp-role-checkbox" data-id="${role.id}">
+              <span class="checkmark"></span>
+            </label>
+          </td>
 
-                    renderTable(response.user); // Assume your API returns the product array
-                    updatePagination(response.total); // Update pagination based on total customers
+          <td class="d-flex">
 
-                },
-                error: function(xhr) {
+          <img src="${appUrl}/assets/admin/images/svg/Avatar.svg"  />
+          <div class="pl-3">
+          <p class="semi-bold-name mb-0 pb-1 ">${role.name}</p>
+          <small class="mb-0">${role.email}</small>
+          </div>
+          </td>
+          <td><span class="custom-blue">${role.empId}</span></td>
+          <td>
+           <p class="semi-bold-name mb-0 pb-1 ">${role.role}</p>
+          <small class="mb-0">${role.timing}</small>
+      </td>
+          <td><p class="${statusClass}">${role.status}</p></td>
+          <td>
+          <img src=${appUrl}${role.dots} />
+        </td>
+        </tr>
 
-                    updatePagination(1)
-                },
+      `;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        });
+
+        updatePaginationButtonsEmpRole(); // Update the pagination buttons
+    }
+
+    // Function to update pagination buttons
+    function updatePaginationButtonsEmpRole() {
+        const totalPages = Math.ceil(employeeRoles.length / rowsPerPageEmpRole);
+        const paginationNumbers = document.getElementById('pagination-numbers-emp-role');
+        paginationNumbers.innerHTML = ''; // Clear existing page numbers
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageItem = `<li class="page-item ${i === currentPageEmpRole ? 'active' : ''}">
+                          <a class="page-link" href="#">${i}</a>
+                        </li>`;
+            paginationNumbers.insertAdjacentHTML('beforeend', pageItem);
+        }
+
+        // Event listener for page number clicks
+        paginationNumbers.querySelectorAll('.page-link').forEach((pageLink, index) => {
+            pageLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                currentPageEmpRole = index + 1;
+                renderEmployeeRoleTable();
             });
+        });
+    }
+
+    // Handle Previous/Next buttons
+    document.getElementById('prev-page-emp-role').addEventListener('click', function(event) {
+        event.preventDefault();
+        if (currentPageEmpRole > 1) {
+            currentPageEmpRole--;
+            renderEmployeeRoleTable();
         }
-
-        // Function to render the product table
-        function renderTable(employees) {
-            const tableBody = $('#table-body-emp-role');
-            tableBody.empty(); // Clear previous data
-
-            employees.forEach(item => {
-                const id = item.id || null
-                const name = item.name || 'N/A'
-
-                const email = item.email || 'N/A'
-                const phone = item.phone || 'N/A'
-                const empId = item.employee_id || 'N/A'
-                const jobTtitle = item.job_title || 'N/A'
-                const jobType = item.job_type || 'N/A'
-
-                const status = item.status || 0
-                const since = item.since || 'N/A'
-                const image = "{{ asset('assets/admin/images/Image.png') }}" ||
-                    "{{ asset('assets/admin/images/Image.png') }}"
-
-                const row = `
-                <tr>
-                <td>
-                    <label class="custom-checkbox">
-                    <input type="checkbox" class="emp-role-checkbox" data-id="${id}">
-                    <span class="checkmark"></span>
-                    </label>
-                </td>
-
-                <td class="d-flex">
-
-                <img src="${appUrl}${image}"  />
-                <div class="pl-3">
-                <p class="semi-bold-name mb-0 pb-1 ">${name}</p>
-                <small class="mb-0">${email}</small>
-                </div>
-                </td>
-                <td><span class="custom-blue">${empId}</span></td>
-                <td>
-                <p class="semi-bold-name mb-0 pb-1 ">${jobTtitle}</p>
-                <small class="mb-0">${jobType}</small>
-            </td>
-                <td><p class="status-text custom-${status == 1 ? 'active' : 'inactive'}">${status == 1 ? 'Active' : 'Block'}</p></td>
-                <td>
-                <img src=${appUrl}/assets/admin/images/svg/TableIcon.svg  />
-                </td>
-                </tr>
-
-            `;
-                tableBody.append(row);
-            });
-        }
-
-        // Function to update pagination info
-        function updatePagination(total) {
-
-            const totalItems = total; // Total customers from API response
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            $(".TotalItems").text(
-                `Showing ${((currentPage - 1) * itemsPerPage) + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} items`
-            );
-
-            // Disable/Enable pagination buttons
-            $('#prev-page').toggleClass('disabled', currentPage === 1);
-            $('#next-page').toggleClass('disabled', currentPage === totalPages);
-        }
-
-
-
-
-        // Handle pagination button clicks
-        $('#prev-page').click(function() {
-            if (currentPage > 1) {
-                currentPage--;
-
-
-                fetchCustomer(currentPage, itemsPerPage, searchQuery);
-            }
-        });
-
-        $('#next-page').click(function() {
-            currentPage++;
-
-            fetchCustomer(currentPage, itemsPerPage, searchQuery);
-        });
-
-        // Handle items per page change
-        $(document).on('change', '#itemsPerPage', function() {
-
-            itemsPerPage = $(this).val();
-            currentPage = 1; // Reset to first page
-
-            fetchCustomer(currentPage, itemsPerPage, searchQuery);
-        });
-
-        $(document).on('change', '#itemsPerPage1', function() {
-
-            itemsPerPage = $(this).val();
-            currentPage = 1; // Reset to first page
-
-            fetchCustomer(currentPage, itemsPerPage, searchQuery);
-        });
-
-        $('#searchInput').on('input', function() {
-
-            searchQuery = $(this).val(); // Update search query
-            currentPage = 1; // Reset to first page
-            fetchCustomer(currentPage, itemsPerPage, searchQuery); // Fetch customers with search
-        });
-
-
-        // Initial fetch of customers
-        fetchCustomer(currentPage, itemsPerPage, searchQuery);
     });
+
+    document.getElementById('next-page-emp-role').addEventListener('click', function(event) {
+        event.preventDefault();
+        const totalPages = Math.ceil(employeeRoles.length / rowsPerPageEmpRole);
+        if (currentPageEmpRole < totalPages) {
+            currentPageEmpRole++;
+            renderEmployeeRoleTable();
+        }
+    });
+
+    // Checkbox select/deselect all logic
+    document.getElementById('select-all-emp-role').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.emp-role-checkbox');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+    });
+
+    renderEmployeeRoleTable(); // Initial render
 </script>
 
 @endsection

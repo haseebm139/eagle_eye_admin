@@ -100,7 +100,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Admin Routes
-    Route::middleware([ 'admin'])->prefix('admin')->group(function () {
+    Route::middleware(['admin'])->prefix('admin')->group(function () {
 
         Route::controller(AdminController::class)->group(function(){
             Route::get('/', 'dashboard');
@@ -112,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/orders/view', 'orderView')->name('orders.view');
             Route::get('/settings', 'settings')->name('settings');
             Route::post('update-profile','updateProfile')->name('profile');
-
+            Route::Get('/employee', 'employees')->name('employee.index');
 
         });
 
