@@ -324,13 +324,14 @@ body {
 }
 
 .dashboard-header {
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border-bottom: 1px solid #F1F3F9;
 }
 
 .ProductHeading {
@@ -1383,7 +1384,7 @@ body {
     }
 
     .main-content {
-        margin-left: 77px !important;
+        margin-left: 0px !important;
     }
 
     .alignmentOfPIChart {
@@ -2047,4 +2048,24 @@ body {
 .semi-bold-name {
     font-size: 14px;
     font-weight: 700;
+}
+.card_counting_numbers{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+@media(max-width:600px){
+    .sidebar.collapsed {
+        width: 0px;
+        display: none;
+    }
+    .sidebar.collapsed nav {
+        display: none;
+    }
+    #toggle-btn{
+        width: 20px;
+    }
+    .sidebar{
+        width: 100%;
+    }
 }

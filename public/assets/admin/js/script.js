@@ -17,7 +17,15 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-     
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+        // Remove 'active' class from all links
+        document.querySelectorAll('.nav-link').forEach(item => item.classList.remove('active'));
+
+        // Add 'active' class to the clicked link
+        this.classList.add('active');
+    });
+});
       const navs = document.querySelectorAll("#prev, #next");
 
       const months = [
@@ -190,24 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-const toggleBtn = document.getElementById('toggle-btn');
-const sidebar = document.getElementById('sidebar');
-const mainContent = document.getElementById('main-content');
 
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('collapsed');
-});
-
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-        // Remove 'active' class from all links
-        document.querySelectorAll('.nav-link').forEach(item => item.classList.remove('active'));
-
-        // Add 'active' class to the clicked link
-        this.classList.add('active');
-    });
-});
 
  // Handling form submission to add data dynamically
     document.getElementById('custom-data-form').addEventListener('submit', function(e) {

@@ -9,7 +9,9 @@
 
 
         }
-
+        #contact_banner ul{
+            list-style-type: none;
+        }
         #contact_banner h3 {
             font-family: 'GilroyLight';
             color: #fff;
