@@ -84,7 +84,7 @@ class CustomerController extends Controller
 
             return redirect()->back()->with(array('message'=>'User status updated successfully!','type'=>'success'));
         } catch (\Throwable $th) {
-            dd($th);
+
             return redirect()->back()->with(array('message'=>'Something Went Wrong','type'=>'error'));
         }
 
