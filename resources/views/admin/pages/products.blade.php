@@ -5,22 +5,22 @@
     <style>
         @font-face {
             font-family: poppinsBold;
-            src: url("https://eagleeye.trangotechdevs.com/public/fonts/Poppins/Poppins-Bold.ttf");
+            src: url("fonts/Poppins/Poppins-Bold.ttf");
         }
 
         @font-face {
             font-family: InterMedium;
-            src: url("https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-Medium.ttf");
+            src: url("fonts/Inter/static/Inter_18pt-Medium.ttf");
         }
 
         @font-face {
             font-family: InterLight;
-            src: url("https://eagleeye.trangotechdevs.com/public/fonts/Inter/static/Inter_18pt-ExtraLight.ttf");
+            src: url("fonts/Inter/static/Inter_18pt-ExtraLight.ttf");
         }
 
         @font-face {
             font-family: poppinsMedium;
-            src: url("https://eagleeye.trangotechdevs.com/public/fonts/Poppins/Poppins-Medium.ttf");
+            src: url("fonts/Poppins/Poppins-Medium.ttf");
         }
 
         .viewOrderDetails {

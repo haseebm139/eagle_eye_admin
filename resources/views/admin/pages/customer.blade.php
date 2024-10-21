@@ -6,22 +6,22 @@
     <style>
         @font-face {
             font-family: poppinsBold;
-            src: url("./assests/Poppins/Poppins-Bold.ttf");
+            src: url("fonts/Poppins/Poppins-Bold.ttf");
         }
 
         @font-face {
             font-family: InterMedium;
-            src: url("./website/assests/Inter/static/Inter_18pt-Medium.ttf");
+            src: url("fonts/Inter/static/Inter_18pt-Medium.ttf");
         }
 
         @font-face {
             font-family: InterLight;
-            src: url("./website/assests/Inter/static/Inter_18pt-ExtraLight.ttf");
+            src: url("fonts/Inter/static/Inter_18pt-ExtraLight.ttf");
         }
 
         @font-face {
             font-family: poppinsMedium;
-            src: url("./assests/Poppins/Poppins-Medium.ttf");
+            src: url("fonts/Poppins/Poppins-Medium.ttf");
         }
 
         .viewOrderDetails {
@@ -807,16 +807,16 @@
     document.addEventListener("DOMContentLoaded", function() {
         const addCompanyBtn = document.getElementById("addCompanyBtn");
 
-    const newCompanyDiv = document.getElementById("newCompanyDiv");
+        const newCompanyDiv = document.getElementById("newCompanyDiv");
         // Show the new company div when the button is clicked
         addCompanyBtn.addEventListener("click", () => {
             newCompanyDiv.style.display = "flex"; // Show the div
-          });
-          const cancelBtn = document.getElementById("cancelBtn");
-             // Hide the new company div when the cancel button is clicked
-             cancelBtn.addEventListener("click", () => {
+        });
+        const cancelBtn = document.getElementById("cancelBtn");
+        // Hide the new company div when the cancel button is clicked
+        cancelBtn.addEventListener("click", () => {
             newCompanyDiv.style.display = "none"; // Hide the div
-          });
+        });
         const selectAllCheckbox = document.getElementById("select-all");
 
         // Event listener for the select-all checkbox
