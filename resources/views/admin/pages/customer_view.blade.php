@@ -963,58 +963,7 @@
             });
         }
 
-        function getStatusClass(status) {
-            switch (status) {
-                case '0':
-                    return 'custom-active'; // For status 0 (Pending)
-                case '1':
-                    return 'custom-active'; // For status 1 (Processing)
-                case '2':
-                    return 'custom-active'; // For status 2 (Delivered/Active)
-                case '3':
-                    return 'custom-inactive'; // For status 3 (Shipped)
-                case '4':
-                    return 'custom-inactive'; // For status 4 (Cancelled)
-                case '5':
-                    return 'shipping-active'; // For status 5 (Returned)
-                default:
-                    return 'unknown-status'; // Default case for unknown status
-            }
-        }
 
-        function getStatusText(status) {
-            switch (status) {
-                case '0':
-                    return 'Pending'; // For status 0 (Pending)
-                case '1':
-                    return 'Complete'; // For status 1 (Processing)
-                case '2':
-                    return 'Delivered'; // For status 2 (Delivered/Active)
-                case '3':
-                    return 'Canceled'; // For status 3 (Shipped)
-                case '4':
-                    return 'Return'; // For status 4 (Cancelled)
-                case '5':
-                    return 'Shipped'; // For status 5 (Returned)
-                default:
-                    return 'unknown-status'; // Default case for unknown status
-            }
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-
-            const options = {
-                day: '2-digit',
-                month: 'short', // For "Aug"
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true // For AM/PM format
-            };
-
-            return date.toLocaleString('en-US', options).replace(',', ' -'); // Format and replace comma
-        }
 
         // Function to render the product table
         function renderTable(orders) {

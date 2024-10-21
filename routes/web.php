@@ -112,6 +112,9 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::controller(OrderController::class)->name('order.')->group(function(){
             Route::Get('/order-customer', 'orderCustomer')->name('customer');
+            Route::Get('/new-orders','newOrders')->name('neworder');
+            Route::Get('/assigned-orders','assignedOrders')->name('assignedorders');
+            Route::POST('/assign-orders-employee','assignOrdersToEmployee')->name('assign.orders.to.employee');
 
 
         });
