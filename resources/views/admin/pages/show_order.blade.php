@@ -3,634 +3,6 @@
 
 @section('style')
 
-    <style>
-        @font-face {
-            font-family: poppinsBold;
-            src: url("./assests/Poppins/Poppins-Bold.ttf");
-        }
-
-        @font-face {
-            font-family: InterMedium;
-            src: url("./website/assests/Inter/static/Inter_18pt-Medium.ttf");
-        }
-
-        @font-face {
-            font-family: InterLight;
-            src: url("./website/assests/Inter/static/Inter_18pt-ExtraLight.ttf");
-        }
-
-        @font-face {
-            font-family: poppinsMedium;
-            src: url("./assests/Poppins/Poppins-Medium.ttf");
-        }
-
-        .viewOrderDetails {
-            font-family: InterMedium;
-            font-size: 13px;
-        }
-
-        .viewOrderDetails span {
-            font-family: InterLight;
-        }
-
-        .custom-active {
-            background-color: #5570f129;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .custom-blue {
-            width: fit-content;
-            background-color: #5570f129;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .shipping-active {
-            background-color: #55f17c29;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .custom-inactive {
-            background-color: #fff2e2;
-            /* Custom red */
-            color: rgb(0, 0, 0);
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .ql-container {
-            background-color: #f6f7fb;
-            height: 20vh;
-            border-bottom-right-radius: 12px;
-            border-bottom-left-radius: 12px;
-        }
-
-        .ql-toolbar.ql-snow {
-            border-top-right-radius: 12px;
-            border-top-left-radius: 12px;
-            background-color: #f6f7fb;
-        }
-
-        .product {
-            font-family: InterLight;
-            color: #abafb1;
-            background: #f6f7fb;
-            margin: 5px 0;
-            padding: 1rem;
-            border-radius: 15px;
-        }
-
-        .product2 {
-            background: white;
-            margin: 5px 0;
-            padding: 1rem;
-            border-radius: 15px;
-        }
-
-        .product2 h6 {
-            color: #45464e;
-            font-size: 16px;
-            font-family: InterMedium;
-        }
-
-        .dropdownbtn {
-            padding: 5px 0.75rem;
-            font-size: 12px;
-            color: #000;
-            border-color: none;
-            border-radius: 21px;
-            background-color: #989ea3;
-        }
-
-        .Width {
-            width: 100%;
-        }
-
-        .Width span {
-            font-family: InterMedium;
-            font-size: 16px;
-        }
-
-        .cancel {
-            border-radius: 20px;
-            padding: 3px 2px;
-            border: none;
-        }
-
-        .NewCompany {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,
-                    0,
-                    0,
-                    0.7);
-            /* Dark semi-transparent background */
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            /* Ensure it appears above other content */
-        }
-
-        .model {
-            border-radius: 20px;
-            background-color: white;
-            width: 400px;
-
-            padding: 1.5rem 1.2rem;
-            z-index: 2;
-        }
-
-        .Ordermodel {
-            width: auto !important;
-        }
-
-        .model span {
-            font-family: poppinsBold;
-        }
-
-        .model p {
-            margin-top: none;
-            margin-bottom: 0;
-            color: #8b8d97;
-            padding: 6px 0;
-            font-size: 13px;
-            font-family: InterMedium;
-        }
-
-        .iti {
-            margin: 5px 0;
-        }
-
-        .inputBox {
-            outline: none;
-            margin: 5px 0;
-            width: 100%;
-            border: none;
-            color: #abafb1;
-            font-size: 13px;
-            font-family: InterMedium;
-            background-color: #f6f7fb;
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        .companyAddress {
-            color: #8b8d97;
-            font-size: 11px;
-        }
-
-        .addressSection {
-            display: none;
-        }
-
-        .orderCard {
-            height: 100vh;
-        }
-
-        .Assigned {
-            background-color: #d9d9d9;
-            padding: 5px 10px;
-            border-radius: 15px;
-            color: #8b8d97;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .dropdown-like {
-            display: none;
-            /* Initially hidden */
-            position: absolute;
-            right: 79px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            width: 200px;
-            z-index: 100;
-        }
-
-        .dropdown-like input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .dropdown-like ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dropdown-like ul li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown-like ul li:hover {
-            background-color: #d9d9d9;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown-like ul li label {
-            font-family: InterMedium;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #8b8d97;
-        }
-
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-        }
-
-        /* Visible state of dropdown */
-        .dropdown-like.show {
-            display: block;
-        }
-
-        .modal-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            margin: 10% auto;
-            padding: 4px;
-            border-radius: 8px;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-content2 {
-            display: none;
-            position: absolute;
-            background-color: white;
-            margin: 7% auto;
-            padding: 16px;
-            width: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            font-family: InterMedium;
-            align-items: center;
-            padding-bottom: 5px;
-        }
-
-        .filter-group {
-            margin-bottom: 15px;
-        }
-
-        .filter-group label {
-            font-size: 13px;
-            color: #53545c;
-            font-family: InterMedium;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .filter-group2 label {
-            font-size: 13px;
-            font-family: InterLight !important;
-        }
-
-        .amount-fields {
-            display: flex;
-            gap: 10px;
-        }
-
-        .select {
-            font-size: 13px;
-            outline: none;
-            border: 1px solid #d9d9d9;
-            width: 100%;
-            border-radius: 4px;
-            padding: 8px;
-        }
-
-        .amount-fields input {
-            width: 100px;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .filter-btn-submit {
-            background-color: #ffd014;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            color: rgb(0, 0, 0);
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .year-select {
-            border: none;
-            color: gray;
-            font-size: 14px;
-        }
-
-        .calendar {
-            top: 1rem;
-            margin: 0 auto;
-            width: 300px;
-            background: #fff;
-        }
-
-        .mainCalendar {
-            background-color: #f4f5fa;
-            border-radius: 13px;
-        }
-
-        .calendar header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .calendar nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .calendar ul {
-            padding-left: 0;
-            margin: 0;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .calendar ul li {
-            width: calc(100% / 7);
-            position: relative;
-            z-index: 2;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #prev,
-        #next {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        #prev::before,
-        #next::before {
-            content: "";
-            width: 50%;
-            height: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-style: solid;
-            border-width: 0.25em 0.25em 0 0;
-            border-color: #ccc;
-        }
-
-        #next::before {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        #prev::before {
-            transform: translate(-50%, -50%) rotate(-135deg);
-        }
-
-        #prev:hover::before,
-        #next:hover::before {
-            border-color: #000;
-        }
-
-        .days {
-            font-weight: 600;
-        }
-
-        .dates li.today {
-            color: #000000;
-        }
-
-        .dates li.today::before {
-            content: "";
-            width: 2rem;
-            height: 2rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #ffffff;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .dates li.inactive {
-            color: #ccc;
-        }
-
-        .selected-range {
-            background-color: #b4ddff;
-            /* Light blue to indicate selection */
-            color: black;
-        }
-
-        .start-date {
-            border-radius: 50%;
-            background-color: #000000;
-            /* Green background for start date */
-            color: white;
-        }
-
-        .end-date {
-            border-radius: 50%;
-            background-color: #000000;
-            /* Red background for end date */
-            color: white;
-        }
-
-        .nav-tabs {
-            background: white;
-        }
-
-        .product-wrapper {
-            position: relative;
-        }
-
-        .product-wrapper input[type="number"]::-webkit-outer-spin-button,
-        .product-wrapper input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* For Firefox */
-        .product-wrapper input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
-        .product-wrapper .quantity-controls {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 4px;
-            flex-direction: column;
-        }
-
-        .product-wrapper .quantity-controls img {
-            width: 32px;
-
-            cursor: pointer;
-        }
-
-        .subFormleft h6 {
-            font-family: InterMedium;
-            color: #8b8d97;
-        }
-
-        .rightForm h6 {
-            font-family: InterMedium;
-            color: #8b8d97;
-        }
-
-        .discount {
-            font-family: InterLight;
-            color: #8b8d97;
-        }
-
-        .Description {
-            color: #8b8d97;
-        }
-
-        /* /'meri css' */
-
-        .item-bp {
-            width: 80px;
-        }
-
-        .item-pp {
-            width: 120px !important;
-        }
-
-        .w-search {
-            width: 483px;
-        }
-
-        .bg-gray {
-            background: #efefef;
-        }
-
-        .w-o-search {
-            width: 100%;
-            padding: 7px;
-        }
-
-        .w-buttoon {
-            width: 170px;
-        }
-
-        .export-btn {
-            width: 100px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .n-emp {
-            width: 159px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-            background-color: #000;
-            color: #fff;
-        }
-
-        .n-emp img {
-            width: 22px;
-        }
-
-        .pagination-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .pagination-container .page-link {
-            cursor: pointer;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .pagination .page-item {
-            margin: 0 5px;
-        }
-
-        .pagination .page-item.active .page-link {
-            border: 0 solid #000;
-            background-color: #ffffff00;
-            color: #007bff;
-        }
-
-        .pagination .page-link {
-            cursor: pointer;
-            text-decoration: none;
-            border: 0 solid #000;
-            padding: 0.5rem 0.75rem;
-
-        }
-
-        .page-link {
-            text-decoration: none;
-            cursor: pointer;
-            margin: 0;
-
-        }
-
-        .semi-bold-name {
-            font-size: 14px;
-            font-weight: 700;
-        }
-    </style>
 
 @endsection
 @section('content')
@@ -979,185 +351,178 @@
 @section('script')
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
-    const orders = [{
-            id: 1,
-            orderDate: '2024-10-01',
-            orderType: 'Online',
-            trackingId: 'TRK12345',
-            orderTotal: '$500',
-            status: 'Delivered'
-        },
-        {
-            id: 2,
-            orderDate: '2024-09-28',
-            orderType: 'In-Store',
-            trackingId: 'TRK67890',
-            orderTotal: '$300',
-            status: 'Pending'
-        },
-        {
-            id: 3,
-            orderDate: '2024-09-25',
-            orderType: 'Online',
-            trackingId: 'TRK54321',
-            orderTotal: '$800',
-            status: 'Shipped'
-        },
-        {
-            id: 4,
-            orderDate: '2024-09-22',
-            orderType: 'In-Store',
-            trackingId: 'TRK98765',
-            orderTotal: '$150',
-            status: 'Cancelled'
-        },
-        {
-            id: 5,
-            orderDate: '2024-09-19',
-            orderType: 'Online',
-            trackingId: 'TRK11122',
-            orderTotal: '$1000',
-            status: 'Delivered'
-        },
+ document.addEventListener('DOMContentLoaded', function() {
+    const orderDetails = [
+      { id: 1, name: 'Product A', category: 'Category 1', price: '$100', stock: 10, discount: '10%', value: '$90', action: 'Edit' },
+      { id: 2, name: 'Product B', category: 'Category 2', price: '$150', stock: 5, discount: '15%', value: '$127.5', action: 'Edit' },
+      { id: 3, name: 'Product C', category: 'Category 3', price: '$200', stock: 8, discount: '5%', value: '$190', action: 'Edit' },
     ];
-
-    let rowsPerPageOrders = 3;
-    let currentPageOrders = 1;
-
-    // Render table
-    function renderOrdersTable() {
-        const tableBodyOrder = document.getElementById('table-body-order');
-        tableBodyOrder.innerHTML = "";
-
-        const start = (currentPageOrders - 1) * rowsPerPageOrders;
-        const end = Math.min(start + rowsPerPageOrders, orders.length);
-        const ordersToDisplay = orders.slice(start, end);
-
-        ordersToDisplay.forEach(order => {
-            const statusClass = order.status === 'Delivered' ? 'custom-active' : (order.status === 'Pending' ?
-                'custom-inactive' : 'shipping-active');
-            const row = `
-        <tr>
-          <td>
-            <label class="custom-checkbox">
-              <input type="checkbox" class="order-checkbox" data-id="${order.id}">
-              <span class="checkmark"></span>
-            </label>
-          </td>
-          <td>${order.orderDate}</td>
-          <td>${order.orderType}</td>
-          <td>${order.trackingId}</td>
-          <td>${order.orderTotal}</td>
-          <td>
-            <select
-                        id="itemsPerPage"
-                        class="form-select form-select-sm filter-dropdown"
-                        style="width: auto"
-                      >
-                        <option value="3">bulk Action</option>
-                        <option value="5">page</option>
-                        <option value="10">per page</option>
-                      </select>
-          </td>
-          <td><p class="${statusClass}">${order.status}</p></td>
-        </tr>
-      `;
-            tableBodyOrder.insertAdjacentHTML('beforeend', row);
+  
+    let rowsPerPageorderDetails = 3;
+    let currentPageorderDetails = 1;
+  
+    function renderorderDetailsTable() {
+      const tableBody = document.getElementById('table-body1');
+      tableBody.innerHTML = "";
+  
+      const start = (currentPageorderDetails - 1) * rowsPerPageorderDetails;
+      const end = Math.min(start + rowsPerPageorderDetails, orderDetails.length);
+      const orderDetailsToDisplay = orderDetails.slice(start, end);
+  
+      orderDetailsToDisplay.forEach(product => {
+        const row = `
+          <tr>
+            <td>
+              <label class="custom-checkbox">
+                <input type="checkbox" class="product-checkbox" data-id="${product.id}">
+                <span class="checkmark"></span>
+              </label>
+            </td>
+            <td>
+              <div class="orderImage">
+                <img src="{{ asset('assets/admin/images/image_715.png') }}" />
+              </div>
+            </td>
+            <td>${product.name}</td>
+            <td>${product.category}</td>
+            <td>${product.price}</td>
+            <td>${product.stock}</td>
+            <td>${product.discount}</td>
+            <td>${product.value}</td>
+            <td>${product.action}</td>
+            <td>
+              <span class="Assigned" id="assignButton-${product.id}">
+                Assign to
+                <img src="{{ asset('assets/admin/svg/fi_chevron-down2.svg') }}" />
+              </span>
+              <div class="dropdown-like" id="dropdown-${product.id}" style="display:none;">
+                <input type="text" id="searchInput-${product.id}" placeholder="Search" />
+                <ul id="assignList-${product.id}">
+                  <li><label><img src="{{ asset('assets/admin/images/Image.png') }}" class="user-avatar" /> Janet Adebayo</label></li>
+                  <li><label><img src="{{ asset('assets/admin/images/image_726.png') }}" class="user-avatar" /> Samuel Johnson</label></li>
+                  <li><label><img src="{{ asset('assets/admin/images/image_715.png') }}" class="user-avatar" /> Christian Dior</label></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeend', row);
+  
+        // Handle dropdown toggle
+        document.getElementById(`assignButton-${product.id}`).addEventListener('click', function() {
+          const dropdown = document.getElementById(`dropdown-${product.id}`);
+          dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         });
-
-        updateOrdersPaginationInfo(start + 1, end, orders.length);
-        updateOrdersPageSelect();
-        updateOrdersTotalPagesText();
+  
+        // Handle selection in dropdown
+        document.getElementById(`assignList-${product.id}`).addEventListener('click', function(e) {
+          if (e.target.tagName === 'LABEL' || e.target.tagName === 'IMG') {
+            const selectedName = e.target.closest('label').textContent.trim();
+            const assignButton = document.getElementById(`assignButton-${product.id}`);
+            assignButton.innerHTML = `${selectedName} <img src="./assests/svg/fi_chevron-down2.svg" />`;
+            document.getElementById(`dropdown-${product.id}`).style.display = 'none';
+          }
+        });
+      });
+  
+      updateorderDetailsPaginationInfo(start + 1, end, orderDetails.length);
+      updateorderDetailsPageSelect();
+      updateorderDetailsTotalPagesText();
     }
-
-    // Update pagination info
-    function updateOrdersPaginationInfo(start, end, total) {
-        const paginationInfoOrder = document.getElementById('pagination-info-order');
-        paginationInfoOrder.textContent = `${start}-${end} of ${total} items`;
+  
+    function updateorderDetailsPaginationInfo(start, end, total) {
+      const paginationInfo = document.getElementById('pagination-info-orderDetails');
+      if (paginationInfo) {
+        paginationInfo.textContent = `${start}-${end} of ${total} items`;
+      }
     }
-
-    // Update page select
-    function updateOrdersPageSelect() {
-        const totalPages = Math.ceil(orders.length / rowsPerPageOrders);
-        const pageSelectOrder = document.getElementById('page-select-order');
-        pageSelectOrder.innerHTML = '';
-
+  
+    function updateorderDetailsPageSelect() {
+      const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
+      const pageSelect = document.getElementById('page-select-orderDetails');
+      if (pageSelect) {
+        pageSelect.innerHTML = '';
+  
         for (let i = 1; i <= totalPages; i++) {
-            const option = `<option value="${i}">${i}</option>`;
-            pageSelectOrder.insertAdjacentHTML('beforeend', option);
+          const option = `<option value="${i}">${i}</option>`;
+          pageSelect.insertAdjacentHTML('beforeend', option);
         }
-
-        pageSelectOrder.value = currentPageOrders;
-        pageSelectOrder.addEventListener('change', function() {
-            currentPageOrders = parseInt(this.value);
-            renderOrdersTable();
+  
+        pageSelect.value = currentPageorderDetails;
+        pageSelect.addEventListener('change', function() {
+          currentPageorderDetails = parseInt(this.value);
+          renderorderDetailsTable();
         });
+      }
     }
-
-    // Update total pages text
-    function updateOrdersTotalPagesText() {
-        const totalPages = Math.ceil(orders.length / rowsPerPageOrders);
-        const totalPagesTextOrder = document.getElementById('total-pages-text-order');
-        totalPagesTextOrder.textContent = `Page ${currentPageOrders} of ${totalPages}`;
+  
+    function updateorderDetailsTotalPagesText() {
+      const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
+      const totalPagesText = document.getElementById('total-pages-text-orderDetails');
+      if (totalPagesText) {
+        totalPagesText.textContent = `Page ${currentPageorderDetails} of ${totalPages}`;
+      }
     }
-
-    // Pagination controls
-    function handleOrdersPagination() {
-        document.getElementById('prev-page-order').addEventListener('click', function(event) {
-            event.preventDefault();
-            if (currentPageOrders > 1) {
-                currentPageOrders--;
-                renderOrdersTable();
-            }
-        });
-
-        document.getElementById('next-page-order').addEventListener('click', function(event) {
-            event.preventDefault();
-            const totalPages = Math.ceil(orders.length / rowsPerPageOrders);
-            if (currentPageOrders < totalPages) {
-                currentPageOrders++;
-                renderOrdersTable();
-            }
-        });
+  
+    const itemsPerPageSelect = document.getElementById('items-per-page-orderDetails');
+    if (itemsPerPageSelect) {
+      itemsPerPageSelect.addEventListener('change', function() {
+        rowsPerPageorderDetails = parseInt(this.value);
+        currentPageorderDetails = 1;
+        renderorderDetailsTable();
+      });
     }
-
-    // Change rows per page
-    document.getElementById('items-per-page-order').addEventListener('change', function() {
-        rowsPerPageOrders = parseInt(this.value);
-        currentPageOrders = 1;
-        renderOrdersTable();
-    });
-
-    // Initial render
-    renderOrdersTable();
-    handleOrdersPagination();
-    // Function to handle 'Select All' functionality for order table
-    function handleOrderSelectAll() {
-        const selectAll = document.getElementById('select-all-orders');
-        const checkboxes = document.querySelectorAll('.order-checkbox');
-
-        // Select or deselect all checkboxes
-        selectAll.addEventListener('change', function() {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAll.checked;
-            });
-        });
-
-        // If any checkbox is deselected, uncheck the 'select all' checkbox
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (!this.checked) {
-                    selectAll.checked = false;
-                } else if (document.querySelectorAll('.order-checkbox:checked').length === checkboxes
-                    .length) {
-                    selectAll.checked = true;
-                }
-            });
-        });
+  
+    const prevPageButton = document.getElementById('prev-page-orderDetails');
+    if (prevPageButton) {
+      prevPageButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (currentPageorderDetails > 1) {
+          currentPageorderDetails--;
+          renderorderDetailsTable();
+        }
+      });
     }
-
-    // Call the function to initialize the select all functionality
-    handleOrderSelectAll();
+  
+    const nextPageButton = document.getElementById('next-page-orderDetails');
+    if (nextPageButton) {
+      nextPageButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
+        if (currentPageorderDetails < totalPages) {
+          currentPageorderDetails++;
+          renderorderDetailsTable();
+        }
+      });
+    }
+  
+    function handleorderDetailselectAll() {
+      const selectAll = document.getElementById('select-all-orderDetails');
+      const checkboxes = document.querySelectorAll('.product-checkbox');
+  
+      if (selectAll) {
+        selectAll.addEventListener('change', function () {
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = selectAll.checked;
+          });
+        });
+      }
+  
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          if (!this.checked) {
+            selectAll.checked = false;
+          } else if (document.querySelectorAll('.product-checkbox:checked').length === checkboxes.length) {
+            selectAll.checked = true;
+          }
+        });
+      });
+    }
+  
+    renderorderDetailsTable();
+    handleorderDetailselectAll();
+  });
+  
 </script>
 <script>
     const input1 = document.querySelector("#phone1");

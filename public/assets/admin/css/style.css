@@ -4,41 +4,6 @@ body {
 
 }
 
-/* Custom styles */
-@font-face {
-    font-family: poppinsMedium;
-    src: url("./assests/Poppins/Poppins-Medium.ttf");
-}
-
-@font-face {
-    font-family: InterMedium;
-    src: url("./website/assests/Inter/static/Inter_18pt-Medium.ttf");
-}
-
-@font-face {
-    font-family: InterLight;
-    src: url("./website/assests/Inter/static/Inter_18pt-ExtraLight.ttf");
-}
-
-@font-face {
-    font-family: InterBold;
-    src: url("./website/assests/Inter/static/Inter_18pt-Bold.ttf");
-}
-
-@font-face {
-    font-family: InterRegular;
-    src: url('./website/assests/Inter/static/Inter_18pt-Regular.ttf')
-}
-
-@font-face {
-    font-family: GilroyMedium;
-    src: url('./assests/gilroy/Gilroy-Medium.ttf');
-}
-
-@font-face {
-    font-family: GilroyBold;
-    src: url('./assests/gilroy/Gilroy-Bold.ttf');
-}
 
 .invoice-header {
     margin-bottom: 20px;
@@ -75,18 +40,18 @@ body {
 
 .mediumFont {
 
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 16px;
 }
 
 .SettingHeading {
     font-size: 20px;
-    font-family: poppinsMedium;
+    font-family: "Poppins", sans-serif;font-weight:500;
 
 }
 
 .settingInput {
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     outline: none;
     border: none;
     background: transparent;
@@ -105,7 +70,7 @@ body {
 }
 
 .Label {
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     color: #ABAFB1;
     font-size: 12px;
     margin: 0;
@@ -117,7 +82,7 @@ body {
     border: none;
     color: #ABAFB1;
     text-align: center;
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     font-size: 15px;
     padding: 15px 20px;
     margin-right: 25px;
@@ -128,7 +93,7 @@ body {
     text-align: center;
     color: #000;
     border-bottom: 2px solid black;
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     font-size: 15px;
     padding: 15px 20px;
     margin-right: 25px;
@@ -136,13 +101,13 @@ body {
 
 .mediumFont2 {
 
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 12px;
     color: #333232;
 }
 
 .LightFont2 {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 12px;
 }
 
@@ -175,7 +140,7 @@ body {
 
 .mediumFont3 {
 
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 10px;
     color: #8f8787;
 }
@@ -185,7 +150,7 @@ body {
 }
 
 .LightFont {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 16px;
 }
 
@@ -288,7 +253,7 @@ body {
     border: none;
     outline: none;
     color: #ABAFB1;
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 15px;
     border-radius: 12px;
 }
@@ -317,7 +282,7 @@ body {
 }
 
 .sales {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 14px;
     color: #8B8D97;
     margin: 0;
@@ -327,7 +292,7 @@ body {
 .bold {
     text-align: left;
     padding-right: 10px;
-    font-family: InterBold;
+    font-family: "Inter", sans-serif;font-weight:bold;
     margin: 0;
     padding-top: 8px;
     font-size: 15px;
@@ -339,21 +304,21 @@ body {
 }
 
 .CustomerPopup {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 15px !important;
 }
 
 .bold3 {
     text-align: left;
     padding-right: 10px;
-    font-family: InterBold;
+    font-family: "Inter", sans-serif;font-weight:bold;
     margin: 0;
     padding-top: 8px;
     font-size: 20px;
 }
 
 .rates {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 12px;
     color: #519C66;
 }
@@ -371,7 +336,7 @@ body {
 .ProductHeading {
     font-size: 16px;
     color: #45464E;
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
 }
 
 .bottomSpan {
@@ -440,7 +405,7 @@ body {
 }
 
 .PaginationDropdown p {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     padding: 0;
     margin: 0;
     color: #A6A8B1;
@@ -452,7 +417,7 @@ body {
 }
 
 .TotalItems {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     padding: 0;
     margin: 0;
     color: #666666;
@@ -548,7 +513,7 @@ body {
 }
 
 .form-control4 {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     /* padding: 0 13px; */
     display: flex;
     outline: none !important;
@@ -626,7 +591,7 @@ body {
 }
 
 .order-btn {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     color: white;
     background-color: black;
     padding: 9px 20px;
@@ -641,7 +606,7 @@ body {
     padding: 9px 20px;
     border: none;
     border-radius: 14px;
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 13px;
 }
 
@@ -664,7 +629,7 @@ body {
 }
 
 .add-btn {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     text-align: center;
     width: 100%;
     color: rgb(0, 0, 0);
@@ -677,7 +642,7 @@ body {
 }
 
 .order-btn2 {
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     color: black;
     background-color: #ffd014;
     border: 1px solid #ffd014;
@@ -705,7 +670,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     color: black;
     background-color: #ffd014;
     border: 1px solid #ffd014;
@@ -717,7 +682,7 @@ body {
 }
 
 .cancel-btn2 {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     text-align: center;
     width: 100%;
     color: black;
@@ -774,7 +739,7 @@ body {
 
 .table tr {
     color: #6E7079;
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 12px;
 }
 
@@ -857,7 +822,7 @@ body {
 }
 
 .filter-btn {
-    font-family: InterRegular;
+    font-family: "Inter", sans-serif;font-weight:400;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -886,7 +851,7 @@ body {
     padding-right: 40px;
     background: black;
     color: white;
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
     font-size: 13px;
     border-radius: 12px;
 
@@ -930,7 +895,7 @@ body {
 }
 
 .table thead th {
-    font-family: InterMedium;
+     font-family: "Inter", sans-serif;font-weight:500;
 }
 
 /* Responsive behavior */
@@ -1000,12 +965,12 @@ body {
     border: none;
     outline: none;
     color: #ABAFB1;
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     font-size: 15px;
 }
 
 .ql-snow .ql-picker {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     border-radius: 6px;
     margin: 0 4px;
     font-size: 13px;
@@ -1028,7 +993,7 @@ body {
 }
 
 .ProductList {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     color: #ABAFB1;
     border: none;
     font-size: 13px;
@@ -1096,7 +1061,7 @@ body {
 }
 
 .imageContent {
-    font-family: InterLight;
+     font-family: "Inter", sans-serif;font-weight:300;
     color: #8f8787;
 }
 
@@ -1191,7 +1156,7 @@ body {
 
 .bold2 {
 
-    font-family: InterBold;
+    font-family: "Inter", sans-serif;font-weight:bold;
 }
 
 .switch {
@@ -1474,4 +1439,612 @@ body {
     .custom-chart-card {
         font-size: 12px !important;
     }
+}
+
+
+.viewOrderDetails {
+     font-family: "Inter", sans-serif;font-weight:500;
+    font-size: 13px;
+}
+
+.viewOrderDetails span {
+     font-family: "Inter", sans-serif;font-weight:300;
+}
+
+.custom-active {
+    background-color: #5570f129;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.custom-blue {
+    width: fit-content;
+    background-color: #5570f129;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.shipping-active {
+    background-color: #55f17c29;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.custom-inactive {
+    background-color: #fff2e2;
+    /* Custom red */
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.ql-container {
+    background-color: #f6f7fb;
+    height: 20vh;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.ql-toolbar.ql-snow {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: #f6f7fb;
+}
+
+.product {
+     font-family: "Inter", sans-serif;font-weight:300;
+    color: #abafb1;
+    background: #f6f7fb;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.product2 {
+    background: white;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.product2 h6 {
+    color: #45464e;
+    font-size: 16px;
+     font-family: "Inter", sans-serif;font-weight:500;
+}
+
+.dropdownbtn {
+    padding: 5px 0.75rem;
+    font-size: 12px;
+    color: #000;
+    border-color: none;
+    border-radius: 21px;
+    background-color: #989ea3;
+}
+
+.Width {
+    width: 100%;
+}
+
+.Width span {
+     font-family: "Inter", sans-serif;font-weight:500;
+    font-size: 16px;
+}
+
+.cancel {
+    border-radius: 20px;
+    padding: 3px 2px;
+    border: none;
+}
+
+.NewCompany {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,
+            0,
+            0,
+            0.7);
+    /* Dark semi-transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    /* Ensure it appears above other content */
+}
+
+.model {
+    border-radius: 20px;
+    background-color: white;
+    width: 400px;
+
+    padding: 1.5rem 1.2rem;
+    z-index: 2;
+}
+
+.Ordermodel {
+    width: auto !important;
+}
+
+.model span {
+ font-family: "Poppins", sans-serif;font-weight:bold;
+}
+
+.model p {
+    margin-top: none;
+    margin-bottom: 0;
+    color: #8b8d97;
+    padding: 6px 0;
+    font-size: 13px;
+     font-family: "Inter", sans-serif;font-weight:500;
+}
+
+.iti {
+    margin: 5px 0;
+}
+
+.inputBox {
+    outline: none;
+    margin: 5px 0;
+    width: 100%;
+    border: none;
+    color: #abafb1;
+    font-size: 13px;
+     font-family: "Inter", sans-serif;font-weight:500;
+    background-color: #f6f7fb;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.companyAddress {
+    color: #8b8d97;
+    font-size: 11px;
+}
+
+.addressSection {
+    display: none;
+}
+
+.orderCard {
+    height: 100vh;
+}
+
+.Assigned {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #8b8d97;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.dropdown-like {
+    display: none;
+    /* Initially hidden */
+    position: absolute;
+    right: 79px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    z-index: 100;
+}
+
+.dropdown-like input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-like ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-like ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-like ul li:hover {
+    background-color: #d9d9d9;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-like ul li label {
+     font-family: "Inter", sans-serif;font-weight:500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8d97;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Visible state of dropdown */
+.dropdown-like.show {
+    display: block;
+}
+
+.modal-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin: 10% auto;
+    padding: 4px;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content2 {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin: 7% auto;
+    padding: 16px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+     font-family: "Inter", sans-serif;font-weight:500;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    font-size: 13px;
+    color: #53545c;
+     font-family: "Inter", sans-serif;font-weight:500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-group2 label {
+    font-size: 13px;
+    font-family: InterLight !important;
+}
+
+.amount-fields {
+    display: flex;
+    gap: 10px;
+}
+
+.select {
+    font-size: 13px;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.amount-fields input {
+    width: 100px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter-btn-submit {
+    background-color: #ffd014;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.year-select {
+    border: none;
+    color: gray;
+    font-size: 14px;
+}
+
+.calendar {
+    top: 1rem;
+    margin: 0 auto;
+    width: 300px;
+    background: #fff;
+}
+
+.mainCalendar {
+    background-color: #f4f5fa;
+    border-radius: 13px;
+}
+
+.calendar header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar nav {
+    display: flex;
+    align-items: center;
+}
+
+.calendar ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#prev,
+#next {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prev::before,
+#next::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: #ccc;
+}
+
+#next::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#prev::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#prev:hover::before,
+#next:hover::before {
+    border-color: #000;
+}
+
+.days {
+    font-weight: 600;
+}
+
+.dates li.today {
+    color: #000000;
+}
+
+.dates li.today::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.dates li.inactive {
+    color: #ccc;
+}
+
+.selected-range {
+    background-color: #b4ddff;
+    /* Light blue to indicate selection */
+    color: black;
+}
+
+.start-date {
+    border-radius: 50%;
+    background-color: #000000;
+    /* Green background for start date */
+    color: white;
+}
+
+.end-date {
+    border-radius: 50%;
+    background-color: #000000;
+    /* Red background for end date */
+    color: white;
+}
+
+.nav-tabs {
+    background: white;
+}
+
+.product-wrapper {
+    position: relative;
+}
+
+.product-wrapper input[type="number"]::-webkit-outer-spin-button,
+.product-wrapper input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+.product-wrapper input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.product-wrapper .quantity-controls {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+.product-wrapper .quantity-controls img {
+    width: 32px;
+
+    cursor: pointer;
+}
+
+.subFormleft h6 {
+     font-family: "Inter", sans-serif;font-weight:500;
+    color: #8b8d97;
+}
+
+.rightForm h6 {
+     font-family: "Inter", sans-serif;font-weight:500;
+    color: #8b8d97;
+}
+
+.discount {
+     font-family: "Inter", sans-serif;font-weight:300;
+    color: #8b8d97;
+}
+
+.Description {
+    color: #8b8d97;
+}
+
+/* /'meri css' */
+
+.item-bp {
+    width: 80px;
+}
+
+.item-pp {
+    width: 120px !important;
+}
+
+.w-search {
+    width: 483px;
+}
+
+.bg-gray {
+    background: #efefef;
+}
+
+.w-o-search {
+    width: 100%;
+    padding: 7px;
+}
+
+.w-buttoon {
+    width: 170px;
+}
+
+.export-btn {
+    width: 100px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+}
+
+.n-emp {
+    width: 159px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.n-emp img {
+    width: 22px;
+}
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagination-container .page-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-item.active .page-link {
+    border: 0 solid #000;
+    background-color: #ffffff00;
+    color: #007bff;
+}
+
+.pagination .page-link {
+    cursor: pointer;
+    text-decoration: none;
+    border: 0 solid #000;
+    padding: 0.5rem 0.75rem;
+
+}
+
+.page-link {
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0;
+
+}
+
+.semi-bold-name {
+    font-size: 14px;
+    font-weight: 700;
 }

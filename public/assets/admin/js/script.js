@@ -1,57 +1,23 @@
-document.getElementById("addAddressToggle").addEventListener("change", function () {
-    const addressSection = document.getElementById("addressSection");
 
-    // Show or hide address section based on the checkbox state
-    if (this.checked) {
-      addressSection.style.display = "block";
-    } else {
-      addressSection.style.display = "none";
-    }
-  });
-  const openModalButton = document.getElementById("openModalButton");
-      const modal = document.getElementById("modal-content");
 
-      const openModalButton2 = document.getElementById("openModalButton2");
-      const modal2 = document.getElementById("modal-content2");
-      openModalButton.addEventListener("click", function (event) {
-        modal.style.display = "block";
-        event.stopPropagation(); // Prevent closing the modal when clicking on the button
+
+document.addEventListener("DOMContentLoaded", function() {
+  const addAddressToggle = document.getElementById("addAddressToggle");
+  if (addAddressToggle) {
+      addAddressToggle.addEventListener("change", function () {
+          const addressSection = document.getElementById("addressSection");
+          if (addressSection) {
+              if (this.checked) {
+                  addressSection.style.display = "block";
+              } else {
+                  addressSection.style.display = "none";
+              }
+          }
       });
+  }
+});
 
-      // Open the second modal when its button is clicked
-      openModalButton2.addEventListener("click", function (event) {
-        modal2.style.display = "block";
-        event.stopPropagation(); // Prevent closing the modal when clicking on the button
-      });
-     // Close the modal when clicking outside of modal content
-     window.addEventListener("click", function (event) {
-        // Close modal 1 if it's open and clicked outside
-        if (
-          modal.style.display === "block" &&
-          !modal.contains(event.target) &&
-          event.target !== openModalButton
-        ) {
-          modal.style.display = "none";
-        }
-
-        // Close modal 2 if it's open and clicked outside
-        if (
-          modal2.style.display === "block" &&
-          !modal2.contains(event.target) &&
-          event.target !== openModalButton2
-        ) {
-          modal2.style.display = "none";
-        }
-      });
-
-      // Prevent modal close when clicking inside the modal content
-      modal.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent modal from closing when clicking inside modal content
-      });
-
-      modal2.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent modal2 from closing when clicking inside modal content
-      });
+     
       const navs = document.querySelectorAll("#prev, #next");
 
       const months = [
@@ -197,53 +163,28 @@ document.getElementById("addAddressToggle").addEventListener("change", function 
     `;
       }
 
-      const quantityInput = document.getElementById("quantityInput");
-      const increaseBtn = document.getElementById("increaseBtn");
-      const decreaseBtn = document.getElementById("decreaseBtn");
+      // const quantityInput = document.getElementById("quantityInput");
+      // const increaseBtn = document.getElementById("increaseBtn");
+      // const decreaseBtn = document.getElementById("decreaseBtn");
 
-      // Function to increase value
-      increaseBtn.addEventListener("click", () => {
-        const currentValue = parseInt(quantityInput.value) || 0;
-        quantityInput.value = currentValue + 1;
-      });
+      // // Function to increase value
+      // increaseBtn.addEventListener("click", () => {
+      //   const currentValue = parseInt(quantityInput.value) || 0;
+      //   quantityInput.value = currentValue + 1;
+      // });
 
-      // Function to decrease value
-      decreaseBtn.addEventListener("click", () => {
-        const currentValue = parseInt(quantityInput.value) || 0;
-        if (currentValue > 0) {
-          quantityInput.value = currentValue - 1;
-        }
-      });
-
-
+      // // Function to decrease value
+      // decreaseBtn.addEventListener("click", () => {
+      //   const currentValue = parseInt(quantityInput.value) || 0;
+      //   if (currentValue > 0) {
+      //     quantityInput.value = currentValue - 1;
+      //   }
+      // });
 
 
 
-//models
-const addOrderBtn = document.getElementById("addOrderBtn")
-const addCompanyBtn = document.getElementById("addCompanyBtn");
 
-const newCompanyDiv = document.getElementById("newCompanyDiv");
-        const newCompanyDiv1 = document.getElementById("newCompanyDiv1");
-        const cancelBtn = document.getElementById("cancelBtn");
-        const cancelBtn1 = document.getElementById("cancelBtn1");
 
-         // Show the new company div when the button is clicked
-         addCompanyBtn.addEventListener("click", () => {
-            newCompanyDiv.style.display = "flex"; // Show the div
-          });
-
-          addOrderBtn.addEventListener("click", () => {
-            newCompanyDiv1.style.display = "flex"; // Show the div
-          });
-
-          // Hide the new company div when the cancel button is clicked
-          cancelBtn.addEventListener("click", () => {
-            newCompanyDiv.style.display = "none"; // Hide the div
-          });
-          cancelBtn1.addEventListener("click", () => {
-            newCompanyDiv1.style.display = "none"; // Hide the div
-          });
 
 
 
@@ -268,131 +209,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-
-
-  // Sample data
-  const dataValues = [30, 50, 20]; // Change these values as needed
-  const backgroundColors = ['#ff0000', '#fbbd00', '#ff8800']; // Colors for the segments
-  const labels = ['Acquisition', 'Purchase', 'Retention']; // Labels
-
-  // Create the chart
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-
-          datasets: [{
-              data: dataValues,
-              backgroundColor: backgroundColors,
-              borderWidth: 0,
-          }]
-      },
-      options: {
-          responsive: true,
-          plugins: {
-              legend: {
-                  position: 'top',
-              }
-          },
-          cutout: '75%' // Adjust this value to change the size of the inner circle
-      }
-  });
-
-
-   // Create a custom legend
-   const legendContainer = document.getElementById('legend-container');
-   labels.forEach((label, index) => {
-       const legendItem = document.createElement('div');
-       legendItem.classList.add('legend-item');
-
-       const colorCircle = document.createElement('div');
-       colorCircle.classList.add('legend-color');
-       colorCircle.style.backgroundColor = backgroundColors[index];
-
-       const labelText = document.createElement('span');
-       labelText.textContent = label;
-
-       legendItem.appendChild(colorCircle);
-       legendItem.appendChild(labelText);
-       legendContainer.appendChild(legendItem);
-   });
-
-
-
-
-
-
-   ///bar chart
-       // Initialize custom data arrays
-    const customLabels = ['Oct 01', 'Oct 02', 'Oct 03', 'Oct 04', 'Oct 05', 'Oct 06', 'Oct 07'];
-    const customDataValues = [50000, 30000, 45000, 25000, 35000, 48000, 52000];
-
-  // Custom plugin to draw the background behind the revenue bars
-  const backgroundPlugin = {
-    id: 'backgroundPlugin',
-    beforeDraw: (chart) => {
-        const ctx = chart.ctx;
-        const chartArea = chart.chartArea;
-        const meta = chart.getDatasetMeta(0); // Bar dataset metadata
-        const dataset = chart.data.datasets[0]; // Assuming the dataset for revenue
-
-        ctx.save();
-        ctx.fillStyle = 'rgba(200, 200, 200, 0.3)'; // Light gray for the background
-
-        dataset.data.forEach((value, index) => {
-            const bar = meta.data[index]; // Get the bar model (position and size)
-            const x = bar.x - bar.width / 2; // Bar starting X position
-            const y = chartArea.top; // Start from the top of the chart area
-            const width = bar.width; // Bar width
-            const height = chartArea.bottom - chartArea.top; // Full chart height
-
-            // Draw background rectangle behind each bar
-            ctx.fillRect(x, y, width, height);
-        });
-
-        ctx.restore();
-    }
-};
-    // Chart.js configuration for the custom chart
-    const customCtx = document.getElementById('customBarChart').getContext('2d');
-    const customBarChart = new Chart(customCtx, {
-        type: 'bar',
-        data: {
-            labels: customLabels,
-            datasets: [{
-                label: 'Revenue',
-                data: customDataValues,
-                backgroundColor: '#fcbf49', // Custom yellow color for the bars
-                borderColor: '#fcbf49',
-                borderWidth: 1,
-                borderRadius: 8,
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 10000,
-                        callback: function(value) {
-                            return value + 'k';
-                        }
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            barPercentage: 0.2, // Adjust bar width
-            categoryPercentage: 0.5, // Adjust spacing between bars
-        },
-        plugins: [backgroundPlugin] // Register the custom background plugin
-    });
-
-    // Handling form submission to add data dynamically
+ // Handling form submission to add data dynamically
     document.getElementById('custom-data-form').addEventListener('submit', function(e) {
         e.preventDefault();
 

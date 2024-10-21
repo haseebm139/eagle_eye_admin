@@ -805,7 +805,18 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const addCompanyBtn = document.getElementById("addCompanyBtn");
 
+    const newCompanyDiv = document.getElementById("newCompanyDiv");
+        // Show the new company div when the button is clicked
+        addCompanyBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "flex"; // Show the div
+          });
+          const cancelBtn = document.getElementById("cancelBtn");
+             // Hide the new company div when the cancel button is clicked
+             cancelBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "none"; // Hide the div
+          });
         const selectAllCheckbox = document.getElementById("select-all");
 
         // Event listener for the select-all checkbox
