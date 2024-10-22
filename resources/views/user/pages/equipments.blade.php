@@ -44,7 +44,7 @@
                                         <img class="Equipment_product_img" src="{{ asset($img) }}" />
                                         <div class="Product_content_wrapper">
                                             <p class="product_title">
-                                                {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}
+                                                {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }} </p>
 
                                                 <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
                                                     class="arrow_btn"><img
