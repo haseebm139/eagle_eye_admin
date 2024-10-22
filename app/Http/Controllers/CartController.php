@@ -46,6 +46,41 @@ class CartController extends Controller
         ));
         return redirect()->route('home')->with(array('message'=>'Item added to cart successfully!','type'=>'success'));
     }
+    public function updateCart(Request $request)
+    {
+        $itemId = $request->input('id');
+        $newQuantity = $request->input('quantity');
+
+        // Find the item in the cart by ID
+        $cartItem = \Cart::get($itemId);
+
+        if ($cartItem) {
+            // Update the quantity of the item in the cart
+            \Cart::update($itemId, array(
+                'quantity' => array(
+                    'relative' => false, // Update with absolute value
+                    'value' => $newQuantity
+                )
+            ));
+            $data['cart'] = \Cart::getContent();
+            $data['cartTotal'] =\Cart::getSubTotal();
+            // Optionally, you can return the updated cart or success message
+            return response()->json(['success' => true, 'message' => 'Cart updated successfully','data'=>$data ]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Item not found in cart']);
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $itemId = $request->input('id');
+
+        // Remove the item from the cart
+        \Cart::remove($itemId);
+
+        // Optionally, return the updated cart or a success message
+        return response()->json(['success' => true, 'message' => 'Item removed from cart']);
+    }
     public function placeOrder(Request $request){
 
         $create_order = $this->createOrder($request);

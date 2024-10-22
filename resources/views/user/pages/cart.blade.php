@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
     </style>
 @endsection
 @section('content')
@@ -764,12 +764,13 @@
         <div class="step" id="step01">
 
 
-            @if (isset($data['cart'][1]))
+            @if (isset($data['cart']))
                 @foreach ($data['cart'] as $key => $item)
                     <div class="container">
                         <div class="container cart">
                             <div class="d-flex justify-content-start align-items-start gap-3 mt-5">
-                                <span class="d-flex gap-2 justify-content-center align-items-center">
+                                <span class="d-flex gap-2 justify-content-center align-items-center remove-item"
+                                    data-id="{{ $item->id }}">
                                     <img src="{{ asset('assets/website/images/svg/delete_1.svg') }} " />
                                     <p class="p-0 m-0">Remove Item</p>
                                 </span>
@@ -812,7 +813,8 @@
                                                         class="span">{{ $item['attributes']['material'] }}</Span>
                                                 </p>
                                                 <p>Printed Sides: <span
-                                                        class="span">{{ $item['attributes']['printed_sides'] }}</span></p>
+                                                        class="span">{{ $item['attributes']['printed_sides'] }}</span>
+                                                </p>
                                                 <p>Notes: <span
                                                         class="span">{{ $item['attributes']['special_instructions'] }}</span>
                                                 </p>
@@ -824,12 +826,12 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-start align-items-center gap-2 quantity">
-                                                <a class="btn minus">-</a>
+                                                <a class="btn minus" data-id="{{ $item['id'] }}">-</a>
                                                 <Input type="text" class="cart_qty" value="{{ $item['quantity'] }}"
-                                                    readonly>
-                                                <Input type="text" name="quantity" class="cart_qty" value="2"
-                                                    hidden>
-                                                <a class="btn plus">+</a>
+                                                    readonly min="1">
+                                                <Input type="text" name="quantity" class="cart_qty"
+                                                    value="{{ $item['quantity'] }}" hidden min="1">
+                                                <a class="btn plus" data-id="{{ $item['id'] }}">+</a>
                                             </div>
                                         </td>
                                         <td>
@@ -880,7 +882,7 @@
                             <tr>
 
                                 <th scope="col" class="header2">subTotal</th>
-                                <th scope="col" class="header2">${{ \Cart::getSubTotal() }}</th>
+                                <th scope="col" class="header2 subtotal">${{ \Cart::getSubTotal() }}</th>
 
                             </tr>
                         </thead>
@@ -1037,7 +1039,7 @@
                                         <tr>
 
                                             <th scope="col" class="header2">subTotal</th>
-                                            <th scope="col" class="header2">${{ \Cart::getSubTotal() }}</th>
+                                            <th scope="col" class="header2 subtotal">${{ \Cart::getSubTotal() }}</th>
 
                                         </tr>
                                     </thead>
@@ -1122,7 +1124,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1137,7 +1139,7 @@
                                     <tr>
 
                                         <th scope="col" class="header2">subTotal</th>
-                                        <th scope="col" class="header2">${{ \Cart::getSubTotal() }}</th>
+                                        <th scope="col" class="header2 subtotal">${{ \Cart::getSubTotal() }}</th>
 
                                     </tr>
                                 </thead>
@@ -1633,6 +1635,85 @@
 
             }
         }
+
+        $(document).ready(function() {
+            // Handle minus button click
+            $('.minus').on('click', function() {
+                var itemId = $(this).data('id');
+                var quantityInput = $(this).siblings('.cart_qty');
+                var currentQuantity = parseInt(quantityInput.val());
+
+                if (currentQuantity > 1) { // Prevent going below 1
+                    updateCartQuantity(itemId, currentQuantity - 1);
+                    quantityInput.val(currentQuantity - 1);
+                }
+            });
+
+            // Handle plus button click
+            $('.plus').on('click', function() {
+                var itemId = $(this).data('id');
+                var quantityInput = $(this).siblings('.cart_qty');
+                var currentQuantity = parseInt(quantityInput.val());
+
+                updateCartQuantity(itemId, currentQuantity + 1);
+                quantityInput.val(currentQuantity + 1);
+            });
+
+            // Function to update cart quantity
+            function updateCartQuantity(itemId, newQuantity) {
+                $.ajax({
+                    url: "{{ route('cart.update') }}", // Route for updating cart
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: itemId,
+                        quantity: newQuantity
+                    },
+                    success: function(response) {
+                        console.log(response);
+
+                        if (response.success) {
+                            $('th.header2.subtotal').text('$' + parseFloat(response.data.cartTotal)
+                                .toFixed(2));
+                            location.reload();
+                            // Optionally, update the cart totals or show a success message
+                            console.log('Cart updated successfully.');
+                        } else {
+                            alert('Failed to update cart.');
+                        }
+                    },
+                    error: function() {
+                        alert('Error updating cart.');
+                    }
+                });
+            }
+
+            $('.remove-item').on('click', function() {
+                var itemId = $(this).data('id'); // Get the item ID
+
+                // Send AJAX request to remove the item from the cart
+                $.ajax({
+                    url: '{{ route('cart.remove') }}', // Route for removing item from cart
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: itemId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Optionally, you can remove the item from the DOM
+                            // $(this).closest('.container').remove(); // This would remove the entire item container
+                            location.reload(); // Reload the page to update the cart view
+                        } else {
+                            alert('Failed to remove item from cart.');
+                        }
+                    },
+                    error: function() {
+                        alert('Error removing item from cart.');
+                    }
+                });
+            });
+        });
     </script>
     <script>
         $(document).ready(function() {

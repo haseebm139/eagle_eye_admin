@@ -27,7 +27,11 @@ class HomeController extends Controller
         return view('user.pages.our_story');
     }
     public function cart(){
-          $data['cart'] = \Cart::getContent();
+        $data['cart'] = \Cart::getContent();
+        if ($data['cart']->isEmpty()) {
+            // Redirect to the home page if the cart is empty
+            return redirect()->route('home')->with(array('message'=>'Cart Empty','type'=>'error'));
+        }
         return view('user.pages.cart',compact('data'));
     }
 

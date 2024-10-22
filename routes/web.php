@@ -62,6 +62,8 @@ Route::controller(UserProductController::class)->group(function(){
 Route::controller(CartController::class)->group(function(){
     Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
     Route::POST('/place-order', 'placeOrder')->name('place.order');
+    Route::post('/cart/update',  'updateCart')->name('cart.update');
+    Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
     // Route::patch('update-cart', 'update')->name('update.cart');
     // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
 });
