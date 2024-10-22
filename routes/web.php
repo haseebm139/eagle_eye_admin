@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/customer-view/{id}', 'customersView')->name('customers.view');
             Route::get('/add/product', 'addProduct')->name('add.product');
             Route::get('/orders', 'orders')->name('orders');
-            Route::get('/orders/view', 'orderView')->name('orders.view');
+            Route::get('/orders/view/{id}', 'orderView')->name('orders.view');
             Route::get('/settings', 'settings')->name('settings');
             Route::post('update-profile','updateProfile')->name('profile');
             Route::Get('/employee', 'employees')->name('employee.index');
@@ -115,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/new-orders','newOrders')->name('neworder');
             Route::Get('/assigned-orders','assignedOrders')->name('assignedorders');
             Route::POST('/assign-orders-employee','assignOrdersToEmployee')->name('assign.orders.to.employee');
-
+            Route::post('/orders/{id}/cancel',  'cancelOrder' )->name('cancel');
 
         });
     });

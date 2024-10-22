@@ -17,17 +17,18 @@
                 <div class="d-flex align-items-center justify-content-center gap-3">
                     <span class="d-flex gap-2">
                         <p class="mediumFont m-0">Order Number</p>
-                        <p class="LightFont m-0">#88540</p>
+                        <p class="LightFont m-0">#{{ $data['orders']->order_number }}</p>
                     </span>
 
                     <span class="d-flex gap-2">
                         <p class="mediumFont m-0">Order Date</p>
-                        <p class="LightFont m-0">12Sept 2022 - 12:55pm</p>
+                        <p class="LightFont m-0">
+                            {{ \Carbon\Carbon::parse($data['orders']->created_at)->format('d M Y - h:i A') }}</p>
                     </span>
 
                     <span class="d-flex gap-2">
                         <p class="mediumFont m-0">Tracking ID</p>
-                        <p class="LightFont m-0">1534ft9</p>
+                        <p class="LightFont m-0">{{ $data['orders']->order_number }}</p>
                     </span>
                     <span>
                         <img src="{{ asset('assets/admin/images/svg/copyIcon.svg') }}" />
@@ -44,12 +45,14 @@
                     <button class="order-btn d-flex align-items-center">
                         Print Invoice
                     </button>
-                    <button class="suspension-btn d-flex align-items-center">
+                    <button class="suspension-btn d-flex align-items-center" id="cancelOrderBtn"
+                        data-order-id="{{ $data['orders']->id ?? 0 }}">
                         Cancel Order
                     </button>
                 </div>
             </div>
-            <div class="d-flex gap-3 mt-3">
+            <div class="d-flex
+                        gap-3 mt-3">
                 <div class="" style="width: 30%">
                     <div class="card text-center">
                         <div class="alignemnt">
@@ -57,15 +60,42 @@
                                 <img src="{{ asset('assets/admin/images/svg/client2.svg') }} " />
                                 <div class="">
                                     <p class="mediumFont2 m-0 p-0 text-left">
-                                        Janet Adebayo
+                                        {{ $data['orders']->customer->name }}
                                     </p>
-                                    <p class="mediumFont3 m-0 p-0 text-left">
-                                        Last Order <span>12 sept 2022</span>
-                                    </p>
+
                                 </div>
                             </div>
                             <div class="leftAlignement">
-                                <button class="CustomerStatusPending">Pending</button>
+                                <button class="CustomerStatusPending">
+                                    @switch($data['orders']->status??0)
+                                        @case(0)
+                                            Pending
+                                        @break
+
+                                        @case(1)
+                                            Complete
+                                        @break
+
+                                        @case(2)
+                                            Canceled
+                                        @break
+
+                                        @case(3)
+                                            Delivered
+                                        @break
+
+                                        @case(4)
+                                            Return
+                                        @break
+
+                                        @case(5)
+                                            Shipped
+                                        @break
+
+                                        @default
+                                            unknown-status
+                                    @endswitch
+                                </button>
                                 <!-- <p class="side-text">This Week</p> -->
                             </div>
                         </div>
@@ -73,12 +103,12 @@
                         <div class="bottomContent">
                             <span>
                                 <p class="sales">Phone</p>
-                                <p class="bold">+236365746</p>
+                                <p class="bold">{{ $data['orders']->customer->phone }}</p>
                             </span>
 
                             <span>
                                 <p class="sales">Email</p>
-                                <p class="bold">abc@yopmail.com</p>
+                                <p class="bold">{{ $data['orders']->customer->email }}</p>
                             </span>
                         </div>
                     </div>
@@ -93,14 +123,22 @@
                             <span class="bottomSpan">
                                 <p class="sales">Home Address</p>
                                 <p class="bold">
-                                    No.15 Adekunle Street,Yaba, Lagos State
+                                    {{ $data['orders']->customer->address ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->city ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->state ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->country ?? '' }}
+
                                 </p>
                             </span>
 
                             <span class="bottomSpan">
                                 <p class="sales">Billing Address</p>
                                 <p class="bold">
-                                    No.15 Adekunle Street,Yaba, Lagos State
+                                    {{ $data['orders']->address ?? '' }}<span>,</span>
+                                    {{ $data['orders']->address1 ?? '' }}<span>,</span>
+                                    {{ $data['orders']->city ?? '' }}<span>,</span>
+                                    {{ $data['orders']->state ?? '' }}<span>,</span>
+                                    {{ $data['orders']->country ?? '' }}
                                 </p>
                             </span>
                         </div>
@@ -125,7 +163,7 @@
                         <div class="bottomContent">
                             <span class="bottomSpan">
                                 <p class="sales">Total Orders</p>
-                                <p class="bold3">$1,250</p>
+                                <p class="bold3">${{ $data['orders']->total ?? '' }}</p>
                             </span>
                         </div>
                     </div>
@@ -134,34 +172,7 @@
 
             <div class="product2 my-4">
                 <div class="d-flex justify-content-between">
-                    <h6>Items 3</h6>
 
-                    <div class="d-flex gap-2 position-relative">
-                        <div class="search-bar">
-                            <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                            <input type="text" placeholder="Search.." />
-                        </div>
-
-                        <button type="button" class="filter-btn" id="openModalButton">
-                            <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " /> Filter
-                        </button>
-
-                        <button type="button" class="filter-btn" id="openModalButton2">
-                            <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " /> Calendar
-                        </button>
-
-                        <button class="filter-btn">
-                            <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> Send
-                        </button>
-                        <div>
-                            <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                style="width: auto">
-                                <option value="3">bulk Action</option>
-                                <option value="5">page</option>
-                                <option value="10">per page</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="table-responsive">
@@ -186,11 +197,86 @@
                             </tr>
                         </thead>
                         <tbody id="table-body1">
+                            @foreach ($data['orders']->items as $item)
+                                <tr>
+                                    <td>
+                                        <label class="custom-checkbox">
+                                            <input type="checkbox" class="product-checkbox" data-id="${product.id}">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class="orderImage">
+                                            @php
+                                                $img = $item->product->image->path ?? 'assets/profile.png';
+                                            @endphp
+                                            <img src="{{ asset($img) }}" />
+                                        </div>
+                                    </td>
 
+                                    <td>{{ $item->product->name ?? '' }}</td>
+                                    <td>Home Delivery</td>
+                                    <td>{{ $item->product->sell_price ?? '' }}</td>
+                                    <td>{{ $item->qty ?? '' }}</td>
+                                    <td>0%</td>
+                                    <td>{{ ($item->product->sell_price ?? 0) * ($item->product->qty ?? 0) }}
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        @switch($data['orders']->status??0)
+                                            @case(0)
+                                                Pending
+                                            @break
+
+                                            @case(1)
+                                                Complete
+                                            @break
+
+                                            @case(2)
+                                                Canceled
+                                            @break
+
+                                            @case(3)
+                                                Delivered
+                                            @break
+
+                                            @case(4)
+                                                Return
+                                            @break
+
+                                            @case(5)
+                                                Shipped
+                                            @break
+
+                                            @default
+                                                unknown-status
+                                        @endswitch
+
+                                        {{-- <td>
+                                        <span class="Assigned" id="assignButton-{{ $data['ordets']->id ?? '' }}">
+                                            Assign to
+                                            <img src="{{ asset('assets/admin/svg/fi_chevron-down2.svg') }}" />
+                                        </span>
+                                        <div class="dropdown-like" id="dropdown-{{ $data['ordets']->id ?? '' }}"
+                                            style="display:none;">
+                                            <input type="text" id="searchInput-{{ $data['ordets']->id ?? '' }}"
+                                                placeholder="Search" />
+                                            <ul id="assignList-{{ $data['ordets']->id ?? '' }}">
+                                                <li><label><img src="{{ asset('assets/admin/images/Image.png') }}"
+                                                            class="user-avatar" /> Janet Adebayo</label></li>
+                                                <li><label><img src="{{ asset('assets/admin/images/image_726.png') }}"
+                                                            class="user-avatar" /> Samuel Johnson</label></li>
+                                                <li><label><img src="{{ asset('assets/admin/images/image_715.png') }}"
+                                                            class="user-avatar" /> Christian Dior</label></li>
+                                            </ul>
+                                        </div>
+                                    </td> --}}
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
-                    <div class="pagination-container d-flex justify-content-between align-items-center">
+                    {{-- <div class="pagination-container d-flex justify-content-between align-items-center">
                         <!-- Items per page dropdown -->
                         <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
                             <select id="itemsPerPage"
@@ -227,7 +313,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -351,178 +437,35 @@
 @section('script')
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
- document.addEventListener('DOMContentLoaded', function() {
-    const orderDetails = [
-      { id: 1, name: 'Product A', category: 'Category 1', price: '$100', stock: 10, discount: '10%', value: '$90', action: 'Edit' },
-      { id: 2, name: 'Product B', category: 'Category 2', price: '$150', stock: 5, discount: '15%', value: '$127.5', action: 'Edit' },
-      { id: 3, name: 'Product C', category: 'Category 3', price: '$200', stock: 8, discount: '5%', value: '$190', action: 'Edit' },
-    ];
-  
-    let rowsPerPageorderDetails = 3;
-    let currentPageorderDetails = 1;
-  
-    function renderorderDetailsTable() {
-      const tableBody = document.getElementById('table-body1');
-      tableBody.innerHTML = "";
-  
-      const start = (currentPageorderDetails - 1) * rowsPerPageorderDetails;
-      const end = Math.min(start + rowsPerPageorderDetails, orderDetails.length);
-      const orderDetailsToDisplay = orderDetails.slice(start, end);
-  
-      orderDetailsToDisplay.forEach(product => {
-        const row = `
-          <tr>
-            <td>
-              <label class="custom-checkbox">
-                <input type="checkbox" class="product-checkbox" data-id="${product.id}">
-                <span class="checkmark"></span>
-              </label>
-            </td>
-            <td>
-              <div class="orderImage">
-                <img src="{{ asset('assets/admin/images/image_715.png') }}" />
-              </div>
-            </td>
-            <td>${product.name}</td>
-            <td>${product.category}</td>
-            <td>${product.price}</td>
-            <td>${product.stock}</td>
-            <td>${product.discount}</td>
-            <td>${product.value}</td>
-            <td>${product.action}</td>
-            <td>
-              <span class="Assigned" id="assignButton-${product.id}">
-                Assign to
-                <img src="{{ asset('assets/admin/svg/fi_chevron-down2.svg') }}" />
-              </span>
-              <div class="dropdown-like" id="dropdown-${product.id}" style="display:none;">
-                <input type="text" id="searchInput-${product.id}" placeholder="Search" />
-                <ul id="assignList-${product.id}">
-                  <li><label><img src="{{ asset('assets/admin/images/Image.png') }}" class="user-avatar" /> Janet Adebayo</label></li>
-                  <li><label><img src="{{ asset('assets/admin/images/image_726.png') }}" class="user-avatar" /> Samuel Johnson</label></li>
-                  <li><label><img src="{{ asset('assets/admin/images/image_715.png') }}" class="user-avatar" /> Christian Dior</label></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        `;
-        tableBody.insertAdjacentHTML('beforeend', row);
-  
-        // Handle dropdown toggle
-        document.getElementById(`assignButton-${product.id}`).addEventListener('click', function() {
-          const dropdown = document.getElementById(`dropdown-${product.id}`);
-          dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-        });
-  
-        // Handle selection in dropdown
-        document.getElementById(`assignList-${product.id}`).addEventListener('click', function(e) {
-          if (e.target.tagName === 'LABEL' || e.target.tagName === 'IMG') {
-            const selectedName = e.target.closest('label').textContent.trim();
-            const assignButton = document.getElementById(`assignButton-${product.id}`);
-            assignButton.innerHTML = `${selectedName} <img src="./assests/svg/fi_chevron-down2.svg" />`;
-            document.getElementById(`dropdown-${product.id}`).style.display = 'none';
-          }
-        });
-      });
-  
-      updateorderDetailsPaginationInfo(start + 1, end, orderDetails.length);
-      updateorderDetailsPageSelect();
-      updateorderDetailsTotalPagesText();
-    }
-  
-    function updateorderDetailsPaginationInfo(start, end, total) {
-      const paginationInfo = document.getElementById('pagination-info-orderDetails');
-      if (paginationInfo) {
-        paginationInfo.textContent = `${start}-${end} of ${total} items`;
-      }
-    }
-  
-    function updateorderDetailsPageSelect() {
-      const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
-      const pageSelect = document.getElementById('page-select-orderDetails');
-      if (pageSelect) {
-        pageSelect.innerHTML = '';
-  
-        for (let i = 1; i <= totalPages; i++) {
-          const option = `<option value="${i}">${i}</option>`;
-          pageSelect.insertAdjacentHTML('beforeend', option);
+    document.getElementById('cancelOrderBtn').addEventListener('click', function() {
+        const orderId = this.getAttribute('data-order-id');
+
+
+
+        if (confirm("Are you sure you want to cancel the order?")) {
+            fetch("{{ route('order.cancel', ':id') }}".replace(':id', orderId), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Laravel CSRF token for security
+                    },
+                    body: JSON.stringify({
+                        status: '3'
+                    }) // Set status to '3' for 'Canceled'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+
+                        toastr.success('Order has been canceled!');
+                        location.reload(); // Reload page to see the changes (optional)
+                    } else {
+                        toastr.success('Failed to cancel the order.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
-  
-        pageSelect.value = currentPageorderDetails;
-        pageSelect.addEventListener('change', function() {
-          currentPageorderDetails = parseInt(this.value);
-          renderorderDetailsTable();
-        });
-      }
-    }
-  
-    function updateorderDetailsTotalPagesText() {
-      const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
-      const totalPagesText = document.getElementById('total-pages-text-orderDetails');
-      if (totalPagesText) {
-        totalPagesText.textContent = `Page ${currentPageorderDetails} of ${totalPages}`;
-      }
-    }
-  
-    const itemsPerPageSelect = document.getElementById('items-per-page-orderDetails');
-    if (itemsPerPageSelect) {
-      itemsPerPageSelect.addEventListener('change', function() {
-        rowsPerPageorderDetails = parseInt(this.value);
-        currentPageorderDetails = 1;
-        renderorderDetailsTable();
-      });
-    }
-  
-    const prevPageButton = document.getElementById('prev-page-orderDetails');
-    if (prevPageButton) {
-      prevPageButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        if (currentPageorderDetails > 1) {
-          currentPageorderDetails--;
-          renderorderDetailsTable();
-        }
-      });
-    }
-  
-    const nextPageButton = document.getElementById('next-page-orderDetails');
-    if (nextPageButton) {
-      nextPageButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        const totalPages = Math.ceil(orderDetails.length / rowsPerPageorderDetails);
-        if (currentPageorderDetails < totalPages) {
-          currentPageorderDetails++;
-          renderorderDetailsTable();
-        }
-      });
-    }
-  
-    function handleorderDetailselectAll() {
-      const selectAll = document.getElementById('select-all-orderDetails');
-      const checkboxes = document.querySelectorAll('.product-checkbox');
-  
-      if (selectAll) {
-        selectAll.addEventListener('change', function () {
-          checkboxes.forEach(checkbox => {
-            checkbox.checked = selectAll.checked;
-          });
-        });
-      }
-  
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          if (!this.checked) {
-            selectAll.checked = false;
-          } else if (document.querySelectorAll('.product-checkbox:checked').length === checkboxes.length) {
-            selectAll.checked = true;
-          }
-        });
-      });
-    }
-  
-    renderorderDetailsTable();
-    handleorderDetailselectAll();
-  });
-  
+    });
 </script>
 <script>
     const input1 = document.querySelector("#phone1");

@@ -47,8 +47,18 @@ class AdminController extends Controller
     public function orders(){
         return view('admin.pages.orders');
     }
-    public function orderView(){
-        return view('admin.pages.show_order');
+    public function orderView($id){
+        $data['orders'] = Order::with(['customer','employee','items.product.image'])
+        ->has('customer')
+        ->has('employee')
+        ->has('items')
+        ->has('items.product')
+        ->has('items.product.image')
+        ->find($id);
+        if (!isset($data['orders'])) {
+            return redirect()->back()->with(array('message'=>'Invalid Order ID','type'=>'error'));
+        }
+        return view('admin.pages.show_order',compact('data'));
     }
     public function updateProfile(Request $request){
         $user = auth()->user();

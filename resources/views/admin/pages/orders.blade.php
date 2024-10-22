@@ -1678,7 +1678,8 @@
                     const since = item.since || 'N/A'
                     const image = "{{ asset('assets/admin/images/Image.png') }}" ||
                         "{{ asset('assets/admin/images/Image.png') }}"
-
+                    let url = "{{ route('orders.view', ':id') }}";
+                    url = url.replace(':id', id);
                     const row = `
                     <tr>
                         <td>
@@ -1687,7 +1688,7 @@
                             <span class="checkmark"></span>
                             </label>
                         </td>
-                        <td id="customerName"><a href="{{ route('orders.view') }}">${customerName}</a></td>
+                        <td id="customerName"><a href="${url}">${customerName}</a></td>
                         <td>${formatDate(orderDate)}</td>
                         <td>${orderShipping}</td>
                         <td>${orderLocation}</td>
@@ -1703,13 +1704,13 @@
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                        <li class = >
-                                                                                                                                            <label>
-                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                ${employee.name}
-                                                                                                                                            </label>
-                                                                                                                                        </li>
-                                                                                                                                    `).join('')}
+                                                                                                                                                                <li class = >
+                                                                                                                                                                    <label>
+                                                                                                                                                                        <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                        ${employee.name}
+                                                                                                                                                                    </label>
+                                                                                                                                                                </li>
+                                                                                                                                                            `).join('')}
                                 </ul>
                             </div>
                         </td>

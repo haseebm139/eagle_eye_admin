@@ -145,4 +145,18 @@ class OrderController extends Controller
             ]); // Unprocessable Entity
         }
     }
+
+    public function cancelOrder(Request $request, $id)
+    {
+        $order = Order::find($id);
+
+        if ($order) {
+            $order->status = '3';
+            $order->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
 }
