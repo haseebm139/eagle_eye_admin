@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
     </style>
 @endsection
 @section('content')
@@ -893,13 +893,19 @@
                                 </td>
                                 <td>
                                     <div>
+                                        @if (isset($data['shipping_rates'][0]))
 
-                                        <div class="d-flex gap-2">
-                                            <input type="radio" name="shipping_rate" value="0" checked
-                                                class="shipping-rate" />
-                                            <p>Pickup from Eagle Eye</p>
-                                        </div>
-                                        <div class="d-flex gap-2">
+                                            @foreach ($data['shipping_rates'] as $key => $item)
+                                                <div class="d-flex gap-2">
+                                                    <input type="radio" name="shipping_rate"
+                                                        value={{ $item->id ?? '' }} data-price={{ $item->price ?? 0.0 }}
+                                                        @if ($key == 0) checked @endif
+                                                        class="shipping-rate" />
+                                                    <p>{{ $item->name ?? '' }}</p>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        {{-- <div class="d-flex gap-2">
                                             <input type="radio" name="shipping_rate" value="15.99"
                                                 class="shipping-rate" />
                                             <p> Flat Rate Shipping: <Span class="span">$15.99</Span></p>
@@ -918,7 +924,7 @@
                                             <input type="radio" name="shipping_rate" value="150.00"
                                                 class="shipping-rate" />
                                             <p> Air Freight: <span class="span"> $150.00</span></p>
-                                        </div>
+                                        </div> --}}
                                         <p class="span">
                                             Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                         </p>
@@ -1051,6 +1057,7 @@
                                             <td>
                                                 <div>
 
+
                                                     <div class="d-flex gap-2">
                                                         <input type="radio" name="shipping_rate" id="onee"
                                                             class="shipping-rate2" value="0" />
@@ -1124,7 +1131,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>

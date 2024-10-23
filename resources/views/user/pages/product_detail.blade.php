@@ -8,7 +8,7 @@
 
 @endsection
 @section('content')
-
+    {{-- @dd($product->images[1]) --}}
     <section id="back_btn_sec">
         <div class="container">
             <div class="product_page_top_bar">
@@ -29,13 +29,26 @@
                 <div class="col-xxl-7 col-xm-7 col-lg-7 col-md-12 col-sm-12">
                     <div class="product_images_wrapper">
                         <div class="product_extra_images_wrapper">
-                            <img src="{{ asset('assets/website/images/image.png') }}" class="other_img" alt="error" />
+                            @if (isset($product->images[0]))
+                                @foreach ($product->images as $item)
+                                    @php
+                                        $imgs = $item->path;
+                                    @endphp
+                                    <img src="{{ asset($imgs) }}" class="other_img" alt="error" />
+                                @endforeach
+                            @endif
+                            {{-- <img src="{{ asset('assets/website/images/image.png') }}" class="other_img" alt="error" />
                             <img src="{{ asset('assets/website/images/image_1.png') }}" class="other_img" alt="error" />
                             <img src="{{ asset('assets/website/images/image_728.png') }}" class="other_img"
-                                alt="error" />
+                                alt="error" /> --}}
                         </div>
                         <div class="product_feature_image_wrapper">
-                            <img src="{{ asset('assets/website/images/main.png') }}" id="featured_img" alt="error" />
+                            @if (isset($product->images[0]))
+                                @php
+                                    $imgs1 = $product->images[0]->path;
+                                @endphp
+                                <img src="{{ asset($imgs1) }}" id="featured_img" alt="error" />
+                            @endif
                         </div>
                     </div>
 

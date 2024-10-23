@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('emp_id')->nullable();
+            $table->integer('shipping_rate_id')->nullable();
             $table->string('order_number')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

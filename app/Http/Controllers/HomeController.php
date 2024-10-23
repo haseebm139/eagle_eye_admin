@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ShippingRate;
+
+
 class HomeController extends Controller
 {
     public function index(){
@@ -32,6 +35,7 @@ class HomeController extends Controller
             // Redirect to the home page if the cart is empty
             return redirect()->route('home')->with(array('message'=>'Cart Empty','type'=>'error'));
         }
+        $data['shipping_rates'] = ShippingRate::where('status','1')->get();
         return view('user.pages.cart',compact('data'));
     }
 
