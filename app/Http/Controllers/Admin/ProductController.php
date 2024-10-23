@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
+use App\Models\ProductCategory;
+
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use Illuminate\Support\Str;
@@ -81,6 +83,20 @@ class ProductController extends Controller
                     'is_expire' => 0, // Default value
                     'status' => '1', // Default published status
                 ]);
+                // Handle categories
+
+                foreach ($categories as $categoryName) {
+                    $categoryName = trim($categoryName);
+                    $category = Category::where('name',$categoryName)->first();
+                    if ($category) {
+                        // Insert category-product relationship into product_categories table
+                        ProductCategory::create([
+                            'category_id' => $category->id,
+                            'product_id' => $product->id,
+                        ]);
+
+                    }
+                }
                 // Handle image URLs
                 $imageUrl = $data['Images']; // Assuming the image URL field is "Image"
                 if (!empty($imageUrl)) {
