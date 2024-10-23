@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
-
     public function showUploadForm()
     {
         return view('upload_product');
@@ -102,7 +101,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage());
         }
     }
-    
+
     public function uploadProduct(Request $request){
         $validator = Validator::make($request->all(), [
             'category' => 'required|string|max:255',
@@ -215,6 +214,4 @@ class ProductController extends Controller
             return response()->json(['success' => false, 'message' => 'Something went worng']);
         }
     }
-
-
 }
