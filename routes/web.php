@@ -104,6 +104,11 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/product-list', 'productList')->name('list');
             Route::post('/products/{id}/status', 'updateStatus')->name('change.status');
 
+
+
+            Route::get('/products/upload','showUploadForm')->name('form');
+            Route::post('/products/upload',  'uploadProducts')->name('upload');
+
         });
         Route::controller(CustomerController::class)->name('customer.')->group(function(){
             Route::post('/add-customer', 'create')->name('create');

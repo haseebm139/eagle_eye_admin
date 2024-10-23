@@ -5,11 +5,103 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Category;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
+
+    public function showUploadForm()
+    {
+        return view('upload_product');
+    }
+
+    public function uploadProducts(Request $request)
+    {
+        // Validate file input
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        // Handle file upload
+        $file = $request->file('file');
+
+        // Use PhpSpreadsheet to read the CSV
+        try {
+            $reader = IOFactory::createReaderForFile($file->getRealPath());
+            $spreadsheet = $reader->load($file->getRealPath());
+            $worksheet = $spreadsheet->getActiveSheet();
+            $rows = $worksheet->toArray();
+
+            // Get the header row (first row)
+            $headers = $rows[0];
+
+            // Start from the second row (skip the header row)
+            foreach ($rows as $index => $row) {
+                if ($index == 0) {
+                    continue; // Skip header
+                }
+
+                // Map fields using header names
+                $data = array_combine($headers, $row);
+                // Handle multiple categories
+                $categories = explode(',', $data['Categories']); // Split by comma
+                $categoryString = implode(', ', array_map('trim', $categories)); // Trim spaces and joi
+                // Generate a slug from the product name
+                $name = $data['Name'];
+                $slug = Str::slug($name);
+                $category = Category::where('name',$data['Categories'])->first();
+
+                // Check if the slug already exists
+                $originalSlug = $slug;
+                $count = 1;
+
+                // Loop until we find a unique slug
+                while (Product::where('slug', $slug)->exists()) {
+                    $slug = $originalSlug . '-' . $count;
+                    $count++;
+                }
+                // Insert product data into the database
+                $product = Product::create([
+                    'name' => $name, // Product name
+                    'slug' => $slug, // Generated slug
+                    'category' => $categoryString, // Assuming category field is "Category"
+                    'cost_price' => $data['Regular price'], // Assuming cost price field is "Cost Price"
+                    'sell_price' => $data['Sale price'], // Assuming sell price field is "Sell Price"
+                    'stock' => $data['Stock'], // Assuming stock field is "Stock"
+                    'short_description' => $data['Short description'], // Assuming short description field is "Short Description"
+                    'long_description' => $data['Description'], // Assuming long description field is "Long Description"
+                    'time' => now()->toTimeString(),
+                    'date' => now()->toDateString(),
+                    'is_discount' => 0, // Default value
+                    'is_discount2' => 0, // Default value
+                    'is_expire' => 0, // Default value
+                    'status' => '1', // Default published status
+                ]);
+                // Handle image URLs
+                $imageUrl = $data['Images']; // Assuming the image URL field is "Image"
+                if (!empty($imageUrl)) {
+                    $imageName = basename($imageUrl);
+                        // Insert image data into the product_images table
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'path' => 'documents/products/' . $imageName, // Store relative path
+                            'status' => 1, // Active image
+                        ]);
+
+                }
+            }
+
+            return redirect()->back()->with('success', 'Products uploaded successfully.');
+        } catch (Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage());
+        }
+    }
     public function uploadProduct(Request $request){
         $validator = Validator::make($request->all(), [
             'category' => 'required|string|max:255',
