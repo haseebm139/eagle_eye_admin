@@ -102,6 +102,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage());
         }
     }
+    
     public function uploadProduct(Request $request){
         $validator = Validator::make($request->all(), [
             'category' => 'required|string|max:255',
