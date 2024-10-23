@@ -617,7 +617,7 @@ body {
     padding: 9px 20px;
     border: none;
     border-radius: 14px;
-    font-family: InterMedium;
+       font-family: 'Poppins', sans-serif;font-weight:500;
     font-size: 13px;
 }
 
@@ -904,7 +904,9 @@ body {
     .table-responsive {
         overflow-x: auto;
     }
-
+    .productDropdown3 {
+        width: 100px;
+    }
     .table thead th,
     .table tbody td {
         font-size: 0.875rem;
@@ -1569,18 +1571,7 @@ body {
     /* Ensure it appears above other content */
 }
 
-.model {
-    border-radius: 20px;
-    background-color: white;
-    width: 400px;
 
-    padding: 1.5rem 1.2rem;
-    z-index: 2;
-}
-
-.Ordermodel {
-    width: auto !important;
-}
 
 .model span {
  font-family: "Poppins", sans-serif;font-weight:bold;
@@ -1955,13 +1946,8 @@ body {
 
 /* /'meri css' */
 
-.item-bp {
-    width: 80px;
-}
 
-.item-pp {
-    width: 120px !important;
-}
+
 
 .w-search {
     width: 483px;
@@ -2069,3 +2055,592 @@ body {
         width: 100%;
     }
 }
+/* orders */
+
+#orders .viewOrderDetails {
+       font-family: 'Poppins', sans-serif;font-weight:500;
+    font-size: 13px;
+}
+
+#orders .viewOrderDetails span {
+      font-family: 'Poppins', sans-serif;font-weight:500;
+}
+
+#orders .custom-active {
+    background-color: #5570f129;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#orders  .custom-blue {
+    width: fit-content;
+    background-color: #5570f129;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#orders .shipping-active {
+    background-color: #55f17c29;
+    /* Custom green */
+    color: rgb(0, 0, 0);
+
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#orders  .custom-inactive {
+    background-color: #fff2e2;
+    /* Custom red */
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#orders  .ql-container {
+    background-color: #f6f7fb;
+    height: 20vh;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#orders  .ql-toolbar.ql-snow {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: #f6f7fb;
+}
+
+#orders   .product {
+      font-family: 'Poppins', sans-serif;font-weight:500;
+    color: #abafb1;
+    background: #f6f7fb;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#orders  .product2 {
+    background: white;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#orders  .product2 h6 {
+    color: #45464e;
+    font-size: 16px;
+       font-family: 'Poppins', sans-serif;font-weight:500;
+}
+
+#orders  .dropdownbtn {
+    padding: 5px 0.75rem;
+    font-size: 12px;
+    color: #000;
+    border-color: none;
+    border-radius: 21px;
+    background-color: #989ea3;
+}
+
+#orders  .Width {
+    width: 100%;
+}
+
+#orders  .Width span {
+       font-family: 'Poppins', sans-serif;font-weight:500;
+    font-size: 16px;
+}
+
+#orders .cancel {
+    border-radius: 20px;
+    padding: 3px 2px;
+    border: none;
+}
+
+#orders .NewCompany {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 999;
+}
+
+#orders .model {
+border-radius: 20px;
+background-color: white;
+width: 700px;
+padding: 1.5rem 1.2rem;
+z-index: 2;
+}
+
+
+#orders .model span {
+    font-family: 'Poppins', sans-serif;font-weight:bold;
+}
+
+#orders .model p {
+margin-top: none;
+margin-bottom: 0;
+color: #8b8d97;
+padding: 6px 0;
+font-size: 13px;
+font-family: InterMedium;
+}
+
+#orders .iti {
+margin: 5px 0;
+}
+
+#orders .inputBox {
+outline: none;
+margin: 5px 0;
+width: 100%;
+border: none;
+color: #abafb1;
+font-size: 13px;
+font-family: InterMedium;
+background-color: #f6f7fb;
+padding: 10px;
+border-radius: 12px;
+}
+
+#orders .companyAddress {
+color: #8b8d97;
+font-size: 11px;
+}
+
+#orders .addressSection {
+display: none;
+}
+
+#orders .orderCard {
+height: 100vh;
+}
+
+#orders .Assigned {
+background-color: #d9d9d9;
+padding: 5px 10px;
+border-radius: 15px;
+color: #8b8d97;
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+}
+
+#orders .dropdown-like {
+display: none;
+position: absolute;
+right: 79px;
+background-color: white;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+padding: 10px;
+width: 200px;
+z-index: 100;
+}
+
+#orders .dropdown-like input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border-radius: 4px;
+border: 1px solid #ccc;
+}
+
+#orders .dropdown-like ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+#orders .dropdown-like ul li {
+padding: 8px 0;
+display: flex;
+align-items: center;
+}
+
+#orders .dropdown-like ul li:hover {
+background-color: #d9d9d9;
+padding: 8px 0;
+display: flex;
+align-items: center;
+}
+
+#orders .dropdown-like ul li label {
+font-family: InterMedium;
+display: flex;
+align-items: center;
+gap: 8px;
+color: #8b8d97;
+}
+
+#orders .user-avatar {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+}
+
+#orders .dropdown-like.show {
+display: block;
+}
+
+#orders .modal-content {
+display: none;
+position: absolute;
+background-color: white;
+margin: 10% auto;
+padding: 4px;
+border-radius: 8px;
+width: 250px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#orders .modal-content2 {
+display: none;
+position: absolute;
+background-color: white;
+margin: 7% auto;
+padding: 16px;
+width: auto;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#orders .modal-header {
+font-family: InterMedium;
+align-items: center;
+padding-bottom: 5px;
+}
+
+#orders .filter-group {
+margin-bottom: 15px;
+}
+
+#orders .filter-group label {
+font-size: 13px;
+color: #53545c;
+font-family: InterMedium;
+display: block;
+margin-bottom: 5px;
+}
+
+#orders .filter-group2 label {
+font-size: 13px;
+font-family: InterLight !important;
+}
+
+#orders .amount-fields {
+display: flex;
+gap: 10px;
+}
+
+#orders .select {
+font-size: 13px;
+outline: none;
+border: 1px solid #d9d9d9;
+width: 100%;
+border-radius: 4px;
+padding: 8px;
+}
+
+#orders .amount-fields input {
+width: 100px;
+padding: 8px;
+border-radius: 4px;
+border: 1px solid #ccc;
+}
+
+#orders .filter-btn-submit {
+background-color: #ffd014;
+border: none;
+width: 100%;
+padding: 10px;
+color: rgb(0, 0, 0);
+border-radius: 12px;
+cursor: pointer;
+}
+
+#orders .year-select {
+border: none;
+color: gray;
+font-size: 14px;
+}
+
+#orders .calendar {
+top: 1rem;
+margin: 0 auto;
+width: 300px;
+background: #fff;
+}
+
+#orders .mainCalendar {
+background-color: #f4f5fa;
+border-radius: 13px;
+}
+
+#orders .calendar header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+#orders .calendar nav {
+display: flex;
+align-items: center;
+}
+
+#orders .calendar ul {
+padding-left: 0;
+margin: 0;
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+text-align: center;
+}
+
+#orders .calendar ul li {
+width: calc(100% / 7);
+position: relative;
+z-index: 2;
+aspect-ratio: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#orders #prev,
+#orders #next {
+width: 20px;
+height: 20px;
+position: relative;
+border: none;
+background: transparent;
+cursor: pointer;
+}
+
+#orders #prev::before,
+#orders #next::before {
+content: "";
+width: 50%;
+height: 50%;
+position: absolute;
+top: 50%;
+left: 50%;
+border-style: solid;
+border-width: 0.25em 0.25em 0 0;
+border-color: #ccc;
+}
+
+#orders #next::before {
+transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#orders #prev::before {
+transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#orders #prev:hover::before,
+#orders #next:hover::before {
+border-color: #000;
+}
+
+#orders .days {
+font-weight: 600;
+}
+
+#orders .dates li.today {
+color: #000000;
+}
+
+#orders .dates li.today::before {
+content: "";
+width: 2rem;
+height: 2rem;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: #ffffff;
+border-radius: 50%;
+z-index: -1;
+}
+
+#orders .dates li.inactive {
+color: #ccc;
+}
+
+#orders .selected-range {
+background-color: #b4ddff;
+color: black;
+}
+
+#orders .start-date {
+border-radius: 50%;
+background-color: #000000;
+color: white;
+}
+
+#orders .end-date {
+border-radius: 50%;
+background-color: #000000;
+color: white;
+}
+
+#orders .nav-tabs {
+background: white;
+}
+
+#orders .product-wrapper {
+position: relative;
+}
+
+#orders .product-wrapper input[type="number"]::-webkit-outer-spin-button,
+#orders .product-wrapper input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+#orders .product-wrapper input[type="number"] {
+-moz-appearance: textfield;
+}
+
+#orders .product-wrapper .quantity-controls {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+gap: 4px;
+flex-direction: column;
+}
+
+#orders .product-wrapper .quantity-controls img {
+width: 32px;
+cursor: pointer;
+}
+
+#orders .subFormleft h6 {
+font-family: InterMedium;
+color: #8b8d97;
+}
+
+#orders .rightForm h6 {
+font-family: InterMedium;
+color: #8b8d97;
+}
+
+#orders .discount {
+font-family: InterLight;
+color: #8b8d97;
+}
+
+#orders .Description {
+color: #8b8d97;
+}
+
+/* 'meri css' */
+
+#orders .item-bp {
+width: 80px;
+}
+
+
+
+#orders .w-search {
+width: 483px;
+}
+
+#orders .bg-gray {
+background: #efefef;
+}
+
+#orders .w-o-search {
+width: 100%;
+padding: 7px;
+}
+
+#orders .w-buttoon {
+width: 170px;
+}
+
+#orders .export-btn {
+width: 100px;
+height: 44px;
+display: flex;
+justify-content: center;
+}
+
+#orders .n-emp {
+width: 159px;
+height: 44px;
+display: flex;
+justify-content: center;
+background-color: #000;
+color: #fff;
+}
+
+#orders .n-emp img {
+width: 22px;
+}
+
+#orders .pagination-container {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+#orders .pagination-container .page-link {
+cursor: pointer;
+text-decoration: none;
+color: #000;
+}
+
+#orders .pagination {
+display: flex;
+justify-content: center;
+list-style: none;
+padding-left: 0;
+}
+
+#orders .pagination .page-item {
+margin: 0 5px;
+}
+
+#orders .pagination .page-item.active .page-link {
+border: 0 solid #000;
+background-color: #ffffff00;
+color: #007bff;
+}
+
+#orders .pagination .page-link {
+cursor: pointer;
+text-decoration: none;
+border: 0 solid #000;
+padding: 0.5rem 0.75rem;
+}
+
+#orders .page-link {
+text-decoration: none;
+cursor: pointer;
+margin: 0;
+}
+
+#orders .semi-bold-name {
+font-size: 14px;
+font-weight: 700;
+}
+

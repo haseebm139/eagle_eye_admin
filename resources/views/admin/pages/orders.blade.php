@@ -4,631 +4,56 @@
 @section('style')
 
     <style>
-        @font-face {
-            font-family: poppinsBold;
-            src: url("fonts/Poppins/Poppins-Bold.ttf");
-        }
-
-        @font-face {
-            font-family: InterMedium;
-            src: url("fonts/Inter/static/Inter_18pt-Medium.ttf");
-        }
-
-        @font-face {
-            font-family: InterLight;
-            src: url("fonts/Inter/static/Inter_18pt-ExtraLight.ttf");
-        }
-
-        @font-face {
-            font-family: poppinsMedium;
-            src: url("fonts/Poppins/Poppins-Medium.ttf");
-        }
-
-        .viewOrderDetails {
-            font-family: InterMedium;
-            font-size: 13px;
-        }
-
-        .viewOrderDetails span {
-            font-family: InterLight;
-        }
-
-        .custom-active {
-            background-color: #5570f129;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .custom-blue {
-            width: fit-content;
-            background-color: #5570f129;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .shipping-active {
-            background-color: #55f17c29;
-            /* Custom green */
-            color: rgb(0, 0, 0);
-
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .custom-inactive {
-            background-color: #fff2e2;
-            /* Custom red */
-            color: rgb(0, 0, 0);
-            padding: 5px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .ql-container {
-            background-color: #f6f7fb;
-            height: 20vh;
-            border-bottom-right-radius: 12px;
-            border-bottom-left-radius: 12px;
-        }
-
-        .ql-toolbar.ql-snow {
-            border-top-right-radius: 12px;
-            border-top-left-radius: 12px;
-            background-color: #f6f7fb;
-        }
-
-        .product {
-            font-family: InterLight;
-            color: #abafb1;
-            background: #f6f7fb;
-            margin: 5px 0;
-            padding: 1rem;
-            border-radius: 15px;
-        }
-
-        .product2 {
-            background: white;
-            margin: 5px 0;
-            padding: 1rem;
-            border-radius: 15px;
-        }
-
-        .product2 h6 {
-            color: #45464e;
-            font-size: 16px;
-            font-family: InterMedium;
-        }
-
-        .dropdownbtn {
-            padding: 5px 0.75rem;
-            font-size: 12px;
-            color: #000;
-            border-color: none;
-            border-radius: 21px;
-            background-color: #989ea3;
-        }
-
-        .Width {
-            width: 100%;
-        }
-
-        .Width span {
-            font-family: InterMedium;
-            font-size: 16px;
-        }
-
-        .cancel {
-            border-radius: 20px;
-            padding: 3px 2px;
-            border: none;
-        }
-
-        .NewCompany {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,
-                    0,
-                    0,
-                    0.7);
-            /* Dark semi-transparent background */
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            /* Ensure it appears above other content */
-        }
-
-        .model {
-            border-radius: 20px;
-            background-color: white;
-            width: 400px;
-
-            padding: 1.5rem 1.2rem;
-            z-index: 2;
-        }
-
-        .Ordermodel {
-            width: auto !important;
-        }
-
-        .model span {
-            font-family: poppinsBold;
-        }
-
-        .model p {
-            margin-top: none;
-            margin-bottom: 0;
-            color: #8b8d97;
-            padding: 6px 0;
-            font-size: 13px;
-            font-family: InterMedium;
-        }
-
-        .iti {
-            margin: 5px 0;
-        }
-
-        .inputBox {
-            outline: none;
-            margin: 5px 0;
-            width: 100%;
-            border: none;
-            color: #abafb1;
-            font-size: 13px;
-            font-family: InterMedium;
-            background-color: #f6f7fb;
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        .companyAddress {
-            color: #8b8d97;
-            font-size: 11px;
-        }
-
-        .addressSection {
-            display: none;
-        }
-
-        .orderCard {
-            height: 100vh;
-        }
-
-        .Assigned {
-            background-color: #d9d9d9;
-            padding: 5px 10px;
-            border-radius: 15px;
-            color: #8b8d97;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .dropdown-like {
-            display: none;
-            /* Initially hidden */
-            position: absolute;
-            right: 79px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            width: 200px;
-            z-index: 100;
-        }
-
-        .dropdown-like input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .dropdown-like ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dropdown-like ul li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown-like ul li:hover {
-            background-color: #d9d9d9;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown-like ul li label {
-            font-family: InterMedium;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #8b8d97;
-        }
-
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-        }
-
-        /* Visible state of dropdown */
-        .dropdown-like.show {
-            display: block;
-        }
-
-        .modal-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            margin: 10% auto;
-            padding: 4px;
-            border-radius: 8px;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-content2 {
-            display: none;
-            position: absolute;
-            background-color: white;
-            margin: 7% auto;
-            padding: 16px;
-            width: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            font-family: InterMedium;
-            align-items: center;
-            padding-bottom: 5px;
-        }
-
-        .filter-group {
-            margin-bottom: 15px;
-        }
-
-        .filter-group label {
-            font-size: 13px;
-            color: #53545c;
-            font-family: InterMedium;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .filter-group2 label {
-            font-size: 13px;
-            font-family: InterLight !important;
-        }
-
-        .amount-fields {
-            display: flex;
-            gap: 10px;
-        }
-
-        .select {
-            font-size: 13px;
-            outline: none;
-            border: 1px solid #d9d9d9;
-            width: 100%;
-            border-radius: 4px;
-            padding: 8px;
-        }
-
-        .amount-fields input {
-            width: 100px;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .filter-btn-submit {
-            background-color: #ffd014;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            color: rgb(0, 0, 0);
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .year-select {
-            border: none;
-            color: gray;
-            font-size: 14px;
-        }
-
-        .calendar {
-            top: 1rem;
-            margin: 0 auto;
-            width: 300px;
-            background: #fff;
-        }
-
-        .mainCalendar {
-            background-color: #f4f5fa;
-            border-radius: 13px;
-        }
-
-        .calendar header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .calendar nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .calendar ul {
-            padding-left: 0;
-            margin: 0;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .calendar ul li {
-            width: calc(100% / 7);
+     
+        .Search_field_wrapper{
             position: relative;
-            z-index: 2;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
-        #prev,
-        #next {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            border: none;
-            background: transparent;
-            cursor: pointer;
         }
-
-        #prev::before,
-        #next::before {
-            content: "";
-            width: 50%;
-            height: 50%;
+        .Search_field_wrapper i{
             position: absolute;
-            top: 50%;
-            left: 50%;
-            border-style: solid;
-            border-width: 0.25em 0.25em 0 0;
-            border-color: #ccc;
-        }
+            top:10px;
+            left: 10px;
 
-        #next::before {
-            transform: translate(-50%, -50%) rotate(45deg);
         }
+        .Search_field_wrapper input{
+            background: #fff !important;
+            padding-left: 40px;
+            border:1px solid #CFD3D4!important;
+            border-radius:8px!important;
 
-        #prev::before {
-            transform: translate(-50%, -50%) rotate(-135deg);
         }
-
-        #prev:hover::before,
-        #next:hover::before {
-            border-color: #000;
+        .mob-flex-direction-column{
+            flex-direction: row;
         }
-
-        .days {
-            font-weight: 600;
+        .mob-flex-direction-column-reverse{
+            flex-direction: row;
         }
-
-        .dates li.today {
-            color: #000000;
-        }
-
-        .dates li.today::before {
-            content: "";
-            width: 2rem;
-            height: 2rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #ffffff;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .dates li.inactive {
-            color: #ccc;
-        }
-
-        .selected-range {
-            background-color: #b4ddff;
-            /* Light blue to indicate selection */
-            color: black;
-        }
-
-        .start-date {
-            border-radius: 50%;
-            background-color: #000000;
-            /* Green background for start date */
-            color: white;
-        }
-
-        .end-date {
-            border-radius: 50%;
-            background-color: #000000;
-            /* Red background for end date */
-            color: white;
-        }
-
-        .nav-tabs {
-            background: white;
-        }
-
-        .product-wrapper {
-            position: relative;
-        }
-
-        .product-wrapper input[type="number"]::-webkit-outer-spin-button,
-        .product-wrapper input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* For Firefox */
-        .product-wrapper input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
-        .product-wrapper .quantity-controls {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 4px;
+        @media(max-width:600px){
+            .search-bar{
+                display: flex;align-items: center;
+                gap: 10px;
+            }
+            .mob-flex-direction-column{
             flex-direction: column;
+            margin-top: 15px;
         }
-
-        .product-wrapper .quantity-controls img {
-            width: 32px;
-
-            cursor: pointer;
+        .mob-flex-direction-column-reverse{
+            flex-direction: column-reverse;
         }
-
-        .subFormleft h6 {
-            font-family: InterMedium;
-            color: #8b8d97;
+        .label_items_per_page{
+            font-size:12px;
+            width: 90px;
         }
-
-        .rightForm h6 {
-            font-family: InterMedium;
-            color: #8b8d97;
-        }
-
-        .discount {
-            font-family: InterLight;
-            color: #8b8d97;
-        }
-
-        .Description {
-            color: #8b8d97;
-        }
-
-        /* /'meri css' */
-
-        .item-bp {
-            width: 80px;
-        }
-
-        .item-pp {
-            width: 120px !important;
-        }
-
-        .w-search {
-            width: 483px;
-        }
-
-        .bg-gray {
-            background: #efefef;
-        }
-
-        .w-o-search {
-            width: 100%;
-            padding: 7px;
-        }
-
-        .w-buttoon {
-            width: 170px;
-        }
-
-        .export-btn {
-            width: 100px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .n-emp {
-            width: 159px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-            background-color: #000;
-            color: #fff;
-        }
-
-        .n-emp img {
-            width: 22px;
-        }
-
-        .pagination-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .pagination-container .page-link {
-            cursor: pointer;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .pagination .page-item {
-            margin: 0 5px;
-        }
-
-        .pagination .page-item.active .page-link {
-            border: 0 solid #000;
-            background-color: #ffffff00;
-            color: #007bff;
-        }
-
-        .pagination .page-link {
-            cursor: pointer;
-            text-decoration: none;
-            border: 0 solid #000;
-            padding: 0.5rem 0.75rem;
-
-        }
-
-        .page-link {
-            text-decoration: none;
-            cursor: pointer;
-            margin: 0;
-
-        }
-
-        .semi-bold-name {
-            font-size: 14px;
-            font-weight: 700;
+.pagination-container{
+    flex-direction: column;
+}
+.mediumFontBorder {
+margin-bottom: 10px;
+}
+#orders .model {
+    height: 500px;
+    overflow-y: scroll;
+}
         }
     </style>
 
@@ -642,14 +67,15 @@
         <div class="container-fluid order-container" id="orderContainer">
             <div class="Width d-flex justify-content-between align-items-center my-3">
                 <span class="ml-2 ">Order Summary</span>
-                <button class="order-btn d-flex align-items-center" id="addOrderBtn">
+                <button class="order-btn d-flex align-items-center" id="addOrderBtn_for_modal">
                     +
                     <pre></pre>
                     create a New Order
                 </button>
             </div>
-            <div class="d-flex gap-3">
-                <div class="" style="width: 35%">
+            <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="">
                     <div class="card text-center">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/icon3.svg') }}" />
@@ -670,18 +96,20 @@
                         <div class="bottomContent">
                             <span>
                                 <p class="sales">Total Sales</p>
-                                <p class="bold">$4,000,000.00</p>
+                                <p class="card_counting_numbers">$4,000,000.00</p>
                             </span>
                             <span>
                                 <p class="sales">Volume</p>
-                                <p class="bold">
+                                <p class="card_counting_numbers">
                                     450 <span class="rates">+20.00%</span>
                                 </p>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class=" " style="width: 35%">
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class=" " >
                     <div class="card text-center">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
@@ -701,20 +129,22 @@
                         <div class="bottomContent">
                             <span>
                                 <p class="sales">Customers</p>
-                                <p class="bold">
+                                <p class="card_counting_numbers">
                                     1,250 <span class="rates">+15.80%</span>
                                 </p>
                             </span>
                             <span>
                                 <p class="sales">Active</p>
-                                <p class="bold">
+                                <p class="card_counting_numbers">
                                     1,180 <span class="rates"> 85%</span>
                                 </p>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="" style="width: 30%">
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="" >
                     <div class="card text-center">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/cart2.svg') }} " />
@@ -734,363 +164,380 @@
                         <div class="bottomContent">
                             <span>
                                 <p class="sales">All Orders</p>
-                                <p class="bold">450</p>
+                                <p class="card_counting_numbers">450</p>
                             </span>
                             <span>
                                 <p class="sales">Pending</p>
-                                <p class="bold">5</p>
+                                <p class="card_counting_numbers">5</p>
                             </span>
 
                             <span>
                                 <p class="sales">Completed</p>
-                                <p class="bold">445</p>
+                                <p class="card_counting_numbers">445</p>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
+             
+               
+                
+            </div>
             <div class="product2 mt-4">
-                <div class="d-flex justify-content-between">
-                    <h6 id="customerOrders">Customer Orders</h6>
-
-
-                    <div class="d-flex gap-2 position-relative">
-                        <div class="search-bar">
-                            <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                            <input type="text" placeholder="Search.." />
+               
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 id="customerOrders">Customer Orders</h6>
                         </div>
-
-                        <button type="button" class="filter-btn" id="openModalButton">
-                            <img src="{{ asset('assets/admin/images/svg/filter1.svg') }}" /> Filter
-                        </button>
-
-                        <div class="modal-content" id="modal-content">
-                            <div class="modal-header">
-                                <h6>Filter</h6>
-                            </div>
-                            <div class="modal-body">
-                                <form id="filterForm">
-                                    <div class="filter-group">
-                                        <label>Order Type</label>
-                                        <div
-                                            class="d-flex justify-content-between align-items-center mt-1 filter-group2">
-                                            <label><input class="" type="checkbox" /> Home
-                                                Delivery</label>
-                                            <label><input type="checkbox" /> Pick Up</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="filter-group">
-                                        <label>Status</label>
-                                        <select class="select">
-                                            <option value="all">All</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="pending">Pending</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="filter-group">
-                                        <label>Customer</label>
-                                        <select class="select">
-                                            <option value="all">All</option>
-                                            <option value="customer1">Customer 1</option>
-                                            <option value="customer2">Customer 2</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="filter-group">
-                                        <label>Amount</label>
-                                        <div class="amount-fields">
-                                            <div class="d-flex flex-column">
-                                                <label>From</label>
-                                                <input type="number" placeholder="0.00" />
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <label>To</label>
-                                                <input type="number" placeholder="0.00" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="filter-btn-submit">
-                                        Filter
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <button type="button" class="filter-btn" id="openModalButton2">
-                            <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }}" /> Calendar
-                        </button>
-                        <div id="modal-content2" class="modal-content2">
-                            <h6>By Date</h6>
-
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        This Week
-                                    </label>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        This Month
-                                    </label>
-
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        This Year
-                                    </label>
-
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        Date range
-                                    </label>
+                        <div class="col-md-6">
+                            <div class="d-flex gap-2 position-relative mob-flex-direction-column">
+                                <div class="search-bar">
+                                    <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
+                                    <input type="text" placeholder="Search.." />
                                 </div>
-
-                                <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        Last Week
-                                    </label>
-
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        Last Month
-                                    </label>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
-                                        <span class="checkmark2"></span>
-                                        Last Year
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="toggle-button">
-                                <button class="toggle-option active" id="from-btn">
-                                    From
+        
+                                <button type="button" class="filter-btn" id="openModalButton-filter">
+                                    <img src="{{ asset('assets/admin/images/svg/filter1.svg') }}" /> Filter
                                 </button>
-                                <button class="toggle-option" id="to-btn">To</button>
-                            </div>
-
-                            <div class="calendar">
-                                <header>
-                                    <h6>
-                                        <select class="year-select" id="year-select"></select>
-                                        <select class="year-select" id="month-select"></select>
-                                    </h6>
-                                </header>
-                                <section class="mainCalendar">
-                                    <ul class="days">
-                                        <li>S</li>
-                                        <li>M</li>
-                                        <li>T</li>
-                                        <li>W</li>
-                                        <li>T</li>
-                                        <li>F</li>
-                                        <li>S</li>
-                                    </ul>
-                                    <ul class="dates"></ul>
-                                </section>
-                            </div>
-                            <button class="calendarbtn">filter</button>
-                        </div>
-                        <button class="filter-btn">
-                            <img src="{{ asset('assets/admin/images/svg/Send.svg') }}" /> Send
-                        </button>
-                        <div>
-                            <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                style="width: auto">
-                                <option value="3">bulk Action</option>
-                                <option value="5">page</option>
-                                <option value="10">per page</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="">
-                    <!-- Tab Navigation -->
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="mediumFontBorder active" id="new-orders-tab" data-bs-toggle="tab"
-                                data-bs-target="#new-orders" type="button" role="tab"
-                                aria-controls="new-orders" aria-selected="true">
-                                New Orders
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="mediumFontBorder" id="assigned-orders-tab" data-bs-toggle="tab"
-                                data-bs-target="#assigned-orders" type="button" role="tab"
-                                aria-controls="assigned-orders" aria-selected="false">
-                                Assigned Orders
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="mediumFontBorder" id="delivered-tab" data-bs-toggle="tab"
-                                data-bs-target="#delivered" type="button" role="tab" aria-controls="delivered"
-                                aria-selected="false">
-                                Delivered
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Tab Content -->
-                    <div class="tab-content mt-3" id="myTabContent">
-                        <div class="tab-pane fade show active" id="new-orders" role="tabpanel"
-                            aria-labelledby="new-orders-tab">
-                            <div class="table-responsive">
-                                <table class="table order mt-3">
-                                    <thead>
-                                        <tr class="orderTable">
-                                            <th scope="col">
-                                                <label class="custom-checkbox">
-                                                    <input type="checkbox" id="select-all-cm-orders" />
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </th>
-                                            <th scope="col">Customer Name</th>
-                                            <th scope="col">Order Date</th>
-                                            <th scope="col">Shipping</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Tracking ID</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Order Total</th>
-                                            <th scope="col">Assign Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body-cm-order">
-                                        <!-- Rows will be generated dynamically here -->
-                                    </tbody>
-                                </table>
-
-                                <div
-                                    class="pagination-container d-flex justify-content-between align-items-center mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <span id="pagination-info-customer-orders" class="item-pp"></span>
-                                        <label for="items-per-page-customer-orders" class="item-pp ms-3">Items per
-                                            page:</label>
-                                        <select id="newOrderItemsPerPage1" class="form-select ms-2 item-bp">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                        </select>
+        
+                                <div class="modal-content" id="modal-content-filter">
+                                    <div class="modal-header">
+                                        <h6>Filter</h6>
                                     </div>
-
-                                    <nav class="d-flex justify-content align-items-center gap-2"
-                                        aria-label="Page navigation ">
-                                        <select id="newOrderItemsPerPage"
-                                            class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                        </select>
-                                        <p class="TotalItems " id="newOrderTotalItems">1-10 of 100 items</p>
-                                        <ul class="pagination mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" id="new-order-prev-page">
-                                                    <img
-                                                        src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" id="new-order-next-page">
-                                                    <img
-                                                        src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    <div class="modal-body">
+                                        <form id="filterForm">
+                                            <div class="filter-group">
+                                                <label>Order Type</label>
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center mt-1 filter-group2">
+                                                    <label><input class="" type="checkbox" /> Home
+                                                        Delivery</label>
+                                                    <label><input type="checkbox" /> Pick Up</label>
+                                                </div>
+                                            </div>
+        
+                                            <div class="filter-group">
+                                                <label>Status</label>
+                                                <select class="select">
+                                                    <option value="all">All</option>
+                                                    <option value="delivered">Delivered</option>
+                                                    <option value="pending">Pending</option>
+                                                </select>
+                                            </div>
+        
+                                            <div class="filter-group">
+                                                <label>Customer</label>
+                                                <select class="select">
+                                                    <option value="all">All</option>
+                                                    <option value="customer1">Customer 1</option>
+                                                    <option value="customer2">Customer 2</option>
+                                                </select>
+                                            </div>
+        
+                                            <div class="filter-group">
+                                                <label>Amount</label>
+                                                <div class="amount-fields">
+                                                    <div class="d-flex flex-column">
+                                                        <label>From</label>
+                                                        <input type="number" placeholder="0.00" />
+                                                    </div>
+                                                    <div class="d-flex flex-column">
+                                                        <label>To</label>
+                                                        <input type="number" placeholder="0.00" />
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <button type="submit" class="filter-btn-submit">
+                                                Filter
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-
-
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="assigned-orders" role="tabpanel"
-                            aria-labelledby="assigned-orders-tab">
-                            <div class="table-responsive">
-                                <table class="table order mt-3">
-                                    <thead>
-                                        <tr class="orderTable">
-                                            <th scope="col">
-                                                <label class="custom-checkbox">
-                                                    <input type="checkbox" id="select-all-cm-orders2" />
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </th>
-                                            <th scope="col">Customer Name</th>
-                                            <th scope="col">Order Date</th>
-                                            <th scope="col">Shipping</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Tracking ID</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Order Total</th>
-                                            <th scope="col">Assign Work</th>
-                                            <th scope="col">Action</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body-cm-order2">
-                                        <!-- Rows will be generated dynamically here -->
-                                    </tbody>
-                                </table>
-
-
-                                <div
-                                    class="pagination-container d-flex justify-content-between align-items-center mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <span id="pagination-info-customer-orders" class="item-pp"></span>
-                                        <label for="items-per-page-customer-orders" class="item-pp ms-3">Items per
-                                            page:</label>
-                                        <select id="assignOrderItemsPerPage1" class="form-select ms-2 item-bp">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                        </select>
+        
+                                <button type="button" class="filter-btn" id="openModalButton2-calander">
+                                    <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }}" /> Calendar
+                                </button>
+                                <div id="modal-content2-calander" class="modal-content2">
+                                    <h6>By Date</h6>
+        
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                This Week
+                                            </label>
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                This Month
+                                            </label>
+        
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                This Year
+                                            </label>
+        
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                Date range
+                                            </label>
+                                        </div>
+        
+                                        <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                Last Week
+                                            </label>
+        
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                Last Month
+                                            </label>
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" class="product-checkbox" data-id="${product.id}" />
+                                                <span class="checkmark2"></span>
+                                                Last Year
+                                            </label>
+                                        </div>
                                     </div>
-
-                                    <nav class="d-flex justify-content align-items-center gap-2"
-                                        aria-label="Page navigation ">
-                                        <select id="assignOrderItemsPerPage"
-                                            class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                        </select>
-                                        <p class="TotalItems " id="newAssginTotalItems">1-10 of 100 items</p>
-                                        <ul class="pagination mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" id="assign-order-prev-page">
-                                                    <img
-                                                        src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" id="assign-order-next-page">
-                                                    <img
-                                                        src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+        
+                                    <div class="toggle-button">
+                                        <button class="toggle-option active" id="from-btn">
+                                            From
+                                        </button>
+                                        <button class="toggle-option" id="to-btn">To</button>
+                                    </div>
+        
+                                    <div class="calendar">
+                                        <header>
+                                            <h6>
+                                                <select class="year-select" id="year-select"></select>
+                                                <select class="year-select" id="month-select"></select>
+                                            </h6>
+                                        </header>
+                                        <section class="mainCalendar">
+                                            <ul class="days">
+                                                <li>S</li>
+                                                <li>M</li>
+                                                <li>T</li>
+                                                <li>W</li>
+                                                <li>T</li>
+                                                <li>F</li>
+                                                <li>S</li>
+                                            </ul>
+                                            <ul class="dates"></ul>
+                                        </section>
+                                    </div>
+                                    <button class="calendarbtn">filter</button>
+                                </div>
+                                <button class="filter-btn">
+                                    <img src="{{ asset('assets/admin/images/svg/Send.svg') }}" /> Send
+                                </button>
+                                <div>
+                                    <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
+                                        >
+                                        <option value="3">bulk Action</option>
+                                        <option value="5">page</option>
+                                        <option value="10">per page</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="delivered" role="tabpanel"
-                                aria-labelledby="delivered-tab">
-                                <div>Content for Delivered</div>
+                        </div>
+                       
+    
+    
+                       
+    
+    
+                    </div>
+                    <div class="">
+                        <!-- Tab Navigation -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="mediumFontBorder active" id="new-orders-tab" data-bs-toggle="tab"
+                                    data-bs-target="#new-orders" type="button" role="tab"
+                                    aria-controls="new-orders" aria-selected="true">
+                                    New Orders
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="mediumFontBorder" id="assigned-orders-tab" data-bs-toggle="tab"
+                                    data-bs-target="#assigned-orders" type="button" role="tab"
+                                    aria-controls="assigned-orders" aria-selected="false">
+                                    Assigned Orders
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="mediumFontBorder" id="delivered-tab" data-bs-toggle="tab"
+                                    data-bs-target="#delivered" type="button" role="tab" aria-controls="delivered"
+                                    aria-selected="false">
+                                    Delivered
+                                </button>
+                            </li>
+                        </ul>
+    
+                        <!-- Tab Content -->
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="new-orders" role="tabpanel"
+                                aria-labelledby="new-orders-tab">
+                                    <div class="table-responsive">
+                                    <table class="table order mt-3">
+                                        <thead>
+                                            <tr class="orderTable">
+                                                <th scope="col">
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" id="select-all-cm-orders" />
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <th scope="col">Customer Name</th>
+                                                <th scope="col">Order Date</th>
+                                                <th scope="col">Shipping</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Tracking ID</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Order Total</th>
+                                                <th scope="col">Assign Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body-cm-order">
+                                            <!-- Rows will be generated dynamically here -->
+                                        </tbody>
+                                    </table>
+                                   
+
+                                    </div>
+    
+                                    <div
+                                    class="pagination-container d-flex justify-content-between align-items-center ">
+                                        <div class="d-flex align-items-center">
+                                            <span id="pagination-info-customer-orders" class="item-pp"></span>
+                                            <label for="items-per-page-customer-orders" class="item-pp  label_items_per_page">Items per
+                                                page:</label>
+                                            <select id="newOrderItemsPerPage1" class="form-select ms-2 item-bp">
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="10" selected>10</option>
+                                            </select>
+                                        </div>
+
+                                        <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column-reverse"
+                                            aria-label="Page navigation ">
+                                            <select id="newOrderItemsPerPage"
+                                                class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="10" selected>10</option>
+                                            </select>
+                                            <p class="TotalItems " id="newOrderTotalItems">1-10 of 100 items</p>
+                                            <ul class="pagination mb-0">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" id="new-order-prev-page">
+                                                        <img
+                                                            src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" id="new-order-next-page">
+                                                        <img
+                                                            src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                   
+    
+    
+                           
+                            </div>
+                            <div class="tab-pane fade" id="assigned-orders" role="tabpanel"
+                                aria-labelledby="assigned-orders-tab">
+                                <div class="table-responsive">
+                                    <table class="table order mt-3">
+                                        <thead>
+                                            <tr class="orderTable">
+                                                <th scope="col">
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" id="select-all-cm-orders2" />
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <th scope="col">Customer Name</th>
+                                                <th scope="col">Order Date</th>
+                                                <th scope="col">Shipping</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Tracking ID</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Order Total</th>
+                                                <th scope="col">Assign Work</th>
+                                                <th scope="col">Action</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body-cm-order2">
+                                            <!-- Rows will be generated dynamically here -->
+                                        </tbody>
+                                    </table>
+    
+    
+                                    <div
+                                        class="pagination-container d-flex justify-content-between align-items-center mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <span id="pagination-info-customer-orders" class="item-pp"></span>
+                                            <label for="items-per-page-customer-orders" class="item-pp ms-3">Items per
+                                                page:</label>
+                                            <select id="assignOrderItemsPerPage1" class="form-select ms-2 item-bp">
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="10" selected>10</option>
+                                            </select>
+                                        </div>
+    
+                                        <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column-reverse"
+                                            aria-label="Page navigation ">
+                                            <select id="assignOrderItemsPerPage"
+                                                class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="10" selected>10</option>
+                                            </select>
+                                            <p class="TotalItems " id="newAssginTotalItems">1-10 of 100 items</p>
+                                            <ul class="pagination mb-0">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" id="assign-order-prev-page">
+                                                        <img
+                                                            src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" id="assign-order-next-page">
+                                                        <img
+                                                            src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="delivered" role="tabpanel"
+                                    aria-labelledby="delivered-tab">
+                                    <div>Content for Delivered</div>
+                                </div>
                             </div>
                         </div>
+    
+    
                     </div>
-
-
-                </div>
+                
+             
+                
             </div>
             <div class="container-fluid" id="viewSummary" style="display: none;">
                 <h6>Order Summary</h6>
@@ -1492,7 +939,7 @@
                     </div>
                 </div>
             </div>
-            <div class="NewCompany" id="newCompanyDiv1">
+            <div class="NewCompany" id="add_new_order_modal">
                 <div class="model Ordermodel d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="my-2">Create New Order</span>
@@ -1501,9 +948,30 @@
                         </button>
                     </div>
                     <form>
-                        <div>
-                            <div class="d-flex gap-3">
-                                <div class="orderLeftConatiner">
+                      <style>
+                        .position-relative{
+                            position: relative;
+                        }
+                        #product-list{
+                            position: absolute;
+                            z-index: 1;
+                            top:40px;
+                            background-color: #fff;
+                            width: 100%;
+                        }
+                        .product-item{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                        .product-item a{
+                            cursor: pointer;
+                            background-color: #333;
+                            color: #fff;
+                        }
+                        </style>
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="d-flex justify-content-between">
                                         <p class="CustomerPopup">Order Details</p>
                                         <div class="d-flex gap-3">
@@ -1581,10 +1049,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <p class="CustomerPopup">Order Details</p>
-                                    <div
-                                        class="h-100 d-flex flex-column text-center justify-content-center align-items-center">
+                                <div class="col-md-6 d-flex flex-column">
+                                    <p class="CustomerPopup">Items</p>
+                                    <div class="w-100 position-relative">
+                                        <div class='Search_field_wrapper'>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <input type="search" name="search" placeholder="Search product name" class="form-control" id="search">
+                                        </div>
+                                        <div id="product-list">
+                                            <!-- Filtered products will be displayed here -->
+                                          </div>
+                                         
+                                         
+                                    </div>
+                                    <div id="selected-products" class="h-100" style="display:none">
+                                        <!-- Selected products will be displayed here -->
+                                      </div>
+                                    
+                                      <div style="display:flex"
+                                        class="h-100 flex-column text-center justify-content-center align-items-center" id="before_add_product">
                                         <img src="{{ asset('assets/admin/images/iconContainer.png') }} "
                                             class="lock" />
                                         <div>
@@ -1599,7 +1082,7 @@
                                 <button class="cancel-btn2 w-25">Cancel</button>
                                 <button class="add-btn w-25" id="btn00">Add</button>
                             </div>
-                        </div>
+                       
                     </form>
                 </div>
             </div>
@@ -1614,7 +1097,110 @@
 
     {{-- Begin::New Order JS --}}
     <script>
+
+let products = [
+  { id: 1, name: 'Product 1', image: 'https://i.pinimg.com/736x/d9/30/5d/d9305d1b4bb31096c3cb467f88dc343c.jpg', quantity: 1 },
+  { id: 2, name: 'Product 2', image: 'https://i.pinimg.com/736x/d9/30/5d/d9305d1b4bb31096c3cb467f88dc343c.jpg', quantity: 1 },
+  { id: 3, name: 'Product 3', image: 'https://i.pinimg.com/736x/d9/30/5d/d9305d1b4bb31096c3cb467f88dc343c.jpg', quantity: 1 },
+  // Add more products as needed
+];
+
+let selectedProducts = [];
+
+// Function to display filtered products
+function displayFilteredProducts(productsToShow) {
+  let productList = document.getElementById('product-list');
+  productList.innerHTML = ''; // Clear previous results
+
+  if (productsToShow.length === 0) return; // Do nothing if no products to show
+
+  productsToShow.forEach(product => {
+    let productDiv = document.createElement('div');
+    productDiv.className = 'product-item';
+    productDiv.innerHTML = `
+      <p>${product.name}</p>
+      <a onclick="selectProduct(${product.id})">Select</a>
+    `;
+    productList.appendChild(productDiv);
+  });
+}
+
+// Function to handle search input
+document.getElementById('search').addEventListener('input', function(e) {
+  let searchTerm = e.target.value.toLowerCase();
+
+  if (searchTerm === '') {
+    // Clear the product list when search is empty
+    displayFilteredProducts([]);
+  } else {
+    // Filter and display products based on search term
+    let filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+    displayFilteredProducts(filteredProducts);
+  }
+});
+
+// Function to add product to selected products
+function selectProduct(productId) {
+  let product = products.find(p => p.id === productId);
+  
+  if (!selectedProducts.find(p => p.id === productId)) {
+    selectedProducts.push(product);
+    displaySelectedProducts();
+
+    // Hide the 'before_add_product' div and show the 'selected-products' div
+    document.getElementById('before_add_product').style.display = 'none';
+    document.getElementById('selected-products').style.display = 'block';
+  }
+}
+
+// Function to display selected products
+function displaySelectedProducts() {
+  let selectedProductsDiv = document.getElementById('selected-products');
+  selectedProductsDiv.innerHTML = ''; // Clear previous selections
+
+  selectedProducts.forEach(product => {
+    let selectedProductDiv = document.createElement('div');
+    selectedProductDiv.className = 'selected-product';
+    selectedProductDiv.innerHTML = `
+      <p>${product.name}</p>
+      <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px;">
+      <p>Quantity: ${product.quantity}</p>
+    `;
+    selectedProductsDiv.appendChild(selectedProductDiv);
+  });
+}
+
+
         $(document).ready(function() {
+            $('#addOrderBtn_for_modal').on('click',function(e){
+                e.preventDefault();
+                $('#add_new_order_modal').css('display','flex');
+            });
+            $('#cancelBtn1').on('click',function(e){
+                e.preventDefault();
+                $('#add_new_order_modal').css('display','none');
+            });
+            $('.cancel-btn2').on('click',function(e){
+                e.preventDefault();
+                $('#add_new_order_modal').css('display','none');
+                selectedProducts = [];
+                    $('#search').val('');
+                    document.getElementById('before_add_product').style.display = 'flex';
+                        document.getElementById('selected-products').style.display = 'none';
+                    displayFilteredProducts([]);
+                    // Update the display to remove all selected products
+                    document.getElementById('selected-products').innerHTML = '';
+            });
+
+            $('#openModalButton-filter').on('click', function(e) {
+    e.preventDefault();
+    $('#modal-content-filter').toggle(); // This will toggle between show and hide
+});
+$('#openModalButton2-calander').on('click', function(e) {
+    e.preventDefault();
+    $('#modal-content2-calander').toggle(); // This will toggle between show and hide
+});
+
             let currentPage = 1;
             let itemsPerPage = 10; // Default items per page
             let searchQuery = '';

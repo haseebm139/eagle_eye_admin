@@ -85,56 +85,56 @@
         </div>
         @yield('content')
     </div>
-    <script>
-        // sidebar toggle button
-        const toggle_close = document.getElementById('toggle-close');
-const toggleBtn = document.getElementById('toggle-btn');
-const sidebar = document.getElementById('sidebar');
-const mainContent = document.getElementById('main-content');
-// Function to add 'collapsed' class on mobile screens
-function applyMobileCollapse() {
-    if (window.innerWidth <= 768) { // 768px is a common mobile breakpoint
-        sidebar.classList.add('collapsed');
-        mainContent.classList.add('collapsed');
-        toggle_close.style.display = 'none'; // Optionally hide the toggle_close button on mobile
-    }
-}
+        <script>
+            // sidebar toggle button
+            const toggle_close = document.getElementById('toggle-close');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            // Function to add 'collapsed' class on mobile screens
+            function applyMobileCollapse() {
+                if (window.innerWidth <= 768) { // 768px is a common mobile breakpoint
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('collapsed');
+                    toggle_close.style.display = 'none'; // Optionally hide the toggle_close button on mobile
+                }
+            }
 
-// Run the function when the page loads
-window.addEventListener('load', applyMobileCollapse);
+            // Run the function when the page loads
+            window.addEventListener('load', applyMobileCollapse);
 
-// Also run the function when the window is resized
-window.addEventListener('resize', applyMobileCollapse);
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('collapsed');
-    
-    // Check if sidebar does NOT have the 'collapsed' class
-    if (!sidebar.classList.contains('collapsed')) {
-        toggle_close.style.display = 'block'; // Show the toggle_close button
-    } else {
-        toggle_close.style.display = 'none'; // Hide the toggle_close button
-    }
-});
+            // Also run the function when the window is resized
+            window.addEventListener('resize', applyMobileCollapse);
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('collapsed');
+                
+                // Check if sidebar does NOT have the 'collapsed' class
+                if (!sidebar.classList.contains('collapsed')) {
+                    toggle_close.style.display = 'block'; // Show the toggle_close button
+                } else {
+                    toggle_close.style.display = 'none'; // Hide the toggle_close button
+                }
+            });
 
 
 
-const sidebar1 = document.getElementById('sidebar');
-const mainContent1 = document.getElementById('main-content');
+            const sidebar1 = document.getElementById('sidebar');
+            const mainContent1 = document.getElementById('main-content');
 
-toggle_close.addEventListener('click', () => {
-    sidebar1.classList.toggle('collapsed');
-    mainContent1.classList.toggle('collapsed');
-    
-    // Check if sidebar has the 'collapsed' class and hide the toggle button
-    if (sidebar1.classList.contains('collapsed')) {
-        toggle_close.style.display = 'none'; // Hide the button
-    } else {
-        toggle_close.style.display = 'block'; // Show the button
-    }
-});
+            toggle_close.addEventListener('click', () => {
+                sidebar1.classList.toggle('collapsed');
+                mainContent1.classList.toggle('collapsed');
+                
+                // Check if sidebar has the 'collapsed' class and hide the toggle button
+                if (sidebar1.classList.contains('collapsed')) {
+                    toggle_close.style.display = 'none'; // Hide the button
+                } else {
+                    toggle_close.style.display = 'block'; // Show the button
+                }
+            });
 
-   // sidebar toggle button end
+            // sidebar toggle button end
         </script>
     <script src="{{ asset('assets/admin/js/intlTelInputWithUtils.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
