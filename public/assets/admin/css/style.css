@@ -225,7 +225,7 @@ body {
 }
 
 .card {
-    height: 160px !important;
+    min-height: 200px !important;
     display: flex;
     justify-content: space-between;
     gap: 2.5rem;
@@ -2197,7 +2197,7 @@ margin-bottom: 0;
 color: #8b8d97;
 padding: 6px 0;
 font-size: 13px;
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 }
 
 #orders .iti {
@@ -2211,7 +2211,7 @@ width: 100%;
 border: none;
 color: #abafb1;
 font-size: 13px;
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 background-color: #f6f7fb;
 padding: 10px;
 border-radius: 12px;
@@ -2280,7 +2280,7 @@ align-items: center;
 }
 
 #orders .dropdown-like ul li label {
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 display: flex;
 align-items: center;
 gap: 8px;
@@ -2320,7 +2320,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #orders .modal-header {
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 align-items: center;
 padding-bottom: 5px;
 }
@@ -2332,7 +2332,7 @@ margin-bottom: 15px;
 #orders .filter-group label {
 font-size: 13px;
 color: #53545c;
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 display: block;
 margin-bottom: 5px;
 }
@@ -2533,12 +2533,12 @@ cursor: pointer;
 }
 
 #orders .subFormleft h6 {
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 color: #8b8d97;
 }
 
 #orders .rightForm h6 {
-font-family: InterMedium;
+ font-family: "Inter", sans-serif;font-weight:500;
 color: #8b8d97;
 }
 
@@ -2644,3 +2644,952 @@ font-size: 14px;
 font-weight: 700;
 }
 
+/* customer */
+
+#customers .viewOrderDetails {
+     font-family: "Inter", sans-serif;font-weight:500;
+    font-size: 13px;
+}
+
+#customers .viewOrderDetails span {
+    font-family: "Inter", sans-serif;font-weight:300;
+}
+
+#customers .custom-active {
+    background-color: #5570f129;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#customers .custom-inactive {
+    background-color: #fff2e2;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#customers .ql-container {
+    background-color: #f6f7fb;
+    height: 20vh;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#customers .ql-toolbar.ql-snow {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: #f6f7fb;
+}
+
+#customers .product {
+    font-family: "Inter", sans-serif;font-weight:300;
+    color: #abafb1;
+    background: #f6f7fb;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#customers .product2 {
+    background: white;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#customers .product2 h6 {
+     font-family: "Inter", sans-serif;font-weight:500;
+}
+
+#customers .dropdownbtn {
+    padding: 5px 0.75rem;
+    font-size: 12px;
+    color: #000;
+    border-color: none;
+    border-radius: 21px;
+    background-color: #989ea3;
+}
+
+#customers .Width {
+    width: 100%;
+}
+
+#customers .Width span {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#customers .cancel {
+    border-radius: 20px;
+    padding: 3px 2px;
+    border: none;
+}
+
+
+
+#customers .iti {
+    margin: 5px 0;
+}
+
+#customers .inputBox {
+    outline: none;
+    margin: 5px 0;
+    width: 100%;
+    border: none;
+    color: #8b8d97;
+    font-size: 13px;
+     font-family: "Inter", sans-serif;font-weight:500;
+    background-color: #eff1f9;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+#customers .companyAddress {
+    color: #8b8d97;
+    font-size: 11px;
+}
+
+#customers .addressSection {
+    display: none;
+}
+
+#customers .orderCard {
+    height: 100vh;
+}
+
+#customers .Assigned {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #8b8d97;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+#customers .dropdown-like {
+    display: none;
+    position: absolute;
+    right: 79px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    z-index: 100;
+}
+
+#customers .dropdown-like input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#customers .dropdown-like ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#customers .dropdown-like ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+#customers .dropdown-like ul li:hover {
+    background-color: #d9d9d9;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+#customers .dropdown-like ul li label {
+     font-family: "Inter", sans-serif;font-weight:500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8d97;
+}
+
+#customers .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#customers .dropdown-like.show {
+    display: block;
+}
+
+
+#customers .filter-group {
+    margin-bottom: 15px;
+}
+
+#customers .filter-group label {
+    font-size: 13px;
+    color: #53545c;
+     font-family: "Inter", sans-serif;font-weight:500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#customers .filter-group2 label {
+    font-size: 13px;
+    font-family: InterLight !important;
+}
+
+#customers .amount-fields {
+    display: flex;
+    gap: 10px;
+}
+
+#customers .select {
+    font-size: 13px;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#customers .amount-fields input {
+    width: 100px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#customers .filter-btn-submit {
+    background-color: #ffd014;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#customers .year-select {
+    border: none;
+    color: gray;
+    font-size: 14px;
+}
+
+#customers .calendar {
+    top: 1rem;
+    margin: 0 auto;
+    width: 300px;
+    background: #fff;
+}
+
+#customers .mainCalendar {
+    background-color: #f4f5fa;
+    border-radius: 13px;
+}
+
+#customers .calendar header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#customers .calendar nav {
+    display: flex;
+    align-items: center;
+}
+
+#customers .calendar ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#customers .calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#customers #prev,
+#customers #next {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#customers #prev::before,
+#customers #next::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: #ccc;
+}
+
+#customers #next::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#customers #prev::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#customers #prev:hover::before,
+#customers #next:hover::before {
+    border-color: #000;
+}
+
+#customers .days {
+    font-weight: 600;
+}
+
+#customers .dates li.today {
+    color: #000000;
+}
+
+#customers .dates li.today::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+#customers .dates li.inactive {
+    color: #ccc;
+}
+
+#customers .selected-range {
+    background-color: #b4ddff;
+    color: black;
+}
+
+#customers .start-date {
+    border-radius: 50%;
+    background-color: #000000;
+    color: white;
+}
+
+#customers .end-date {
+    border-radius: 50%;
+    background-color: #000000;
+    color: white;
+}
+
+#customers .nav-tabs {
+    background: white;
+}
+
+#customers .product-wrapper {
+    position: relative;
+}
+
+#customers .product-wrapper input[type="number"]::-webkit-outer-spin-button,
+#customers .product-wrapper input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#customers .product-wrapper input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#customers .product-wrapper .quantity-controls {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+#customers .product-wrapper .quantity-controls img {
+    width: 32px;
+    cursor: pointer;
+}
+
+#customers .subFormleft h6 {
+     font-family: "Inter", sans-serif;font-weight:500;
+    color: #8b8d97;
+}
+
+#customers .rightForm h6 {
+     font-family: "Inter", sans-serif;font-weight:500;
+    color: #8b8d97;
+}
+
+#customers .discount {
+    font-family: "Inter", sans-serif;font-weight:300;
+    color: #8b8d97;
+}
+
+#customers .Description {
+    color: #8b8d97;
+}
+
+
+.Search_field_wrapper{
+    position: relative;
+
+}
+.Search_field_wrapper i{
+    position: absolute;
+    top:10px;
+    left: 10px;
+
+}
+.Search_field_wrapper input{
+    background: #fff !important;
+    padding-left: 40px;
+    border:1px solid #CFD3D4!important;
+    border-radius:8px!important;
+
+}
+.mob-flex-direction-column{
+    flex-direction: row;
+}
+.mob-flex-direction-column-reverse{
+    flex-direction: row;
+}
+@media(max-width:600px){
+    .search-bar{
+        display: flex;align-items: center;
+        gap: 10px;
+    }
+    .mob-flex-direction-column{
+    flex-direction: column;
+    margin-top: 15px;
+    }
+    .PaginationDropdown{
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .order-btn {
+        font-size: 12px;
+    }
+    #customers .Width span{
+        font-size: 12px;
+    }
+
+.mob-flex-direction-column-reverse{
+    flex-direction: column-reverse;
+}
+.label_items_per_page{
+    font-size:12px;
+    width: 90px;
+}
+.pagination-container{
+flex-direction: column;
+}
+.mediumFontBorder {
+margin-bottom: 10px;
+}
+#orders .model {
+height: 500px;
+overflow-y: scroll;
+}
+}
+
+/* 
+products */
+
+
+#products .viewOrderDetails {
+    font-family: InterMedium;
+    font-size: 13px;
+}
+
+#products .viewOrderDetails span {
+    font-family: InterLight;
+}
+
+#products .custom-active {
+    background-color: #5570f129;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#products .custom-inactive {
+    background-color: #fff2e2;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#products .ql-container {
+    background-color: #f6f7fb;
+    height: 20vh;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#products .ql-toolbar.ql-snow {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: #f6f7fb;
+}
+
+#products .product {
+    font-family: InterLight;
+    color: #abafb1;
+    background: #f6f7fb;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#products .product2 {
+    background: white;
+    margin: 5px 0;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+#products .product2 h6 {
+    font-family: InterMedium;
+}
+
+#products .dropdownbtn {
+    padding: 5px 0.75rem;
+    font-size: 12px;
+    color: #000;
+    border-color: none;
+    border-radius: 21px;
+    background-color: #989ea3;
+}
+
+#products .Width {
+    width: 100%;
+}
+
+#products .Width span {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#products .cancel {
+    border-radius: 20px;
+    padding: 3px 2px;
+    border: none;
+}
+
+#products .NewCompany {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#products .model {
+    border-radius: 20px;
+    background-color: white;
+    width: 400px;
+    padding: 1.5rem 1.2rem;
+    z-index: 2;
+}
+
+#products .model span {
+    font-family: poppinsBold;
+}
+
+#products .model p {
+    margin-top: none;
+    margin-bottom: 0;
+    color: #8b8d97;
+    padding: 6px 0;
+    font-size: 13px;
+    font-family: InterMedium;
+}
+
+#products .iti {
+    margin: 5px 0;
+}
+
+#products .inputBox {
+    outline: none;
+    margin: 5px 0;
+    width: 100%;
+    border: none;
+    color: #8b8d97;
+    font-size: 13px;
+    font-family: InterMedium;
+    background-color: #eff1f9;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+#products .companyAddress {
+    color: #8b8d97;
+    font-size: 11px;
+}
+
+#products .addressSection {
+    display: none;
+}
+
+#products .orderCard {
+    height: 100vh;
+}
+
+#products .Assigned {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #8b8d97;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+#products .dropdown-like {
+    display: none;
+    position: absolute;
+    right: 79px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    z-index: 100;
+}
+
+#products .dropdown-like input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#products .dropdown-like ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#products .dropdown-like ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+#products .dropdown-like ul li:hover {
+    background-color: #d9d9d9;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+#products .dropdown-like ul li label {
+    font-family: InterMedium;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8d97;
+}
+
+#products .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#products .dropdown-like.show {
+    display: block;
+}
+
+#products .modal-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin: 10% auto;
+    padding: 4px;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#products .modal-content2 {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin: 7% auto;
+    padding: 16px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#products .modal-header {
+    font-family: InterMedium;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+#products .filter-group {
+    margin-bottom: 15px;
+}
+
+#products .filter-group label {
+    font-size: 13px;
+    color: #53545c;
+    font-family: InterMedium;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#products .filter-group2 label {
+    font-size: 13px;
+    font-family: InterLight !important;
+}
+
+#products .amount-fields {
+    display: flex;
+    gap: 10px;
+}
+
+#products .select {
+    font-size: 13px;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#products .amount-fields input {
+    width: 100px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#products .filter-btn-submit {
+    background-color: #ffd014;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#products .year-select {
+    border: none;
+    color: gray;
+    font-size: 14px;
+}
+
+#products .calendar {
+    top: 1rem;
+    margin: 0 auto;
+    width: 300px;
+    background: #fff;
+}
+
+#products .mainCalendar {
+    background-color: #f4f5fa;
+    border-radius: 13px;
+}
+
+#products .calendar header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#products .calendar nav {
+    display: flex;
+    align-items: center;
+}
+
+#products .calendar ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#products .calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#products #prev,
+#products #next {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#products #prev::before,
+#products #next::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: #ccc;
+}
+
+#products #next::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#products #prev::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#products #prev:hover::before,
+#products #next:hover::before {
+    border-color: #000;
+}
+
+#products .days {
+    font-weight: 600;
+}
+
+#products .dates li.today {
+    color: #000000;
+}
+
+#products .dates li.today::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+#products .dates li.inactive {
+    color: #ccc;
+}
+
+#products .selected-range {
+    background-color: #b4ddff;
+    color: black;
+}
+
+#products .start-date {
+    border-radius: 50%;
+    background-color: #000000;
+    color: white;
+}
+
+#products .end-date {
+    border-radius: 50%;
+    background-color: #000000;
+    color: white;
+}
+
+#products .nav-tabs {
+    background: white;
+}
+
+#products .product-wrapper {
+    position: relative;
+}
+
+#products .product-wrapper input[type="number"]::-webkit-outer-spin-button,
+#products .product-wrapper input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+#products .product-wrapper input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#products .product-wrapper .quantity-controls {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+#products .product-wrapper .quantity-controls img {
+    width: 32px;
+    cursor: pointer;
+}
+
+#products .subFormleft h6 {
+    font-family: InterMedium;
+    color: #8b8d97;
+}
+
+#products .rightForm h6 {
+    font-family: InterMedium;
+    color: #8b8d97;
+}
+
+#products .discount {
+    font-family: InterLight;
+    color: #8b8d97;
+}
+
+#products .Description {
+    color: #8b8d97;
+}
+#products table td img{
+ width: 40px;
+ height: 40px;
+ border-radius: 8px;
+}

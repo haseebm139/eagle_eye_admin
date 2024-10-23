@@ -5,56 +5,7 @@
 
     <style>
      
-        .Search_field_wrapper{
-            position: relative;
-
-        }
-        .Search_field_wrapper i{
-            position: absolute;
-            top:10px;
-            left: 10px;
-
-        }
-        .Search_field_wrapper input{
-            background: #fff !important;
-            padding-left: 40px;
-            border:1px solid #CFD3D4!important;
-            border-radius:8px!important;
-
-        }
-        .mob-flex-direction-column{
-            flex-direction: row;
-        }
-        .mob-flex-direction-column-reverse{
-            flex-direction: row;
-        }
-        @media(max-width:600px){
-            .search-bar{
-                display: flex;align-items: center;
-                gap: 10px;
-            }
-            .mob-flex-direction-column{
-            flex-direction: column;
-            margin-top: 15px;
-        }
-        .mob-flex-direction-column-reverse{
-            flex-direction: column-reverse;
-        }
-        .label_items_per_page{
-            font-size:12px;
-            width: 90px;
-        }
-.pagination-container{
-    flex-direction: column;
-}
-.mediumFontBorder {
-margin-bottom: 10px;
-}
-#orders .model {
-    height: 500px;
-    overflow-y: scroll;
-}
-        }
+   
     </style>
 
 @endsection
