@@ -678,8 +678,8 @@
                             <form class="p-4" id="updateForm" action="{{ route('profile') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <div class="d-flex gap-5">
-                                    <div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
                                         <div>
                                             <label class="Label">First Name</label>
                                             <div class="inputBox">
@@ -763,7 +763,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div  class="col-md-8 mb-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center image-uploader5 gap-3"
                                             id="imageUploader5"
                                             onclick="document.getElementById('imageInput5').click()">
@@ -806,12 +806,12 @@
                         aria-labelledby="role-management-tab">
                         <div class="">
                             <div>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between mob-flex-direction-column">
                                     <div
-                                        class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100">
+                                        class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100 mob-flex-direction-column">
                                         <div
-                                            class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center">
-                                            <div>
+                                            class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center mob-flex-direction-column">
+                                            <div class="d-none-mob">
                                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }}" />
                                                 <input type="text" class="w-search" id="searchInput"
                                                     placeholder="Search Employee by name, role, ID or any related keywords" />
