@@ -1,7 +1,16 @@
 @extends('layout.master')
 @section('title', 'DASHBOARD')
 
-@section('style')@endsection
+@section('style')
+<style>
+#myChart {
+    width: 200px; /* Set your desired width */
+    height: 300px; /* Set your desired height */
+    margin: 0 auto;
+}
+
+</style>
+@endsection
 @section('content')
 
 
@@ -152,8 +161,8 @@
                             </div>
                             <div class="container  text-center">
                                 <div class="legend-container" id="legend-container"></div>
-                                <div class="chart-container mt-4">
-                                    <canvas id="myChart"></canvas>
+                                <div class="chart-container mt-4 text-center">
+                                    <canvas id="myChart" height="250px"></canvas>
                                 </div>
                             </div>
     
@@ -298,7 +307,7 @@
           }]
       },
       options: {
-          responsive: true,
+        responsive: false, // Disable responsiveness
           plugins: {
               legend: {
                   position: 'top',

@@ -71,9 +71,8 @@ font-size: 13px;
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
                 <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">Product Summary</span>
-                <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center">
-                    +
-                    <pre></pre>
+                <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center text-white">
+                    <i class="fa-solid fa-plus mr-1"></i>
                     Add a New Product
                 </a>
             </div>

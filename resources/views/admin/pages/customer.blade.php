@@ -87,8 +87,7 @@
                 <div class="Width d-flex justify-content-between align-items-center">
                     <span class="my-2 ml-2"> Customer Summary</span>
                     <button class="order-btn d-flex align-items-center" id="addCompanyBtn">
-                        +
-                        <pre></pre>
+                        <i class="fa-solid fa-plus mr-1"></i>
                         create a New Customer
                     </button>
                 </div>

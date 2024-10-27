@@ -598,7 +598,7 @@ body {
     padding: 9px 20px;
     border-radius: 12px;
     font-size: 14px;
-
+    text-decoration: none !important;
 }
 
 .suspension-btn {
@@ -891,9 +891,6 @@ body {
 
 }
 
-.table-responsive {
-    overflow-x: auto;
-}
 
 .table thead th {
      font-family: "Inter", sans-serif;font-weight:500;
@@ -901,9 +898,8 @@ body {
 
 /* Responsive behavior */
 @media (max-width: 768px) {
-    .table-responsive {
-        overflow-x: auto;
-    }
+ 
+    
     .productDropdown3 {
         width: 100px;
     }
@@ -1008,8 +1004,8 @@ body {
 .image-uploader2 {
     position: relative;
     overflow: hidden;
-    height: 130px;
-    width: 130px;
+    height: 120px;
+    width: 120px;
     color: #8f8787;
     border: none;
     font-size: 13px;
@@ -1073,8 +1069,8 @@ body {
 
     position: relative;
     overflow: hidden;
-    height: 130px;
-    width: 130px;
+    height: 120px;
+    width: 120px;
     border: 1px dashed #585757 !important;
     color: #8f8787;
     font-size: 13px;
