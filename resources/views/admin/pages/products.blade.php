@@ -23,7 +23,37 @@
             src: url("fonts/Poppins/Poppins-Medium.ttf");
         }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#global_price_variable_wrapper input[type="number"] {
+    width: 80px;
+    padding:5px 10px;
+    text-align: center;
  
+
+}
+#global_price_variable_wrapper form{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+}
+#global_price_variable_wrapper form label{
+font-size: 13px;
+}
+#global_price_variable_wrapper form input[type='submit']{
+    padding:5px 10px;
+}
     </style>
 @endsection
 @section('content')
@@ -141,9 +171,18 @@
                     
                    
                 </div>
-              
+                    <div class="row mt-5 mb-3 justify-content-end" id='global_price_variable_wrapper'>
+                        <div class="col-md-4">
+                            <form action="">
+                                <label for="">Global Price Variable </label>
+                                <input type="number" step="0.01" name="global_price_variable" placeholder="0.0" id="global_price_variable">%
+                                <input type="submit" class="btn btn-dark bg-black" value="Apply">
+                            </form>
+                               
+                        </div>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table mt-3">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">
