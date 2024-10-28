@@ -569,7 +569,7 @@
         }
 
         .n-emp {
-            width: 159px;
+            width: 200px;
             height: 44px;
             display: flex;
             justify-content: center;
@@ -678,8 +678,8 @@
                             <form class="p-4" id="updateForm" action="{{ route('profile') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <div class="d-flex gap-5">
-                                    <div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
                                         <div>
                                             <label class="Label">First Name</label>
                                             <div class="inputBox">
@@ -763,7 +763,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div  class="col-md-8 mb-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center image-uploader5 gap-3"
                                             id="imageUploader5"
                                             onclick="document.getElementById('imageInput5').click()">
@@ -806,12 +806,12 @@
                         aria-labelledby="role-management-tab">
                         <div class="">
                             <div>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between mob-flex-direction-column">
                                     <div
-                                        class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100">
+                                        class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100 mob-flex-direction-column">
                                         <div
-                                            class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center">
-                                            <div>
+                                            class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center mob-flex-direction-column">
+                                            <div class="d-none-mob">
                                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }}" />
                                                 <input type="text" class="w-search" id="searchInput"
                                                     placeholder="Search Employee by name, role, ID or any related keywords" />
@@ -830,26 +830,28 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <button type="button" class="filter-btn export-btn text-center">
-                                            <img src="{{ asset('assets/admin/images/svg/download.svg') }}" /> Export
-                                        </button>
-                                        <button type="button" class="filter-btn n-emp" id="openModalButton">
-                                            <img
-                                                src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
-                                            New
-                                            Employee
-                                        </button>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <button type="button" class="filter-btn export-btn text-center">
+                                                <img src="{{ asset('assets/admin/images/svg/download.svg') }}" /> Export
+                                            </button>
+                                            <button type="button" class="filter-btn n-emp" id="openModalButton">
+                                                <img
+                                                    src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
+                                                New Employee
+                                            </button>
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table order mt-3">
+                                <table class="table order mt-3" id="emp_table_1234">
                                     <thead>
                                         <tr class="orderTable">
                                             <th scope="col">
-                                                <label class="custom-checkbox">
-                                                    <input type="checkbox" id="select-all-emp-role" />
+                                                <label class="custom-checkbox" id="click_me" for="select-all-emp-role">
+                                                    <input type="checkbox" id="select-all-emp-role" name="order_[]" />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
@@ -865,7 +867,9 @@
                                     </tbody>
                                 </table>
 
-                                <nav class="d-flex justify-content align-items-center gap-2"
+                                
+                            </div>
+                            <nav class="d-flex justify-content align-items-center gap-2"
                                     aria-label="Page navigation ">
                                     <select id="itemsPerPage"
                                         class="form-select productDropdown3 form-select-sm filter-dropdown">
@@ -887,7 +891,6 @@
                                         </li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
                     </div>
@@ -903,8 +906,21 @@
 
 @endsection
 @section('script')
+
+<script>
+    $(document).ready(function() {
+    // Listen for a change event on the "Select All" checkbox
+    $('#select-all-emp-role').on('change', function() {
+
+        // Set the checked status of all checkboxes within the table to match the "Select All" checkbox
+        $('#table-body-emp-role').find('input[type="checkbox"]').prop('checked', this.checked);
+    });
+});
+</script>
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
+
+
     function submitForm() {
 
         document.getElementById("updateForm").submit(); // Submits the form
@@ -1024,7 +1040,7 @@
                 <tr>
                 <td>
                     <label class="custom-checkbox">
-                    <input type="checkbox" class="emp-role-checkbox" data-id="${id}">
+                    <input type="checkbox" class="emp-role-checkbox"  name="order_[]" data-id="${id}">
                     <span class="checkmark"></span>
                     </label>
                 </td>

@@ -4,6 +4,9 @@
 @section('style')
 
     <style>
+        .card{
+            min-height: 180px;
+        }
         .viewOrderDetails {
             font-family: InterMedium;
             font-size: 13px;
@@ -614,8 +617,8 @@
     <div class="tab-content" id="myTabContent">
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
             <div class="container-fluid">
-                <div class="Width d-flex justify-content-between align-items-center customer2">
-                    <div class="d-flex align-items-center justify-content-center gap-3">
+                <div class="Width d-flex justify-content-between align-items-center customer2 mob-flex-direction-column">
+                    <div class="d-flex align-items-center justify-content-center gap-3  mb-3">
                         @php
                             // Assuming $date is the date variable you want to format
                             $date = $data['user']->since ?? now();
@@ -631,16 +634,18 @@
                             <img src="{{ asset('assets/admin/images/svg/copyIconBlue.svg') }}" />
                         </span>
                     </div>
-                    <div class="d-flex gap-3">
-                        <div class="dropdown-container dropdown2 position-relative">
-                            <select id="data-category" class="form-control4 d-inline w-auto">
-                                <option value="Revenue">Edit Customer</option>
-                                <option value="Expenses">This Week</option>
-                                <option value="Profit Margin">This Week</option>
-                            </select>
-                            <span class="dropdown-icon"></span>
-                            <!-- Down arrow icon -->
-                        </div>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="dropdown">
+                            <button class="btn btn-dark bg-black dropdown-toggle" style="border-radius: 14px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Edit Customer
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </div>
+                    
                         @if ($data['user']->status == 0)
                             <form id="status-toggle-form" method="POST"
                                 action="{{ route('customer.toggle-status', $data['user']->id) }}">
@@ -660,8 +665,8 @@
                         @endif
                     </div>
                 </div>
-                <div class="d-flex gap-3 mt-3">
-                    <div class="" style="width: 30%">
+                <div class="row">
+                    <div class="col-md-4 mb-4" >
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <div class="d-flex gap-3">
@@ -693,7 +698,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" " style="width: 40%">
+                    <div  class="col-md-5  mb-4" >
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/address.svg') }} " />
@@ -716,7 +721,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" " style="width: 30%">
+                    <div  class="col-md-3  mb-4" >
                         <div class="card text-center">
                             <div class="d-flex justify-content-between CustomerOrders">
                                 <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
@@ -735,14 +740,14 @@
                             <div class="bottomContent">
                                 <span class="bottomSpan">
                                     <p class="sales">Total Orders</p>
-                                    <p class="bold3">${{ $data['totalAmount'] }}</p>
+                                    <p class="card_counting_numbers">${{ $data['totalAmount'] }}</p>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex gap-3 mt-3">
-                    <div class="" style="width: 30%">
+                <div class="row">
+                    <div class="col-md-4  mb-4">
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
@@ -763,21 +768,21 @@
                             <div class="bottomContent">
                                 <span class="bottomSpan">
                                     <p class="sales">All Orders</p>
-                                    <p class="bold">{{ $data['all_order_count'] }}</p>
+                                    <p class="card_counting_numbers">{{ $data['all_order_count'] }}</p>
                                 </span>
 
                                 <span class="bottomSpan">
                                     <p class="sales">Pending</p>
-                                    <p class="bold">{{ $data['order_pending'] }}</p>
+                                    <p class="card_counting_numbers">{{ $data['order_pending'] }}</p>
                                 </span>
                                 <span class="bottomSpan">
                                     <p class="sales">Complete</p>
-                                    <p class="bold">{{ $data['order_complete'] }}</p>
+                                    <p class="card_counting_numbers">{{ $data['order_complete'] }}</p>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class=" " style="width: 40%">
+                    <div class="col-md-5  mb-4">
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
@@ -797,17 +802,17 @@
                             <div class="bottomContent">
                                 <span class="bottomSpan">
                                     <p class="sales">Canceled</p>
-                                    <p class="bold">{{ $data['order_cancel'] }}</p>
+                                    <p class="card_counting_numbers">{{ $data['order_cancel'] }}</p>
                                 </span>
 
                                 <span class="bottomSpan">
                                     <p class="sales">Returned</p>
-                                    <p class="bold">{{ $data['order_return'] }}</p>
+                                    <p class="card_counting_numbers">{{ $data['order_return'] }}</p>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class=" " style="width: 30%">
+                    <div class="col-md-3">
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/cart2.svg') }} " />
@@ -816,39 +821,43 @@
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales text-danger">Abandoned Carts</p>
-                                    <p class="bold">5</p>
+                                    <p class="card_counting_numbers">5</p>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="product2 mt-4">
-                    <div class="d-flex justify-content-between">
-                        <h6>{{ $data['user']->name ?? '' }} Orders</h6>
-                        <div class="d-flex gap-2">
-                            <div class="search-bar">
-                                <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                                <input type="text" id="searchInput" placeholder="Search.." />
-                            </div>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " />
-                                send
-                            </button>
-                            <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                    style="width: auto">
-                                    <option value="3">bulk Action</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
-                                </select>
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
+                            <h6>{{ $data['user']->name ?? '' }} Orders</h6>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="d-flex gap-2 mob-flex-direction-column">
+                                <div class="search-bar">
+                                    <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
+                                    <input type="text" id="searchInput" placeholder="Search.." />
+                                </div>
+                                <button class="filter-btn">
+                                    <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
+                                    Filter
+                                </button>
+                                <button class="filter-btn">
+                                    <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
+                                    Filter
+                                </button>
+                                <button class="filter-btn">
+                                    <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " />
+                                    send
+                                </button>
+                                <div>
+                                    <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
+                                        style="width: auto">
+                                        <option value="3">bulk Action</option>
+                                        <option value="5">page</option>
+                                        <option value="10">per page</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

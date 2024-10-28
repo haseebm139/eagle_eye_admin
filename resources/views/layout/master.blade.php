@@ -86,36 +86,44 @@
         @yield('content')
     </div>
         <script>
-            // sidebar toggle button
-            const toggle_close = document.getElementById('toggle-close');
-            const toggleBtn = document.getElementById('toggle-btn');
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('main-content');
-            // Function to add 'collapsed' class on mobile screens
-            function applyMobileCollapse() {
-                if (window.innerWidth <= 768) { // 768px is a common mobile breakpoint
-                    sidebar.classList.add('collapsed');
-                    mainContent.classList.add('collapsed');
-                    toggle_close.style.display = 'none'; // Optionally hide the toggle_close button on mobile
-                }
-            }
+      // Sidebar toggle button
+const toggle_close = document.getElementById('toggle-close');
+const toggleBtn = document.getElementById('toggle-btn');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('main-content');
 
-            // Run the function when the page loads
-            window.addEventListener('load', applyMobileCollapse);
+// Function to add 'collapsed' class on mobile screens and manage toggle_close visibility
+function applyMobileCollapse() {
+    if (window.innerWidth <= 768) { // Mobile screens
+        sidebar.classList.add('collapsed');
+        mainContent.classList.add('collapsed');
+        toggle_close.style.display = 'none'; // Hide the toggle_close button initially on mobile
+    } else { // Desktop screens
+        sidebar.classList.remove('collapsed');
+        mainContent.classList.remove('collapsed');
+        toggle_close.style.display = 'none'; // Ensure toggle_close is hidden on desktop
+    }
+}
 
-            // Also run the function when the window is resized
-            window.addEventListener('resize', applyMobileCollapse);
-            toggleBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('collapsed');
-                
-                // Check if sidebar does NOT have the 'collapsed' class
-                if (!sidebar.classList.contains('collapsed')) {
-                    toggle_close.style.display = 'block'; // Show the toggle_close button
-                } else {
-                    toggle_close.style.display = 'none'; // Hide the toggle_close button
-                }
-            });
+// Run the function when the page loads
+window.addEventListener('load', applyMobileCollapse);
+
+// Run the function when the window is resized
+window.addEventListener('resize', applyMobileCollapse);
+
+// Toggle sidebar on button click
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    mainContent.classList.toggle('collapsed');
+    
+    // Show/hide toggle_close button based on sidebar's state and screen size
+    if (!sidebar.classList.contains('collapsed') && window.innerWidth <= 768) {
+        toggle_close.style.display = 'block'; // Show on mobile if expanded
+    } else {
+        toggle_close.style.display = 'none'; // Hide otherwise
+    }
+});
+
 
 
 
