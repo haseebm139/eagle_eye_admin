@@ -17,7 +17,11 @@ class CartController extends Controller
         $product = Product::with('image')->find($request->product_id);
         $product_name = $product->name??'';
         $product_image = $product->image->path??'';
-        $product_price = number_format($product->is_discount ? $product->sell_price : $product->cost_price, 2);
+        $global_value = $product->global_value;
+        $base_price = $product->is_discount ? $product->sell_price : $product->cost_price;
+        $extra_price = $base_price * ($global_value / 100);
+        $increased_price = $base_price + $extra_price;
+        $product_price = number_format($increased_price, 2);
         $additional_file = null;
         if ($request->hasFile('additional_file')) {
             $file = $request->file('additional_file');
@@ -27,12 +31,19 @@ class CartController extends Controller
             $additional_file =$file_path;
         }
         // Add the item to the cart
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found.']);
+        }
+        if ($request->qty < $product->min_order_value) {
+            return response()->json(['success' => false, 'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $product->min_order_value]);
+        }
         \Cart::add(array(
             'id' => $request->product_id,
             'name' => $product_name,
             'quantity' => $request->qty,
             'price' => $product_price, // Store as numeric
             'attributes' => array(
+                'min_order_value' => $product->min_order_value,
                 'image' => $request->product_image,
                 'height' => $request->height,
                 'width' => $request->width,
@@ -55,6 +66,16 @@ class CartController extends Controller
         $cartItem = \Cart::get($itemId);
 
         if ($cartItem) {
+
+            $minOrderValue = $cartItem->attributes->min_order_value;
+
+
+            if ($newQuantity < $minOrderValue) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $minOrderValue
+                ]);
+            }
             // Update the quantity of the item in the cart
             \Cart::update($itemId, array(
                 'quantity' => array(

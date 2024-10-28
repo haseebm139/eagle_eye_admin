@@ -209,7 +209,7 @@
         }
 
 
-        .ql-editor{
+        .ql-editor {
             height: 150px !important;
         }
     </style>
@@ -227,22 +227,22 @@
                 <div class="col-md-6  mb-3">
                     <span class="ml-2" style="font-size: 17px; font-weight: 700">New Product</span>
                 </div>
-               <div class="col-md-6  mb-3">
-                <div class="d-flex gap-3 justify-content-end">
-                    <div class="ProductDropdownLayout">
-                        <select id="itemsPerPage" class="form-select form-select-sm ProductDropdown"
-                            style="width: auto">
-                            <option value="3">Save as Draft</option>
-                            <option value="5">Save as Draft</option>
-                            <option value="10">Save as Draft</option>
-                        </select>
-                        <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
+                <div class="col-md-6  mb-3">
+                    <div class="d-flex gap-3 justify-content-end">
+                        <div class="ProductDropdownLayout">
+                            <select id="itemsPerPage" class="form-select form-select-sm ProductDropdown"
+                                style="width: auto">
+                                <option value="3">Save as Draft</option>
+                                <option value="5">Save as Draft</option>
+                                <option value="10">Save as Draft</option>
+                            </select>
+                            <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
+                        </div>
+                        <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
+                            save & Publish
+                        </button>
                     </div>
-                    <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
-                        save & Publish
-                    </button>
                 </div>
-               </div>
 
             </div>
 
@@ -273,8 +273,8 @@
                                         </div>
 
                                         <div class="inpuBox product-wrapper col-md-12 mb-3">
-                                            <input type="number" class="product quantityInput" name="stock" id="quantityInput"
-                                                placeholder="Quantity in Stock" />
+                                            <input type="number" class="product quantityInput" name="stock"
+                                                id="quantityInput" placeholder="Quantity in Stock" />
 
 
                                             <div class="quantity-controls">
@@ -325,11 +325,13 @@
                                 <div class="col-md-6 subFormleft">
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <textarea id="w3review" name="short_description" rows="4" class="w-100" cols="50" placeholder="Short Description"></textarea>
+                                            <textarea id="w3review" name="short_description" rows="4" class="w-100" cols="50"
+                                                placeholder="Short Description"></textarea>
 
                                         </div>
                                         <div class="col-md-12  mb-3 w-100 h-100">
-                                            <label for="productDescription" class="form-label Description ">Product Long
+                                            <label for="productDescription" class="form-label Description ">Product
+                                                Long
                                                 Description</label>
 
                                             <div id="toolbar">
@@ -355,7 +357,8 @@
                                             </div>
 
 
-                                            <div class="form-text mt-2 " style="color: #8f8787">Add a long description for
+                                            <div class="form-text mt-2 " style="color: #8f8787">Add a long description
+                                                for
                                                 your
                                                 product</div>
                                         </div>
@@ -366,7 +369,8 @@
                                                     <p class="discount">Add Discount</p>
                                                     <div class="">
                                                         <label class="switch">
-                                                            <input type="checkbox" name="discount2" id="toggleSwitch2" />
+                                                            <input type="checkbox" name="discount2"
+                                                                id="toggleSwitch2" />
                                                             <span class="slider"></span>
                                                         </label>
                                                     </div>
@@ -374,13 +378,38 @@
                                             </div>
 
                                         </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Min Order</h6>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="min_order"
+                                                                id="toggleSwitch3" onclick="toggleMinOrderValue()"
+                                                                aria-label="Toggle Minimum Order" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column dateTime  " id="minOrderValueContainer"
+                                            style="display: none;">
+                                            <p>Min Order Value</p>
+                                            <div class="d-flex gap-3">
+                                                <input name="min_order_value" type="number" class="date"
+                                                    value="1" min="1" aria-label="Minimum Order Value" />
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
 
                                             <div class="d-flex flex-column dateTime">
                                                 <p>Date & Time</p>
                                                 <div class="d-flex gap-3">
-                                                    <input name="date" type="date" class="date" value="2024-01-01" />
-                                                    <input name="time" type="time" class="date" value="00:00" />
+                                                    <input name="date" type="date" class="date"
+                                                        value="2024-01-01" />
+                                                    <input name="time" type="time" class="date"
+                                                        value="00:00" />
                                                 </div>
                                             </div>
 
@@ -405,7 +434,8 @@
                                     src="{{ asset('assets/admin/images/Image.png') }} "
                                     style="width: 30px; transition: all 0.5s ease;" />
 
-                                <div class="d-flex justify-content-center align-items-center gap-2" id="uploadPlaceholder">
+                                <div class="d-flex justify-content-center align-items-center gap-2"
+                                    id="uploadPlaceholder">
                                     <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} " />
                                     <h6>Upload Image</h6>
                                 </div>
@@ -583,6 +613,24 @@
             // Post the form data via AJAX
 
         });
+
+
+        // Toggle visibility on checkbox change
+        $('#toggleSwitch3').on('change', function() {
+            if ($(this).is(':checked')) {
+
+                $('#minOrderValueContainer').show();
+            } else {
+                $('#minOrderValueContainer').hide();
+            }
+        });
+
+        // Initialize visibility based on the checkbox state when the page loads
+        if ($('#toggleSwitch3').is(':checked')) {
+            $('#minOrderValueContainer').show();
+        } else {
+            $('#minOrderValueContainer').hide();
+        }
     });
 </script>
 @endsection

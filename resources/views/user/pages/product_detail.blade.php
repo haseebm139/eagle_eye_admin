@@ -45,6 +45,7 @@
                         <div class="product_feature_image_wrapper">
                             @if (isset($product->images[0]))
                                 @php
+
                                     $imgs1 = $product->images[0]->path;
                                 @endphp
                                 <img src="{{ asset($imgs1) }}" id="featured_img" alt="error" />
@@ -56,8 +57,14 @@
                 <div class="col-xxl-5 col-xm-5 col-lg-5 col-md-12 col-sm-12 mt-sm-5 mt-lg-0">
                     <div class="product_details_wrapper">
                         <h1 class="product_title">{{ Str::ucfirst($product->name ?? '') }}</h1>
-                        <p class="product_price">$<span
-                                id="product_price">{{ number_format($product->is_discount ? $product->sell_price : $product->cost_price, 2) }}</span>
+                        @php
+
+                            $global_value = $product->global_value;
+                            $base_price = $product->is_discount ? $product->sell_price : $product->cost_price;
+                            $extra_price = $base_price * ($global_value / 100);
+                            $increased_price = $base_price + $extra_price;
+                        @endphp
+                        <p class="product_price">$<span id="product_price">{{ number_format($increased_price, 2) }}</span>
                             /per piece</p>
                         <p class="extra_paragraph">Flatbed printed materials with UV ink</p>
                         <form action="{{ route('add.to.cart') }}" method="POST" class="product_details_form"
@@ -122,7 +129,8 @@
                                                 src="{{ asset('assets/website/images/svg/minus.svg') }}"
                                                 width="20px"></button>
                                         <input type="text" class="qty_selector" id="selector" name="qty"
-                                            value="1" min="1">
+                                            value="{{ $product->min_order_value ?? 1 }}"
+                                            min="{{ $product->min_order_value ?? 1 }}">
                                         <button id="plus_quantity" type="button" class="qty_buttons"><img
                                                 src="{{ asset('assets/website/images/svg/plus.svg') }} "
                                                 width="20px"></button>
@@ -402,9 +410,11 @@
 
                 let qtyInput = $('#selector');
                 let currentValue = parseInt(qtyInput.val());
+                let minValue = parseInt(qtyInput.attr(
+                    'min')); // Get the minimum value from the input attribute
 
-                // Decrease the quantity but ensure it doesn't go below 1
-                if (currentValue > 1) {
+                // Decrease the quantity but ensure it doesn't go below the minimum value
+                if (currentValue > minValue) {
                     qtyInput.val(currentValue - 1);
                 }
             });

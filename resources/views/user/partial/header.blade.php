@@ -42,11 +42,11 @@
                     <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
                 </li>
             </ul>
+            <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
+                    src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
+                {{ $total_cart_item }}</a>
             @auth
 
-                <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
-                        src="{{ asset('assets/website/images/svg/cart-shopping-fast 1.svg') }} " class="ml-2" /> Cart -
-                    {{ $total_cart_item }}</a>
 
 
 

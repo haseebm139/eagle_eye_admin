@@ -61,7 +61,7 @@ Route::controller(UserProductController::class)->group(function(){
 
 Route::controller(CartController::class)->group(function(){
     Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
-    Route::POST('/place-order', 'placeOrder')->name('place.order');
+
     Route::post('/cart/update',  'updateCart')->name('cart.update');
     Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
     // Route::patch('update-cart', 'update')->name('update.cart');
@@ -72,14 +72,10 @@ Route::get('logout', [AuthController::class,'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::controller(HomeController::class)->group(function(){
-
-        Route::get('/cart', 'cart')->name('cart');
-
-
-
+    Route::controller(CartController::class)->group(function(){
+        Route::POST('/place-order', 'placeOrder')->name('place.order');
     });
+
 
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
@@ -108,6 +104,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/products/upload','showUploadForm')->name('form');
             Route::post('/products/upload',  'uploadProducts')->name('upload');
+
+
+            Route::post('/update-global-price', 'updateGlobalPrice')->name('update.global.price');
 
         });
         Route::controller(CustomerController::class)->name('customer.')->group(function(){

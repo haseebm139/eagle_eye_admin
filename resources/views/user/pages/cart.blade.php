@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
     </style>
 @endsection
 @section('content')
@@ -828,9 +828,10 @@
                                             <div class="d-flex justify-content-start align-items-center gap-2 quantity">
                                                 <a class="btn minus" data-id="{{ $item['id'] }}">-</a>
                                                 <Input type="text" class="cart_qty" value="{{ $item['quantity'] }}"
-                                                    readonly min="1">
+                                                    readonly min="{{ $item['attributes']['min_order_value'] ?? 1 }}">
                                                 <Input type="text" name="quantity" class="cart_qty"
-                                                    value="{{ $item['quantity'] }}" hidden min="1">
+                                                    value="{{ $item['quantity'] }}" hidden
+                                                    min="{{ $item['attributes']['min_order_value'] ?? 1 }}">
                                                 <a class="btn plus" data-id="{{ $item['id'] }}">+</a>
                                             </div>
                                         </td>
@@ -1131,7 +1132,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1649,8 +1650,11 @@
                 var itemId = $(this).data('id');
                 var quantityInput = $(this).siblings('.cart_qty');
                 var currentQuantity = parseInt(quantityInput.val());
+                var minValue = parseInt(quantityInput.attr(
+                    'min')); // Get the minimum value from the input attribute
 
-                if (currentQuantity > 1) { // Prevent going below 1
+                // Prevent going below the minimum value
+                if (currentQuantity > minValue) {
                     updateCartQuantity(itemId, currentQuantity - 1);
                     quantityInput.val(currentQuantity - 1);
                 }
@@ -1662,6 +1666,7 @@
                 var quantityInput = $(this).siblings('.cart_qty');
                 var currentQuantity = parseInt(quantityInput.val());
 
+                // Increase quantity
                 updateCartQuantity(itemId, currentQuantity + 1);
                 quantityInput.val(currentQuantity + 1);
             });
@@ -1677,16 +1682,23 @@
                         quantity: newQuantity
                     },
                     success: function(response) {
-                        console.log(response);
+
 
                         if (response.success) {
                             $('th.header2.subtotal').text('$' + parseFloat(response.data.cartTotal)
                                 .toFixed(2));
                             location.reload();
                             // Optionally, update the cart totals or show a success message
-                            console.log('Cart updated successfully.');
+
                         } else {
-                            alert('Failed to update cart.');
+
+                            if (response.success == false) {
+
+                                toastr.error(response.message);
+
+
+                            }
+
                         }
                     },
                     error: function() {

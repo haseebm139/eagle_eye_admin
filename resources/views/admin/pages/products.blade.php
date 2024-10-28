@@ -23,37 +23,40 @@
             src: url("fonts/Poppins/Poppins-Medium.ttf");
         }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
 
-#global_price_variable_wrapper input[type="number"] {
-    width: 80px;
-    padding:5px 10px;
-    text-align: center;
- 
+        #global_price_variable_wrapper input[type="number"] {
+            width: 80px;
+            padding: 5px 10px;
+            text-align: center;
 
-}
-#global_price_variable_wrapper form{
-    display: flex;
-    align-items: center;
-    gap:10px;
-    font-size: 13px;
-}
-#global_price_variable_wrapper form label{
-font-size: 13px;
-}
-#global_price_variable_wrapper form input[type='submit']{
-    padding:5px 10px;
-}
+
+        }
+
+        #global_price_variable_wrapper form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        #global_price_variable_wrapper form label {
+            font-size: 13px;
+        }
+
+        #global_price_variable_wrapper form input[type='submit'] {
+            padding: 5px 10px;
+        }
     </style>
 @endsection
 @section('content')
@@ -158,8 +161,7 @@ font-size: 13px;
                                 <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> send
                             </button>
                             <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                    >
+                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown">
                                     <option value="3">bulk Action</option>
                                     <option value="5">page</option>
                                     <option value="10">per page</option>
@@ -167,42 +169,44 @@ font-size: 13px;
                             </div>
                         </div>
                     </div>
-                    
-                   
+
+
                 </div>
-                    <div class="row mt-5 mb-3 justify-content-end" id='global_price_variable_wrapper'>
-                        <div class="col-md-4">
-                            <form action="">
-                                <label for="">Global Price Variable </label>
-                                <input type="number" step="0.01" name="global_price_variable" placeholder="0.0" id="global_price_variable">%
-                                <input type="submit" class="btn btn-dark bg-black" value="Apply">
-                            </form>
-                               
-                        </div>
+                <div class="row mt-5 mb-3 justify-content-end" id='global_price_variable_wrapper'>
+                    <div class="col-md-4">
+                        <form action="{{ route('product.update.global.price') }}"method="POST">
+                            @csrf
+                            <label for="">Global Price Variable </label>
+                            <input type="number" step="0.01" name="global_price_variable" placeholder="0.0"
+                                id="global_price_variable">%
+                            <input type="submit" class="btn btn-dark bg-black" value="Apply">
+                        </form>
+
                     </div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" id="select-all">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </th>
-                                    <th width='50px'></th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Unit Price</th>
-                                    <th scope="col">In-Stock</th>
-                                    <th scope="col">Discount</th>
-                                    <th scope="col">Total Value</th>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body">
-                                {{-- <tr>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="select-all">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </th>
+                                <th width='50px'></th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">In-Stock</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Total Value</th>
+                                <th scope="col">Action</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            {{-- <tr>
                                         <td>
                                             <label class="custom-checkbox">
                                                 <input type="checkbox" class="product-checkbox" data-id="1">
@@ -241,53 +245,53 @@ font-size: 13px;
                                     </tr> --}}
 
 
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
 
-                       
+
+                </div>
+                <!-- Pagination Controls -->
+                <div id="product-pagination"
+                    class="pagination-container d-flex justify-content-between align-items-center d-none">
+                    <!-- Items per page dropdown -->
+                    <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
+                        <select id="itemsPerPage1"
+                            class="form-select productDropdown3 form-select-sm filter-dropdown">
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                        <p>Items per page</p>
+                        <p class="TotalItems">1-10 of 100 items</p>
                     </div>
-                     <!-- Pagination Controls -->
-                     <div id="product-pagination"
-                     class="pagination-container d-flex justify-content-between align-items-center d-none">
-                     <!-- Items per page dropdown -->
-                     <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
-                         <select id="itemsPerPage1"
-                             class="form-select productDropdown3 form-select-sm filter-dropdown">
-                             <option value="3">3</option>
-                             <option value="5">5</option>
-                             <option value="10">10</option>
-                         </select>
-                         <p>Items per page</p>
-                         <p class="TotalItems">1-10 of 100 items</p>
-                     </div>
 
-                     <!-- Showing results text -->
-                     <div id="showing-info" class="text-muted"></div>
+                    <!-- Showing results text -->
+                    <div id="showing-info" class="text-muted"></div>
 
-                     <!-- Pagination -->
-                     <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column" aria-label="Page navigation ">
-                         <select id="itemsPerPage"
-                             class="form-select productDropdown3 form-select-sm filter-dropdown">
-                             <option value="3">1</option>
-                             <option value="5">5</option>
-                             <option value="10">10</option>
-                         </select>
-                         <p class="TotalItems">1-10 of 100 items</p>
-                         <ul class="pagination mb-0">
-                             <li class="page-item">
-                                 <a class="page-link" href="javascript:void(0);" id="prev-page">
-                                     <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }}" />
-                                 </a>
-                             </li>
-                             <li class="page-item">
-                                 <a class="page-link" href="javascript:void(0);" id="next-page">
-                                     <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }}" />
-                                 </a>
-                             </li>
-                         </ul>
-                     </nav>
-                 </div>
-               
+                    <!-- Pagination -->
+                    <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column"
+                        aria-label="Page navigation ">
+                        <select id="itemsPerPage" class="form-select productDropdown3 form-select-sm filter-dropdown">
+                            <option value="3">1</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                        <p class="TotalItems">1-10 of 100 items</p>
+                        <ul class="pagination mb-0">
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);" id="prev-page">
+                                    <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }}" />
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);" id="next-page">
+                                    <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }}" />
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
             </div>
         </div>
 

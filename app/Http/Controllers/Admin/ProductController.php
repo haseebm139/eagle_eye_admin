@@ -144,24 +144,25 @@ class ProductController extends Controller
                 'message' => $validator->errors()->first()
             ]); // Unprocessable Entity
         }
-
         try {
-            $productData = $request->except(['discount','discount2','image','expiry_date']); // Exclude discount2
+            $productData['slug'] = Str::slug($request->name); // Generate slug
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value']);
             $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
             $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
             $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
 
+            if ($request->min_order === 'on') {
+                $productData['is_min_orders'] = 1; // Marking min_order as enabled
+                $productData['min_order_value'] = $request->min_order_value;
+            } else {
+                $productData['is_min_orders'] = 0; // Marking min_order as disabled
+                $productData['min_order_value'] = 1; // No minimum order value if min_order is off
+            }
 
             $product = Product::create($productData);
             if ($request->hasFile('image')) {
 
                 foreach ($request->file('image') as $file) {
-                    // // Generate a unique filename
-                    // $filename = time().'_'.$file->getClientOriginalName();
-
-
-                    // $path = $file->move(public_path('images'),$filename);
-                    // dd($path);
 
                     $img = time().$file->getClientOriginalName();
                     $file_path = "documents/products/".$img;
@@ -175,6 +176,7 @@ class ProductController extends Controller
                 }
             }
             return response()->json(['success' => true, 'message' => 'Product created successfully']);
+
             //code...
         } catch (\Throwable $th) {
             return response()->json(['success' => false, 'message' => 'Something Went Wrong']);
@@ -229,5 +231,32 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['success' => false, 'message' => 'Something went worng']);
         }
+    }
+
+
+    public function updateGlobalPrice(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'global_price_variable' => 'required|numeric|min:0|max:100'
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
+        }
+        $request->validate([
+            'global_price_variable' => 'required|numeric'
+        ]);
+        $globalPriceVariable = $request->global_price_variable;
+
+
+        // Fetch all products and update their prices
+        $products = Product::all();
+        foreach ($products as $product) {
+            $product->global_value = $globalPriceVariable;
+            $product->save();
+        }
+
+        return redirect()->back()->with(array('message'=>'Global price variable applied to all products successfully!','type'=>'success'));
     }
 }
