@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Category;
 class AdminController extends Controller
 {
     public function dashboard(){
@@ -38,7 +39,8 @@ class AdminController extends Controller
 
     }
     public function addProduct(){
-        return view('admin.pages.add_new_product');
+        $data['categories'] = Category::all();
+        return view('admin.pages.add_new_product',compact('data'));
     }
 
     public function settings(){

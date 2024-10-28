@@ -249,9 +249,9 @@
                             <div class="">
                                 <select id="itemsPerPage" name="category"
                                     class="form-select form-select-sm ProductList">
-                                    <option value="3">Select Product Category</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
+                                    @foreach ($data['categories'] as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
