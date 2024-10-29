@@ -11,6 +11,11 @@ class Product extends Model
     protected $guarded = [ ];
 
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories');
+    }
+
     /**
      * Get all of the images for the Product
      *
@@ -30,4 +35,6 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class );
     }
+
+
 }

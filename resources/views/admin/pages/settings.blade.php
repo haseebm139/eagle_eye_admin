@@ -763,7 +763,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div  class="col-md-8 mb-4">
+                                    <div class="col-md-8 mb-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center image-uploader5 gap-3"
                                             id="imageUploader5"
                                             onclick="document.getElementById('imageInput5').click()">
@@ -817,30 +817,18 @@
                                                     placeholder="Search Employee by name, role, ID or any related keywords" />
                                             </div>
                                             <div class="d-flex justify-content-around w-buttoon">
-                                                <button type="button" class="filter-btn" id="openModalButton">
-                                                    <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
-                                                    Filter
-                                                </button>
-                                                <button class="filter-btn bg-gray">
-                                                    <img
-                                                        src="{{ asset('assets/admin/images/svg/List_Unordered.svg') }}" />
-                                                </button>
-                                                <button type="button" class="filter-btn">
-                                                    <img src="{{ asset('assets/admin/images/svg/Category.svg') }}" />
-                                                </button>
+
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
-                                            <button type="button" class="filter-btn export-btn text-center">
-                                                <img src="{{ asset('assets/admin/images/svg/download.svg') }}" /> Export
-                                            </button>
+
                                             <button type="button" class="filter-btn n-emp" id="openModalButton">
                                                 <img
                                                     src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
                                                 New Employee
                                             </button>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -850,8 +838,10 @@
                                     <thead>
                                         <tr class="orderTable">
                                             <th scope="col">
-                                                <label class="custom-checkbox" id="click_me" for="select-all-emp-role">
-                                                    <input type="checkbox" id="select-all-emp-role" name="order_[]" />
+                                                <label class="custom-checkbox" id="click_me"
+                                                    for="select-all-emp-role">
+                                                    <input type="checkbox" id="select-all-emp-role"
+                                                        name="order_[]" />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
@@ -867,30 +857,30 @@
                                     </tbody>
                                 </table>
 
-                                
+
                             </div>
                             <nav class="d-flex justify-content align-items-center gap-2"
-                                    aria-label="Page navigation ">
-                                    <select id="itemsPerPage"
-                                        class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                        <option value="3">1</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <p class="TotalItems">1-10 of 100 items</p>
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" id="prev-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" id="next-page">
-                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                aria-label="Page navigation ">
+                                <select id="itemsPerPage"
+                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                    <option value="3">1</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <p class="TotalItems">1-10 of 100 items</p>
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" id="prev-page">
+                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" id="next-page">
+                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
 
                     </div>
@@ -909,18 +899,16 @@
 
 <script>
     $(document).ready(function() {
-    // Listen for a change event on the "Select All" checkbox
-    $('#select-all-emp-role').on('change', function() {
+        // Listen for a change event on the "Select All" checkbox
+        $('#select-all-emp-role').on('change', function() {
 
-        // Set the checked status of all checkboxes within the table to match the "Select All" checkbox
-        $('#table-body-emp-role').find('input[type="checkbox"]').prop('checked', this.checked);
+            // Set the checked status of all checkboxes within the table to match the "Select All" checkbox
+            $('#table-body-emp-role').find('input[type="checkbox"]').prop('checked', this.checked);
+        });
     });
-});
 </script>
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
-
-
     function submitForm() {
 
         document.getElementById("updateForm").submit(); // Submits the form

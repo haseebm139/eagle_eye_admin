@@ -2,76 +2,80 @@
 @section('title', 'Customer')
 
 @section('style')
-<style>
-    .table td {
-  white-space: nowrap !important;
-}
- .modal-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    margin: 10% auto;
-    padding: 4px;
-    border-radius: 8px;
-    width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    <style>
+        .table td {
+            white-space: nowrap !important;
+        }
 
- .modal-content2 {
-    display: none;
-    position: absolute;
-    background-color: white;
-    margin: 7% auto;
-    padding: 16px;
-    width: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+        .modal-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            margin: 10% auto;
+            padding: 4px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
- .modal-header {
-     font-family: "Inter", sans-serif;font-weight:500;
-    align-items: center;
-    padding-bottom: 5px;
-}
+        .modal-content2 {
+            display: none;
+            position: absolute;
+            background-color: white;
+            margin: 7% auto;
+            padding: 16px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-
-.NewCompany {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
+        .modal-header {
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+            align-items: center;
+            padding-bottom: 5px;
+        }
 
 
-.model {
-    border-radius: 20px;
-    background-color: white;
-    width: 400px;
-    padding: 1.5rem 1.2rem;
-    z-index: 2;
-}
+        .NewCompany {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
 
 
-.model span {
-  font-family: 'Poppins', sans-serif; font-weight:bold;
-}
+        .model {
+            border-radius: 20px;
+            background-color: white;
+            width: 400px;
+            padding: 1.5rem 1.2rem;
+            z-index: 2;
+        }
 
 
-.model p {
-    margin-top: none;
-    margin-bottom: 0;
-    color: #8b8d97;
-    padding: 6px 0;
-    font-size: 13px;
-     font-family: "Inter", sans-serif;font-weight:500;
-}
-</style>
+        .model span {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+
+
+        .model p {
+            margin-top: none;
+            margin-bottom: 0;
+            color: #8b8d97;
+            padding: 6px 0;
+            font-size: 13px;
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+        }
+    </style>
 
 
 @endsection
@@ -96,38 +100,27 @@
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon2.svg') }} " />
-                                <div class="leftAlignement">
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
-                                        </select>
-                                        <span class="dropdown-icon"></span>
-                                        <!-- Down arrow icon -->
-                                    </div>
-                                    <!-- <p class="side-text">This Week</p> -->
-                                </div>
+
                             </div>
 
                             <div class="bottomContent">
                                 <span>
-                                    <p class="sales">All Customers</p>
+                                    <p class="sales">All Clients</p>
                                     <p class="card_counting_numbers">
-                                        1,250 <span class="rates">+15.80%</span>
+                                        1,250
                                     </p>
                                 </span>
 
                                 <span>
                                     <p class="sales">Active</p>
                                     <p class="card_counting_numbers">
-                                        1,180 <span class="rates">+85%</span>
+                                        1,180
                                     </p>
                                 </span>
                                 <span>
                                     <p class="sales">In-Active</p>
                                     <p class="card_counting_numbers">
-                                        450 <span class="rates">+20.00%</span>
+                                        450
                                     </p>
                                 </span>
                             </div>
@@ -140,9 +133,11 @@
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">ALL</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+
                                         </select>
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
@@ -154,7 +149,7 @@
                                 <span>
                                     <p class="sales">New Customers</p>
                                     <p class="card_counting_numbers">
-                                        1,250 <span class="rates">+15.80%</span>
+                                        1,250
                                     </p>
                                 </span>
                                 <span>
@@ -162,7 +157,7 @@
                                     <p class="card_counting_numbers">657</p>
                                 </span>
                                 <span>
-                                    <p class="sales">Abandoned Carts</p>
+                                    <p class="sales">Orders</p>
                                     <p class="card_counting_numbers">5</p>
                                 </span>
                             </div>
@@ -180,116 +175,96 @@
                                     <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
                                     <input type="text" id="searchInput" placeholder="Search.." />
                                 </div>
-                                <button class="filter-btn" id="addCompanyBtn2">
-                                    <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " />
-                                    Filter
-                                </button>
-                                <button class="filter-btn">
-                                    <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
-                                    Calendar
-                                </button>
-    
-                                <button class="filter-btn">
-                                    <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " />
-                                </button>
-                                <div>
-                                    <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                        >
-                                        <option value="3">bulk Action</option>
-                                        <option value="5">page</option>
-                                        <option value="10">per page</option>
-                                    </select>
-                                </div>
+
                             </div>
                         </div>
-                       
-                        
+
+
                     </div>
-        
-                        <div class="table-responsive">
-                            <table class="table mt-3">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" id="select-all" />
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </th>
 
-                                        <th class="" scope="col">
-                                            Customer Name <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
-                                        </th>
-                                        <th scope="col">
-                                            Email <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
-                                        </th>
-                                        <th scope="col">
-                                            Phone <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
-                                        </th>
-                                        <th scope="col">
-                                            Orders <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
-                                        </th>
-                                        <th scope="col">
-                                            Order Total <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
-                                        </th>
-                                        <th scope="col">
-                                            Customer Since <img
-                                                src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
-                                        </th>
+                    <div class="table-responsive">
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <label class="custom-checkbox">
+                                            <input type="checkbox" id="select-all" />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </th>
 
-                                        <th scope="col">
-                                            Status <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body">
-                                    <!-- Table rows will be dynamically generated here -->
-                                </tbody>
-                            </table>
+                                    <th class="" scope="col">
+                                        Customer Name <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
+                                    </th>
+                                    <th scope="col">
+                                        Email <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
+                                    </th>
+                                    <th scope="col">
+                                        Phone <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
+                                    </th>
+                                    <th scope="col">
+                                        Orders <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
+                                    </th>
+                                    <th scope="col">
+                                        Order Total <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
+                                    </th>
+                                    <th scope="col">
+                                        Customer Since <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
+                                    </th>
 
-                          
+                                    <th scope="col">
+                                        Status <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Table rows will be dynamically generated here -->
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- Pagination Controls -->
+                    <div class="pagination-container d-flex justify-content-between align-items-center">
+                        <!-- Items per page dropdown -->
+                        <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
+                            <select id="itemsPerPage"
+                                class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                            <p>Items per page</p>
+                            <p class="TotalItems">1-10 of 100 items</p>
                         </div>
-                   <!-- Pagination Controls -->
-                   <div class="pagination-container d-flex justify-content-between align-items-center">
-                    <!-- Items per page dropdown -->
-                    <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
-                        <select id="itemsPerPage"
-                            class="form-select productDropdown3 form-select-sm filter-dropdown">
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                        </select>
-                        <p>Items per page</p>
-                        <p class="TotalItems">1-10 of 100 items</p>
+
+                        <!-- Showing results text -->
+                        <div id="showing-info" class="text-muted"></div>
+
+                        <!-- Pagination -->
+                        <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column-reverse"
+                            aria-label="Page navigation ">
+                            <select id="itemsPerPage"
+                                class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                <option value="3">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                            <p class="TotalItems">1-10 of 100 items</p>
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" id="prev-page">
+                                        <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" id="next-page">
+                                        <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-
-                    <!-- Showing results text -->
-                    <div id="showing-info" class="text-muted"></div>
-
-                    <!-- Pagination -->
-                    <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column-reverse" 
-                        aria-label="Page navigation ">
-                        <select id="itemsPerPage"
-                            class="form-select productDropdown3 form-select-sm filter-dropdown">
-                            <option value="3">1</option>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                        </select>
-                        <p class="TotalItems">1-10 of 100 items</p>
-                        <ul class="pagination mb-0">
-                            <li class="page-item">
-                                <a class="page-link" href="#" id="prev-page">
-                                    <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" id="next-page">
-                                    <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
                 </div>
             </div>
 

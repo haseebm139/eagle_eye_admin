@@ -51,10 +51,9 @@ class CustomerController extends Controller
 
         // Check if validation fails
         if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => $validator->errors()->first()
-            ]); // Unprocessable Entity
+
+
+            return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
         }
 
         $user = User::create([

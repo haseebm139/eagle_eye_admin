@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ShippingRate;
+use App\Models\Category;
 
 
 class HomeController extends Controller
@@ -14,6 +15,10 @@ class HomeController extends Controller
         return view('user.pages.index',compact('data'));
     }
     public function equipments(){
+        $data['categories'] = Category::with(['products' => function ($query) {
+            $query->with('images');
+        }])->orderBy('id','DESC')->get();
+        // return $data['categories'][0]->products[0];
         $data['products'] = Product::with('image')->select('id','name','slug' )->get();
         return view('user.pages.equipments',compact('data'));
     }

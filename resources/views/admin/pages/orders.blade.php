@@ -52,7 +52,7 @@
                                 <span>
                                     <p class="sales">Volume</p>
                                     <p class="card_counting_numbers">
-                                        450 <span class="rates">+20.00%</span>
+                                        450
                                     </p>
                                 </span>
                             </div>
@@ -81,13 +81,13 @@
                                 <span>
                                     <p class="sales">Customers</p>
                                     <p class="card_counting_numbers">
-                                        1,250 <span class="rates">+15.80%</span>
+                                        1,250
                                     </p>
                                 </span>
                                 <span>
                                     <p class="sales">Active</p>
                                     <p class="card_counting_numbers">
-                                        1,180 <span class="rates"> 85%</span>
+                                        1,180
                                     </p>
                                 </span>
                             </div>
@@ -177,11 +177,11 @@
                                         </div>
 
                                         <div class="filter-group">
-                                            <label>Customer</label>
+                                            <label>Location</label>
                                             <select class="select">
-                                                <option value="all">All</option>
-                                                <option value="customer1">Customer 1</option>
-                                                <option value="customer2">Customer 2</option>
+                                                <option value="dallas">Dallas</option>
+                                                <option value="houston">Houston</option>
+                                                <option value="austin san antonio">Austin San Antonio </option>
                                             </select>
                                         </div>
 
@@ -206,104 +206,10 @@
                                 </div>
                             </div>
 
-                            <button type="button" class="filter-btn" id="openModalButton2-calander">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }}" /> Calendar
-                            </button>
-                            <div id="modal-content2-calander" class="modal-content2">
-                                <h6>By Date</h6>
 
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            This Week
-                                        </label>
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            This Month
-                                        </label>
 
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            This Year
-                                        </label>
 
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            Date range
-                                        </label>
-                                    </div>
 
-                                    <div class="d-flex flex-column align-items-baseline mt-1 filter-group2">
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            Last Week
-                                        </label>
-
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            Last Month
-                                        </label>
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" class="product-checkbox"
-                                                data-id="${product.id}" />
-                                            <span class="checkmark2"></span>
-                                            Last Year
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="toggle-button">
-                                    <button class="toggle-option active" id="from-btn">
-                                        From
-                                    </button>
-                                    <button class="toggle-option" id="to-btn">To</button>
-                                </div>
-
-                                <div class="calendar">
-                                    <header>
-                                        <h6>
-                                            <select class="year-select" id="year-select"></select>
-                                            <select class="year-select" id="month-select"></select>
-                                        </h6>
-                                    </header>
-                                    <section class="mainCalendar">
-                                        <ul class="days">
-                                            <li>S</li>
-                                            <li>M</li>
-                                            <li>T</li>
-                                            <li>W</li>
-                                            <li>T</li>
-                                            <li>F</li>
-                                            <li>S</li>
-                                        </ul>
-                                        <ul class="dates"></ul>
-                                    </section>
-                                </div>
-                                <button class="calendarbtn">filter</button>
-                            </div>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Send.svg') }}" /> Send
-                            </button>
-                            <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown">
-                                    <option value="3">bulk Action</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
 
@@ -1169,10 +1075,7 @@
                 e.preventDefault();
                 $('#modal-content-filter').toggle(); // This will toggle between show and hide
             });
-            $('#openModalButton2-calander').on('click', function(e) {
-                e.preventDefault();
-                $('#modal-content2-calander').toggle(); // This will toggle between show and hide
-            });
+
 
             let currentPage = 1;
             let itemsPerPage = 10; // Default items per page
@@ -1263,13 +1166,13 @@
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                                                                        <li class = >
-                                                                                                                                                                                            <label>
-                                                                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                                                                ${employee.name}
-                                                                                                                                                                                            </label>
-                                                                                                                                                                                        </li>
-                                                                                                                                                                                    `).join('')}
+                                                                                                                                                                                                                            <li class = >
+                                                                                                                                                                                                                                <label>
+                                                                                                                                                                                                                                    <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                                                                                    ${employee.name}
+                                                                                                                                                                                                                                </label>
+                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                        `).join('')}
                                 </ul>
                             </div>
                         </td>

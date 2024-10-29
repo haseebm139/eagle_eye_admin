@@ -96,7 +96,7 @@
                                 <p class="sales" style="color: white">Active</p>
                                 <p class="card_counting_numbers">
                                     316
-                                    <span class="rates" style="color: white">+20.00%</span>
+
                                 </p>
                             </span>
                         </div>
@@ -125,12 +125,12 @@
                                 <p class="card_counting_numbers">23</p>
                             </span>
                             <span>
-                                <p class="sales">Expired</p>
+                                <p class="sales">Publish Products</p>
                                 <p class="card_counting_numbers">3</p>
                             </span>
 
                             <span>
-                                <p class="sales">1 Start Rating</p>
+                                <p class="sales">Un-Publish Products</p>
                                 <p class="card_counting_numbers">2</p>
                             </span>
                         </div>
@@ -149,41 +149,20 @@
                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
                                 <input type="text" id="searchInput" placeholder="Search.." />
                             </div>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
-                                Filter
-                            </button>
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> send
-                            </button>
-                            <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown">
-                                    <option value="3">bulk Action</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
-                                </select>
-                            </div>
+                            <form action="{{ route('product.update.global.price') }}"method="POST">
+                                @csrf
+                                <label for="">Global Price Variable </label>
+                                <input type="number" step="0.01" name="global_price_variable" placeholder="0.0"
+                                    id="global_price_variable">%
+                                <input type="submit" class="btn btn-dark bg-black" value="Apply">
+                            </form>
+
                         </div>
                     </div>
 
 
                 </div>
-                <div class="row mt-5 mb-3 justify-content-end" id='global_price_variable_wrapper'>
-                    <div class="col-md-4">
-                        <form action="{{ route('product.update.global.price') }}"method="POST">
-                            @csrf
-                            <label for="">Global Price Variable </label>
-                            <input type="number" step="0.01" name="global_price_variable" placeholder="0.0"
-                                id="global_price_variable">%
-                            <input type="submit" class="btn btn-dark bg-black" value="Apply">
-                        </form>
 
-                    </div>
-                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -255,8 +234,7 @@
                     class="pagination-container d-flex justify-content-between align-items-center d-none">
                     <!-- Items per page dropdown -->
                     <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
-                        <select id="itemsPerPage1"
-                            class="form-select productDropdown3 form-select-sm filter-dropdown">
+                        <select id="itemsPerPage1" class="form-select productDropdown3 form-select-sm filter-dropdown">
                             <option value="3">3</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
