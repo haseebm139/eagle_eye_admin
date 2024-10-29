@@ -229,7 +229,7 @@
                 </div>
                 <div class="col-md-6  mb-3">
                     <div class="d-flex gap-3 justify-content-end">
-                        <div class="ProductDropdownLayout">
+                        {{-- <div class="ProductDropdownLayout">
                             <select id="itemsPerPage" class="form-select form-select-sm ProductDropdown"
                                 style="width: auto">
                                 <option value="3">Save as Draft</option>
@@ -237,9 +237,9 @@
                                 <option value="10">Save as Draft</option>
                             </select>
                             <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
-                        </div>
+                        </div> --}}
                         <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
-                            save & Publish
+                            Save & Publish
                         </button>
                     </div>
                 </div>
