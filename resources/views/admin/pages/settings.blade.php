@@ -822,7 +822,7 @@
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
 
-                                            <button type="button" class="filter-btn n-emp" id="openModalButton">
+                                            <button type="button" class="filter-btn n-emp" id="openModalButton_employee">
                                                 <img
                                                     src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
                                                 New Employee
@@ -892,13 +892,80 @@
 </div>
 
 
+<div class="NewCompany" id="add_employees_modal" style="display: none;">
+    <div class="model d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="my-2">Add a New Employee</span>
+            <button class="cancel" id="cancelBtn_employyee">
+                <img src="/assets/admin/images/svg/Frame_5800.svg">
+            </button>
+        </div>
+        <form action="http://127.0.0.1:8000/admin/add-customer" method="post">
+            <input type="hidden" name="_token" value="Xbompr6kE1D9qJth1pywkzZsf5JxESV8I7HiZVof" autocomplete="off">            <div>
+                <p class="CustomerPopup">Customer Information</p>
+             
+                <div class="d-flex flex-column">
+                  
+                        <input type="text" class="inputBox" name="fname" placeholder="First Name">
+                        <input type="text" class="inputBox" name="lname" placeholder="Last Name">
+           
+                    
+                    <input type="email" class="inputBox" name="email" placeholder="Customer Email">
 
+                    <input class="inputBox" id="phone" name="phone" type="tel" value="" />
+                    <input type="password" class="inputBox" name="password" placeholder="password">
+                   
+                    <div class="d-flex gap-3">
+                        <input type="text" class="inputBox" name="country" placeholder="country">
+
+                        <!--State -->
+
+                        <input type="text" class="inputBox" name="city" placeholder="city">
+                    </div>
+                    <input type="text" class="inputBox" name="Address" placeholder="Address">
+                    <div class="d-flex gap-3">
+                        <input type="text" class="inputBox" name="job_title" placeholder="job title">
+
+                        <!--State -->
+
+                        <input type="text" class="inputBox" name="job_type" placeholder="job type">
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mt-3">
+                    <button type="button" class="cancel-btn2" id="close_employee_modal">Cancel</button>
+                    <button type="submit" class="add-btn" name="add_new_employee" id="btn00">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @endsection
 @section('script')
-
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
 <script>
+  const input = document.querySelector("#phone");
+  window.intlTelInput(input, {
+    loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
+  });
+</script>
+<script>
+    
     $(document).ready(function() {
+        $('#add_employees_modal').hide();
+        $('#openModalButton_employee').on('click',function(e){
+            e.preventDefault();
+            $('#add_employees_modal').css('display','flex');
+        });
+        $('#cancelBtn_employyee').on('click',function(e){
+            e.preventDefault();
+            $('#add_employees_modal').css('display','none');
+        })
+        $('#close_employee_modal').on('click',function(e){
+            e.preventDefault();
+            $('#add_employees_modal').css('display','none');
+        })
         // Listen for a change event on the "Select All" checkbox
         $('#select-all-emp-role').on('change', function() {
 
