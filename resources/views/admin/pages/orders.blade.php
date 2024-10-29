@@ -1159,20 +1159,20 @@
                         <td>${orderTotal}</td>
                         <td>
                             <span class="Assigned" id="assignButton-${id}">
-                            Assign too
+                            Assign to
                             <img src="{{ asset('assets/admin/svg/fi_chevron-down2.svg') }} " />
                             </span>
                             <div class="dropdown-like" id="dropdown-${id}" style="display:none;">
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                                                                                                            <li class = >
-                                                                                                                                                                                                                                <label>
-                                                                                                                                                                                                                                    <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                                                                                                    ${employee.name}
-                                                                                                                                                                                                                                </label>
-                                                                                                                                                                                                                            </li>
-                                                                                                                                                                                                                        `).join('')}
+                                                                                                                                                                                                                                        <li class = >
+                                                                                                                                                                                                                                            <label>
+                                                                                                                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                                                                                                ${employee.name}
+                                                                                                                                                                                                                                            </label>
+                                                                                                                                                                                                                                        </li>
+                                                                                                                                                                                                                                    `).join('')}
                                 </ul>
                             </div>
                         </td>
@@ -1465,7 +1465,7 @@
                         <td>${orderTotal}</td>
                         <td>
                         <span class="Assigned" id="assignButton2-${id}">
-                        Assign too
+                        Assign to
                         <img src="{{ asset('assets/admin/svg/fi_chevron-down.svg') }} " />
                         </span>
                         <div class="dropdown-like" id="dropdown2-${id}" style="display:none;">

@@ -4,12 +4,12 @@
         <div class="leftbar">
             <div class="flexing">
                 <img src="{{ asset('assets/website/images/svg/Mask_group.svg') }}" />
-                <p>Talk To Us  (844) 983-0416</p>
+                <p>Talk To Us  972.466.2100</p>
 
             </div>
             <div class="flexing">
                 <img src="{{ asset('assets/website/images/svg/Mask_group_(1).svg') }}" />
-                <p>Email: info@eagleeye.com</p>
+                <p>Email: info@eagleeyesigns.net</p>
             </div>
         </div>
     </div>

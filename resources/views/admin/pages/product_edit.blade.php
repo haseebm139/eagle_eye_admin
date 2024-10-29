@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Add New Product')
+@section('title', 'Edit Product')
 
 @section('style')
     <style>
@@ -225,7 +225,7 @@
         <div class="container-fluid">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-6  mb-3">
-                    <span class="ml-2" style="font-size: 17px; font-weight: 700">New Product</span>
+                    <span class="ml-2" style="font-size: 17px; font-weight: 700">Edit Product</span>
                 </div>
                 <div class="col-md-6  mb-3">
                     <div class="d-flex gap-3 justify-content-end">
@@ -239,7 +239,7 @@
                             <img src="{{ asset('assets/admin/images/svg/whiteDropdown.svg') }} " />
                         </div> --}}
                         <button id="saveProductFormBtn" class="order-btn2 d-flex align-items-center">
-                            Save & Publish
+                            Update
                         </button>
                     </div>
                 </div>
@@ -255,14 +255,17 @@
                                 <div class="col-md-6 rightForm">
                                     <div class="row">
                                         <div class="inpuBox col-md-12 mb-3">
-                                            <input name="name" class="product" placeholder="Product Name" />
+                                            <input type="hidden" name="product_id" class="product"
+                                                value="{{ $product->id ?? '' }}" />
+                                            <input name="name" class="product" placeholder="Product Name"
+                                                value="{{ $product->name ?? '' }}" />
                                         </div>
 
                                         <div class=" col-md-12 mb-3">
                                             <select id="itemsPerPage" name="category_id"
                                                 class="form-select form-select-sm ProductList">
-                                                @if (isset($data['categories'][0]))
-                                                    @foreach ($data['categories'] as $item)
+                                                @if (isset($categories[0]))
+                                                    @foreach ($categories as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 @endif
@@ -271,15 +274,17 @@
 
                                         <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
                                             <input class="product" name="sell_price" placeholder="Selling Price"
-                                                type="number" step="0.01" placeholder="0.0" />
+                                                type="number" step="0.01" placeholder="0.0"
+                                                value="{{ $product->sell_price ?? 0.0 }}" />
                                             <input class="product" name="cost_price" placeholder="Cost Price"
-                                                type="number" step="0.01" placeholder="0.0" />
+                                                type="number" step="0.01" placeholder="0.0"
+                                                value="{{ $product->cost_price ?? 0.0 }}" />
                                         </div>
 
                                         <div class="inpuBox product-wrapper col-md-12 mb-3">
                                             <input type="number" class="product quantityInput" name="stock"
                                                 id="quantityInput" placeholder="Quantity in Stock" step="1"
-                                                placeholder="1" />
+                                                placeholder="1" value="{{ $product->stock ?? 0 }}" />
 
 
                                             <div class="quantity-controls">
@@ -303,7 +308,8 @@
                                                 <p class="discount">Add Discount</p>
                                                 <div class="">
                                                     <label class="switch">
-                                                        <input type="checkbox" name="discount" id="toggleSwitch" />
+                                                        <input type="checkbox" name="discount" id="toggleSwitch"
+                                                            @if ($product->is_discount == '1') checked @endif />
                                                         <span class="slider"></span>
                                                     </label>
                                                 </div>
@@ -316,6 +322,7 @@
                                                     <div>
                                                         <label class="switch">
                                                             <input type="checkbox" name="min_order" id="toggleSwitch3"
+                                                                @if ($product->is_min_orders == '1') checked @endif
                                                                 onclick="toggleMinOrderValue()"
                                                                 aria-label="Toggle Minimum Order" />
                                                             <span class="slider"></span>
@@ -329,7 +336,7 @@
                                                 <p>Min Order Value</p>
                                                 <div class="d-flex gap-3">
                                                     <input name="min_order_value" type="number" class="date"
-                                                        value="1" min="1"
+                                                        value="{{ $product->min_order_value ?? 1 }}" min="1"
                                                         aria-label="Minimum Order Value" />
                                                 </div>
                                             </div>
@@ -355,7 +362,7 @@
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <textarea id="w3review" name="short_description" rows="4" class="w-100" cols="50"
-                                                placeholder="Short Description"></textarea>
+                                                placeholder="Short Description">{{ $product->short_description ?? '' }}</textarea>
 
                                         </div>
                                         <div class="col-md-12  mb-3 w-100 h-100">
@@ -382,7 +389,7 @@
                                                 <button class="ql-align" value="right"></button>
                                             </div>
                                             <div id="editor">
-
+                                                {!! $product->long_description ?? '' !!}
                                             </div>
 
 
@@ -434,68 +441,145 @@
 
                         <div class="leftBar w-100">
 
+                            @if (isset($product->images[0]))
+                                @php
+                                    $img = $product->images[0]->path ?? 'assets/admin/images/svg/fi_upload-cloud.svg';
+                                @endphp
+                                <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
+                                    id="imageUploader" onclick="document.getElementById('imageInput').click()">
+                                    <!-- Preview Image Container -->
+                                    <img id="previewImage" class="previewImage"
+                                        src="{{ asset('assets/admin/images/Image.png') }} "
+                                        style="width: 30px; transition: all 0.5s ease;" />
 
-                            <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
-                                id="imageUploader" onclick="document.getElementById('imageInput').click()">
-                                <!-- Preview Image Container -->
-                                <img id="previewImage" class="previewImage"
-                                    src="{{ asset('assets/admin/images/Image.png') }} "
-                                    style="width: 30px; transition: all 0.5s ease;" />
+                                    <div class="d-flex justify-content-center align-items-center gap-2"
+                                        id="uploadPlaceholder">
+                                        <img src="{{ asset($img) }} " />
+                                        <h6>Upload Image</h6>
+                                    </div>
 
-                                <div class="d-flex justify-content-center align-items-center gap-2"
-                                    id="uploadPlaceholder">
-                                    <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} " />
-                                    <h6>Upload Image</h6>
+                                    <p class="text-center">Upload a cover image for your product. <br />
+                                        File Format <span class="bold2">jpeg, png </span>Recommended Size <span
+                                            class="bold2">600x600
+                                            (1:1)</span>
+                                    </p>
+
+                                    <!-- Hidden Input for Image Upload -->
+                                    <input type="file" name="image[]" id="imageInput" style="display: none;"
+                                        accept="image/jpeg, image/png" onchange="previewUploadedFile(event)" />
                                 </div>
+                            @else
+                                <div class="d-flex flex-column justify-content-center align-items-center image-uploader gap-3"
+                                    id="imageUploader" onclick="document.getElementById('imageInput').click()">
+                                    <!-- Preview Image Container -->
+                                    <img id="previewImage" class="previewImage"
+                                        src="{{ asset('assets/admin/images/Image.png') }} "
+                                        style="width: 30px; transition: all 0.5s ease;" />
 
-                                <p class="text-center">Upload a cover image for your product. <br />
-                                    File Format <span class="bold2">jpeg, png </span>Recommended Size <span
-                                        class="bold2">600x600
-                                        (1:1)</span>
-                                </p>
+                                    <div class="d-flex justify-content-center align-items-center gap-2"
+                                        id="uploadPlaceholder">
+                                        <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} " />
+                                        <h6>Upload Image</h6>
+                                    </div>
 
-                                <!-- Hidden Input for Image Upload -->
-                                <input type="file" name="image[]" id="imageInput" style="display: none;"
-                                    accept="image/jpeg, image/png" onchange="previewUploadedFile(event)" />
-                            </div>
+                                    <p class="text-center">Upload a cover image for your product. <br />
+                                        File Format <span class="bold2">jpeg, png </span>Recommended Size <span
+                                            class="bold2">600x600
+                                            (1:1)</span>
+                                    </p>
 
+                                    <!-- Hidden Input for Image Upload -->
+                                    <input type="file" name="image[]" id="imageInput" style="display: none;"
+                                        accept="image/jpeg, image/png" onchange="previewUploadedFile(event)" />
+                                </div>
+                            @endif
 
 
                             <div class="mt-3">
                                 <h6>Additional Images</h6>
                                 <div class="d-flex flex-wrap gap-1 ">
+                                    @if (isset($product->images[1]))
+                                        @php
+                                            $img1 =
+                                                $product->images[1]->path ??
+                                                'assets/admin/images/svg/fi_upload-cloud.svg';
+                                        @endphp
+                                        <div class="d-flex flex-column justify-content-center align-items-center image-uploader2 gap-3"
+                                            id="imageUploader2"
+                                            onclick="document.getElementById('imageInput2').click()">
+                                            <!-- Preview Image Container -->
+                                            <img id="previewImage2" class="previewImage" src="{{ asset($img1) }} "
+                                                style="width: 30px; transition: all 0.5s ease;" />
 
-                                    <div class="d-flex flex-column justify-content-center align-items-center image-uploader2 gap-3"
-                                        id="imageUploader2" onclick="document.getElementById('imageInput2').click()">
-                                        <!-- Preview Image Container -->
-                                        <img id="previewImage2" class="previewImage"
-                                            src="{{ asset('assets/admin/images/Image.png') }} "
-                                            style="width: 30px; transition: all 0.5s ease;" />
+                                            <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
+                                                id="uploadPlaceholder2">
+                                                <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
+                                                    style="width: 16px;" />
 
-                                        <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
-                                            id="uploadPlaceholder2">
-                                            <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
-                                                style="width: 16px;" />
-                                            <p class="bold2 p-0 m-0">Upload Image</p>
+                                            </div>
+
+                                            <!-- Hidden Input for Image Upload -->
+                                            <input type="file" name="image[]" id="imageInput2"
+                                                style="display: none;" accept="image/jpeg, image/png"
+                                                onchange="previewUploadedFile2(event)" />
                                         </div>
+                                    @else
+                                        <div class="d-flex flex-column justify-content-center align-items-center image-uploader2 gap-3"
+                                            id="imageUploader2"
+                                            onclick="document.getElementById('imageInput2').click()">
+                                            <!-- Preview Image Container -->
+                                            <img id="previewImage2" class="previewImage"
+                                                src="{{ asset('assets/admin/images/Image.png') }} "
+                                                style="width: 30px; transition: all 0.5s ease;" />
 
-                                        <!-- Hidden Input for Image Upload -->
-                                        <input type="file" name="image[]" id="imageInput2" style="display: none;"
-                                            accept="image/jpeg, image/png" onchange="previewUploadedFile2(event)" />
-                                    </div>
+                                            <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
+                                                id="uploadPlaceholder2">
+                                                <img src="{{ asset('assets/admin/images/svg/fi_upload-cloud.svg') }} "
+                                                    style="width: 16px;" />
+                                                <p class="bold2 p-0 m-0">Upload Image</p>
+                                            </div>
+
+                                            <!-- Hidden Input for Image Upload -->
+                                            <input type="file" name="image[]" id="imageInput2"
+                                                style="display: none;" accept="image/jpeg, image/png"
+                                                onchange="previewUploadedFile2(event)" />
+                                        </div>
+                                    @endif
 
 
-                                    <div class="d-flex flex-column justify-content-center align-items-center image-uploader3 gap-3"
-                                        id="imageUploader3" onclick="document.getElementById('imageInput3').click()">
-                                        <!-- Preview Image Container -->
-                                        <img id="previewImage3" class="previewImage"
-                                            src="{{ asset('assets/admin/images/Image.png') }} "
-                                            style="width: 0px; transition: all 0.5s ease;" />
+                                    @if (isset($product->images[2]))
+                                        @php
+                                            $img2 =
+                                                $product->images[2]->path ??
+                                                'assets/admin/images/svg/fi_upload-cloud.svg';
+                                        @endphp
+                                        <div class="d-flex flex-column justify-content-center align-items-center image-uploader3 gap-3"
+                                            id="imageUploader3"
+                                            onclick="document.getElementById('imageInput3').click()">
+                                            <!-- Preview Image Container -->
+                                            <img id="previewImage3" class="previewImage" src="{{ asset($img2) }} "
+                                                style="width: 0px; transition: all 0.5s ease;" />
 
-                                        <!-- Hidden Input for Image Upload -->
-                                        <input type="file" name="image[]" id="imageInput3" style="display: none;"
-                                            accept="image/jpeg, image/png" onchange="previewUploadedFile3(event)" />
-                                    </div>
+                                            <!-- Hidden Input for Image Upload -->
+                                            <input type="file" name="image[]" id="imageInput3"
+                                                style="display: none;" accept="image/jpeg, image/png"
+                                                onchange="previewUploadedFile3(event)" />
+                                        </div>
+                                    @else
+                                        <div class="d-flex flex-column justify-content-center align-items-center image-uploader3 gap-3"
+                                            id="imageUploader3"
+                                            onclick="document.getElementById('imageInput3').click()">
+                                            <!-- Preview Image Container -->
+                                            <img id="previewImage3" class="previewImage"
+                                                src="{{ asset('assets/admin/images/Image.png') }} "
+                                                style="width: 0px; transition: all 0.5s ease;" />
+
+                                            <!-- Hidden Input for Image Upload -->
+                                            <input type="file" name="image[]" id="imageInput3"
+                                                style="display: none;" accept="image/jpeg, image/png"
+                                                onchange="previewUploadedFile3(event)" />
+                                        </div>
+                                    @endif
 
 
 
@@ -563,22 +647,21 @@
             }
         });
 
-        function saveProduct(data) {
+        function updateProduct(data) {
             $.ajax({
-                url: "{{ route('product.add') }}",
+                url: "{{ route('product.update') }}",
                 type: 'POST',
                 data: data,
                 processData: false, // Prevent jQuery from processing the data
                 contentType: false, // Prevent jQuery from setting contentType
                 success: function(response) {
+                    console.log(response);
 
 
                     if (response.success == true) {
                         toastr.success(response.message);
-                        $('#product-form')[0].reset();
 
-                        // If you're using a rich text editor like Quill, reset the editor content
-                        quill.root.innerHTML = '';
+
 
                     }
 
@@ -616,7 +699,7 @@
             //     ':checked'); // Check if the checkbox is checked
             // formData.append('is_discount2', discountChecked1 ? '1' :
             //     '0'); // Append '1' if checked, '0' if unchecked
-            saveProduct(formData)
+            updateProduct(formData)
 
             // Post the form data via AJAX
 
