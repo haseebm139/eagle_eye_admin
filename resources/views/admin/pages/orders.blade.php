@@ -136,16 +136,21 @@
                                             <label>Order Type</label>
                                             <div
                                                 class="d-flex justify-content-between align-items-center mt-1 filter-group2">
-                                                <label><input class="" type="checkbox" /> Home
-                                                    Delivery</label>
-                                                <label><input type="checkbox" /> Pick Up</label>
+                                                <label>
+                                                    <input class="order-type-checkbox" name="order_type" type="checkbox"
+                                                        value="home_delivery" /> Home Delivery
+                                                </label>
+                                                <label>
+                                                    <input class="order-type-checkbox" name="order_type" type="checkbox"
+                                                        value="pickup" /> Pick Up
+                                                </label>
                                             </div>
                                         </div>
 
                                         <div class="filter-group">
                                             <label>Status</label>
-                                            <select class="select">
-                                                <option value="all" selected>All</option>
+                                            <select class="select" name="status">
+                                                <option value="" selected>All</option>
                                                 <option value="0">Pending</option>
                                                 <option value="1">Delivered</option>
                                                 <option value="2">Complete</option>
@@ -155,7 +160,8 @@
 
                                         <div class="filter-group">
                                             <label>Location</label>
-                                            <select class="select">
+                                            <select class="select" name="location">
+                                                <option value="" selected>All</option>
                                                 <option value="dallas">Dallas</option>
                                                 <option value="houston">Houston</option>
                                                 <option value="austin san antonio">Austin San Antonio </option>
@@ -167,11 +173,11 @@
                                             <div class="amount-fields">
                                                 <div class="d-flex flex-column">
                                                     <label>From</label>
-                                                    <input type="number" placeholder="0.00" />
+                                                    <input type="number" name="from" placeholder="0.00" />
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <label>To</label>
-                                                    <input type="number" placeholder="0.00" />
+                                                    <input type="number" name="to" placeholder="0.00" />
                                                 </div>
                                             </div>
                                         </div>
@@ -559,7 +565,16 @@
         ];
 
         let selectedProducts = [];
-
+        document.querySelectorAll('.order-type-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Uncheck all other checkboxes
+                    document.querySelectorAll('.order-type-checkbox').forEach(cb => {
+                        if (cb !== this) cb.checked = false;
+                    });
+                }
+            });
+        });
         // Function to display filtered products
         function displayFilteredProducts(productsToShow) {
             let productList = document.getElementById('product-list');
@@ -660,18 +675,26 @@
             $('#new-orders-tab').on('click', function() {
                 fetchNewOrders(currentPage, itemsPerPage, searchQuery);
             });
+            $('#filterForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the form from submitting normally
 
+                fetchAssignOrders(currentPage, itemsPerPage, searchQuery);
+                fetchNewOrders(currentPage, itemsPerPage, searchQuery);
+            });
             // Function to fetch customers from the server
             function fetchNewOrders(page, itemsPerPage, search) {
+                const form = document.getElementById('filterForm');
+                const formData = new FormData(form); // Collect form data
+                formData.append('page', page);
+                formData.append('items_per_page', itemsPerPage);
+                formData.append('search', search);
+
 
                 $.ajax({
                     url: "{{ route('order.neworder') }}",
                     type: 'GET',
-                    data: {
-                        page: page,
-                        items_per_page: itemsPerPage,
-                        search: search,
-                    },
+                    data: Object.fromEntries(formData.entries()),
+
                     success: function(response) {
 
 
@@ -740,13 +763,13 @@
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li class = >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${employee.name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        `).join('')}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li class = >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ${employee.name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                `).join('')}
                                 </ul>
                             </div>
                         </td>
@@ -967,15 +990,16 @@
             });
             // Function to fetch customers from the server
             function fetchAssignOrders(page, itemsPerPage, search) {
-
+                const form = document.getElementById('filterForm');
+                const formData = new FormData(form); // Collect form data
+                formData.append('page', page);
+                formData.append('items_per_page', itemsPerPage);
+                formData.append('search', search);
                 $.ajax({
                     url: "{{ route('order.assignedorders') }}",
                     type: 'GET',
-                    data: {
-                        page: page,
-                        items_per_page: itemsPerPage,
-                        search: search,
-                    },
+                    data: Object.fromEntries(formData.entries()),
+
                     success: function(response) {
 
 

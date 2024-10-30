@@ -101,6 +101,30 @@ class OrderController extends Controller
         // Start a query for the Product model
         $query = Order::query();
         $query->with('customer')->where('status','0')->has('customer') ;
+            // Advance Search
+         // Apply filters based on request data
+        if ($request->has('order_type') && $request->order_type) {
+            $query->where('order_type', $request->order_type);
+        }
+
+        if ($request->has('status') && is_numeric($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('location') && $request->location) {
+            $query->where('location', $request->location);
+        }
+
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->from;
+            $to = $request->to;
+
+            // Apply the price range filter based on 'total' field
+            if (is_numeric($from) && is_numeric($to)) {
+
+                $query->whereBetween('total', [$from,$to ]);
+            }
+        }
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
@@ -139,7 +163,28 @@ class OrderController extends Controller
         ->has('customer')
         ->has('employee')
         ;
+        if ($request->has('order_type') && $request->order_type) {
+            $query->where('order_type', $request->order_type);
+        }
 
+        if ($request->has('status') && is_numeric($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('location') && $request->location) {
+            $query->where('location', $request->location);
+        }
+
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->from;
+            $to = $request->to;
+
+            // Apply the price range filter based on 'total' field
+            if (is_numeric($from) && is_numeric($to)) {
+
+                $query->whereBetween('total', [$to, $from]);
+            }
+        }
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
