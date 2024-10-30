@@ -16,14 +16,7 @@
 <div id="dynamic-content">
     <div class="red tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
         <div class="container-fluid order-container" id="orderContainer">
-            {{-- <div class="Width d-flex justify-content-between align-items-center my-3">
-                <span class="ml-2 ">Order Summary</span>
-                <button class="order-btn d-flex align-items-center" id="addOrderBtn_for_modal">
-                    +
-                    <pre></pre>
-                    create a New Order
-                </button>
-            </div> --}}
+
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="">
@@ -33,9 +26,10 @@
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">All</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
                                         </select>
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
@@ -67,9 +61,10 @@
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">All</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
                                         </select>
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
@@ -79,7 +74,7 @@
 
                             <div class="bottomContent">
                                 <span>
-                                    <p class="sales">Customers</p>
+                                    <p class="sales">Client</p>
                                     <p class="card_counting_numbers">
                                         1,250
                                     </p>
@@ -102,9 +97,10 @@
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">All</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
                                         </select>
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
@@ -138,13 +134,13 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h6 id="customerOrders">Customer Orders</h6>
+                        <h6 id="customerOrders">Clients Orders</h6>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex gap-2 position-relative mob-flex-direction-column">
                             <div class="search-bar">
                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                                <input type="text" placeholder="Search.." />
+                                <input type="text" placeholder="Search.." id="order_search" />
                             </div>
 
                             <button type="button" class="filter-btn" id="openModalButton-filter">
@@ -170,9 +166,11 @@
                                         <div class="filter-group">
                                             <label>Status</label>
                                             <select class="select">
-                                                <option value="all">All</option>
-                                                <option value="delivered">Delivered</option>
-                                                <option value="pending">Pending</option>
+                                                <option value="all" selected>All</option>
+                                                <option value="0">Pending</option>
+                                                <option value="1">Delivered</option>
+                                                <option value="2">Complete</option>
+
                                             </select>
                                         </div>
 
@@ -212,11 +210,6 @@
 
                         </div>
                     </div>
-
-
-
-
-
 
                 </div>
                 <div class="">
@@ -259,7 +252,7 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
-                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Client Name</th>
                                             <th scope="col">Order Date</th>
                                             <th scope="col">Shipping</th>
                                             <th scope="col">Location</th>
@@ -284,9 +277,9 @@
                                         class="item-pp  label_items_per_page">Items per
                                         page:</label>
                                     <select id="newOrderItemsPerPage1" class="form-select ms-2 item-bp">
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="10" selected>10</option>
+                                        <option value="25" selected>25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
                                     </select>
                                 </div>
 
@@ -294,9 +287,9 @@
                                     aria-label="Page navigation ">
                                     <select id="newOrderItemsPerPage"
                                         class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="10" selected>10</option>
+                                        <option value="25" selected>25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
                                     </select>
                                     <p class="TotalItems " id="newOrderTotalItems">1-10 of 100 items</p>
                                     <ul class="pagination mb-0">
@@ -330,7 +323,7 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
-                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Client Name</th>
                                             <th scope="col">Order Date</th>
                                             <th scope="col">Shipping</th>
                                             <th scope="col">Location</th>
@@ -355,9 +348,9 @@
                                         <label for="items-per-page-customer-orders" class="item-pp ms-3">Items per
                                             page:</label>
                                         <select id="assignOrderItemsPerPage1" class="form-select ms-2 item-bp">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
+                                            <option value="25" selected>25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
                                         </select>
                                     </div>
 
@@ -365,9 +358,9 @@
                                         aria-label="Page navigation ">
                                         <select id="assignOrderItemsPerPage"
                                             class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                            <option value="3">3</option>
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
+                                            <option value="25" selected>25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
                                         </select>
                                         <p class="TotalItems " id="newAssginTotalItems">1-10 of 100 items</p>
                                         <ul class="pagination mb-0">
@@ -400,406 +393,8 @@
 
 
             </div>
-            <div class="container-fluid" id="viewSummary" style="display: none;">
-                <h6>Order Summary</h6>
-                <div class="d-flex gap-3 mt-3">
-                    <div class="" style="width: 30%">
-                        <div class="card text-center">
-                            <div class="alignemnt">
-                                <div class="d-flex gap-3">
-                                    <img src="{{ asset('assets/admin/images/svg/client2.svg') }} " />
-                                    <div class="">
-                                        <p class="mediumFont2 m-0 p-0 text-left">
-                                            Janet Adebayo
-                                        </p>
-                                        <p class="mediumFont3 m-0 p-0 text-left">
-                                            Last Order <span>12 sept 2022</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="leftAlignement">
-                                    <button class="CustomerStatusPending">Pending</button>
-                                    <!-- <p class="side-text">This Week</p> -->
-                                </div>
-                            </div>
-
-                            <div class="bottomContent">
-                                <span>
-                                    <p class="sales">Phone</p>
-                                    <p class="bold">+236365746</p>
-                                </span>
-
-                                <span>
-                                    <p class="sales">Email</p>
-                                    <p class="bold">abc@yopmail.com</p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" " style="width: 40%">
-                        <div class="card text-center">
-                            <div class="alignemnt">
-                                <img src="{{ asset('assets/admin/images/svg/address.svg') }} " />
-                            </div>
-
-                            <div class="bottomContent">
-                                <span class="bottomSpan">
-                                    <p class="sales">Home Address</p>
-                                    <p class="bold">
-                                        No.15 Adekunle Street,Yaba, Lagos State
-                                    </p>
-                                </span>
-
-                                <span class="bottomSpan">
-                                    <p class="sales">Billing Address</p>
-                                    <p class="bold">
-                                        No.15 Adekunle Street,Yaba, Lagos State
-                                    </p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" " style="width: 30%">
-                        <div class="card text-center">
-                            <div class="d-flex justify-content-between CustomerOrders">
-                                <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
-
-                                <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="Revenue">All time</option>
-                                        <option value="Expenses">This Week</option>
-                                        <option value="Profit Margin">This Week</option>
-                                    </select>
-                                    <span class="dropdown-icon"></span>
-                                    <!-- Down arrow icon -->
-                                </div>
-                            </div>
-
-                            <div class="bottomContent">
-                                <span class="bottomSpan">
-                                    <p class="sales">Total Orders</p>
-                                    <p class="bold3">$1,250</p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="settingsSubTabs my-4 pb-5">
-                    <p class="LightFont2 py-3">Order <span class="mediumFont2 m-0">#166559</span> was place on <span
-                            class="mediumFont2 m-0">August 14,2018</span>and is currently <span
-                            class="mediumFont2 m-0">Completed</span> </p>
-                    <h1 class="SettingHeading my-2">Order Details</h1>
 
 
-                    <div>
-
-                        <table class="table table-bordered invoice-table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="LightFont2">Adhesive Prints <span class="mediumFont2"> ×
-                                            2</span><br><small class="mediumFont2">SKU: PR.AP</small></td>
-                                    <td>$150.14</td>
-                                </tr>
-                                <tr>
-                                    <td class="LightFont2">Adhesive Prints <span class="mediumFont2">×
-                                            1</span><br><small class="mediumFont2">SKU: PR.AP</small></td>
-                                    <td>$61.49</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1"><strong>Subtotal:</strong></td>
-                                    <td>$211.63</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1"><strong>Shipping:</strong></td>
-                                    <td>Shipping</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1"><strong>Discount:</strong></td>
-                                    <td>-$105.82</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1"><strong>Payment method:</strong></td>
-                                    <td>Purchase Order</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1"><strong>Total:</strong></td>
-                                    <td><strong>$105.81</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div
-                            class="invoice-footer d-flex flex-column justify-content-center align-items-start gap-3 text-center">
-                            <button type="button" class="btn btn-outline-primary">Print Invoice</button>
-                            <button type="button" class="btn btn-outline-primary">Download Invoice</button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="container settingsSubTabs mt-5 py-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Billing address</h5>
-                            <div class="address-box my-3">
-
-                                <p>
-                                    Craig Davidson<br>
-                                    Eagle Eye Partners<br>
-                                    13375 Stemmons Freeway<br>
-                                    Dallas<br>
-                                    Dallas, TX 75243<br>
-                                    <i class="icon fas fa-phone-alt"></i> 9724662100<br>
-                                    <i class="icon-envelope fas fa-envelope"></i> miles@eagleeyesigns.net
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Shipping address</h5>
-                            <div class="address-box my-3">
-
-                                <p>
-                                    Craig Davidson<br>
-                                    Eagle Eye Partners<br>
-                                    13375 Stemmons Freeway<br>
-                                    Dallas<br>
-                                    Dallas, TX 75243<br>
-                                    <i class="icon fas fa-phone-alt"></i> 9724662100<br>
-                                    <i class="icon-envelope fas fa-envelope"></i> miles@eagleeyesigns.net
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- new inner page -->
-            <div class="viewOrder px-3" id="viewOrder" style="display: none">
-                <div class="Width d-flex flex-wrap gap-3 justify-content-between align-items-center customer2">
-                    <div class="d-flex align-items-center justify-content-center gap-3">
-                        <span class="d-flex gap-2">
-                            <p class="mediumFont m-0">Order Number</p>
-                            <p class="LightFont m-0">#88540</p>
-                        </span>
-
-                        <span class="d-flex gap-2">
-                            <p class="mediumFont m-0">Order Date</p>
-                            <p class="LightFont m-0">12Sept 2022 - 12:55pm</p>
-                        </span>
-
-                        <span class="d-flex gap-2">
-                            <p class="mediumFont m-0">Tracking ID</p>
-                            <p class="LightFont m-0">1534ft9</p>
-                        </span>
-                        <span>
-                            <img src="{{ asset('assets/admin/images/svg/copyIcon.svg') }}" />
-                        </span>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <div class="dropdown-container dropdown2 position-relative">
-                            <select id="data-category" class="form-control4 d-inline w-auto">
-                                <option value="Revenue">Ready to Ship</option>
-                                <option value="Expenses">This Week</option>
-                                <option value="Profit Margin">This Week</option>
-                            </select>
-                        </div>
-                        <button class="order-btn d-flex align-items-center">
-                            Print Invoice
-                        </button>
-                        <button class="suspension-btn d-flex align-items-center">
-                            Cancel Order
-                        </button>
-                    </div>
-                </div>
-                <div class="d-flex gap-3 mt-3">
-                    <div class="" style="width: 30%">
-                        <div class="card text-center">
-                            <div class="alignemnt">
-                                <div class="d-flex gap-3">
-                                    <img src="{{ asset('assets/admin/images/svg/client2.svg') }} " />
-                                    <div class="">
-                                        <p class="mediumFont2 m-0 p-0 text-left">
-                                            Janet Adebayo
-                                        </p>
-                                        <p class="mediumFont3 m-0 p-0 text-left">
-                                            Last Order <span>12 sept 2022</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="leftAlignement">
-                                    <button class="CustomerStatusPending">Pending</button>
-                                    <!-- <p class="side-text">This Week</p> -->
-                                </div>
-                            </div>
-
-                            <div class="bottomContent">
-                                <span>
-                                    <p class="sales">Phone</p>
-                                    <p class="bold">+236365746</p>
-                                </span>
-
-                                <span>
-                                    <p class="sales">Email</p>
-                                    <p class="bold">abc@yopmail.com</p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" " style="width: 40%">
-                        <div class="card text-center">
-                            <div class="alignemnt">
-                                <img src="{{ asset('assets/admin/images/svg/address.svg') }} " />
-                            </div>
-
-                            <div class="bottomContent">
-                                <span class="bottomSpan">
-                                    <p class="sales">Home Address</p>
-                                    <p class="bold">
-                                        No.15 Adekunle Street,Yaba, Lagos State
-                                    </p>
-                                </span>
-
-                                <span class="bottomSpan">
-                                    <p class="sales">Billing Address</p>
-                                    <p class="bold">
-                                        No.15 Adekunle Street,Yaba, Lagos State
-                                    </p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" " style="width: 30%">
-                        <div class="card text-center">
-                            <div class="d-flex justify-content-between CustomerOrders">
-                                <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
-
-                                <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="Revenue">All time</option>
-                                        <option value="Expenses">This Week</option>
-                                        <option value="Profit Margin">This Week</option>
-                                    </select>
-                                    <span class="dropdown-icon"></span>
-                                    <!-- Down arrow icon -->
-                                </div>
-                            </div>
-
-                            <div class="bottomContent">
-                                <span class="bottomSpan">
-                                    <p class="sales">Total Orders</p>
-                                    <p class="bold3">$1,250</p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product2 my-4">
-                    <div class="d-flex justify-content-between">
-                        <h6>Items 3</h6>
-
-                        <div class="d-flex gap-2 position-relative">
-                            <div class="search-bar">
-                                <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
-                                <input type="text" placeholder="Search.." />
-                            </div>
-
-                            <button type="button" class="filter-btn" id="openModalButton">
-                                <img src="{{ asset('assets/admin/images/svg/filter1.svg') }} " /> Filter
-                            </button>
-
-                            <button type="button" class="filter-btn" id="openModalButton2">
-                                <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " /> Calendar
-                            </button>
-
-                            <button class="filter-btn">
-                                <img src="{{ asset('assets/admin/images/svg/Send.svg') }} " /> Send
-                            </button>
-                            <div>
-                                <select id="itemsPerPage" class="form-select form-select-sm filter-dropdown"
-                                    style="width: auto">
-                                    <option value="3">bulk Action</option>
-                                    <option value="5">page</option>
-                                    <option value="10">per page</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table order mt-3">
-                            <thead>
-                                <tr class="orderTable">
-                                    <th scope="col">
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" id="select-all" />
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </th>
-                                    <th></th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Shipping Service</th>
-                                    <th scope="col">Unit Price</th>
-                                    <th scope="col">Qty</th>
-                                    <th scope="col">Discount</th>
-                                    <th scope="col">Order Total</th>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body1">
-
-                            </tbody>
-                        </table>
-
-                        <div class="pagination-container d-flex justify-content-between align-items-center">
-                            <!-- Items per page dropdown -->
-                            <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
-                                <select id="itemsPerPage"
-                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                    <option value="3">3</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <p>Items per page</p>
-                                <p class="TotalItems">1-10 of 100 items</p>
-                            </div>
-
-                            <!-- Showing results text -->
-
-                            <!-- Pagination -->
-                            <nav class="d-flex justify-content align-items-center gap-2"
-                                aria-label="Page navigation ">
-                                <select id="itemsPerPage"
-                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                    <option value="3">1</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <p class="TotalItems">1-10 of 100 items</p>
-                                <ul class="pagination mb-0">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" id="prev-page1">
-                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" id="next-page1">
-                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="NewCompany" id="add_new_order_modal">
                 <div class="model Ordermodel d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center">
@@ -1078,7 +673,7 @@
 
 
             let currentPage = 1;
-            let itemsPerPage = 10; // Default items per page
+            let itemsPerPage = 25; // Default items per page
             let searchQuery = '';
             let employeesearchQuery = '';
             let employees = []
@@ -1166,13 +761,13 @@
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                                                                                                                        <li class = >
-                                                                                                                                                                                                                                            <label>
-                                                                                                                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                                                                                                                ${employee.name}
-                                                                                                                                                                                                                                            </label>
-                                                                                                                                                                                                                                        </li>
-                                                                                                                                                                                                                                    `).join('')}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li class = >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                ${employee.name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')}
                                 </ul>
                             </div>
                         </td>
@@ -1380,16 +975,12 @@
             fetchEmployees(1, 5, '', 0)
             // Initial fetch of customers
             fetchNewOrders(currentPage, itemsPerPage, searchQuery);
-        });
-    </script>
-    {{-- End::New Order JS --}}
 
-    {{-- Begin::Assigned Order JS --}}
-    <script>
-        $(document).ready(function() {
-            let currentPage = 1;
-            let itemsPerPage = 10; // Default items per page
-            let searchQuery = '';
+
+            // {{-- Begin::Assigned Order JS --}}
+            // let currentPage = 1;
+            // let itemsPerPage = 25; // Default items per page
+            // let searchQuery = '';
 
             $('#assigned-orders-tab').on('click', function() {
 
@@ -1572,9 +1163,27 @@
                 fetchAssignOrders(currentPage, itemsPerPage, searchQuery); // Fetch customers with search
             });
 
+            $('#order_search').on('input', function() {
 
+                searchQuery = $(this).val(); // Update search query
+
+                currentPage = 1; // Reset to first page
+                fetchAssignOrders(currentPage, itemsPerPage, searchQuery); // Fetch customers with search
+                fetchNewOrders(currentPage, itemsPerPage, searchQuery);
+            });
+
+            // order_search
             // Initial fetch of customers
             fetchAssignOrders(currentPage, itemsPerPage, searchQuery);
+            // {{-- End::Assigned Order JS --}}
+        });
+    </script>
+    {{-- End::New Order JS --}}
+
+    {{-- Begin::Assigned Order JS --}}
+    <script>
+        $(document).ready(function() {
+
         });
     </script>
     {{-- End::Assigned Order JS --}}

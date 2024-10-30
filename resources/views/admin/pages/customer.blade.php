@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Customer')
+@section('title', 'Client')
 
 @section('style')
     <style>
@@ -89,10 +89,10 @@
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
             <div class="container-fluid">
                 <div class="Width d-flex justify-content-between align-items-center">
-                    <span class="my-2 ml-2"> Customer Summary</span>
+                    <span class="my-2 ml-2"> Client Summary</span>
                     <button class="order-btn d-flex align-items-center" id="addCompanyBtn">
                         <i class="fa-solid fa-plus mr-1"></i>
-                        create a New Customer
+                        create a New Client
                     </button>
                 </div>
                 <div class="row mt-3">
@@ -147,7 +147,7 @@
 
                             <div class="bottomContent">
                                 <span>
-                                    <p class="sales">New Customers</p>
+                                    <p class="sales">New Clients</p>
                                     <p class="card_counting_numbers">
                                         1,250
                                     </p>
@@ -167,7 +167,7 @@
                 <div class="product2 mt-4">
                     <div class="row justify-content-between">
                         <div class="col-md-6">
-                            <h6>Customers</h6>
+                            <h6>Clients</h6>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex gap-2 mob-flex-direction-column justify-content-end">
@@ -194,7 +194,7 @@
                                     </th>
 
                                     <th class="" scope="col">
-                                        Customer Name <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
+                                        Client Name <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
                                     </th>
                                     <th scope="col">
                                         Email <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
@@ -209,7 +209,7 @@
                                         Order Total <img src="{{ asset('assets/admin/images/svg/sort.svg') }} " />
                                     </th>
                                     <th scope="col">
-                                        Customer Since <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
+                                        Client Since <img src="{{ asset('assets/admin/images/svg/sort.svg') }}" />
                                     </th>
 
                                     <th scope="col">
@@ -230,9 +230,9 @@
                         <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
                             <select id="itemsPerPage"
                                 class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                <option value="3">3</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
+                                <option value="25" selected>25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
                             </select>
                             <p>Items per page</p>
                             <p class="TotalItems">1-10 of 100 items</p>
@@ -246,9 +246,9 @@
                             aria-label="Page navigation ">
                             <select id="itemsPerPage"
                                 class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                <option value="3">1</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
                             </select>
                             <p class="TotalItems">1-10 of 100 items</p>
                             <ul class="pagination mb-0">
@@ -277,7 +277,7 @@
 <div class="NewCompany" id="newCompanyDiv">
     <div class="model d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center">
-            <span class="my-2">Add a New Customer</span>
+            <span class="my-2">Add a New Client</span>
             <button class="cancel" id="cancelBtn">
                 <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }}" />
             </button>
@@ -285,10 +285,10 @@
         <form action="{{ route('customer.create') }}" method="post">
             @csrf
             <div>
-                <p class="CustomerPopup">Customer Information</p>
+                <p class="CustomerPopup">Client Information</p>
                 <div class="d-flex flex-column">
-                    <input type="text" class="inputBox" name="name" placeholder="Customer Name" />
-                    <input type="email" class="inputBox" name="email" placeholder="Customer Email" />
+                    <input type="text" class="inputBox" name="name" placeholder="Client Name" />
+                    <input type="email" class="inputBox" name="email" placeholder="Client Email" />
 
                     <input class="inputBox" id="phone" name="phone" type="tel" value="" />
                 </div>
@@ -302,6 +302,8 @@
                     </div>
                 </div>
                 <div id="addressSection" class="addressSection">
+
+                    <input type="text" class="inputBox" name="address" placeholder="Client Address" />
                     <!--Country -->
                     <div class="select-something">
                         <select class="inputBox" name="state" id="countySel" size="1">
@@ -497,7 +499,7 @@
 <script>
     $(document).ready(function() {
         let currentPage = 1;
-        let itemsPerPage = 3; // Default items per page
+        let itemsPerPage = 50; // Default items per page
         let searchQuery = '';
         // Function to fetch customers from the server
         function fetchCustomer(page, itemsPerPage, search) {
@@ -512,7 +514,7 @@
                 },
                 success: function(response) {
 
-                    console.log(response.user);
+
 
                     renderTable(response.user); // Assume your API returns the product array
                     updatePagination(response.total); // Update pagination based on total customers

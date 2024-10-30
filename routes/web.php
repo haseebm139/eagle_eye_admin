@@ -91,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/orders/view/{id}', 'orderView')->name('orders.view');
             Route::get('/settings', 'settings')->name('settings');
             Route::post('update-profile','updateProfile')->name('profile');
+            Route::post('employee-create','employeeCreate')->name('employee.create');
             Route::Get('/employee', 'employees')->name('employee.index');
 
         });
@@ -116,6 +117,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/add-customer', 'create')->name('create');
             Route::Get('/customers', 'index')->name('index');
             Route::POST('/users/toggle-status/{id}', 'toggleStatus')->name('toggle-status');
+
+            Route::get('/users/upload','showUploadForm')->name('form');
+            Route::post('/users/upload',  'uploadUsers')->name('upload');
 
 
         });

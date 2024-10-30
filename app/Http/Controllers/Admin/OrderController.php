@@ -84,8 +84,9 @@ class OrderController extends Controller
         $query->with(['customer','employee'])
         ->where('status','!=','0')
         ->has('customer')
-      ->has('employee')
+        ->has('employee')
         ;
+
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;

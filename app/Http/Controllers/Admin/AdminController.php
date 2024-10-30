@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
+use Hash;
 class AdminController extends Controller
 {
     public function dashboard(){
@@ -50,6 +52,7 @@ class AdminController extends Controller
         return view('admin.pages.orders');
     }
     public function orderView($id){
+
         $data['orders'] = Order::with(['customer','employee','items.product.image'])
         ->has('customer')
         ->has('employee')
@@ -118,6 +121,46 @@ class AdminController extends Controller
             'current_page' => $user->currentPage(),
             'last_page' => $user->lastPage(),
         ]);
+    }
+
+
+    public function employeeCreate(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',               // Name is required and must be a string
+            'email' => 'required|email|unique:users,email',    // Email must be unique in the users table
+            'phone' => 'required|string',                      // Phone number is required
+            'password' => 'required|string|min:5',             // Password must be at least 5 characters
+            'job_title' => 'required|string|max:255',          // Last name is required and must be a string
+            'job_type' => 'required|string|max:255',           // Must match the password
+            'employee_id' => 'required|unique:users,employee_id'                   // Checkbox must be checked (value 'on')
+        ]);
+
+        $userData = $request->except(['password']);
+        try {
+            //code...
+            $userData['type'] = 'emp';
+            $userData['password'] = Hash::make($request->password);
+            $user = User::create($userData);
+
+            // Redirect based on the success or failure of user creation
+            if ($user) {
+                return redirect()->back()->with([
+                    'message' => 'Register Successfully',
+                    'type' => 'success'
+                ]);
+            } else {
+                return redirect()->back()->with([
+                    'message' => 'Something went wrong, please try again',
+                    'type' => 'error'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with([
+                'message' => 'Something went wrong, please try again',
+                'type' => 'error'
+            ]);
+        }
+
     }
 }
 

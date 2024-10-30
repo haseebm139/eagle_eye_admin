@@ -199,7 +199,7 @@
         }
 
         .addressSection {
-            display: none;
+            display: block;
         }
 
         .orderCard {
@@ -822,7 +822,8 @@
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
 
-                                            <button type="button" class="filter-btn n-emp" id="openModalButton_employee">
+                                            <button type="button" class="filter-btn n-emp"
+                                                id="openModalButton_employee">
                                                 <img
                                                     src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
                                                 New Employee
@@ -900,41 +901,53 @@
                 <img src="/assets/admin/images/svg/Frame_5800.svg">
             </button>
         </div>
-        <form action="http://127.0.0.1:8000/admin/add-customer" method="post">
-            <input type="hidden" name="_token" value="Xbompr6kE1D9qJth1pywkzZsf5JxESV8I7HiZVof" autocomplete="off">            <div>
-                <p class="CustomerPopup">Customer Information</p>
-             
+        <form action="{{ route('employee.create') }}" method="post">
+            @csrf
+            <div>
+                <p class="CustomerPopup">Employee Information</p>
+
                 <div class="d-flex flex-column">
-                  
-                        <input type="text" class="inputBox" name="fname" placeholder="First Name">
-                        <input type="text" class="inputBox" name="lname" placeholder="Last Name">
-           
-                    
-                    <input type="email" class="inputBox" name="email" placeholder="Customer Email">
-
+                    <input type="text" class="inputBox" name="name" placeholder="Employee Name" />
+                    <input type="email" class="inputBox" name="email" placeholder="Employee Email" />
+                    <input type="password" class="inputBox" name="password" placeholder="********" />
+                    <input type="text" class="inputBox" name="job_title" placeholder="Employee Job Title" />
+                    <input type="number" class="inputBox" name="employee_id" placeholder="Employee ID" />
+                    <div class="select-something">
+                        <select class="inputBox" name="job_type">
+                            <option value="parttime" selected="selected">Part Time</option>
+                            <option value="fulltime" selected="selected">Full Time</option>
+                        </select>
+                    </div>
                     <input class="inputBox" id="phone" name="phone" type="tel" value="" />
-                    <input type="password" class="inputBox" name="password" placeholder="password">
-                   
-                    <div class="d-flex gap-3">
-                        <input type="text" class="inputBox" name="country" placeholder="country">
-
-                        <!--State -->
-
-                        <input type="text" class="inputBox" name="city" placeholder="city">
-                    </div>
-                    <input type="text" class="inputBox" name="Address" placeholder="Address">
-                    <div class="d-flex gap-3">
-                        <input type="text" class="inputBox" name="job_title" placeholder="job title">
-
-                        <!--State -->
-
-                        <input type="text" class="inputBox" name="job_type" placeholder="job type">
-                    </div>
                 </div>
+
+                {{-- <div id="addressSection" class="addressSection">
+                    <!--Country -->
+                    <div class="select-something">
+                        <select class="inputBox" name="state" id="countySel" size="1">
+                            <option value="" selected="selected">Country</option>
+                        </select>
+                    </div>
+                    <!--State -->
+
+                    <div class="d-flex gap-3">
+                        <select class="inputBox" name="country" id="stateSel" size="1">
+                            <option value="" selected="selected">state</option>
+                        </select>
+
+                        <!--State -->
+
+                        <select class="inputBox" name="city" id="districtSel" size="1">
+                            <option value="" selected="selected">city</option>
+                        </select>
+                    </div>
+
+
+                </div> --}}
 
                 <div class="d-flex gap-3 mt-3">
                     <button type="button" class="cancel-btn2" id="close_employee_modal">Cancel</button>
-                    <button type="submit" class="add-btn" name="add_new_employee" id="btn00">Add</button>
+                    <button type="submit" class="add-btn" id="btn00">Add</button>
                 </div>
             </div>
         </form>
@@ -943,28 +956,107 @@
 
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+<script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
-  const input = document.querySelector("#phone");
-  window.intlTelInput(input, {
-    loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
-  });
+    document.addEventListener("DOMContentLoaded", function() {
+
+
+        // Phone number validation
+        const inputs = document.querySelectorAll("input[type='tel']");
+        if (inputs.length > 0) {
+            // Iterate through the inputs and apply intlTelInput plugin
+            inputs.forEach((input, index) => {
+                const iti = window.intlTelInput(input, {
+                    initialCountry: "us",
+                });
+            });
+        } else {
+            console.error("No 'tel' inputs found!");
+        }
+
+        window.iti = iti; // useful for testing
+
+        const button = document.querySelector("#btn");
+        const errorMsg = document.querySelector("#error-msg");
+        const validMsg = document.querySelector("#valid-msg");
+        const errorMap = [
+            "Invalid number",
+            "Invalid country code",
+            "Too short",
+            "Too long",
+            "Invalid number",
+        ];
+
+        const reset = () => {
+            input.classList.remove("error");
+            errorMsg.innerHTML = "";
+            validMsg.innerHTML = "";
+            errorMsg.classList.add("hide");
+            validMsg.classList.add("hide");
+        };
+
+        const showError = (msg) => {
+            input.classList.add("error");
+            errorMsg.innerHTML = msg;
+            errorMsg.classList.remove("hide");
+        };
+
+        // on click button: validate
+        button.addEventListener("click", () => {
+            reset();
+            if (!input.value.trim()) {
+                showError("Required");
+            } else if (iti.isValidNumber()) {
+                validMsg.innerHTML = "✓ Valid";
+                validMsg.classList.remove("hide");
+            } else {
+                const errorCode = iti.getValidationError();
+                showError(errorMap[errorCode]);
+            }
+        });
+    });
+
+
+    const dropdown = document.getElementById("dropdown");
+
+
+    // Optional: Close the dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        if (
+
+            !dropdown.contains(event.target)
+        ) {
+            dropdown.classList.remove("show");
+        }
+    });
+
+
+
+
+
+
+
+
+    // Close the modal when clicking outside of modal content
+    window.addEventListener("click", function(event) {
+        // Close modal 1 if it's open and clicked outside
+
+    });
 </script>
 <script>
-    
     $(document).ready(function() {
         $('#add_employees_modal').hide();
-        $('#openModalButton_employee').on('click',function(e){
+        $('#openModalButton_employee').on('click', function(e) {
             e.preventDefault();
-            $('#add_employees_modal').css('display','flex');
+            $('#add_employees_modal').css('display', 'flex');
         });
-        $('#cancelBtn_employyee').on('click',function(e){
+        $('#cancelBtn_employyee').on('click', function(e) {
             e.preventDefault();
-            $('#add_employees_modal').css('display','none');
+            $('#add_employees_modal').css('display', 'none');
         })
-        $('#close_employee_modal').on('click',function(e){
+        $('#close_employee_modal').on('click', function(e) {
             e.preventDefault();
-            $('#add_employees_modal').css('display','none');
+            $('#add_employees_modal').css('display', 'none');
         })
         // Listen for a change event on the "Select All" checkbox
         $('#select-all-emp-role').on('change', function() {
@@ -974,72 +1066,14 @@
         });
     });
 </script>
-<script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
+
+
+
 <script>
     function submitForm() {
 
         document.getElementById("updateForm").submit(); // Submits the form
     }
-
-
-
-
-
-    const input1 = document.querySelector("#phone1");
-    const iti1 = window.intlTelInput(input1, {
-        initialCountry: "us",
-        // additional configuration as needed
-    });
-
-    const input2 = document.querySelector("#phone2");
-    const iti2 = window.intlTelInput(input2, {
-        initialCountry: "us",
-        // additional configuration as needed
-    });
-
-    // Add validation logic for the second phone input
-    const validatePhoneInput = (input, itiInstance, errorMsgElement, validMsgElement) => {
-        const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
-
-        const reset = () => {
-            input.classList.remove("error");
-            errorMsgElement.innerHTML = "";
-            validMsgElement.innerHTML = "";
-            errorMsgElement.classList.add("hide");
-            validMsgElement.classList.add("hide");
-        };
-
-        const showError = (msg) => {
-            input.classList.add("error");
-            errorMsgElement.innerHTML = msg;
-            errorMsgElement.classList.remove("hide");
-        };
-
-        // Validate on button click
-        document.querySelector("#btn").addEventListener("click", () => {
-            reset();
-            if (!input.value.trim()) {
-                showError("Required");
-            } else if (itiInstance.isValidNumber()) {
-                validMsgElement.innerHTML = "Valid number: " + itiInstance.getNumber();
-                validMsgElement.classList.remove("hide");
-            } else {
-                const errorCode = itiInstance.getValidationError();
-                const msg = errorMap[errorCode] || "Invalid number";
-                showError(msg);
-            }
-        });
-
-        // Reset on change or keyup
-        input.addEventListener("change", reset);
-        input.addEventListener("keyup", reset);
-    };
-
-    // Initialize validation for both inputs
-    validatePhoneInput(input1, iti1, document.querySelector("#error-msg1"), document.querySelector("#valid-msg1"));
-    validatePhoneInput(input2, iti2, document.querySelector("#error-msg2"), document.querySelector("#valid-msg2"));
-</script>
-<script>
     $(document).ready(function() {
         let currentPage = 1;
         let itemsPerPage = 10; // Default items per page
