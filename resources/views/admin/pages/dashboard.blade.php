@@ -30,9 +30,9 @@
                                 <div class="leftAlignement">
 
                                     <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">ALL</option>
-                                            <option value="week">This Week</option>
+                                        <select id="stats1" class="form-control2 d-inline w-auto">
+
+                                            <option value="week" selected>This Week</option>
                                             <option value="month">This Month</option>
                                             <option value="year">This Year</option>
 
@@ -47,11 +47,13 @@
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">Total Sales</p>
-                                    <p class="card_counting_numbers">$4,000,000.00</p>
+                                    <p class="card_counting_numbers" id="total_sale"> </p>
                                 </span>
                                 <span>
                                     <p class="sales">Volume</p>
-                                    <p class="card_counting_numbers">450 </p>
+                                    <p class="card_counting_numbers" id="volume">
+
+                                    </p>
                                 </span>
                             </div>
 
@@ -64,29 +66,17 @@
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon2.svg') }}" />
-                                <div class="leftAlignement">
 
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">ALL</option>
-                                            <option value="week">This Week</option>
-                                            <option value="month">This Month</option>
-                                            <option value="year">This Year</option>
-
-                                        </select>
-                                        <span class="dropdown-icon"></span> <!-- Down arrow icon -->
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">Client</p>
-                                    <p class="card_counting_numbers">1,250 </p>
+                                    <p class="card_counting_numbers">{{ allClients() }}</p>
                                 </span>
                                 <span>
                                     <p class="sales">Active</p>
-                                    <p class="card_counting_numbers">1,180 </p>
+                                    <p class="card_counting_numbers">{{ activeClients() }}</p>
                                 </span>
                             </div>
 
@@ -104,34 +94,22 @@
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon2.svg') }}" />
-                                <div class="leftAlignement">
 
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">ALL</option>
-                                            <option value="week">This Week</option>
-                                            <option value="month">This Month</option>
-                                            <option value="year">This Year</option>
-
-                                        </select>
-                                        <span class="dropdown-icon"></span> <!-- Down arrow icon -->
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">All Orders</p>
-                                    <p class="card_counting_numbers">450</p>
+                                    <p class="card_counting_numbers">{{ totalOrder() }}</p>
                                 </span>
                                 <span>
                                     <p class="sales">Pending</p>
-                                    <p class="card_counting_numbers">5</p>
+                                    <p class="card_counting_numbers">{{ totalOrderPending() }}</p>
                                 </span>
 
                                 <span>
                                     <p class="sales">Completed</p>
-                                    <p class="card_counting_numbers">445</p>
+                                    <p class="card_counting_numbers">{{ totalOrderComplete() }}</p>
                                 </span>
                             </div>
 
@@ -183,12 +161,12 @@
 
                             <span>
                                 <p class="sales">All Products</p>
-                                <p class="card_counting_numbers">45</p>
+                                <p class="card_counting_numbers">{{ productCount() }}</p>
                             </span>
 
                             <span>
                                 <p class="sales">Active</p>
-                                <p class="card_counting_numbers">32 </p>
+                                <p class="card_counting_numbers">{{ productPublished() }} </p>
                             </span>
                         </div>
 
@@ -282,13 +260,54 @@
     const backgroundColors = ['#ff0000', '#fbbd00', '#ff8800']; // Colors for the segments
     const labels = ['Acquisition', 'Purchase', 'Retention']; // Labels
 
-
-
-
-    ///bar chart
-    // Initialize custom data arrays
     const customLabels = ['Oct 01', 'Oct 02', 'Oct 03', 'Oct 04', 'Oct 05', 'Oct 06', 'Oct 07'];
     const customDataValues = [50000, 30000, 45000, 25000, 35000, 48000, 52000];
+
+    function fetchUserChartData() {
+        $.ajax({
+            url: "{{ route('customer.chart') }}", // Your endpoint
+            type: 'GET',
+
+            success: function(response) {
+                // Update the chart with the new data
+                customBarChart.data.labels = response.labels; // e.g., ['Jan', 'Feb', 'Mar']
+                customBarChart.data.datasets[0].data = response.data; // e.g., [100, 200, 150]
+                customBarChart.update(); // Refresh the chart
+            },
+            error: function(xhr) {
+                console.error('Error fetching data');
+            }
+        });
+    }
+
+    function fetchOrderChartData() {
+        $.ajax({
+            url: "{{ route('order.chart') }}", // Your endpoint
+            type: 'GET',
+
+            success: function(response) {
+                // Assuming response contains labels (months) and data values (sales)
+                const customLabels = response.labels; // e.g., ['Jan', 'Feb', 'Mar', ...]
+                const customDataValues = response.data; // e.g., [50000, 30000, ...]
+
+                // Update the chart with the new data
+                myChart.data.labels = customLabels;
+                myChart.data.datasets[0].data = customDataValues;
+                myChart.update(); // Refresh the chart
+            },
+            error: function(xhr) {
+                console.error('Error fetching data');
+            }
+        });
+    }
+
+    fetchUserChartData()
+
+    fetchOrderChartData()
+    fetchUserChartData()
+
+
+
 
     // Custom plugin to draw the background behind the revenue bars
     const backgroundPlugin = {
@@ -322,7 +341,7 @@
         data: {
             labels: customLabels,
             datasets: [{
-                label: 'Revenue',
+                label: 'Sale',
                 data: customDataValues,
                 backgroundColor: '#fcbf49', // Custom yellow color for the bars
                 borderColor: '#fcbf49',
@@ -360,7 +379,7 @@
         data: {
             labels: customLabels,
             datasets: [{
-                label: 'Revenue',
+                label: 'Clients',
                 data: customDataValues,
                 backgroundColor: '#fcbf49', // Custom yellow color for the bars
                 borderColor: '#fcbf49',

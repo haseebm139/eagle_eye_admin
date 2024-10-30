@@ -90,12 +90,12 @@
                         <div class="d-flex align-items-start text-left justify-content-between" style="color: white">
                             <span>
                                 <p class="sales" style="color: white">All Products</p>
-                                <p class="card_counting_numbers">800s</p>
+                                <p class="card_counting_numbers">{{ productCount() }}</p>
                             </span>
                             <span>
                                 <p class="sales" style="color: white">Active</p>
                                 <p class="card_counting_numbers">
-                                    316
+                                    {{ productPublished() }}
 
                                 </p>
                             </span>
@@ -112,16 +112,16 @@
                         <div class="bottomContent">
                             <span>
                                 <p class="sales" style="color: red">Low Stock Alert</p>
-                                <p class="card_counting_numbers">23</p>
+                                <p class="card_counting_numbers">{{ productLowStock() }}</p>
                             </span>
                             <span>
                                 <p class="sales">Publish Products</p>
-                                <p class="card_counting_numbers">3</p>
+                                <p class="card_counting_numbers">{{ productPublished() }}</p>
                             </span>
 
                             <span>
                                 <p class="sales">Un-Publish Products</p>
-                                <p class="card_counting_numbers">2</p>
+                                <p class="card_counting_numbers">{{ productUNpublished() }}</p>
                             </span>
                         </div>
                     </div>

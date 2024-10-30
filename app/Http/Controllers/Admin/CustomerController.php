@@ -11,9 +11,23 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+    public function getUserChart(Request $request){
+        $labels = [];
+        $data = [];
+        $currentDate = Carbon::now();
+        for ($i = 1; $i <= 12; $i++) {
+            $startDate = Carbon::create($currentDate->year, $i, 1);
+            $endDate = $startDate->copy()->endOfMonth();
+
+            $labels[] = $startDate->format('M'); // Month abbreviation
+            $data[] = User::whereBetween('since', [$startDate, $endDate])->count();
+        }
+        return response()->json(['labels' => $labels, 'data' => $data]);
+    }
 
     public function showUploadForm()
     {

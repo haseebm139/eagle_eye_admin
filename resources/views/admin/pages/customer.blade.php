@@ -83,7 +83,7 @@
 
 
 
-@section('heading', 'Customers')
+@section('heading', 'Clients')
 <div id="dynamic-content">
     <div class="tab-content" id="myTabContent">
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
@@ -107,20 +107,20 @@
                                 <span>
                                     <p class="sales">All Clients</p>
                                     <p class="card_counting_numbers">
-                                        1,250
+                                        {{ allClients() }}
                                     </p>
                                 </span>
 
                                 <span>
                                     <p class="sales">Active</p>
                                     <p class="card_counting_numbers">
-                                        1,180
+                                        {{ activeClients() }}
                                     </p>
                                 </span>
                                 <span>
                                     <p class="sales">In-Active</p>
                                     <p class="card_counting_numbers">
-                                        450
+                                        {{ suspendClients() }}
                                     </p>
                                 </span>
                             </div>
@@ -132,9 +132,9 @@
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">ALL</option>
-                                            <option value="week">This Week</option>
+                                        <select id="stats" class="form-control2 d-inline w-auto">
+
+                                            <option value="week" selected>This Week</option>
                                             <option value="month">This Month</option>
                                             <option value="year">This Year</option>
 
@@ -148,17 +148,17 @@
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">New Clients</p>
-                                    <p class="card_counting_numbers">
+                                    <p class="card_counting_numbers" id="new_clients">
                                         1,250
                                     </p>
                                 </span>
                                 <span>
                                     <p class="sales">Purchasing</p>
-                                    <p class="card_counting_numbers">657</p>
+                                    <p class="card_counting_numbers" id="purchasing">657</p>
                                 </span>
                                 <span>
                                     <p class="sales">Orders</p>
-                                    <p class="card_counting_numbers">5</p>
+                                    <p class="card_counting_numbers" id="orders">5</p>
                                 </span>
                             </div>
                         </div>
@@ -624,8 +624,31 @@
             fetchCustomer(currentPage, itemsPerPage, searchQuery); // Fetch customers with search
         });
 
+        $('#stats').on('change', function() {
+            const selectedValue = $(this).val();
+            getStatData(selectedValue)
 
+        });
+
+        function getStatData(data) {
+            $.ajax({
+                url: "{{ route('product.stats') }}", // Endpoint to fetch data
+                type: 'GET',
+                data: {
+                    period: data
+                },
+                success: function(response) {
+                    $('#new_clients').text(response.new_clients.toLocaleString());
+                    $('#purchasing').text(response.purchasing.toLocaleString());
+                    $('#orders').text(response.orders.toLocaleString());
+                },
+                error: function(xhr) {
+                    console.error('Error fetching data');
+                }
+            });
+        }
         // Initial fetch of customers
+        getStatData('week')
         fetchCustomer(currentPage, itemsPerPage, searchQuery);
     });
 </script>

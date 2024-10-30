@@ -25,11 +25,12 @@
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }}" />
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">All</option>
-                                            <option value="week">This Week</option>
+                                        <select id="stats1" class="form-control2 d-inline w-auto">
+
+                                            <option value="week" selected>This Week</option>
                                             <option value="month">This Month</option>
                                             <option value="year">This Year</option>
+
                                         </select>
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
@@ -41,12 +42,12 @@
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">Total Sales</p>
-                                    <p class="card_counting_numbers">$4,000,000.00</p>
+                                    <p class="card_counting_numbers" id="total_sale"> </p>
                                 </span>
                                 <span>
                                     <p class="sales">Volume</p>
-                                    <p class="card_counting_numbers">
-                                        450
+                                    <p class="card_counting_numbers" id="volume">
+
                                     </p>
                                 </span>
                             </div>
@@ -58,31 +59,20 @@
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
-                                <div class="leftAlignement">
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">All</option>
-                                            <option value="week">This Week</option>
-                                            <option value="month">This Month</option>
-                                            <option value="year">This Year</option>
-                                        </select>
-                                        <span class="dropdown-icon"></span>
-                                        <!-- Down arrow icon -->
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">Client</p>
                                     <p class="card_counting_numbers">
-                                        1,250
+                                        {{ allClients() }}
                                     </p>
                                 </span>
                                 <span>
                                     <p class="sales">Active</p>
                                     <p class="card_counting_numbers">
-                                        1,180
+                                        {{ activeClients() }}
                                     </p>
                                 </span>
                             </div>
@@ -94,33 +84,22 @@
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/cart2.svg') }} " />
-                                <div class="leftAlignement">
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="all">All</option>
-                                            <option value="week">This Week</option>
-                                            <option value="month">This Month</option>
-                                            <option value="year">This Year</option>
-                                        </select>
-                                        <span class="dropdown-icon"></span>
-                                        <!-- Down arrow icon -->
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="bottomContent">
                                 <span>
                                     <p class="sales">All Orders</p>
-                                    <p class="card_counting_numbers">450</p>
+                                    <p class="card_counting_numbers">{{ totalOrder() }}</p>
                                 </span>
                                 <span>
                                     <p class="sales">Pending</p>
-                                    <p class="card_counting_numbers">5</p>
+                                    <p class="card_counting_numbers">{{ totalOrderPending() }}</p>
                                 </span>
 
                                 <span>
                                     <p class="sales">Completed</p>
-                                    <p class="card_counting_numbers">445</p>
+                                    <p class="card_counting_numbers">{{ totalOrderComplete() }}</p>
                                 </span>
                             </div>
                         </div>
@@ -761,13 +740,13 @@
                                 <input type="text" class='employee-search' id="searchInput-${id}"  data-id=${id} placeholder="Search"/>
                                 <ul id="assignList-${id} " data-order-id=${id}>
                                     ${employees.map(employee => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li class = >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                ${employee.name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li class = >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="${appUrl}/${employee.profile}" alt="user-avatar" class="user-avatar employee-li" id="employee-li-${employee.id}" data-id=${employee.id}  />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${employee.name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        `).join('')}
                                 </ul>
                             </div>
                         </td>
@@ -1171,6 +1150,8 @@
                 fetchAssignOrders(currentPage, itemsPerPage, searchQuery); // Fetch customers with search
                 fetchNewOrders(currentPage, itemsPerPage, searchQuery);
             });
+
+
 
             // order_search
             // Initial fetch of customers

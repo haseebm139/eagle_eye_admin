@@ -9,13 +9,55 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\ProductCategory;
+use App\Models\User;
+use App\Models\Order;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 class ProductController extends Controller
 {
+    public function productsStats(Request $request){
+        $data = [
+            'new_clients' => 0,
+            'purchasing' => 0,
+            'orders' => 0,
+        ];
+
+        // Get the start and end dates based on the period selected
+        if ($request->period == 'year') {
+            $startDate = Carbon::now()->startOfYear();
+            $endDate = Carbon::now()->endOfYear();
+        } elseif ($request->period == 'month') {
+            $startDate = Carbon::now()->startOfMonth();
+            $endDate = Carbon::now()->endOfMonth();
+        } elseif ($request->period == 'week') {
+            $startDate = Carbon::now()->startOfWeek();
+            $endDate = Carbon::now()->endOfWeek();
+        } else {
+            // Default case if period is 'all'
+            $startDate = null;
+            $endDate = null;
+        }
+
+        $data['new_clients'] = User::whereBetween('created_at', [$startDate, $endDate])->count();
+
+        // Query the total purchasing amount and the number of orders
+        $ordersQuery = Order::query();
+
+        if ($startDate && $endDate) {
+            $ordersQuery->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $data['orders'] = $ordersQuery->count();
+        $data['purchasing'] = $ordersQuery->sum('total'); // assuming 'total_amount' is the field for purchase value
+
+        return response()->json($data);
+    }
+
+
     public function showUploadForm()
     {
         return view('upload_product');

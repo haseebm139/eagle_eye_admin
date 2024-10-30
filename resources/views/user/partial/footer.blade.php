@@ -16,8 +16,8 @@
                 <li>Contact no : <span>972.466.2100</span></li>
                 <li>Email : <span>info@eagleeyesigns.net</span></li>
             </ul>
-            <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+            {{-- <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, </p> --}}
 
         </div>
         <div>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="d-flex justify-content-start RightBottom">
-                <ul class="">
+                {{-- <ul class="">
                     <h6 class="">Quick Links</h6>
                     <li class="para color"><a>About Us</a></li>
                     <li class="para color"><a>Portfolio</a></li>
@@ -77,7 +77,7 @@
                         <img src="{{ asset('assets/website/images/Group_(4).png') }}" />
                         </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

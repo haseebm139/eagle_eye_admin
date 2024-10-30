@@ -108,14 +108,15 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/products/upload','showUploadForm')->name('form');
             Route::post('/products/upload',  'uploadProducts')->name('upload');
-
-
             Route::post('/update-global-price', 'updateGlobalPrice')->name('update.global.price');
+
+            Route::Get('/product-stats', 'productsStats')->name('stats');
 
         });
         Route::controller(CustomerController::class)->name('customer.')->group(function(){
             Route::post('/add-customer', 'create')->name('create');
             Route::Get('/customers', 'index')->name('index');
+            Route::Get('/get-user-chart', 'getUserChart')->name('chart');
             Route::POST('/users/toggle-status/{id}', 'toggleStatus')->name('toggle-status');
 
             Route::get('/users/upload','showUploadForm')->name('form');
@@ -129,6 +130,8 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/assigned-orders','assignedOrders')->name('assignedorders');
             Route::POST('/assign-orders-employee','assignOrdersToEmployee')->name('assign.orders.to.employee');
             Route::post('/orders/{id}/cancel',  'cancelOrder' )->name('cancel');
+            Route::Get('/order-stats', 'ordersStats')->name('stats');
+            Route::Get('/get-order-chart', 'getChart')->name('chart');
 
         });
     });
