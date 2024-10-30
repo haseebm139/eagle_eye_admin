@@ -5,18 +5,16 @@
                 <h5>OFFICE ADDRESS</h5>
                 <p class="para p-0 m-0"> (By Appointment Only)</p>
             </div>
-            <p class="d-flex gap-2 para mt-3"> <img src="{{ asset('assets/website/images/svg/image_469.svg') }}" />Lorem
-                Ipsum is simply
-                dummy text of the printing and typesetting industry</p>
+            <p class="d-flex gap-2 para mt-3"> <img src="{{ asset('assets/website/images/svg/image_469.svg') }}" />
+                13375 N Stemmons Fwy Ste 400
+                Dallas Texas 75234</p>
 
-            <p class="d-flex gap-2 para"> <img src="{{ asset('assets/website/images/svg/image_469.svg') }}" />Lorem
-                Ipsum is simply dummy
-                text of the printing and typesetting industry</p>
+
             <ul class="ul">
                 <li>Mon - Fri :<span> 9am - 5pm</span></li>
                 <li>Sat - Sun : <span>Closed</span></li>
-                <li>Contact no : <span>+1 647-689-4646</span></li>
-                <li>Email : <span>+1 647-689-4646</span></li>
+                <li>Contact no : <span>972.466.2100</span></li>
+                <li>Email : <span>info@eagleeyesigns.net</span></li>
             </ul>
             <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 Ipsum has been the industry's standard dummy text ever since the 1500s, </p>

@@ -637,17 +637,7 @@
                         </span>
                     </div>
                     <div class="d-flex gap-3 mb-3">
-                        <div class="dropdown">
-                            <button class="btn btn-dark bg-black dropdown-toggle" style="border-radius: 14px;"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Edit Client
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
+
 
                         @if ($data['user']->status == 0)
                             <form id="status-toggle-form" method="POST"

@@ -31,9 +31,11 @@
 
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">ALL</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+
                                         </select>
                                         <span class="dropdown-icon"></span> <!-- Down arrow icon -->
                                     </div>
@@ -66,9 +68,11 @@
 
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">ALL</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+
                                         </select>
                                         <span class="dropdown-icon"></span> <!-- Down arrow icon -->
                                     </div>
@@ -104,9 +108,11 @@
 
                                     <div class="dropdown-container position-relative">
                                         <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
+                                            <option value="all">ALL</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+
                                         </select>
                                         <span class="dropdown-icon"></span> <!-- Down arrow icon -->
                                     </div>
@@ -148,17 +154,7 @@
                         <div class="card  text-center" style="gap: 0; height: 100%;">
                             <div class="alignemnt">
                                 <h6>Total Sales</h6>
-                                <div class="leftAlignement">
 
-                                    <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">This Week</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
-                                        </select>
-                                        <span class="dropdown-icon"></span> <!-- Down arrow icon -->
-                                    </div>
-                                </div>
                             </div>
                             <div class="container  text-center">
                                 <div class="legend-container" id="legend-container"></div>
@@ -203,8 +199,16 @@
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/cart.svg') }}" />
                             <div class="leftAlignement">
-                                <p class="side-text">This Week</p>
-                                <img src="{{ asset('assets/admin/images/svg/Vector.svg') }}" />
+                                <div class="dropdown-container position-relative">
+                                    <select id="data-category" class="form-control2 d-inline w-auto">
+                                        <option value="all">ALL</option>
+                                        <option value="week">This Week</option>
+                                        <option value="month">This Month</option>
+                                        <option value="year">This Year</option>
+
+                                    </select>
+                                    <span class="dropdown-icon"></span> <!-- Down arrow icon -->
+                                </div>
                             </div>
                         </div>
 
@@ -238,13 +242,7 @@
                                 <h6>Clients Summary</h6>
 
                             </div>
-                            <div>
-                                <select id="time-range" class="form-control d-inline w-auto">
-                                    <option value="7">Past 7 Days</option>
-                                    <option value="14">Past 14 Days</option>
-                                    <option value="30">Past 30 Days</option>
-                                </select>
-                            </div>
+
                         </div>
 
                         <!-- Chart Container -->
@@ -281,50 +279,12 @@
 @endsection
 @section('script')
 <script>
-    // Sample data
-    const dataValues = [30, 50, 20]; // Change these values as needed
     const backgroundColors = ['#ff0000', '#fbbd00', '#ff8800']; // Colors for the segments
     const labels = ['Acquisition', 'Purchase', 'Retention']; // Labels
 
-    // Create the chart
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
 
-            datasets: [{
-                data: dataValues,
-                backgroundColor: backgroundColors,
-                borderWidth: 0,
-            }]
-        },
-        options: {
-            responsive: false, // Disable responsiveness
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            },
-            cutout: '75%' // Adjust this value to change the size of the inner circle
-        }
-    });
-    // Create a custom legend
-    const legendContainer = document.getElementById('legend-container');
-    labels.forEach((label, index) => {
-        const legendItem = document.createElement('div');
-        legendItem.classList.add('legend-item');
 
-        const colorCircle = document.createElement('div');
-        colorCircle.classList.add('legend-color');
-        colorCircle.style.backgroundColor = backgroundColors[index];
 
-        const labelText = document.createElement('span');
-        labelText.textContent = label;
-
-        legendItem.appendChild(colorCircle);
-        legendItem.appendChild(labelText);
-        legendContainer.appendChild(legendItem);
-    });
     ///bar chart
     // Initialize custom data arrays
     const customLabels = ['Oct 01', 'Oct 02', 'Oct 03', 'Oct 04', 'Oct 05', 'Oct 06', 'Oct 07'];
@@ -356,6 +316,43 @@
             ctx.restore();
         }
     };
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: customLabels,
+            datasets: [{
+                label: 'Revenue',
+                data: customDataValues,
+                backgroundColor: '#fcbf49', // Custom yellow color for the bars
+                borderColor: '#fcbf49',
+                borderWidth: 1,
+                borderRadius: 8,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 10000,
+                        callback: function(value) {
+                            return value + 'k';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            barPercentage: 0.2, // Adjust bar width
+            categoryPercentage: 0.5, // Adjust spacing between bars
+        },
+        plugins: [backgroundPlugin] // Register the custom background plugin
+    });
     // Chart.js configuration for the custom chart
     const customCtx = document.getElementById('customBarChart').getContext('2d');
     const customBarChart = new Chart(customCtx, {

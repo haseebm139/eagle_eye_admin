@@ -106,17 +106,7 @@
                     <div class="card text-center">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/stroke_2.svg') }} " />
-                            <div class="leftAlignement">
-                                <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="Revenue">This Week</option>
-                                        <option value="Expenses">This Week</option>
-                                        <option value="Profit Margin">This Week</option>
-                                    </select>
-                                    <span class="dropdown-icon"></span>
-                                    <!-- Down arrow icon -->
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="bottomContent">
