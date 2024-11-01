@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
     </style>
 @endsection
 @section('content')
@@ -794,6 +794,7 @@
                                 <tbody>
 
                                     @php
+
                                         $img = $item['attributes']['image'] ?? 'assets/profile.png';
                                         $additional_file = $item['attributes']['additional_file'] ?? null;
                                         $subtotal = $item['price'] * $item['quantity'];
@@ -805,7 +806,7 @@
                                         </td>
                                         <td>
                                             <div class="productDetails">
-                                                <h5 class="heading">Flatbed Printing</h5>
+                                                <h5 class="heading">{{ $item['name'] }}</h5>
                                                 <p>Height: <Span class="span">{{ $item['attributes']['height'] }}</Span>
                                                 </p>
                                                 <p>Width: <Span class="span">{{ $item['attributes']['width'] }}</Span></p>
@@ -822,7 +823,7 @@
                                         </td>
                                         <td>
                                             <p class="span">Price ${{ $item['price'] }}</p>
-                                            <p class="span">Additional File Notes <span class="astrik">*</span> </p>
+                                            {{-- <p class="span">Additional File Notes <span class="astrik">*</span> </p> --}}
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-start align-items-center gap-2 quantity">
@@ -842,7 +843,7 @@
                                     </tr>
 
 
-                                    <tr class="imageBox">
+                                    {{-- <tr class="imageBox">
                                         <td>
                                             <div class="upload-container" data-key="{{ $key }}">
                                                 <div class="d-flex justify-content-center gap-3 align-items-center">
@@ -866,7 +867,7 @@
                                             </div>
 
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
 
@@ -898,8 +899,8 @@
 
                                             @foreach ($data['shipping_rates'] as $key => $item)
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate"
-                                                        value={{ $item->id ?? '' }} data-price={{ $item->price ?? 0.0 }}
+                                                    <input type="radio" name="shipping_rate" value={{ $item->id ?? '' }}
+                                                        data-price={{ $item->price ?? 0.0 }}
                                                         @if ($key == 0) checked @endif
                                                         class="shipping-rate" />
                                                     <p>{{ $item->name ?? '' }}</p>
@@ -1038,13 +1039,13 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="table3">
-                            <div class="d-flex flex-column align-items-start">
+                            {{-- <div class="d-flex flex-column align-items-start">
                                 <div class="d-flex  align-items-start gap-2 address">
                                     <input type="checkbox" />
                                     <p class="p-0 m-0">Ship to a different address?</p>
                                 </div>
                                 <p class="note pt-2">Your Order Note Here</p>
-                            </div>
+                            </div> --}}
                             <div class="table-responsive ">
                                 <table class="table table3">
                                     <thead>
@@ -1137,7 +1138,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1808,7 +1809,7 @@
                     const postcode = $("#postcode").val().trim();
                     const phone = $("#phone").val().trim();
                     const email = $("#email").val().trim();
-                    const location = $("#location").val().trim();
+                    const location = $("#location").val();
                     const notes = $("#notes").val().trim();
 
                     // Array of field values and corresponding selectors for error highlighting

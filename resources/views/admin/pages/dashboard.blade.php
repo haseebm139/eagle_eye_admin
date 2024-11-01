@@ -176,30 +176,19 @@
                     <div class="card text-center w-100">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/cart.svg') }}" />
-                            <div class="leftAlignement">
-                                <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="all">ALL</option>
-                                        <option value="week">This Week</option>
-                                        <option value="month">This Month</option>
-                                        <option value="year">This Year</option>
 
-                                    </select>
-                                    <span class="dropdown-icon"></span> <!-- Down arrow icon -->
-                                </div>
-                            </div>
                         </div>
 
                         <div class="bottomContent">
 
                             <span>
                                 <p class="sales" style="color: red;">Abandoned Cart</p>
-                                <p class="card_counting_numbers">20 </p>
+                                <p class="card_counting_numbers">{{ abandonedCart() }} </p>
                             </span>
 
                             <span>
-                                <p class="sales">Clients</p>
-                                <p class="card_counting_numbers">30</p>
+                                <p class="sales">Products</p>
+                                <p class="card_counting_numbers">{{ abandonedCartProducts() }}</p>
                             </span>
                         </div>
 

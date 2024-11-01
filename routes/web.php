@@ -42,36 +42,40 @@ Route::middleware(['guest'])->group(function(){
 
 
     });
+
 });
 Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
-    Route::get('/equipments', 'equipments')->name('equipments');
-    Route::get('/product_detail/{slug}', 'productDetail')->name('product_detail');
-    Route::get('/about-us', 'aboutUs')->name('about.us');
-    Route::get('/our-story', 'ourStory')->name('our.story');
-    Route::get('/cart', 'cart')->name('cart');
+
 
 
 });
-Route::controller(UserProductController::class)->group(function(){
-    // Route::get('add-to-cart/{id}', 'addToCart')->name('add.to.cart');
-    // Route::patch('update-cart', 'update')->name('update.cart');
-    // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
-});
-
-Route::controller(CartController::class)->group(function(){
-    Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
-
-    Route::post('/cart/update',  'updateCart')->name('cart.update');
-    Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
-    // Route::patch('update-cart', 'update')->name('update.cart');
-    // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
-});
-Route::get('logout', [AuthController::class,'logout'])->name('logout');
-
-
 
 Route::middleware(['auth'])->group(function () {
+    Route::controller(HomeController::class)->group(function(){
+        Route::get('/equipments', 'equipments')->name('equipments');
+        Route::get('/product_detail/{slug}', 'productDetail')->name('product_detail');
+        Route::get('/about-us', 'aboutUs')->name('about.us');
+        Route::get('/our-story', 'ourStory')->name('our.story');
+        Route::get('/cart', 'cart')->name('cart');
+
+
+    });
+    Route::controller(UserProductController::class)->group(function(){
+        // Route::get('add-to-cart/{id}', 'addToCart')->name('add.to.cart');
+        // Route::patch('update-cart', 'update')->name('update.cart');
+        // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
+    });
+
+    Route::controller(CartController::class)->group(function(){
+        Route::POST('add-to-cart', 'addToCart')->name('add.to.cart');
+
+        Route::post('/cart/update',  'updateCart')->name('cart.update');
+        Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
+        // Route::patch('update-cart', 'update')->name('update.cart');
+        // Route::delete('remove-from-cart', 'remove')->name('remove.from.cart');
+    });
+    Route::get('logout', [AuthController::class,'logout'])->name('logout');
     Route::controller(CartController::class)->group(function(){
         Route::POST('/place-order', 'placeOrder')->name('place.order');
     });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\CartProduct;
 use Cart;
 use Str;
 class CartController extends Controller
@@ -13,101 +14,163 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
 
+        try {
+            $product = Product::with('image')->find($request->product_id);
+            $product_name = $product->name??'';
+            $product_image = $product->image->path??'';
+            $global_value = $product->global_value;
+            $base_price = $product->is_discount ? $product->sell_price : $product->cost_price;
+            $extra_price = $base_price * ($global_value / 100);
+            $increased_price = $base_price + $extra_price;
+            $product_price = number_format($increased_price, 2);
+            $additional_file = null;
+            if ($request->hasFile('additional_file')) {
+                $file = $request->file('additional_file');
+                $img = time() . '_' . $file->getClientOriginalName();
+                $file_path = "documents/additional_files/" . $img;
+                $file->move(public_path("documents/additional_files/"), $img);
+                $additional_file =$file_path;
+            }
+            // Add the item to the cart
+            if (!$product) {
+                return response()->json(['success' => false, 'message' => 'Product not found.']);
+            }
+            if ($request->qty < $product->min_order_value) {
+                return response()->json(['success' => false, 'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $product->min_order_value]);
+            }
+            \Cart::add(array(
+                'id' => $request->product_id,
+                'name' => $product_name,
+                'quantity' => $request->qty,
+                'price' => $product_price, // Store as numeric
+                'attributes' => array(
+                    'min_order_value' => $product->min_order_value,
+                    'image' => $request->product_image,
+                    'height' => $request->height,
+                    'width' => $request->width,
+                    'material' => $request->material,
+                    'printed_sides' => $request->printed_sides,
+                    'flute_direction' => $request->flute_direction,
+                    'special_instructions' => $request->special_instructions,
+                    'additional_file_notes' => $request->additional_file_notes,
+                    'additional_file' => $additional_file, // Use the stored file path
+                )
+            ));
+            $user_id =auth()->id()??0;
+            $db_cart_item = CartProduct::where('product_id',$request->product_id)->where('user_id',$user_id)->first();
+            if ($db_cart_item ) {
+                $db_cart_item->quantity = $request->qty;
+                $db_cart_item->update();
+            }else{
 
-        $product = Product::with('image')->find($request->product_id);
-        $product_name = $product->name??'';
-        $product_image = $product->image->path??'';
-        $global_value = $product->global_value;
-        $base_price = $product->is_discount ? $product->sell_price : $product->cost_price;
-        $extra_price = $base_price * ($global_value / 100);
-        $increased_price = $base_price + $extra_price;
-        $product_price = number_format($increased_price, 2);
-        $additional_file = null;
-        if ($request->hasFile('additional_file')) {
-            $file = $request->file('additional_file');
-            $img = time() . '_' . $file->getClientOriginalName();
-            $file_path = "documents/additional_files/" . $img;
-            $file->move(public_path("documents/additional_files/"), $img);
-            $additional_file =$file_path;
+                CartProduct::create([
+                    'product_id' => $request->product_id,
+                    'user_id' => $user_id,
+                    'name' => $product_name,
+                    'quantity' => $request->qty,
+                    'price' => $product_price,
+                    'min_order_value' => $product->min_order_value,
+                    'image' => $request->product_image,
+                    'height' => $request->height,
+                    'width' => $request->width,
+                    'material' => $request->material,
+                    'printed_sides' => $request->printed_sides,
+                    'flute_direction' => $request->flute_direction,
+                    'special_instructions' => $request->special_instructions,
+                    'additional_file_notes' => $request->additional_file_notes,
+                    'additional_file' => $additional_file,
+                ]);
+            }
+            return redirect()->route('home')->with(array('message'=>'Item added to cart successfully!','type'=>'success'));
+            //code...
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(array('message'=>'Something Went Worng','type'=>'error'));
         }
-        // Add the item to the cart
-        if (!$product) {
-            return response()->json(['success' => false, 'message' => 'Product not found.']);
-        }
-        if ($request->qty < $product->min_order_value) {
-            return response()->json(['success' => false, 'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $product->min_order_value]);
-        }
-        \Cart::add(array(
-            'id' => $request->product_id,
-            'name' => $product_name,
-            'quantity' => $request->qty,
-            'price' => $product_price, // Store as numeric
-            'attributes' => array(
-                'min_order_value' => $product->min_order_value,
-                'image' => $request->product_image,
-                'height' => $request->height,
-                'width' => $request->width,
-                'material' => $request->material,
-                'printed_sides' => $request->printed_sides,
-                'flute_direction' => $request->flute_direction,
-                'special_instructions' => $request->special_instructions,
-                'additional_file_notes' => $request->additional_file_notes,
-                'additional_file' => $additional_file, // Use the stored file path
-            )
-        ));
-        return redirect()->route('home')->with(array('message'=>'Item added to cart successfully!','type'=>'success'));
     }
     public function updateCart(Request $request)
     {
-        $itemId = $request->input('id');
-        $newQuantity = $request->input('quantity');
+        try {
+            //code...
+            $itemId = $request->input('id');
+            $newQuantity = $request->input('quantity');
 
-        // Find the item in the cart by ID
-        $cartItem = \Cart::get($itemId);
+            // Find the item in the cart by ID
+            $cartItem = \Cart::get($itemId);
+            $user_id = auth()->id();
+            if ($cartItem) {
 
-        if ($cartItem) {
-
-            $minOrderValue = $cartItem->attributes->min_order_value;
+                $minOrderValue = $cartItem->attributes->min_order_value;
 
 
-            if ($newQuantity < $minOrderValue) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $minOrderValue
-                ]);
+                if ($newQuantity < $minOrderValue) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Quantity must be greater than or equal to the minimum order value of ' . $minOrderValue
+                    ]);
+                }
+                $db_cart_item = CartProduct::where('product_id',$itemId)->where('user_id',$user_id)->first();
+                // Update the quantity of the item in the cart
+                \Cart::update($itemId, array(
+                    'quantity' => array(
+                        'relative' => false, // Update with absolute value
+                        'value' => $newQuantity
+                        )
+                    ));
+
+                if (isset($db_cart_item) ) {
+                    $db_cart_item->quantity = $newQuantity;
+                    $db_cart_item->save();
+                }
+                $data['cart'] = \Cart::getContent();
+                $data['cartTotal'] =\Cart::getSubTotal();
+                // Optionally, you can return the updated cart or success message
+                return response()->json(['success' => true, 'message' => 'Cart updated successfully','data'=>$data ]);
             }
-            // Update the quantity of the item in the cart
-            \Cart::update($itemId, array(
-                'quantity' => array(
-                    'relative' => false, // Update with absolute value
-                    'value' => $newQuantity
-                )
-            ));
-            $data['cart'] = \Cart::getContent();
-            $data['cartTotal'] =\Cart::getSubTotal();
-            // Optionally, you can return the updated cart or success message
-            return response()->json(['success' => true, 'message' => 'Cart updated successfully','data'=>$data ]);
-        }
 
-        return response()->json(['success' => false, 'message' => 'Item not found in cart']);
+            return response()->json(['success' => false, 'message' => 'Item not found in cart']);
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Something Went Wrong']);
+        }
     }
 
     public function removeFromCart(Request $request)
     {
-        $itemId = $request->input('id');
-
-        // Remove the item from the cart
-        \Cart::remove($itemId);
-
-        // Optionally, return the updated cart or a success message
-        return response()->json(['success' => true, 'message' => 'Item removed from cart']);
+        try {
+            //code...
+            $itemId = $request->input('id');
+            $user_id = auth()->id();
+            // Remove the item from the cart
+            \Cart::remove($itemId);
+            $db_cart_item = CartProduct::where('product_id',$itemId)->where('user_id',$user_id)->first();
+            if ($db_cart_item ) {
+                $db_cart_item->delete();
+            }
+            // Optionally, return the updated cart or a success message
+            return response()->json(['success' => true, 'message' => 'Item removed from cart']);
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Something Went Wrong']);
+        }
     }
     public function placeOrder(Request $request){
-
+        $user_id = auth()->id();
         $create_order = $this->createOrder($request);
         $order_id = $create_order->id??1;
         $create_item = $this->createItem($order_id);
+        \Cart::clear();
+        $db_cart_item = CartProduct::where('user_id',$user_id)->get();
+        if (isset($db_cart_item[0]) ) {
+            foreach ($db_cart_item as $item) {
+                $item->delete();
+            }
+
+        }
         return redirect()->route('home')->with(array('message'=>'Order Place Successfully!','type'=>'success'));
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('home')->with(array('message'=>'Something Went Wrong','type'=>'error'));
+        }
     }
     public function createItem($order_id){
 
