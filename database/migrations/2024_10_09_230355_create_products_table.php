@@ -26,6 +26,9 @@ return new class extends Migration
             $table->boolean('is_discount')->default(false)->nullable(); // Discount flag
             $table->boolean('is_discount2')->default(false)->nullable(); // Second discount flag
             $table->boolean('is_expire')->default(false)->nullable(); // Expiry flag
+            $table->boolean('is_min_orders')->default(false)->nullable();
+            $table->integer('min_order_value')->nullable()->default(1);
+            $table->decimal('global_value', 10, 2)->nullable()->default(0.00);
             $table->enum('status', [0,1,2])->nullable()->default(1)->comment('0 = draft, 1 = publish, 2 = unpublish');
             $table->timestamps();
         });

@@ -14,10 +14,13 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            CategorySeeder::class,
+            // EmployeeSeeder::class,
             UserSeeder::class,
-            ProductSeeder::class,
+            PermissionTableSeeder::class,
+            // ProductSeeder::class,
             ShippingRatesSeeder::class,
-            EmployeeSeeder::class,
+
             // Add other seeders here
         ]);
         // \App\Models\User::factory(10)->create();

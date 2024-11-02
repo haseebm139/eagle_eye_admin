@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\Admin\SocialLogin;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\UserProductController  ;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::middleware(['auth'])->group(function () {
+
     Route::controller(HomeController::class)->group(function(){
         Route::get('/equipments', 'equipments')->name('equipments');
         Route::get('/product_detail/{slug}', 'productDetail')->name('product_detail');
@@ -83,7 +85,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
-
+        Route::resource('roles', RoleController::class);
+        Route::get('role-change-status', [RoleController::class, 'roleChangeStatus'])->name('role-change-status');
         Route::controller(AdminController::class)->group(function(){
             Route::get('/', 'dashboard');
             Route::get('/dashboard', 'dashboard')->name('dashboard');
@@ -110,8 +113,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-            Route::get('/products/upload','showUploadForm')->name('form');
-            Route::post('/products/upload',  'uploadProducts')->name('upload');
+            Route::get('/products/upload','showUploadForm1')->name('form1');
+            Route::post('/products/upload',  'uploadProducts')->name('upload1');
             Route::post('/update-global-price', 'updateGlobalPrice')->name('update.global.price');
 
             Route::Get('/product-stats', 'productsStats')->name('stats');

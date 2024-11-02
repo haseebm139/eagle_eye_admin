@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
@@ -80,6 +82,7 @@ class CustomerController extends Controller
                 }
 
 
+                $roleName = $data['role'] ?? 'user';
                 $user = User::create([
                     'name' => $data['first_name'],
                     'last_name' => $data['last_name'],
@@ -88,8 +91,19 @@ class CustomerController extends Controller
                     'country' => $data['country'] ?? null,
                     'state' => $data['state'] ?? null,
                     'city' => $data['city'] ?? null,
+                    'role_id'=> "user",
+                    'type'=> "user",
                     'since' => $dateRegistered, // Default to the current date
                 ]);
+
+                $role = Role::where('name', $roleName)->first();
+                if ($role) {
+                    $user->roles()->attach($role);
+                } else {
+                    // Optionally create a new role if it doesn't exist
+                    $newRole = Role::create(['name' => $roleName]);
+                    $user->roles()->attach($newRole);
+                }
 
                 // If phone number, job title, etc., are available, they can be mapped similarly
             }

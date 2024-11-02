@@ -36,6 +36,7 @@ return new class extends Migration
             $table->decimal('total', 8, 2);
             $table->integer('total_qty')->nullable();
             $table->integer('total_item')->nullable();
+            $table->enum('order_type', ['home_delivery', 'pickup'])->default('pickup');
             $table->enum('payment_method', ['cash_on_delivery', 'credit_debit_card', 'other_method'])->nullable()->default('other_method');
             $table->enum('status', [0,1,2])->nullable()->default(0);
             $table->timestamps();

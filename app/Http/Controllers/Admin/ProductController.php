@@ -58,8 +58,9 @@ class ProductController extends Controller
     }
 
 
-    public function showUploadForm()
+    public function showUploadForm1()
     {
+
         return view('upload_product');
     }
     public function uploadProducts(Request $request)

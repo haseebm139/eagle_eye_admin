@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Category;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 use Hash;
 class AdminController extends Controller
@@ -134,16 +136,22 @@ class AdminController extends Controller
             'job_type' => 'required|string|max:255',           // Must match the password
             'employee_id' => 'required|unique:users,employee_id'                   // Checkbox must be checked (value 'on')
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
+        }
 
-        $userData = $request->except(['password']);
         try {
             //code...
-            $userData['type'] = 'emp';
+            $userData = $request->except(['password']);
+            $userData['type'] = 'agent';
+            $userData['role_id'] = 'agent';
             $userData['password'] = Hash::make($request->password);
             $user = User::create($userData);
 
             // Redirect based on the success or failure of user creation
             if ($user) {
+                $role = Role::firstOrCreate(['name' => 'agent']);
+                $user->roles()->attach($role);
                 return redirect()->back()->with([
                     'message' => 'Register Successfully',
                     'type' => 'success'
