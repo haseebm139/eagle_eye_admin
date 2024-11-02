@@ -27,6 +27,7 @@ class PermissionTableSeeder extends Seeder
                 'order management',
                 'inventory management',
                 'role management',
+                'employee management'
 
             ],
             'agent' => [
