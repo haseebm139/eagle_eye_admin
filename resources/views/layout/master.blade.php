@@ -71,15 +71,27 @@
                 <h3 id="page-title">@yield('heading')</h3>
                 <div class="d-flex align-items-center gap-3">
                     <div class="dropdown-container position-relative">
-                        <select id="data-category" class="form-control3 d-inline w-auto">
-                            <option value="Revenue">Eagle eye</option>
-                            <option value="Expenses">This Week</option>
-                            <option value="Profit Margin">This Week</option>
-                        </select>
-                        <span class="dropdown-icon"></span>
+
+                        <div class="dropdown">
+                            <!-- The dropdown toggle -->
+                            @php
+                                $profile = auth()->user()->profile ?? 'assets/profile.png';
+                            @endphp
+                            <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+
+                                <img src="{{ asset($profile) }} " alt="User Image" id="profile-image">
+                            </div>
+                            <!-- The dropdown menu -->
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </div>
+                        </div>
+
                         <!-- Down arrow icon -->
                     </div>
-                    <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
+                    {{-- <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" /> --}}
                 </div>
             </div>
 

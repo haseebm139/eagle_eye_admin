@@ -147,7 +147,7 @@
                             </span>
 
                             <span>
-                                <p class="sales">Active</p>
+                                <p class="sales">Publish</p>
                                 <p class="card_counting_numbers">{{ productPublished() }} </p>
                             </span>
                         </div>
@@ -155,7 +155,7 @@
 
                     </div>
 
-                  
+
 
 
 
@@ -201,7 +201,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-md-12 mb-5">
                     <div class="container container-2 g-3  text-center m-0">
 
@@ -252,8 +252,8 @@
     const backgroundColors = ['#ff0000', '#fbbd00', '#ff8800']; // Colors for the segments
     const labels = ['Acquisition', 'Purchase', 'Retention']; // Labels
 
-    const customLabels = ['Oct 01', 'Oct 02', 'Oct 03', 'Oct 04', 'Oct 05', 'Oct 06', 'Oct 07'];
-    const customDataValues = [50000, 30000, 45000, 25000, 35000, 48000, 52000];
+    const customLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    const customDataValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     function fetchUserChartData() {
         $.ajax({
@@ -278,7 +278,8 @@
             type: 'GET',
 
             success: function(response) {
-                // Assuming response contains labels (months) and data values (sales)
+
+
                 const customLabels = response.labels; // e.g., ['Jan', 'Feb', 'Mar', ...]
                 const customDataValues = response.data; // e.g., [50000, 30000, ...]
 
@@ -342,15 +343,15 @@
             }]
         },
         options: {
-             responsive: true,
-            maintainAspectRatio: false, 
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
                     ticks: {
                         stepSize: 10000,
                         callback: function(value) {
-                            return value + 'k';
+                            return (value / 1000).toFixed(2) + 'k';
                         }
                     }
                 }
@@ -382,7 +383,7 @@
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, 
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,

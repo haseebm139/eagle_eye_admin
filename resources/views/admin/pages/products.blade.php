@@ -94,7 +94,7 @@
                                 <p class="card_counting_numbers">{{ productCount() }}</p>
                             </span>
                             <span>
-                                <p class="sales" style="color: white">Active</p>
+                                <p class="sales" style="color: white">Publish</p>
                                 <p class="card_counting_numbers">
                                     {{ productPublished() }}
 
