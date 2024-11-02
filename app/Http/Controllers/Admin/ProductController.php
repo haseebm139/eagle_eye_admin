@@ -9,18 +9,59 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\ProductCategory;
+use App\Models\User;
+use App\Models\Order;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 class ProductController extends Controller
 {
+    public function productsStats(Request $request){
+        $data = [
+            'new_clients' => 0,
+            'purchasing' => 0,
+            'orders' => 0,
+        ];
+
+        // Get the start and end dates based on the period selected
+        if ($request->period == 'year') {
+            $startDate = Carbon::now()->startOfYear();
+            $endDate = Carbon::now()->endOfYear();
+        } elseif ($request->period == 'month') {
+            $startDate = Carbon::now()->startOfMonth();
+            $endDate = Carbon::now()->endOfMonth();
+        } elseif ($request->period == 'week') {
+            $startDate = Carbon::now()->startOfWeek();
+            $endDate = Carbon::now()->endOfWeek();
+        } else {
+            // Default case if period is 'all'
+            $startDate = null;
+            $endDate = null;
+        }
+
+        $data['new_clients'] = User::whereBetween('created_at', [$startDate, $endDate])->count();
+
+        // Query the total purchasing amount and the number of orders
+        $ordersQuery = Order::query();
+
+        if ($startDate && $endDate) {
+            $ordersQuery->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $data['orders'] = $ordersQuery->count();
+        $data['purchasing'] = $ordersQuery->sum('total'); // assuming 'total_amount' is the field for purchase value
+
+        return response()->json($data);
+    }
+
+
     public function showUploadForm()
     {
         return view('upload_product');
     }
-
     public function uploadProducts(Request $request)
     {
         // Validate file input
@@ -117,12 +158,11 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage());
         }
     }
-
     public function uploadProduct(Request $request){
         $validator = Validator::make($request->all(), [
-            'category' => 'required|string|max:255',
+            'category_id' => 'required',
             'cost_price' => 'required|numeric|min:0',
-            'date' => 'required|date',
+            'date' => 'nullable|date',
             'discount' => 'nullable|string', // Adjust validation as necessary
             'discount2' => 'nullable|string', // Adjust validation as necessary
             'expiry_date' => 'nullable|string', // Adjust validation as necessary
@@ -134,7 +174,7 @@ class ProductController extends Controller
             'sell_price' => 'required|numeric|min:0',
             'short_description' => 'nullable|string',
             'stock' => 'required|integer|min:0',
-            'time' => 'required|string', // Consider more specific validation if necessary
+            'time' => 'nullable|string', // Consider more specific validation if necessary
         ]);
 
         // Check if validation fails
@@ -146,7 +186,7 @@ class ProductController extends Controller
         }
         try {
             $productData['slug'] = Str::slug($request->name); // Generate slug
-            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value']);
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','category_id']);
             $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
             $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
             $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
@@ -175,7 +215,81 @@ class ProductController extends Controller
                     ]);
                 }
             }
+            if ($request->category_id) {
+                ProductCategory::create([
+                    'product_id' => $product->id,
+                    'category_id' => $request->category_id,
+                ]);
+
+            }
             return response()->json(['success' => true, 'message' => 'Product created successfully']);
+
+            //code...
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Something Went Wrong']);
+        }
+
+
+    }
+
+    public function updateProduct(Request $request){
+
+
+        try {
+            $productId = $request->product_id??0;
+            $product = Product::find($productId);
+
+            // If product is not found, return an error response
+            if (!$product) {
+                return response()->json(['success' => false, 'message' => 'Product not found']);
+            }
+            $productData['slug'] = Str::slug($request->name); // Generate slug
+
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','product_id','category_id']);
+            $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
+            $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
+            $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
+
+            if ($request->min_order === 'on') {
+                $productData['is_min_orders'] = 1; // Marking min_order as enabled
+                $productData['min_order_value'] = $request->min_order_value;
+            } else {
+                $productData['is_min_orders'] = 0; // Marking min_order as disabled
+                $productData['min_order_value'] = 1; // No minimum order value if min_order is off
+            }
+
+            $product->update($productData);
+            if ($request->hasFile('image')) {
+
+                foreach ($request->file('image') as $file) {
+
+                    $img = time().$file->getClientOriginalName();
+                    $file_path = "documents/products/".$img;
+                    $file->move(public_path("documents/products/"), $img);
+                    $path = $file_path;
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'path' => $path,
+                        'status' => 1, // Set the status to active by default
+                    ]);
+                }
+            }
+            if ($request->category_id) {
+                $prod_cate = ProductCategory::where('product_id', $productId)
+                    ->where('category_id', $request->category_id)
+                    ->first();
+                if (!$prod_cate) {
+
+                    ProductCategory::where('product_id', $productId)->delete();
+
+
+                    ProductCategory::create([
+                        'product_id' => $productId,
+                        'category_id' => $request->category_id,
+                    ]);
+                }
+            }
+            return response()->json(['success' => true, 'message' => 'Product Update successfully']);
 
             //code...
         } catch (\Throwable $th) {
@@ -258,5 +372,35 @@ class ProductController extends Controller
         }
 
         return redirect()->back()->with(array('message'=>'Global price variable applied to all products successfully!','type'=>'success'));
+    }
+
+    public function productEdit($id){
+        try {
+            //code...
+            $product = Product::with(['categories', 'images'])->where('id', $id)->firstOrFail();
+            if (!isset($product)) {
+
+                return redirect()->back()->with(array('message'=>'Product Not Found','type'=>'error'));
+            }
+            $categories = Category::all();
+            return view('admin.pages.product_edit',compact('product','categories'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(array('message'=>'Something Went Wrong','type'=>'error'));
+        }
+    }
+
+    public function deleteProduct($id){
+        try {
+            //code...
+            $product = Product::where('id', $id)->firstOrFail();
+            if (!isset($product)) {
+
+                return redirect()->back()->with(array('message'=>'Product Not Found','type'=>'error'));
+            }
+            $product->delete();
+            return redirect()->back()->with(array('message'=>'Product Delete Successfully','type'=>'success'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(array('message'=>'Something Went Wrong','type'=>'error'));
+        }
     }
 }

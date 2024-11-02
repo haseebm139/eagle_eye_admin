@@ -6,9 +6,62 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; // Import the Validator facade
 use App\Models\Order;
-
+use Carbon\Carbon;
 class OrderController extends Controller
 {
+    public function getChart(Request $request){
+        $labels = [];
+        $data = [];
+
+        // Get the current date
+        $currentDate = Carbon::now();
+        for ($i = 1; $i <= 12; $i++) {
+            $startDate = Carbon::create($currentDate->year, $i, 1);
+            $endDate = $startDate->copy()->endOfMonth();
+
+            $labels[] = $startDate->format('M'); // Month abbreviation
+            $data[] = Order::whereBetween('created_at', [$startDate, $endDate])->sum('total'); // Assuming 'total_amount' is the sales field
+        }
+        return response()->json(['labels' => $labels, 'data' => $data]);
+    }
+    public function ordersStats(Request $request){
+        $data = [
+
+            'total_sales' => 0,
+            'volume' => 0,
+        ];
+
+        // Get the start and end dates based on the period selected
+        if ($request->period == 'year') {
+            $startDate = Carbon::now()->startOfYear();
+            $endDate = Carbon::now()->endOfYear();
+        } elseif ($request->period == 'month') {
+            $startDate = Carbon::now()->startOfMonth();
+            $endDate = Carbon::now()->endOfMonth();
+        } elseif ($request->period == 'week') {
+            $startDate = Carbon::now()->startOfWeek();
+            $endDate = Carbon::now()->endOfWeek();
+        } else {
+            // Default case if period is 'all'
+            $startDate = null;
+            $endDate = null;
+        }
+
+
+        // Query the total purchasing amount and the number of orders
+        $ordersQuery = Order::query();
+
+        if ($startDate && $endDate) {
+            $ordersQuery->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        $data['total_sales'] = $ordersQuery->sum('total');
+
+
+        $data['volume'] = $ordersQuery->sum('total_qty');
+
+        return response()->json($data);
+    }
     public function orderCustomer(Request $request){
         $perPage = $request->input('items_per_page', 10);
 
@@ -48,6 +101,30 @@ class OrderController extends Controller
         // Start a query for the Product model
         $query = Order::query();
         $query->with('customer')->where('status','0')->has('customer') ;
+            // Advance Search
+         // Apply filters based on request data
+        if ($request->has('order_type') && $request->order_type) {
+            $query->where('order_type', $request->order_type);
+        }
+
+        if ($request->has('status') && is_numeric($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('location') && $request->location) {
+            $query->where('location', $request->location);
+        }
+
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->from;
+            $to = $request->to;
+
+            // Apply the price range filter based on 'total' field
+            if (is_numeric($from) && is_numeric($to)) {
+
+                $query->whereBetween('total', [$from,$to ]);
+            }
+        }
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
@@ -84,8 +161,30 @@ class OrderController extends Controller
         $query->with(['customer','employee'])
         ->where('status','!=','0')
         ->has('customer')
-      ->has('employee')
+        ->has('employee')
         ;
+        if ($request->has('order_type') && $request->order_type) {
+            $query->where('order_type', $request->order_type);
+        }
+
+        if ($request->has('status') && is_numeric($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('location') && $request->location) {
+            $query->where('location', $request->location);
+        }
+
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->from;
+            $to = $request->to;
+
+            // Apply the price range filter based on 'total' field
+            if (is_numeric($from) && is_numeric($to)) {
+
+                $query->whereBetween('total', [$to, $from]);
+            }
+        }
         // Search functionality
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;

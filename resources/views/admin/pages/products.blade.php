@@ -90,12 +90,12 @@
                         <div class="d-flex align-items-start text-left justify-content-between" style="color: white">
                             <span>
                                 <p class="sales" style="color: white">All Products</p>
-                                <p class="card_counting_numbers">800s</p>
+                                <p class="card_counting_numbers">{{ productCount() }}</p>
                             </span>
                             <span>
                                 <p class="sales" style="color: white">Active</p>
                                 <p class="card_counting_numbers">
-                                    316
+                                    {{ productPublished() }}
 
                                 </p>
                             </span>
@@ -106,32 +106,22 @@
                     <div class="card text-center">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/stroke_2.svg') }} " />
-                            <div class="leftAlignement">
-                                <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="Revenue">This Week</option>
-                                        <option value="Expenses">This Week</option>
-                                        <option value="Profit Margin">This Week</option>
-                                    </select>
-                                    <span class="dropdown-icon"></span>
-                                    <!-- Down arrow icon -->
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="bottomContent">
                             <span>
                                 <p class="sales" style="color: red">Low Stock Alert</p>
-                                <p class="card_counting_numbers">23</p>
+                                <p class="card_counting_numbers">{{ productLowStock() }}</p>
                             </span>
                             <span>
                                 <p class="sales">Publish Products</p>
-                                <p class="card_counting_numbers">3</p>
+                                <p class="card_counting_numbers">{{ productPublished() }}</p>
                             </span>
 
                             <span>
                                 <p class="sales">Un-Publish Products</p>
-                                <p class="card_counting_numbers">2</p>
+                                <p class="card_counting_numbers">{{ productUNpublished() }}</p>
                             </span>
                         </div>
                     </div>
@@ -180,6 +170,7 @@
                                 <th scope="col">In-Stock</th>
                                 <th scope="col">Discount</th>
                                 <th scope="col">Total Value</th>
+                                <th scope="col">Publish Unpublish</th>
                                 <th scope="col">Action</th>
                                 <th scope="col">Status</th>
                             </tr>
@@ -235,9 +226,9 @@
                     <!-- Items per page dropdown -->
                     <div class="PaginationDropdown d-flex justify-content-center align-items-center gap-2">
                         <select id="itemsPerPage1" class="form-select productDropdown3 form-select-sm filter-dropdown">
-                            <option value="3">3</option>
-                            <option value="5">5</option>
                             <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
                         </select>
                         <p>Items per page</p>
                         <p class="TotalItems">1-10 of 100 items</p>
@@ -250,9 +241,9 @@
                     <nav class="d-flex justify-content align-items-center gap-2 mob-flex-direction-column"
                         aria-label="Page navigation ">
                         <select id="itemsPerPage" class="form-select productDropdown3 form-select-sm filter-dropdown">
-                            <option value="3">1</option>
-                            <option value="5">5</option>
                             <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
                         </select>
                         <p class="TotalItems">1-10 of 100 items</p>
                         <ul class="pagination mb-0">
@@ -286,7 +277,7 @@
 <script>
     $(document).ready(function() {
         let currentPage = 1;
-        let itemsPerPage = 3; // Default items per page
+        let itemsPerPage = 10; // Default items per page
         let searchQuery = '';
         // Function to fetch products from the server
         function fetchProducts(page, itemsPerPage, search) {
@@ -322,19 +313,28 @@
 
 
             products.forEach(product => {
-
-
                 const id = product.id || null
                 const name = product.name || 'N/A'
                 const category = product.category || 'N/A'
-                const unit_price = product.sell_price || 1.00
+                const sell_price = parseFloat(product.sell_price) || 0.00;
+                const cost_price = parseFloat(product.cost_price) || 0.00;
+                const global_value = parseFloat(product.global_value) || 0.00;
                 const stock = product.stock || 0
                 const discount = product.discount || '0.00'
                 const status = product.status || 0
-                const total_value = stock * unit_price
+                const base_price = product.is_discount ? sell_price : cost_price;
+                const extra_price = base_price * (global_value / 100);
+                const increased_price = base_price + extra_price;
+                const total_value = stock * base_price
                 // const imgPath = product.images[0].path || 'assets/admin/images/Image.png'
                 const imageUrl = product.images[0]?.path ? appUrl + '/' + product.images[0].path :
                     appUrl + '/assets/admin/images/Image.png';
+
+
+                let url = "{{ route('product.edit', ':id') }}";
+                url = url.replace(':id', id);
+                let url1 = "{{ route('product.delete', ':id') }}";
+                url1 = url1.replace(':id', id);
 
 
 
@@ -349,7 +349,7 @@
                     <td><img src="${imageUrl}" alt="${ name}"></td>
                     <td>${ name}</td>
                     <td>${ category}</td>
-                    <td>$${ unit_price}</td>
+                    <td>$${ increased_price}</td>
                     <td>${stock}</td>
                     <td>${discount}</td>
                     <td>$${total_value}</td>
@@ -363,6 +363,10 @@
                                 <li><a class="dropdown-item" href="javascript:void(0);" onclick="unpublishProduct(${id})">Unpublish</a></li>
                             </ul>
                         </div>
+                    </td>
+                    <td>
+                        <a href="${url}"  class="me-2"> <i class="fas fa-edit"></i> </a>
+                        <a href="${url1}"  style="color: red;"> <i class="fas fa-trash-alt"></i> </a>
                     </td>
                     <td>
                         <p class="status-text custom-${status == 1 ? 'active' : 'inactive'}">${status == 1 ? 'Publish' : 'Unpublish'} </p>

@@ -1,12 +1,13 @@
 @extends('layout.master')
-@section('title', 'Customer')
+@section('title', 'Client')
 
 @section('style')
 
     <style>
-        .card{
+        .card {
             min-height: 180px;
         }
+
         .viewOrderDetails {
             font-family: InterMedium;
             font-size: 13px;
@@ -617,7 +618,8 @@
     <div class="tab-content" id="myTabContent">
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
             <div class="container-fluid">
-                <div class="Width d-flex justify-content-between align-items-center customer2 mob-flex-direction-column">
+                <div
+                    class="Width d-flex justify-content-between align-items-center customer2 mob-flex-direction-column">
                     <div class="d-flex align-items-center justify-content-center gap-3  mb-3">
                         @php
                             // Assuming $date is the date variable you want to format
@@ -625,7 +627,7 @@
                             $formattedDate = \Carbon\Carbon::parse($data['user']->since)->format('dM Y - h:ia');
                         @endphp
                         <span class="d-flex gap-2">
-                            <p class="mediumFont m-0">Customer Since</p>
+                            <p class="mediumFont m-0">Client Since</p>
                             <p class="LightFont m-0">{{ $formattedDate }}</p>
                         </span>
 
@@ -635,23 +637,14 @@
                         </span>
                     </div>
                     <div class="d-flex gap-3 mb-3">
-                        <div class="dropdown">
-                            <button class="btn btn-dark bg-black dropdown-toggle" style="border-radius: 14px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Edit Customer
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                          </div>
-                    
+
+
                         @if ($data['user']->status == 0)
                             <form id="status-toggle-form" method="POST"
                                 action="{{ route('customer.toggle-status', $data['user']->id) }}">
                                 @csrf
                                 <button type="submit" class="unsuspension-btn d-flex align-items-center">
-                                    Active Customer
+                                    Active Client
                                 </button>
                             </form>
                         @else
@@ -659,14 +652,14 @@
                                 action="{{ route('customer.toggle-status', $data['user']->id) }}">
                                 @csrf
                                 <button type="submit" class="suspension-btn d-flex align-items-center">
-                                    Suspended Customer
+                                    Suspended Client
                                 </button>
                             </form>
                         @endif
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 mb-4" >
+                    <div class="col-md-4 mb-4">
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <div class="d-flex gap-3">
@@ -698,7 +691,7 @@
                             </div>
                         </div>
                     </div>
-                    <div  class="col-md-5  mb-4" >
+                    <div class="col-md-5  mb-4">
                         <div class="card text-center">
                             <div class="alignemnt">
                                 <img src="{{ asset('assets/admin/images/svg/address.svg') }} " />
@@ -721,7 +714,7 @@
                             </div>
                         </div>
                     </div>
-                    <div  class="col-md-3  mb-4" >
+                    <div class="col-md-3  mb-4">
                         <div class="card text-center">
                             <div class="d-flex justify-content-between CustomerOrders">
                                 <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
@@ -832,7 +825,7 @@
                         <div class="col-md-6">
                             <h6>{{ $data['user']->name ?? '' }} Orders</h6>
                         </div>
-                        <div class="col-md-6"> 
+                        <div class="col-md-6">
                             <div class="d-flex gap-2 mob-flex-direction-column">
                                 <div class="search-bar">
                                     <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />

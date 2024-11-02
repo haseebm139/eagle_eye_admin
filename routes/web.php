@@ -91,28 +91,36 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/orders/view/{id}', 'orderView')->name('orders.view');
             Route::get('/settings', 'settings')->name('settings');
             Route::post('update-profile','updateProfile')->name('profile');
+            Route::post('employee-create','employeeCreate')->name('employee.create');
             Route::Get('/employee', 'employees')->name('employee.index');
 
         });
 
         Route::controller(ProductController::class)->name('product.')->group(function(){
             Route::post('/upload-product', 'uploadProduct')->name('add');
+            Route::post('/update-product', 'updateProduct')->name('update');
+            Route::get('/products/{id}', 'deleteProduct')->name('delete');
             Route::Get('/product-list', 'productList')->name('list');
+            Route::Get('/product-edit/{id}', 'productEdit')->name('edit');
             Route::post('/products/{id}/status', 'updateStatus')->name('change.status');
 
 
 
             Route::get('/products/upload','showUploadForm')->name('form');
             Route::post('/products/upload',  'uploadProducts')->name('upload');
-
-
             Route::post('/update-global-price', 'updateGlobalPrice')->name('update.global.price');
+
+            Route::Get('/product-stats', 'productsStats')->name('stats');
 
         });
         Route::controller(CustomerController::class)->name('customer.')->group(function(){
             Route::post('/add-customer', 'create')->name('create');
             Route::Get('/customers', 'index')->name('index');
+            Route::Get('/get-user-chart', 'getUserChart')->name('chart');
             Route::POST('/users/toggle-status/{id}', 'toggleStatus')->name('toggle-status');
+
+            Route::get('/users/upload','showUploadForm')->name('form');
+            Route::post('/users/upload',  'uploadUsers')->name('upload');
 
 
         });
@@ -122,6 +130,8 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/assigned-orders','assignedOrders')->name('assignedorders');
             Route::POST('/assign-orders-employee','assignOrdersToEmployee')->name('assign.orders.to.employee');
             Route::post('/orders/{id}/cancel',  'cancelOrder' )->name('cancel');
+            Route::Get('/order-stats', 'ordersStats')->name('stats');
+            Route::Get('/get-order-chart', 'getChart')->name('chart');
 
         });
     });
