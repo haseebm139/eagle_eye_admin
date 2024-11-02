@@ -88,14 +88,15 @@
     <div class="tab-content" id="myTabContent">
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
             <div class="container-fluid">
-                <div class="Width d-flex justify-content-between align-items-center">
-                    <span class="my-2 ml-2"></span>
-                    <a href="{{ route('roles.create') }}" class="order-btn d-flex align-items-center">
-                        <i class="fa-solid fa-plus mr-1"></i>
-                        create a New Role
-                    </a>
-                </div>
-
+                @can('create role management')
+                    <div class="Width d-flex justify-content-between align-items-center">
+                        <span class="my-2 ml-2"></span>
+                        <a href="{{ route('roles.create') }}" class="order-btn d-flex align-items-center">
+                            <i class="fa-solid fa-plus mr-1"></i>
+                            create a New Role
+                        </a>
+                    </div>
+                @endcan
                 <div class="product2 mt-4">
                     <div class="row justify-content-between">
                         <div class="col-md-6">

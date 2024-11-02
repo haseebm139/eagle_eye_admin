@@ -27,7 +27,6 @@ class AuthController extends Controller
     public function loginProcess(Request $request)
     {
         // refyv@mailinator.com
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email', // Email is required, must be a valid email format, and must be unique in the users table
             'password' => 'required|string|min:5', // Password is required and must be at least 5 characters
@@ -39,11 +38,17 @@ class AuthController extends Controller
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password)))
         {
 
-           if(auth()->user()->type == 'admin')
+            if(auth()->user()->type == 'admin')
             {
                 return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
             }else if(auth()->user()->type == 'user')
             {
+                return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
+
+            }
+            else if(auth()->user()->type == 'agent')
+            {
+
                 return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
 
             }

@@ -651,13 +651,15 @@
                             Add Courier
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="mediumFontBorder" id="role-management-tab" data-bs-toggle="tab"
-                            data-bs-target="#role-management" type="button" role="tab"
-                            aria-controls="role-management" aria-selected="false">
-                            Role Management
-                        </button>
-                    </li>
+                    @can('read employee management')
+                        <li class="nav-item" role="presentation">
+                            <button class="mediumFontBorder" id="role-management-tab" data-bs-toggle="tab"
+                                data-bs-target="#role-management" type="button" role="tab"
+                                aria-controls="role-management" aria-selected="false">
+                                Role Management
+                            </button>
+                        </li>
+                    @endcan
 
                 </ul>
 
@@ -802,89 +804,91 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="role-management" role="tabpanel"
-                        aria-labelledby="role-management-tab">
-                        <div class="">
-                            <div>
-                                <div class="d-flex justify-content-between mob-flex-direction-column">
-                                    <div
-                                        class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100 mob-flex-direction-column">
+                    @can('read employee management')
+                        <div class="tab-pane fade" id="role-management" role="tabpanel"
+                            aria-labelledby="role-management-tab">
+                            <div class="">
+                                <div>
+                                    <div class="d-flex justify-content-between mob-flex-direction-column">
                                         <div
-                                            class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center mob-flex-direction-column">
-                                            <div class="d-none-mob">
-                                                <img src="{{ asset('assets/admin/images/svg/Search.svg') }}" />
-                                                <input type="text" class="w-search" id="searchInput"
-                                                    placeholder="Search Employee by name, role, ID or any related keywords" />
+                                            class="d-flex  position-relative align-items-center justify-content-betwee gap-3 w-100 mob-flex-direction-column">
+                                            <div
+                                                class="search-bar gap-2 d-flex w-o-search justify-content-between align-items-center mob-flex-direction-column">
+                                                <div class="d-none-mob">
+                                                    <img src="{{ asset('assets/admin/images/svg/Search.svg') }}" />
+                                                    <input type="text" class="w-search" id="searchInput"
+                                                        placeholder="Search Employee by name, role, ID or any related keywords" />
+                                                </div>
+                                                <div class="d-flex justify-content-around w-buttoon">
+
+                                                </div>
                                             </div>
-                                            <div class="d-flex justify-content-around w-buttoon">
+                                            <div class="d-flex align-items-center gap-2">
 
+                                                <button type="button" class="filter-btn n-emp"
+                                                    id="openModalButton_employee">
+                                                    <img
+                                                        src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
+                                                    New Employee
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-2">
 
-                                            <button type="button" class="filter-btn n-emp"
-                                                id="openModalButton_employee">
-                                                <img
-                                                    src="{{ asset('assets/admin/images/svg/_Avatar_add_button.svg') }}" />
-                                                New Employee
-                                            </button>
                                         </div>
-
                                     </div>
                                 </div>
+
+                                <div class="table-responsive">
+                                    <table class="table order mt-3" id="emp_table_1234">
+                                        <thead>
+                                            <tr class="orderTable">
+                                                <th scope="col">
+                                                    <label class="custom-checkbox" id="click_me"
+                                                        for="select-all-emp-role">
+                                                        <input type="checkbox" id="select-all-emp-role"
+                                                            name="order_[]" />
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Employee Id</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body-emp-role">
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                                <nav class="d-flex justify-content align-items-center gap-2"
+                                    aria-label="Page navigation ">
+                                    <select id="itemsPerPage"
+                                        class="form-select productDropdown3 form-select-sm filter-dropdown">
+                                        <option value="3">1</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                    <p class="TotalItems">1-10 of 100 items</p>
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" id="prev-page">
+                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" id="next-page">
+                                                <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table order mt-3" id="emp_table_1234">
-                                    <thead>
-                                        <tr class="orderTable">
-                                            <th scope="col">
-                                                <label class="custom-checkbox" id="click_me"
-                                                    for="select-all-emp-role">
-                                                    <input type="checkbox" id="select-all-emp-role"
-                                                        name="order_[]" />
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Employee Id</th>
-                                            <th scope="col">Role</th>
-                                            <th scope="col">Status</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body-emp-role">
-
-                                    </tbody>
-                                </table>
-
-
-                            </div>
-                            <nav class="d-flex justify-content align-items-center gap-2"
-                                aria-label="Page navigation ">
-                                <select id="itemsPerPage"
-                                    class="form-select productDropdown3 form-select-sm filter-dropdown">
-                                    <option value="3">1</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <p class="TotalItems">1-10 of 100 items</p>
-                                <ul class="pagination mb-0">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" id="prev-page">
-                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down4.svg') }} " />
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" id="next-page">
-                                            <img src="{{ asset('assets/admin/images/svg/Arrow-Down3.svg') }} " />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
-
-                    </div>
+                    @endcan
                 </div>
             </div>
 

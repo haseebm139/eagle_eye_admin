@@ -72,14 +72,15 @@
 
     <div class="green" id="products">
         <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
-                <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">Product Summary</span>
-                <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center text-white">
-                    <i class="fa-solid fa-plus mr-1"></i>
-                    Add a New Product
-                </a>
-            </div>
-
+            @can('create inventory management')
+                <div class="d-flex justify-content-between align-items-center my-3" style="width: 100%">
+                    <span class="my-2 ml-2" style="font-size: 17px; font-weight: 700">Product Summary</span>
+                    <a href="{{ route('add.product') }}" class="order-btn d-flex align-items-center text-white">
+                        <i class="fa-solid fa-plus mr-1"></i>
+                        Add a New Product
+                    </a>
+                </div>
+            @endcan
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="card text-center" style="background-color: black">
@@ -139,14 +140,15 @@
                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
                                 <input type="text" id="searchInput" placeholder="Search.." />
                             </div>
-                            <form action="{{ route('product.update.global.price') }}"method="POST">
-                                @csrf
-                                <label for="">Global Price Variable </label>
-                                <input type="number" step="0.01" name="global_price_variable" placeholder="0.0"
-                                    id="global_price_variable">%
-                                <input type="submit" class="btn btn-dark bg-black" value="Apply">
-                            </form>
-
+                            @can('write inventory management')
+                                <form action="{{ route('product.update.global.price') }}"method="POST">
+                                    @csrf
+                                    <label for="">Global Price Variable </label>
+                                    <input type="number" step="0.01" name="global_price_variable" placeholder="0.0"
+                                        id="global_price_variable">%
+                                    <input type="submit" class="btn btn-dark bg-black" value="Apply">
+                                </form>
+                            @endcan
                         </div>
                     </div>
 

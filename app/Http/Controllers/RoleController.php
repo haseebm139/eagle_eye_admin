@@ -83,7 +83,7 @@ class RoleController extends Controller
 
         $permissionsID = array_map(
             function($value) { return (int)$value; },
-            $request->input('permission')
+            $request->input('permission',[])
         );
 
         $role->syncPermissions($permissionsID);
