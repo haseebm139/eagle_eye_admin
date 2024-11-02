@@ -127,28 +127,10 @@
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-6 col-sm-12 mb-4">
-                    <div class="alignmentOfPIChart w-100 h-100">
-                        <div class="card  text-center" style="gap: 0; height: 100%;">
-                            <div class="alignemnt">
-                                <h6>Total Sales</h6>
-
-                            </div>
-                            <div class="container  text-center">
-                                <div class="legend-container" id="legend-container"></div>
-                                <div class="chart-container mt-4 text-center">
-                                    <canvas id="myChart" height="250px"></canvas>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-6 col-sm-12  mb-4">
 
 
-                    <div class="card text-center w-100 mb-4">
+                    <div class="card text-center w-100">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/Folder.svg') }}" />
                             <div class="leftAlignement">
@@ -173,6 +155,13 @@
 
                     </div>
 
+                  
+
+
+
+
+                </div>
+                <div class="col-md-6 col-sm-12  mb-4">
                     <div class="card text-center w-100">
                         <div class="alignemnt">
                             <img src="{{ asset('assets/admin/images/svg/cart.svg') }}" />
@@ -194,11 +183,25 @@
 
 
                     </div>
-
-
-
-
                 </div>
+                <div class="col-md-12 col-sm-12 mb-4">
+                    <div class="alignmentOfPIChart w-100 h-100">
+                        <div class="card  text-center" style="gap: 0; height: 100%;">
+                            <div class="alignemnt">
+                                <h6>Total Sales</h6>
+
+                            </div>
+                            <div class="container  text-center">
+                                <div class="chart-container m-0 text-center w-100">
+                                    <canvas id="myChart" style="width:100%;height:300px"></canvas>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            
                 <div class="col-md-12 mb-5">
                     <div class="container container-2 g-3  text-center m-0">
 
@@ -215,7 +218,7 @@
                         <!-- Chart Container -->
                         <div class="custom-chart-container">
                             <div class="custom-chart-card">
-                                <canvas id="customBarChart"></canvas>
+                                <canvas id="customBarChart" style="height:300px;"></canvas>
                             </div>
                         </div>
 
@@ -339,7 +342,8 @@
             }]
         },
         options: {
-            responsive: true,
+             responsive: true,
+            maintainAspectRatio: false, 
             scales: {
                 y: {
                     beginAtZero: true,
@@ -378,6 +382,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, 
             scales: {
                 y: {
                     beginAtZero: true,

@@ -113,7 +113,7 @@
                         <h6 id="customerOrders">Clients Orders</h6>
                     </div>
                     <div class="col-md-6">
-                        <div class="d-flex gap-2 position-relative mob-flex-direction-column">
+                        <div class="d-flex gap-2 position-relative mob-flex-direction-column justify-content-end">
                             <div class="search-bar">
                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
                                 <input type="text" placeholder="Search.." id="order_search" />
