@@ -902,7 +902,7 @@
         </div>
         <form action="http://127.0.0.1:8000/admin/add-customer" method="post">
             <input type="hidden" name="_token" value="Xbompr6kE1D9qJth1pywkzZsf5JxESV8I7HiZVof" autocomplete="off">            <div>
-                <p class="CustomerPopup">Customer Information</p>
+                <p class="CustomerPopup">Employee Information</p>
              
                 <div class="d-flex flex-column">
                   
