@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->enum('type', ['user', 'admin','emp'])->nullable()->default('user');
+
+            $table->string('type')->nullable()->default('user');
+            $table->string('role_id')->nullable()->default('user');
             $table->string('profile')->default('assets/profile.png')->nullable() ;
             $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Block, 1 = Active');
             $table->string('country')->nullable() ;

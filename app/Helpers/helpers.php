@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\CartProduct;
 
 if (! function_exists('productCount')) {
     function productCount()
@@ -81,6 +82,23 @@ if (! function_exists('totalOrderComplete')) {
     function totalOrderComplete()
     {
         return Order::where('status','2')->count();
+
+    }
+}
+
+if (! function_exists('abandonedCart')) {
+    function abandonedCart()
+    {
+
+        return CartProduct::where('created_at', '<', Carbon::now()->subDay())->count();
+
+    }
+}
+
+if (! function_exists('abandonedCartProducts')) {
+    function abandonedCartProducts()
+    {
+        return CartProduct::where('created_at', '<', Carbon::now()->subDay())->sum('quantity');;
 
     }
 }
