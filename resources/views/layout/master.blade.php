@@ -72,9 +72,10 @@
                 <div class="d-flex align-items-center gap-3">
                     <div class="dropdown-container position-relative">
                         <select id="data-category" class="form-control3 d-inline w-auto">
-                            <option value="Revenue">Eagle eye</option>
-                            <option value="Expenses">This Week</option>
-                            <option value="Profit Margin">This Week</option>
+                           
+                            <option value="This Week">This Week</option>
+                            <option value="This Month">This Month</option>
+                            <option value="This Year">This Year</option>
                         </select>
                         <span class="dropdown-icon"></span>
                         <!-- Down arrow icon -->

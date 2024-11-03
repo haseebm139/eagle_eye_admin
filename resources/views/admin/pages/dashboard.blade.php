@@ -218,7 +218,7 @@
                         <!-- Chart Container -->
                         <div class="custom-chart-container">
                             <div class="custom-chart-card">
-                                <canvas id="customBarChart" style="height:300px;"></canvas>
+                                <canvas id="customBarChart" style="height:300px;width:100%;"></canvas>
                             </div>
                         </div>
 
@@ -342,7 +342,7 @@
             }]
         },
         options: {
-             responsive: true,
+             responsive: false,
             maintainAspectRatio: false, 
             scales: {
                 y: {
@@ -381,7 +381,7 @@
             }]
         },
         options: {
-            responsive: true,
+            responsive: false,
             maintainAspectRatio: false, 
             scales: {
                 y: {

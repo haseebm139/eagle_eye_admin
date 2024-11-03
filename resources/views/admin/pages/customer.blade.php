@@ -75,7 +75,21 @@
             font-family: "Inter", sans-serif;
             font-weight: 500;
         }
+        #customer_popup_form{
+            max-height: auto;
+        }
+        #billingaddressSection{
+            display: block;
+        }
+
+        @media(max-width:600px){
+            #customer_popup_form{
+            max-height: 450px;
+            overflow-y: scroll
+        }
+        }
     </style>
+
 
 
 @endsection
@@ -282,7 +296,7 @@
                 <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }}" />
             </button>
         </div>
-        <form action="{{ route('customer.create') }}" method="post">
+        <form action="{{ route('customer.create') }}" method="post" id="customer_popup_form">
             @csrf
             <div>
                 <p class="CustomerPopup">Client Information</p>
@@ -328,11 +342,33 @@
                         <p>Billing Address</p>
                         <div class="d-flex gap-2">
                             <p class="companyAddress">Same as Company address</p>
-                            <label class="switch switch2">
-                                <input type="checkbox" id="toggleSwitch" />
+                            <label class="switch switch2" for="toggleSwitch_b_address">
+                                <input type="checkbox" id="toggleSwitch_b_address" />
                                 <span class="slider"></span>
                             </label>
                         </div>
+                    </div>
+                    <div id="billingaddressSection" class="addressSection" >
+                        <input type="text" class="inputBox" name="baddress" placeholder="Client Address" />
+                        <!--Country -->
+                        <div class="select-something">
+                            <select class="inputBox" name="state" id="countySel2" size="1">
+                                <option value="" selected="selected">Country</option>
+                            </select>
+                        </div>
+                        <!--State -->
+    
+                        <div class="d-flex gap-3">
+                            <select class="inputBox" name="country" id="stateSel2" size="1">
+                                <option value="" selected="selected">state</option>
+                            </select>
+    
+                            <!--State -->
+    
+                            <select class="inputBox" name="city" id="districtSel2" size="1">
+                                <option value="" selected="selected">city</option>
+                            </select>
+                        </div>  
                     </div>
                 </div>
 
@@ -350,7 +386,18 @@
 
 
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
-
+<script>
+    $(document).ready(function() {
+  
+        $('#toggleSwitch_b_address').change(function() {
+            if ($(this).is(':checked')) {
+                $('#billingaddressSection').hide(); // Hide
+            } else {
+                $('#billingaddressSection').show(); // Show
+            }
+        });
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const addCompanyBtn = document.getElementById("addCompanyBtn");

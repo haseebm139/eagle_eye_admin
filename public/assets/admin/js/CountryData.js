@@ -145901,33 +145901,57 @@
 },
       
 
-};
-window.onload = function () {
-    var countySel = document.getElementById("countySel"),
-    stateSel = document.getElementById("stateSel"),
-    districtSel = document.getElementById("districtSel");
-    for (var country in stateObject) {
-    countySel.options[countySel.options.length] = new Option(country, country);
-}
+};window.onload = function () {
+    const countySel = document.getElementById("countySel"),
+          stateSel = document.getElementById("stateSel"),
+          districtSel = document.getElementById("districtSel"),
+          countySel2 = document.getElementById("countySel2"),
+          stateSel2 = document.getElementById("stateSel2"),
+          districtSel2 = document.getElementById("districtSel2");
 
-countySel.onchange = function () {
-    stateSel.length = 1; // remove all options bar first
-    districtSel.length = 1; // remove all options bar first
-    if (this.selectedIndex < 1) return; // done
-    for (var state in stateObject[this.value]) {
-    stateSel.options[stateSel.options.length] = new Option(state, state);
-    }
-}
-
-countySel.onchange(); // reset in case page is reloaded
-
-stateSel.onchange = function () {
-    districtSel.length = 1; // remove all options bar first
-    if (this.selectedIndex < 1) return; // done
-    var district = stateObject[countySel.value][this.value];
-    for (var i = 0; i < district.length; i++) {
-        districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+    function populateCounties(countyDropdown) {
+        for (const county in stateObject) {
+            countyDropdown.options[countyDropdown.options.length] = new Option(county, county);
         }
     }
-}
 
+    function populateStates(countyDropdown, stateDropdown) {
+        stateDropdown.length = 1; // reset states
+        districtSel.length = 1; // reset districts
+        if (countyDropdown.selectedIndex < 1) return;
+        for (const state in stateObject[countyDropdown.value]) {
+            stateDropdown.options[stateDropdown.options.length] = new Option(state, state);
+        }
+    }
+
+    function populateDistricts(countyDropdown, stateDropdown, districtDropdown) {
+        districtDropdown.length = 1; // reset districts
+        if (stateDropdown.selectedIndex < 1) return;
+        const districts = stateObject[countyDropdown.value][stateDropdown.value];
+        for (let i = 0; i < districts.length; i++) {
+            districtDropdown.options[districtDropdown.options.length] = new Option(districts[i], districts[i]);
+        }
+    }
+
+    // Populate counties for both selectors
+    populateCounties(countySel);
+    populateCounties(countySel2);
+
+    // Set up event listeners for the first set of dropdowns
+    countySel.onchange = function () {
+        populateStates(countySel, stateSel);
+    };
+    stateSel.onchange = function () {
+        populateDistricts(countySel, stateSel, districtSel);
+    };
+    countySel.onchange(); // trigger change to populate states on load
+
+    // Set up event listeners for the second set of dropdowns
+    countySel2.onchange = function () {
+        populateStates(countySel2, stateSel2);
+    };
+    stateSel2.onchange = function () {
+        populateDistricts(countySel2, stateSel2, districtSel2);
+    };
+    countySel2.onchange(); // trigger change to populate states on load
+};
