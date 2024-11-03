@@ -271,15 +271,15 @@
 
                                         <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
                                             <input class="product" name="sell_price" placeholder="Selling Price"
-                                                type="number" step="0.01" placeholder="0.0" />
+                                                type="number" step="0.01" />
                                             <input class="product" name="cost_price" placeholder="Cost Price"
-                                                type="number" step="0.01" placeholder="0.0" />
+                                                type="number" step="0.01"/>
                                         </div>
 
                                         <div class="inpuBox product-wrapper col-md-12 mb-3">
                                             <input type="number" class="product quantityInput" name="stock"
                                                 id="quantityInput" placeholder="Quantity in Stock" step="1"
-                                                placeholder="1" />
+                                                 />
 
 
                                             <div class="quantity-controls">
@@ -288,6 +288,10 @@
                                                 <img class="down-btn" id="decreaseBtn" aria-label="Decrease quantity"
                                                     src="{{ asset('assets/admin/images/svg/Polygon_1.svg') }}" />
                                             </div>
+                                        </div>
+                                        <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
+                                            <input class="product" name="min_stock" placeholder="Min Stock"
+                                                type="number" step="1" />
                                         </div>
 
                                         {{-- <div class="col-md-12 mb-3">
@@ -309,6 +313,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="d-none flex-column dateTime  " id="discount_field"
+                                        >
+                                            <p>Enter Discount</p>
+                                            <div class="d-flex gap-3">
+                                                <input name="discount_value" type="number" class="date"
+                                                    value="1" min="1"
+                                                    aria-label="Minimum Order Value" />
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 mb-1">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <h6>Min Order</h6>
@@ -323,15 +336,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="d-none flex-column dateTime  " id="discount_field"
-                                            >
-                                                <p>Enter Discount</p>
-                                                <div class="d-flex gap-3">
-                                                    <input name="discount_value" type="number" class="date"
-                                                        value="1" min="1"
-                                                        aria-label="Minimum Order Value" />
-                                                </div>
-                                            </div>
+                                       
                                             <div class="d-none flex-column dateTime  " id="minOrderValueContainer"
                                                 >
                                                 <p>Min Order Value</p>
@@ -541,7 +546,7 @@
                 }
             });
         
-        $("#toggleSwitch_add_discount").change(function() {
+            $("#toggleSwitch_add_discount").change(function() {
                 // Check if the checkbox is checked
                 if ($(this).is(":checked")) {
                     $('#discount_field').removeClass('d-none');

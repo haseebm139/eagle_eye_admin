@@ -274,17 +274,17 @@
 
                                         <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
                                             <input class="product" name="sell_price" placeholder="Selling Price"
-                                                type="number" step="0.01" placeholder="0.0"
+                                                type="number" step="0.01"
                                                 value="{{ $product->sell_price ?? 0.0 }}" />
                                             <input class="product" name="cost_price" placeholder="Cost Price"
-                                                type="number" step="0.01" placeholder="0.0"
+                                                type="number" step="0.01"
                                                 value="{{ $product->cost_price ?? 0.0 }}" />
                                         </div>
 
                                         <div class="inpuBox product-wrapper col-md-12 mb-3">
                                             <input type="number" class="product quantityInput" name="stock"
                                                 id="quantityInput" placeholder="Quantity in Stock" step="1"
-                                                placeholder="1" value="{{ $product->stock ?? 0 }}" />
+                                                 value="{{ $product->stock ?? 0 }}" />
 
 
                                             <div class="quantity-controls">
@@ -293,6 +293,10 @@
                                                 <img class="down-btn" id="decreaseBtn" aria-label="Decrease quantity"
                                                     src="{{ asset('assets/admin/images/svg/Polygon_1.svg') }}" />
                                             </div>
+                                        </div>
+                                        <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
+                                            <input class="product" name="min_stock" placeholder="Min Stock"
+                                                type="number" step="1" />
                                         </div>
 
                                         {{-- <div class="col-md-12 mb-3">
@@ -308,11 +312,19 @@
                                                 <p class="discount">Add Discount</p>
                                                 <div class="">
                                                     <label class="switch">
-                                                        <input type="checkbox" name="discount" id="toggleSwitch"
-                                                            @if ($product->is_discount == '1') checked @endif />
+                                                        <input type="checkbox" name="discount" id="toggleSwitch_add_discount" />
                                                         <span class="slider"></span>
                                                     </label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-none flex-column dateTime  " id="discount_field"
+                                        >
+                                            <p>Enter Discount</p>
+                                            <div class="d-flex gap-3">
+                                                <input name="discount_value" type="number" class="date"
+                                                    value="1" min="1"
+                                                    aria-label="Minimum Order Value" />
                                             </div>
                                         </div>
                                         <div class="col-md-12 mb-1">
@@ -321,8 +333,7 @@
                                                 <div class="d-flex align-items-center gap-3">
                                                     <div>
                                                         <label class="switch">
-                                                            <input type="checkbox" name="min_order" id="toggleSwitch3"
-                                                                @if ($product->is_min_orders == '1') checked @endif
+                                                            <input type="checkbox" name="min_order" id="toggleSwitch_min_order"
                                                                 onclick="toggleMinOrderValue()"
                                                                 aria-label="Toggle Minimum Order" />
                                                             <span class="slider"></span>
@@ -330,18 +341,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="d-flex flex-column dateTime  " id="minOrderValueContainer"
-                                                style="display: none;">
+                                       
+                                            <div class="d-none flex-column dateTime  " id="minOrderValueContainer"
+                                                >
                                                 <p>Min Order Value</p>
                                                 <div class="d-flex gap-3">
                                                     <input name="min_order_value" type="number" class="date"
-                                                        value="{{ $product->min_order_value ?? 1 }}" min="1"
+                                                        value="1" min="1"
                                                         aria-label="Minimum Order Value" />
                                                 </div>
                                             </div>
                                         </div>
-
                                         {{-- <div class="d-flex justify-content-between align-items-center">
                                             <h6>Expiry Date</h6>
                                             <div class="d-flex align-items-center gap-3">
@@ -605,6 +615,29 @@
 @section('script')
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
+         $(document).ready(function() {
+            $("#toggleSwitch_min_order").change(function() {
+                // Check if the checkbox is checked
+                if ($(this).is(":checked")) {
+                    $('#minOrderValueContainer').removeClass('d-none');
+                    $('#minOrderValueContainer').addClass('d-flex');
+                } else {
+                    $('#minOrderValueContainer').addClass('d-none');
+                    $('#minOrderValueContainer').removeClass('d-flex');
+                }
+            });
+        
+            $("#toggleSwitch_add_discount").change(function() {
+                // Check if the checkbox is checked
+                if ($(this).is(":checked")) {
+                    $('#discount_field').removeClass('d-none');
+                    $('#discount_field').addClass('d-flex');
+                } else {
+                    $('#discount_field').addClass('d-none');
+                    $('#discount_field').removeClass('d-flex');
+                }
+            });
+        });
     function getStatusClass(status) {
         return status === "Active" ? "custom-active" : "custom-inactive";
     }
