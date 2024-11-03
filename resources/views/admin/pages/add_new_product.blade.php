@@ -303,7 +303,7 @@
                                                 <p class="discount">Add Discount</p>
                                                 <div class="">
                                                     <label class="switch">
-                                                        <input type="checkbox" name="discount" id="toggleSwitch" />
+                                                        <input type="checkbox" name="discount" id="toggleSwitch_add_discount" />
                                                         <span class="slider"></span>
                                                     </label>
                                                 </div>
@@ -315,7 +315,7 @@
                                                 <div class="d-flex align-items-center gap-3">
                                                     <div>
                                                         <label class="switch">
-                                                            <input type="checkbox" name="min_order" id="toggleSwitch3"
+                                                            <input type="checkbox" name="min_order" id="toggleSwitch_min_order"
                                                                 onclick="toggleMinOrderValue()"
                                                                 aria-label="Toggle Minimum Order" />
                                                             <span class="slider"></span>
@@ -323,9 +323,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="d-flex flex-column dateTime  " id="minOrderValueContainer"
-                                                style="display: none;">
+                                            <div class="d-none flex-column dateTime  " id="discount_field"
+                                            >
+                                                <p>Enter Discount</p>
+                                                <div class="d-flex gap-3">
+                                                    <input name="discount_value" type="number" class="date"
+                                                        value="1" min="1"
+                                                        aria-label="Minimum Order Value" />
+                                                </div>
+                                            </div>
+                                            <div class="d-none flex-column dateTime  " id="minOrderValueContainer"
+                                                >
                                                 <p>Min Order Value</p>
                                                 <div class="d-flex gap-3">
                                                     <input name="min_order_value" type="number" class="date"
@@ -521,6 +529,29 @@
 @section('script')
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
+     $(document).ready(function() {
+            $("#toggleSwitch_min_order").change(function() {
+                // Check if the checkbox is checked
+                if ($(this).is(":checked")) {
+                    $('#minOrderValueContainer').removeClass('d-none');
+                    $('#minOrderValueContainer').addClass('d-flex');
+                } else {
+                    $('#minOrderValueContainer').addClass('d-none');
+                    $('#minOrderValueContainer').removeClass('d-flex');
+                }
+            });
+        
+        $("#toggleSwitch_add_discount").change(function() {
+                // Check if the checkbox is checked
+                if ($(this).is(":checked")) {
+                    $('#discount_field').removeClass('d-none');
+                    $('#discount_field').addClass('d-flex');
+                } else {
+                    $('#discount_field').addClass('d-none');
+                    $('#discount_field').removeClass('d-flex');
+                }
+            });
+        });
     function getStatusClass(status) {
         return status === "Active" ? "custom-active" : "custom-inactive";
     }

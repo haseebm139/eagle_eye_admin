@@ -729,7 +729,7 @@
                                             <!--Country -->
                                             <div class="select-something">
                                                 <label class="Label">Country</label>
-                                                <select class="inputBox" name="country" id="countySel" size="1">
+                                                <select class="inputBox  text-black" name="country" id="countySel" size="1">
                                                     <option value="{{ auth()->user()->country ?? '' }}"
                                                         selected="selected">Country
                                                     </option>
@@ -740,9 +740,9 @@
                                             <div class="d-flex gap-3">
                                                 <div class="w-100">
                                                     <label class="Label">State</label>
-                                                    <div class="inputBox">
+                                                    <div class="select-something">
 
-                                                        <select class="settingInput" name="state" id="stateSel"
+                                                        <select class="inputBox  w-100  text-black" name="state" id="stateSel"
                                                             size="1">
                                                             <option value="{{ auth()->user()->state ?? '' }}"
                                                                 selected="selected">state</option>
@@ -753,9 +753,9 @@
                                                 <!--State -->
                                                 <div class="w-100">
                                                     <label class="Label">City</label>
-                                                    <div class="inputBox">
+                                                    <div class="select-something">
 
-                                                        <select class="settingInput" name="city" id="districtSel"
+                                                        <select class="inputBox w-100 text-black" name="city" id="districtSel"
                                                             size="1">
                                                             <option value="{{ auth()->user()->city ?? '' }}"
                                                                 selected="selected">city</option>
@@ -777,7 +777,8 @@
                                             @endphp
                                             <img id="previewImage5" class="previewImage" src="{{ asset($img) }} "
                                                 alt="Additional Image Preview 1"
-                                                style="width: 0px; transition: all 0.5s ease" />
+                                                
+                                                style="width: 100%; transition: 0.5s; height: 100%; position: absolute; top: 0px; left: 0px; object-fit: cover;" />
 
                                             <div class="layer">
                                                 <div class=" " id="uploadPlaceholder5">
@@ -962,6 +963,70 @@
 @section('script')
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
 <script>
+ window.onload = function () {
+    const countySel = document.getElementById("countySel"),
+          stateSel = document.getElementById("stateSel"),
+          districtSel = document.getElementById("districtSel");
+
+    const userCountry = "{{ auth()->user()->country }}";
+    const userState = "{{ auth()->user()->state }}";
+    const userCity = "{{ auth()->user()->city }}";
+
+    function populateCounties() {
+        for (const county in stateObject) {
+            const option = new Option(county, county);
+            countySel.options[countySel.options.length] = option;
+            if (county === userCountry) {
+                option.selected = true; // Select user's country
+            }
+        }
+        // After populating countries, populate states
+        populateStates();
+    }
+
+    function populateStates() {
+        stateSel.length = 1; // reset states
+        districtSel.length = 1; // reset districts
+
+        if (countySel.selectedIndex < 1) return;
+        const states = stateObject[countySel.value];
+
+        for (const state in states) {
+            const option = new Option(state, state);
+            stateSel.options[stateSel.options.length] = option;
+            if (state === userState) {
+                option.selected = true; // Select user's state
+            }
+        }
+
+        // After populating states, populate districts
+        populateDistricts();
+    }
+
+    function populateDistricts() {
+        districtSel.length = 1; // reset districts
+
+        if (stateSel.selectedIndex < 1) return;
+        const districts = stateObject[countySel.value][stateSel.value];
+
+        for (let i = 0; i < districts.length; i++) {
+            const option = new Option(districts[i], districts[i]);
+            districtSel.options[districtSel.options.length] = option;
+            if (districts[i] === userCity) {
+                option.selected = true; // Select user's city
+            }
+        }
+    }
+
+    // Populate counties and trigger cascading selections
+    populateCounties();
+
+    // Set up event listeners for manual changes
+    countySel.onchange = populateStates;
+    stateSel.onchange = populateDistricts;
+};
+
+
     document.addEventListener("DOMContentLoaded", function() {
 
 

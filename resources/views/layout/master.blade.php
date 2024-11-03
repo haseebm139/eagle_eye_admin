@@ -37,7 +37,10 @@
         .desktop-hide {
             display: none;
         }
-
+        #profile-image 
+        {
+            width: 50px;
+        }
         @media(max-width:600px) {
             .mob-none {
                 display: none;
@@ -71,15 +74,10 @@
                 <h3 id="page-title">@yield('heading')</h3>
                 <div class="d-flex align-items-center gap-3">
                     <div class="dropdown-container position-relative">
-                        <select id="data-category" class="form-control3 d-inline w-auto">
-                           
-                            <option value="This Week">This Week</option>
-                            <option value="This Month">This Month</option>
-                            <option value="This Year">This Year</option>
-                        </select>
-                        <span class="dropdown-icon"></span>
+                       
+                        
 
-                        <div class="dropdown">
+                        <div class="dropdown ">
                             <!-- The dropdown toggle -->
                             @php
                                 $profile = auth()->user()->profile ?? 'assets/profile.png';
@@ -98,7 +96,6 @@
 
                         <!-- Down arrow icon -->
                     </div>
-                    <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />
                 </div>
             </div>
 

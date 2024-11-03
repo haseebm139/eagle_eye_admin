@@ -1,3 +1,8 @@
+<style>
+    #dropdownMenuButton img{
+        width: 50px;
+    }
+</style>
 <div class="container-fluid top-bar">
     <div class="container subTopbar">
         <p class="contact">Contact us</p>
@@ -57,8 +62,8 @@
                     @endphp
                     <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow -->
-                        <img src="{{ asset($profile) }} " alt="User Image" id="profile-image">
+                        {{-- <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow --> --}}
+                        <img src="{{ asset($profile) }} "  alt="User Image" id="profile-image">
                     </div>
                     <!-- The dropdown menu -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

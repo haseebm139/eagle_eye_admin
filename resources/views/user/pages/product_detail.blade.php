@@ -78,12 +78,12 @@
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
                                     <label for="height" class="form-label">Height<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="height" name="height"
+                                    <input type="number" class="form-control" id="height" name="height"
                                         placeholder="Height" required />
                                 </div>
                                 <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
                                     <label for="width" class="form-label">Width<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="Width" name="Width"
+                                    <input type="number" class="form-control" id="Width" name="Width"
                                         placeholder="Enter Width" required />
                                 </div>
                             </div>
