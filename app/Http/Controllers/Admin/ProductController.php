@@ -19,6 +19,27 @@ use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 class ProductController extends Controller
 {
+     /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+     function __construct()
+
+     {
+
+          $this->middleware('permission:edit inventory management', ['only' => ['updateProduct','updateStatus','updateGlobalPrice','productEdit','deleteProduct']]);
+          $this->middleware('permission:read inventory management', ['only' => ['productList']]);
+          $this->middleware('permission:create inventory management', ['only' => ['uploadProduct']]);
+
+
+
+     }
     public function productsStats(Request $request){
         $data = [
             'new_clients' => 0,
@@ -56,8 +77,6 @@ class ProductController extends Controller
 
         return response()->json($data);
     }
-
-
     public function showUploadForm1()
     {
 

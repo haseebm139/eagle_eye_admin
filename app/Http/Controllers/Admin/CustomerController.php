@@ -17,6 +17,26 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+     function __construct()
+
+     {
+
+          $this->middleware('permission:read client management', ['only' => ['index']]);
+          $this->middleware('permission:write client management', ['only' => ['create']]);
+          $this->middleware('permission:edit client management', ['only' => ['toggleStatus']]);
+
+     }
     public function getUserChart(Request $request){
         $labels = [];
         $data = [];

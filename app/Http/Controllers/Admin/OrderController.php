@@ -9,6 +9,26 @@ use App\Models\Order;
 use Carbon\Carbon;
 class OrderController extends Controller
 {
+
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+     function __construct()
+
+     {
+
+          $this->middleware('permission:edit order management', ['only' => ['cancelOrder','assignOrdersToEmployee']]);
+
+
+
+     }
     public function getChart(Request $request){
         $labels = [];
         $data = [];

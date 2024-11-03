@@ -13,6 +13,29 @@ use Illuminate\Support\Facades\Validator;
 use Hash;
 class AdminController extends Controller
 {
+
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+     function __construct()
+
+     {
+
+          $this->middleware('permission:read client management', ['only' => ['customersView']]);
+
+          $this->middleware('permission:write inventory management', ['only' => ['addProduct']]);
+          $this->middleware('permission:read order management', ['only' => ['orderView']]);
+          $this->middleware('permission:read employee management', ['only' => ['employees']]);
+          $this->middleware('permission:create employee management', ['only' => ['employeeCreate']]);
+
+     }
     public function dashboard(){
         return view('admin.pages.dashboard');
     }
@@ -22,6 +45,12 @@ class AdminController extends Controller
     }
     public function customers(){
         return view('admin.pages.customer');
+    }
+    public function settings(){
+        return view('admin.pages.settings');
+    }
+    public function orders(){
+        return view('admin.pages.orders');
     }
     public function customersView($id){
         $data['user'] = User::with('orders')->find($id);
@@ -47,12 +76,7 @@ class AdminController extends Controller
         return view('admin.pages.add_new_product',compact('data'));
     }
 
-    public function settings(){
-        return view('admin.pages.settings');
-    }
-    public function orders(){
-        return view('admin.pages.orders');
-    }
+
     public function orderView($id){
 
         $data['orders'] = Order::with(['customer','employee','items.product.image'])
