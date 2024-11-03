@@ -75,7 +75,21 @@
             font-family: "Inter", sans-serif;
             font-weight: 500;
         }
+        #customer_popup_form{
+            max-height: auto;
+        }
+        #billingaddressSection{
+            display: block;
+        }
+
+        @media(max-width:600px){
+            #customer_popup_form{
+            max-height: 450px;
+            overflow-y: scroll
+        }
+        }
     </style>
+
 
 
 @endsection
@@ -284,7 +298,7 @@
                 <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }}" />
             </button>
         </div>
-        <form action="{{ route('customer.create') }}" method="post">
+        <form action="{{ route('customer.create') }}" method="post" id="customer_popup_form">
             @csrf
             <div>
                 <p class="CustomerPopup">Client Information</p>
@@ -330,11 +344,33 @@
                         <p>Billing Address</p>
                         <div class="d-flex gap-2">
                             <p class="companyAddress">Same as Company address</p>
-                            <label class="switch switch2">
-                                <input type="checkbox" id="toggleSwitch" />
+                            <label class="switch switch2" for="toggleSwitch_b_address">
+                                <input type="checkbox" id="toggleSwitch_b_address" />
                                 <span class="slider"></span>
                             </label>
                         </div>
+                    </div>
+                    <div id="billingaddressSection" class="addressSection" >
+                        <input type="text" class="inputBox" name="baddress" placeholder="Client Address" />
+                        <!--Country -->
+                        <div class="select-something">
+                            <select class="inputBox" name="state" id="countySel2" size="1">
+                                <option value="" selected="selected">Country</option>
+                            </select>
+                        </div>
+                        <!--State -->
+    
+                        <div class="d-flex gap-3">
+                            <select class="inputBox" name="country" id="stateSel2" size="1">
+                                <option value="" selected="selected">state</option>
+                            </select>
+    
+                            <!--State -->
+    
+                            <select class="inputBox" name="city" id="districtSel2" size="1">
+                                <option value="" selected="selected">city</option>
+                            </select>
+                        </div>  
                     </div>
                 </div>
 
@@ -352,7 +388,72 @@
 
 
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
+<script>
+    window.onload = function () {
+    const countySel = document.getElementById("countySel"),
+          stateSel = document.getElementById("stateSel"),
+          districtSel = document.getElementById("districtSel"),
+          countySel2 = document.getElementById("countySel2"),
+          stateSel2 = document.getElementById("stateSel2"),
+          districtSel2 = document.getElementById("districtSel2");
 
+    function populateCounties(countyDropdown) {
+        for (const county in stateObject) {
+            countyDropdown.options[countyDropdown.options.length] = new Option(county, county);
+        }
+    }
+
+    function populateStates(countyDropdown, stateDropdown) {
+        stateDropdown.length = 1; // reset states
+        districtSel.length = 1; // reset districts
+        if (countyDropdown.selectedIndex < 1) return;
+        for (const state in stateObject[countyDropdown.value]) {
+            stateDropdown.options[stateDropdown.options.length] = new Option(state, state);
+        }
+    }
+
+    function populateDistricts(countyDropdown, stateDropdown, districtDropdown) {
+        districtDropdown.length = 1; // reset districts
+        if (stateDropdown.selectedIndex < 1) return;
+        const districts = stateObject[countyDropdown.value][stateDropdown.value];
+        for (let i = 0; i < districts.length; i++) {
+            districtDropdown.options[districtDropdown.options.length] = new Option(districts[i], districts[i]);
+        }
+    }
+
+    // Populate counties for both selectors
+    populateCounties(countySel);
+    populateCounties(countySel2);
+
+    // Set up event listeners for the first set of dropdowns
+    countySel.onchange = function () {
+        populateStates(countySel, stateSel);
+    };
+    stateSel.onchange = function () {
+        populateDistricts(countySel, stateSel, districtSel);
+    };
+    countySel.onchange(); // trigger change to populate states on load
+
+    // Set up event listeners for the second set of dropdowns
+    countySel2.onchange = function () {
+        populateStates(countySel2, stateSel2);
+    };
+    stateSel2.onchange = function () {
+        populateDistricts(countySel2, stateSel2, districtSel2);
+    };
+    countySel2.onchange(); // trigger change to populate states on load
+};
+    $(document).ready(function() {
+  
+        $('#toggleSwitch_b_address').change(function() {
+            if ($(this).is(':checked')) {
+                $('#billingaddressSection').hide(); // Hide
+            } else {
+                $('#billingaddressSection').show(); // Show
+            }
+        });
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const addCompanyBtn = document.getElementById("addCompanyBtn");

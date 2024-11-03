@@ -35,7 +35,7 @@
             -moz-appearance: textfield;
         }
 
-        #global_price_variable_wrapper input[type="number"] {
+        #global_price_variable {
             width: 80px;
             padding: 5px 10px;
             text-align: center;
@@ -131,10 +131,10 @@
 
             <div style=" background: white; margin: 20px 0; padding: 1rem; border-radius: 15px; ">
                 <div class="row justify-content-between">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <h6>Products</h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <div class="d-flex gap-2 justify-content-end mob-flex-direction-column">
                             <div class="search-bar">
                                 <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
