@@ -104,10 +104,12 @@
             <div class="container-fluid">
                 <div class="Width d-flex justify-content-between align-items-center">
                     <span class="my-2 ml-2"> Client Summary</span>
-                    <button class="order-btn d-flex align-items-center" id="addCompanyBtn">
-                        <i class="fa-solid fa-plus mr-1"></i>
-                        create a New Client
-                    </button>
+                    @can('create client management')
+                        <button class="order-btn d-flex align-items-center" id="addCompanyBtn">
+                            <i class="fa-solid fa-plus mr-1"></i>
+                            create a New Client
+                        </button>
+                    @endcan
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6 mb-4">

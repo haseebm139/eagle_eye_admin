@@ -78,6 +78,24 @@
                             <option value="This Year">This Year</option>
                         </select>
                         <span class="dropdown-icon"></span>
+
+                        <div class="dropdown">
+                            <!-- The dropdown toggle -->
+                            @php
+                                $profile = auth()->user()->profile ?? 'assets/profile.png';
+                            @endphp
+                            <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+
+                                <img src="{{ asset($profile) }} " alt="User Image" id="profile-image">
+                            </div>
+                            <!-- The dropdown menu -->
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </div>
+                        </div>
+
                         <!-- Down arrow icon -->
                     </div>
                     <img src="{{ asset('assets/admin/images/svg/Notification.svg') }}" class="avatar" alt="Avatar" />

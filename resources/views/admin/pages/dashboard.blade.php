@@ -218,7 +218,7 @@
                         <!-- Chart Container -->
                         <div class="custom-chart-container">
                             <div class="custom-chart-card">
-                                <canvas id="customBarChart" style="height:300px;width:100%;"></canvas>
+                                <canvas id="customBarChart" style="width:100%;height:300px;"></canvas>
                             </div>
                         </div>
 
