@@ -284,7 +284,7 @@
                                         <div class="inpuBox product-wrapper col-md-12 mb-3">
                                             <input type="number" class="product quantityInput" name="stock"
                                                 id="quantityInput" placeholder="Quantity in Stock" step="1"
-                                                 value="{{ $product->stock ?? 0 }}" />
+                                                value="{{ $product->stock ?? 0 }}" />
 
 
                                             <div class="quantity-controls">
@@ -296,7 +296,7 @@
                                         </div>
                                         <div class="inpuBox d-flex gap-2  col-md-12 mb-3">
                                             <input class="product" name="min_stock" placeholder="Min Stock"
-                                                type="number" step="1" />
+                                                type="number" step="1" value="{{ $product->min_stock }}" />
                                         </div>
 
                                         {{-- <div class="col-md-12 mb-3">
@@ -312,18 +312,19 @@
                                                 <p class="discount">Add Discount</p>
                                                 <div class="">
                                                     <label class="switch">
-                                                        <input type="checkbox" name="discount" id="toggleSwitch_add_discount" />
+                                                        <input type="checkbox" name="discount"
+                                                            @if ($product->is_discount == 1) checked @endif
+                                                            id="toggleSwitch_add_discount" />
                                                         <span class="slider"></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-none flex-column dateTime  " id="discount_field"
-                                        >
+                                        <div class="d-none flex-column dateTime  " id="discount_field">
                                             <p>Enter Discount</p>
                                             <div class="d-flex gap-3">
                                                 <input name="discount_value" type="number" class="date"
-                                                    value="1" min="1"
+                                                    value="{{ $product->discount_value ?? 0.0 }}" min="0"
                                                     aria-label="Minimum Order Value" />
                                             </div>
                                         </div>
@@ -333,7 +334,9 @@
                                                 <div class="d-flex align-items-center gap-3">
                                                     <div>
                                                         <label class="switch">
-                                                            <input type="checkbox" name="min_order" id="toggleSwitch_min_order"
+                                                            <input type="checkbox" name="min_order"
+                                                                @if ($product->is_min_orders == 1) checked @endif
+                                                                id="toggleSwitch_min_order"
                                                                 onclick="toggleMinOrderValue()"
                                                                 aria-label="Toggle Minimum Order" />
                                                             <span class="slider"></span>
@@ -341,13 +344,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                       
-                                            <div class="d-none flex-column dateTime  " id="minOrderValueContainer"
-                                                >
+
+                                            <div class="d-none flex-column dateTime  " id="minOrderValueContainer">
                                                 <p>Min Order Value</p>
                                                 <div class="d-flex gap-3">
                                                     <input name="min_order_value" type="number" class="date"
-                                                        value="1" min="1"
+                                                        value="{{ $product->min_order_value ?? 1 }}" min="1"
                                                         aria-label="Minimum Order Value" />
                                                 </div>
                                             </div>
@@ -615,29 +617,44 @@
 @section('script')
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-         $(document).ready(function() {
-            $("#toggleSwitch_min_order").change(function() {
-                // Check if the checkbox is checked
-                if ($(this).is(":checked")) {
-                    $('#minOrderValueContainer').removeClass('d-none');
-                    $('#minOrderValueContainer').addClass('d-flex');
-                } else {
-                    $('#minOrderValueContainer').addClass('d-none');
-                    $('#minOrderValueContainer').removeClass('d-flex');
-                }
-            });
-        
-            $("#toggleSwitch_add_discount").change(function() {
-                // Check if the checkbox is checked
-                if ($(this).is(":checked")) {
-                    $('#discount_field').removeClass('d-none');
-                    $('#discount_field').addClass('d-flex');
-                } else {
-                    $('#discount_field').addClass('d-none');
-                    $('#discount_field').removeClass('d-flex');
-                }
-            });
+    $(document).ready(function() {
+
+        // Initial check for #toggleSwitch_min_order
+        if ($("#toggleSwitch_min_order").is(":checked")) {
+            $('#minOrderValueContainer').removeClass('d-none').addClass('d-flex');
+        } else {
+            $('#minOrderValueContainer').addClass('d-none').removeClass('d-flex');
+        }
+
+        // Initial check for #toggleSwitch_add_discount
+        if ($("#toggleSwitch_add_discount").is(":checked")) {
+            $('#discount_field').removeClass('d-none').addClass('d-flex');
+        } else {
+            $('#discount_field').addClass('d-none').removeClass('d-flex');
+        }
+        $("#toggleSwitch_min_order").change(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(":checked")) {
+                $('#minOrderValueContainer').removeClass('d-none');
+                $('#minOrderValueContainer').addClass('d-flex');
+            } else {
+                $('#minOrderValueContainer').addClass('d-none');
+                $('#minOrderValueContainer').removeClass('d-flex');
+            }
         });
+
+        $("#toggleSwitch_add_discount").change(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(":checked")) {
+                $('#discount_field').removeClass('d-none');
+                $('#discount_field').addClass('d-flex');
+            } else {
+                $('#discount_field').addClass('d-none');
+                $('#discount_field').removeClass('d-flex');
+            }
+        });
+    });
+
     function getStatusClass(status) {
         return status === "Active" ? "custom-active" : "custom-inactive";
     }

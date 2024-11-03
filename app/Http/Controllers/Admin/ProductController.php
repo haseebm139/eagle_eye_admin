@@ -179,6 +179,7 @@ class ProductController extends Controller
         }
     }
     public function uploadProduct(Request $request){
+
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'cost_price' => 'required|numeric|min:0',
@@ -192,11 +193,14 @@ class ProductController extends Controller
             'long_description' => 'required|string',
             'name' => 'required|string|max:255',
             'sell_price' => 'required|numeric|min:0',
+            'discount_value' => 'nullable|numeric|min:0',
+            'min_stock' => 'nullable|numeric|min:0',
             'short_description' => 'nullable|string',
             'stock' => 'required|integer|min:0',
             'time' => 'nullable|string', // Consider more specific validation if necessary
         ]);
-
+        // min_stock
+        // discount_value
         // Check if validation fails
         if ($validator->fails()) {
             return response()->json([
@@ -206,7 +210,7 @@ class ProductController extends Controller
         }
         try {
             $productData['slug'] = Str::slug($request->name); // Generate slug
-            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','category_id']);
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','category_id','discount_value']);
             $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
             $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
             $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
@@ -218,6 +222,13 @@ class ProductController extends Controller
                 $productData['is_min_orders'] = 0; // Marking min_order as disabled
                 $productData['min_order_value'] = 1; // No minimum order value if min_order is off
             }
+
+            if ($productData['is_discount'] === '1') {
+
+                $productData['discount_value'] = $request->min_order_value;
+            }
+
+
 
             $product = Product::create($productData);
             if ($request->hasFile('image')) {
@@ -265,7 +276,7 @@ class ProductController extends Controller
             }
             $productData['slug'] = Str::slug($request->name); // Generate slug
 
-            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','product_id','category_id']);
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','product_id','category_id','discount_value']);
             $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
             $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
             $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
@@ -277,7 +288,10 @@ class ProductController extends Controller
                 $productData['is_min_orders'] = 0; // Marking min_order as disabled
                 $productData['min_order_value'] = 1; // No minimum order value if min_order is off
             }
+            if ($productData['is_discount'] === '1') {
 
+                $productData['discount_value'] = $request->min_order_value;
+            }
             $product->update($productData);
             if ($request->hasFile('image')) {
 

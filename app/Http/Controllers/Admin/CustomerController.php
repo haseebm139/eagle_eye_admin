@@ -173,6 +173,11 @@ class CustomerController extends Controller
             'country' => 'nullable|string|max:100',
             'city' => 'nullable|string|max:100',
             'address' => 'nullable|string|max:100',
+
+            'billing_address' => 'nullable|string|max:100',
+            'billing_country' => 'nullable|string|max:100',
+            'billing_state' => 'nullable|string|max:100',
+            'billing_city' => 'nullable|string|max:100',
         ]);
 
         // Check if validation fails
@@ -181,7 +186,12 @@ class CustomerController extends Controller
 
             return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
         }
+        $is_billing_address = '0';
+        if ($request->billing_address || $request->billing_country || $request->billing_state || $request->billing_city) {
+            $is_billing_address = '1';
+        }
 
+        // return $is_billing_address;
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -190,6 +200,11 @@ class CustomerController extends Controller
             'state' => $request->state,
             'city' => $request->city,
             'address' => $request->address,
+            'is_billing_address' => $is_billing_address,
+            'billing_address' => $request->billing_address,
+            'billing_country' => $request->billing_country,
+            'billing_state' => $request->billing_state,
+            'billing_city' => $request->billing_city,
             'password' => Hash::make('dummy1234'), // Hashing the password
         ]);
         return redirect()->back()->with(array('message'=>'Customer created successfully','type'=>'success'));
