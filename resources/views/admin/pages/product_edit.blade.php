@@ -332,6 +332,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <h6>Min Order</h6>
                                                 <div class="d-flex align-items-center gap-3">
+                                                    <p class="discount">Add Mininum Order</p>
                                                     <div>
                                                         <label class="switch">
                                                             <input type="checkbox" name="min_order"
@@ -348,9 +349,123 @@
                                             <div class="d-none flex-column dateTime  " id="minOrderValueContainer">
                                                 <p>Min Order Value</p>
                                                 <div class="d-flex gap-3">
+
                                                     <input name="min_order_value" type="number" class="date"
                                                         value="{{ $product->min_order_value ?? 1 }}" min="1"
                                                         aria-label="Minimum Order Value" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Lamination</h6>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p class="discount">Add Lamination</p>
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="lamination"
+                                                                @if ($product->is_lamination == 1) checked @endif
+                                                                id="toggleSwitchLamination"
+                                                                onclick="toggleLaminationValue()"
+                                                                aria-label="Toggle Lamination" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-none flex-column dateTime  " id="laminationValueContainer">
+                                                <p>Lamination Value</p>
+                                                <div class="d-flex gap-3">
+                                                    <input name="lamination_value" type="number" class="date"
+                                                        value="0" min="0" step="0.01"
+                                                        aria-label="Lamination" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Height</h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_height"
+                                                                @if ($product->is_height == 1) checked @endif
+                                                                id="toggleSwitchHeight" aria-label="Toggle Height" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Width </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_width"
+                                                                @if ($product->is_width == 1) checked @endif
+                                                                id="toggleSwitchWidth" aria-label="Toggle Width " />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Material </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_material"
+                                                                @if ($product->is_material == 1) checked @endif
+                                                                id="toggleSwitchMaterial"
+                                                                aria-label="Toggle Material" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Printed Sides </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_printed_sides"
+                                                                @if ($product->is_printed_sides == 1) checked @endif
+                                                                id="toggleSwitchLamination"
+                                                                aria-label="Toggle Printed Sides" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Flute Direction</h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_flute_direction"
+                                                                @if ($product->is_flute_direction == 1) checked @endif
+                                                                id="toggleSwitchFluteDirection"
+                                                                aria-label="Toggle Flute Direction" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -640,6 +755,17 @@
             } else {
                 $('#minOrderValueContainer').addClass('d-none');
                 $('#minOrderValueContainer').removeClass('d-flex');
+            }
+        });
+
+        $("#toggleSwitchLamination").change(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(":checked")) {
+                $('#laminationValueContainer').removeClass('d-none');
+                $('#laminationValueContainer').addClass('d-flex');
+            } else {
+                $('#laminationValueContainer').addClass('d-none');
+                $('#laminationValueContainer').removeClass('d-flex');
             }
         });
 

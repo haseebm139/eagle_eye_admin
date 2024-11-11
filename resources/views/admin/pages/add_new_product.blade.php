@@ -324,6 +324,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <h6>Min Order</h6>
                                                 <div class="d-flex align-items-center gap-3">
+                                                    <p class="discount">Add Mininum Order</p>
                                                     <div>
                                                         <label class="switch">
                                                             <input type="checkbox" name="min_order"
@@ -346,6 +347,111 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Lamination</h6>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p class="discount">Add Lamination</p>
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="lamination"
+                                                                id="toggleSwitchLamination"
+                                                                onclick="toggleLaminationValue()"
+                                                                aria-label="Toggle Lamination" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-none flex-column dateTime  " id="laminationValueContainer">
+                                                <p>Lamination Value</p>
+                                                <div class="d-flex gap-3">
+                                                    <input name="lamination_value" type="number" class="date"
+                                                        value="0" min="0" step="0.01"
+                                                        aria-label="Lamination" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Height</h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_height"
+                                                                id="toggleSwitchHeight" aria-label="Toggle Height" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Width </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_width"
+                                                                id="toggleSwitchWidth" aria-label="Toggle Width " />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Material </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_material"
+                                                                id="toggleSwitchMaterial"
+                                                                aria-label="Toggle Material" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Printed Sides </h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_printed_sides"
+                                                                id="toggleSwitchLamination"
+                                                                aria-label="Toggle Printed Sides" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Flute Direction</h6>
+                                                <div class="d-flex align-items-center gap-3">
+
+                                                    <div>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="is_flute_direction"
+                                                                id="toggleSwitchFluteDirection"
+                                                                aria-label="Toggle Flute Direction" />
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         {{-- <div class="d-flex justify-content-between align-items-center">
                                             <h6>Expiry Date</h6>
                                             <div class="d-flex align-items-center gap-3">
@@ -543,7 +649,17 @@
                 $('#minOrderValueContainer').removeClass('d-flex');
             }
         });
-
+        $("#toggleSwitchLamination").change(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(":checked")) {
+                $('#laminationValueContainer').removeClass('d-none');
+                $('#laminationValueContainer').addClass('d-flex');
+            } else {
+                $('#laminationValueContainer').addClass('d-none');
+                $('#laminationValueContainer').removeClass('d-flex');
+            }
+        });
+        // toggleLaminationValue
         $("#toggleSwitch_add_discount").change(function() {
             // Check if the checkbox is checked
             if ($(this).is(":checked")) {

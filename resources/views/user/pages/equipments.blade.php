@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
-                    <h2 class="Equipment_heading">Equipment</h2>
+                    <h2 class="Equipment_heading">Your Products</h2>
                 </div>
                 <div class="col-xxl-8 col-xm-8 col-lg-8 col-md-12 col-sm-12">
                     <p class="Equipment_para">
@@ -56,6 +56,7 @@
                                         @php
                                             $img = $item->image->path ?? 'assets/website/images/image_(1).png';
                                         @endphp
+
                                         <div class="col-xxl-4 col-xm-4 col-lg-4 col-md-12 col-sm-12">
                                             <div class="outer  mb-3">
                                                 <img class="Equipment_product_img" src="{{ asset($img) }}" />
@@ -63,7 +64,7 @@
                                                     <p class="product_title">
                                                         {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }} </p>
 
-                                                    <a href="{{ route('product_detail', ['slug' => $item->slug]) }}"
+                                                    <a href="{{ route('product_detail', ['slug' => $item->slug ?? '']) }}"
                                                         class="arrow_btn"><img
                                                             src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
                                                 </div>

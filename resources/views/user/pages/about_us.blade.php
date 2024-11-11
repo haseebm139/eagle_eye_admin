@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'About Us')
+@section('title', 'CONTACT US')
 
 @section('style')
     <style>
@@ -9,9 +9,11 @@
 
 
         }
-        #contact_banner ul{
+
+        #contact_banner ul {
             list-style-type: none;
         }
+
         #contact_banner h3 {
             font-family: 'GilroyLight';
             color: #fff;
@@ -372,13 +374,18 @@
                                 <div class="col-xxl-7 col-lg-7 col-md-12 col-sm-12 text-center">
                                     <a href="#" class="contact_info_anchor">
                                         <img src="{{ asset('assets/website/images/svg/loc.svg') }} " class="mx-3">
-                                        299 South Main Street Salt Lake City, Utah 84111
+
+                                        Eagle Eye Signs Office: 972-466-2100 / Fax: 469-828-1592
+                                        13375 Stemmons Frwy. Suite 400 Dallas, Texas 75234
+
                                     </a>
                                 </div>
                                 <div class="col-xxl-5 col-lg-5 col-md-12 col-sm-12 text-center">
                                     <a href="#" class="contact_info_anchor">
                                         <img src="{{ asset('assets/website/images/svg/phone.svg') }} " class="mx-3">
-                                        Tel: +1 (833) 442 2711
+                                        Tel: +1 (972) 466 2100
+
+
                                     </a>
                                 </div>
 

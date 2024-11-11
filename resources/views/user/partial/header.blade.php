@@ -1,5 +1,5 @@
 <style>
-    #dropdownMenuButton img{
+    #dropdownMenuButton img {
         width: 50px;
     }
 </style>
@@ -34,9 +34,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('equipments') }}">Equipment's</a>
-                </li>
+                @auth
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('equipments') }}">Your Product's</a>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link" href="#">Products Offered</a>
                 </li>
@@ -44,7 +47,7 @@
                     <a class="nav-link" href="{{ route('our.story') }}">Our Story</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
+                    <a class="nav-link" href="{{ route('about.us') }}">CONTACT US</a>
                 </li>
             </ul>
             <a href="{{ route('cart') }}" class="btn btn-warning ms-lg-3"><img
@@ -63,7 +66,7 @@
                     <div class="custom-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         {{-- <span class="chevron">&#x25BC;</span> <!-- Unicode character for a down arrow --> --}}
-                        <img src="{{ asset($profile) }} "  alt="User Image" id="profile-image">
+                        <img src="{{ asset($profile) }} " alt="User Image" id="profile-image">
                     </div>
                     <!-- The dropdown menu -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

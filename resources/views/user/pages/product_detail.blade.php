@@ -8,7 +8,7 @@
 
 @endsection
 @section('content')
-    {{-- @dd($product->images[1]) --}}
+
     <section id="back_btn_sec">
         <div class="container">
             <div class="product_page_top_bar">
@@ -74,53 +74,63 @@
                             {{-- <input type="hidden" name="product_name" value="{{ $product->name }}">
                             <input type="hidden" name="product_price"
                                 value="{{ number_format($product->is_discount ? $product->sell_price : $product->cost_price, 2) }}"> --}}
-                            <div class="row">
-                                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
-                                    <label for="height" class="form-label">Height<span
-                                            class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="height" name="height"
-                                        placeholder="Height" required />
-                                </div>
-                                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
-                                    <label for="width" class="form-label">Width<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="Width" name="Width"
-                                        placeholder="Enter Width" required />
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
-                                    <label for="material" class="form-label">Material<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="Material" name="material"
-                                        placeholder="Enter Material" required />
-                                </div>
-                                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
-                                    <label for="printed_sides" class="form-label">Printed Sides<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="printed_sides" name="printed_sides"
-                                        placeholder="Enter Printed Sides" required />
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
-                                    <label for="flute_direction" class="form-label">Flute Direction<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="flute_direction" name="flute_direction"
-                                        placeholder="Enter Flute Direction" required />
-                                </div>
+                            @if ($product->is_height || $product->is_width)
+                                <div class="row">
+                                    @if ($product->is_height)
+                                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
+                                            <label for="height" class="form-label">Height<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" id="height" name="height"
+                                                placeholder="Height" required />
+                                        </div>
+                                    @endif
 
-                            </div>
+                                    @if ($product->is_width)
+                                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
+                                            <label for="width" class="form-label">Width<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" id="Width" name="Width"
+                                                placeholder="Enter Width" required />
+                                        </div>
+                                    @endif
 
-                            <div class="row mt-3">
-                                <div class="col-sm-12">
-                                    <label for="special_instructions" class="form-label">Special Instructions<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control mt-4" id="special_instructions"
-                                        name="special_instructions" placeholder="Enter Special Instructions" required />
                                 </div>
+                            @endif
+                            @if ($product->is_material || $product->is_printed_sides)
+                                <div class="row mt-3">
+                                    @if ($product->is_material)
+                                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
+                                            <label for="material" class="form-label">Material<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="Material" name="material"
+                                                placeholder="Enter Material" required />
+                                        </div>
+                                    @endif
+                                    @if ($product->is_printed_sides)
+                                        <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pl-3">
+                                            <label for="printed_sides" class="form-label">Printed Sides<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="printed_sides"
+                                                name="printed_sides" placeholder="Enter Printed Sides" required />
+                                        </div>
+                                    @endif
+                                </div>
+                            @endif
+                            @if ($product->is_flute_direction)
+                                <div class="row mt-3">
 
-                            </div>
+                                    <div class="col-xxl-6 col-xm-6 col-lg-6 col-md-12 col-sm-12 pr-3">
+                                        <label for="flute_direction" class="form-label">Flute Direction<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="flute_direction"
+                                            name="flute_direction" placeholder="Enter Flute Direction" required />
+                                    </div>
+
+
+                                </div>
+                            @endif
                             <div class="row mt-4">
+
                                 <div class="col-sm-12">
                                     <label for="flute_direction" class="form-label">Quantity<span
                                             class="text-danger">*</span></label>
@@ -138,14 +148,26 @@
                                 </div>
 
                             </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-12">
+                                    <label for="special_instructions" class="form-label">Special Instructions<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control mt-4" id="special_instructions"
+                                        name="special_instructions" placeholder="Enter Special Instructions" required />
+                                </div>
+
+                            </div>
+
                             <div class="row mt-4">
                                 <div class="col-sm-12">
                                     <div class="product_description">
                                         <p>We accept the following file types: PDF, AI, SVG, EPS, PSD, JPG, TIF, PNG</p>
                                         <p>Files should be in the CMYK colorspace, if not they will be converted to CMYK
                                             andwe are not responsible if the results are not what you expected.</p>
-                                        <p>Finally, for large file transfers (over 100mb total), we recommend uploading them
-                                            AFTER the order is placed, to avoid a long order confirmation wait when you hit
+                                        <p>Finally, for large file transfers (over 100mb total), we recommend uploading
+                                            them
+                                            AFTER the order is placed, to avoid a long order confirmation wait when you
+                                            hit
                                             the final payment button.</p>
                                     </div>
                                 </div>
@@ -306,7 +328,7 @@
 
     <div class="container ">
         <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
-            <h2 class="heading">Similar Equipment</h2>
+            <h2 class="heading">Similar Your Products</h2>
         </div>
         <div class="swiper  " id="Simmilar_Equipments_sec">
             <div class="swiper-wrapper swiper-wrapper3 ">

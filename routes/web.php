@@ -48,7 +48,8 @@ Route::middleware(['guest'])->group(function(){
 Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
 
-
+    Route::get('/contact-us', 'aboutUs')->name('about.us');
+    Route::get('/our-story', 'ourStory')->name('our.story');
 
 });
 
@@ -57,8 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(HomeController::class)->group(function(){
         Route::get('/equipments', 'equipments')->name('equipments');
         Route::get('/product_detail/{slug}', 'productDetail')->name('product_detail');
-        Route::get('/about-us', 'aboutUs')->name('about.us');
-        Route::get('/our-story', 'ourStory')->name('our.story');
+
         Route::get('/cart', 'cart')->name('cart');
 
 

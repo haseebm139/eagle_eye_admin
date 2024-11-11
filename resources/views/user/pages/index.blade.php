@@ -32,7 +32,7 @@
 
     <div class="container ">
         <div class="d-flex justify-content-between align-items-center mb-2 flex-direcction-column">
-            <h2>Equipment</h2>
+            <h2>Your Products</h2>
             <p class="para">
                 As a leading sign company in Kansas City, KS, we handle <br /> every aspect of the sign creation
                 process.

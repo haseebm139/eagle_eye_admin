@@ -199,8 +199,7 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'time' => 'nullable|string', // Consider more specific validation if necessary
         ]);
-        // min_stock
-        // discount_value
+
         // Check if validation fails
         if ($validator->fails()) {
             return response()->json([
@@ -209,12 +208,21 @@ class ProductController extends Controller
             ]); // Unprocessable Entity
         }
         try {
-            $productData['slug'] = Str::slug($request->name); // Generate slug
-            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','category_id','discount_value']);
+
+            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date',
+            'min_order', 'min_order_value','category_id','discount_value',
+            'is_flute_direction','is_height','is_material','is_printed_sides','is_width','lamination'
+        ]);
             $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
             $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
             $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
-
+            $productData['is_flute_direction'] = $request->is_flute_direction === 'on' ? '1' : '0';
+            $productData['is_height'] = $request->is_height === 'on' ? '1' : '0';
+            $productData['is_material'] = $request->is_material === 'on' ? '1' : '0';
+            $productData['is_printed_sides'] = $request->is_printed_sides === 'on' ? '1' : '0';
+            $productData['is_width'] = $request->is_width === 'on' ? '1' : '0';
+            $productData['is_lamination'] = $request->lamination === 'on' ? '1' : '0';
+            $productData['slug'] = Str::slug($request->name); // Generate slug
             if ($request->min_order === 'on') {
                 $productData['is_min_orders'] = 1; // Marking min_order as enabled
                 $productData['min_order_value'] = $request->min_order_value;
@@ -227,6 +235,12 @@ class ProductController extends Controller
 
                 $productData['discount_value'] = $request->min_order_value;
             }
+            if ($productData['is_lamination'] == '1') {
+
+                $productData['lamination_value'] = $request->lamination_value
+                ;
+            }
+
 
 
 
@@ -266,64 +280,77 @@ class ProductController extends Controller
     public function updateProduct(Request $request){
 
 
+        $productId = $request->product_id??0;
+        $product = Product::find($productId);
+
+        // If product is not found, return an error response
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found']);
+        }
+        $productData['slug'] = Str::slug($request->name); // Generate slug
+
+        $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date','product_id',
+        'min_order', 'min_order_value','category_id','discount_value',
+        'is_flute_direction','is_height','is_material','is_printed_sides','is_width','lamination'
+        ]);
+        $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
+        $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
+        $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
+        $productData['is_flute_direction'] = $request->is_flute_direction === 'on' ? '1' : '0';
+        $productData['is_height'] = $request->is_height === 'on' ? '1' : '0';
+        $productData['is_material'] = $request->is_material === 'on' ? '1' : '0';
+        $productData['is_printed_sides'] = $request->is_printed_sides === 'on' ? '1' : '0';
+        $productData['is_width'] = $request->is_width === 'on' ? '1' : '0';
+        $productData['is_lamination'] = $request->lamination === 'on' ? '1' : '0';
+        if ($request->min_order === 'on') {
+            $productData['is_min_orders'] = 1; // Marking min_order as enabled
+            $productData['min_order_value'] = $request->min_order_value;
+        } else {
+            $productData['is_min_orders'] = 0; // Marking min_order as disabled
+            $productData['min_order_value'] = 1; // No minimum order value if min_order is off
+        }
+        if ($productData['is_discount'] === '1') {
+
+            $productData['discount_value'] = $request->min_order_value;
+        }
+        if ($productData['is_lamination'] == '1') {
+
+            $productData['lamination_value'] = $request->lamination_value
+            ;
+        }
+        $product->update($productData);
+        if ($request->hasFile('image')) {
+
+            foreach ($request->file('image') as $file) {
+
+                $img = time().$file->getClientOriginalName();
+                $file_path = "documents/products/".$img;
+                $file->move(public_path("documents/products/"), $img);
+                $path = $file_path;
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'path' => $path,
+                    'status' => 1, // Set the status to active by default
+                ]);
+            }
+        }
+        if ($request->category_id) {
+            $prod_cate = ProductCategory::where('product_id', $productId)
+                ->where('category_id', $request->category_id)
+                ->first();
+            if (!$prod_cate) {
+
+                ProductCategory::where('product_id', $productId)->delete();
+
+
+                ProductCategory::create([
+                    'product_id' => $productId,
+                    'category_id' => $request->category_id,
+                ]);
+            }
+        }
+        return response()->json(['success' => true, 'message' => 'Product Update successfully']);
         try {
-            $productId = $request->product_id??0;
-            $product = Product::find($productId);
-
-            // If product is not found, return an error response
-            if (!$product) {
-                return response()->json(['success' => false, 'message' => 'Product not found']);
-            }
-            $productData['slug'] = Str::slug($request->name); // Generate slug
-
-            $productData = $request->except(['discount', 'discount2', 'image', 'expiry_date', 'min_order', 'min_order_value','product_id','category_id','discount_value']);
-            $productData['is_discount'] = $request->discount === 'on' ? '1' : '0';
-            $productData['is_discount2'] = $request->discount2 === 'on' ? '1' : '0';
-            $productData['is_expire'] = $request->expiry_date === 'on' ? '1' : '0';
-
-            if ($request->min_order === 'on') {
-                $productData['is_min_orders'] = 1; // Marking min_order as enabled
-                $productData['min_order_value'] = $request->min_order_value;
-            } else {
-                $productData['is_min_orders'] = 0; // Marking min_order as disabled
-                $productData['min_order_value'] = 1; // No minimum order value if min_order is off
-            }
-            if ($productData['is_discount'] === '1') {
-
-                $productData['discount_value'] = $request->min_order_value;
-            }
-            $product->update($productData);
-            if ($request->hasFile('image')) {
-
-                foreach ($request->file('image') as $file) {
-
-                    $img = time().$file->getClientOriginalName();
-                    $file_path = "documents/products/".$img;
-                    $file->move(public_path("documents/products/"), $img);
-                    $path = $file_path;
-                    ProductImage::create([
-                        'product_id' => $product->id,
-                        'path' => $path,
-                        'status' => 1, // Set the status to active by default
-                    ]);
-                }
-            }
-            if ($request->category_id) {
-                $prod_cate = ProductCategory::where('product_id', $productId)
-                    ->where('category_id', $request->category_id)
-                    ->first();
-                if (!$prod_cate) {
-
-                    ProductCategory::where('product_id', $productId)->delete();
-
-
-                    ProductCategory::create([
-                        'product_id' => $productId,
-                        'category_id' => $request->category_id,
-                    ]);
-                }
-            }
-            return response()->json(['success' => true, 'message' => 'Product Update successfully']);
 
             //code...
         } catch (\Throwable $th) {
