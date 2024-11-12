@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(HomeController::class)->group(function(){
         Route::get('/equipments', 'equipments')->name('equipments');
+        Route::get('/equipments/category/{slug}', 'equipmentsCategory')->name('equipments.category');
         Route::get('/product_detail/{slug}', 'productDetail')->name('product_detail');
 
         Route::get('/cart', 'cart')->name('cart');

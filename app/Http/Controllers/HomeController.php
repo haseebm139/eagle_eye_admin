@@ -22,6 +22,14 @@ class HomeController extends Controller
         $data['products'] = Product::with('image')->select('id','name','slug' )->get();
         return view('user.pages.equipments',compact('data'));
     }
+    public function equipmentsCategory($slug){
+          $data['categories'] = Category::where('slug',$slug)->with(['products' => function ($query) {
+            $query->with('images');
+        }])->orderBy('id','DESC')->first();
+
+        $data['products'] = Product::with('image')->select('id','name','slug' )->get();
+        return view('user.pages.equipments',compact('data'));
+    }
     public function productDetail($slug){
 
         $product = Product::with('images')->where('slug', $slug)->firstOrFail();
