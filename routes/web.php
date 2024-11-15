@@ -142,6 +142,10 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/get-order-chart', 'getChart')->name('chart');
 
         });
+
+        Route::get('/support', function () {
+            return view('admin.pages.support');
+        })->name('support');
     });
 
 

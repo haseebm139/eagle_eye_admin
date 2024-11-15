@@ -192,11 +192,11 @@
         </div>
 
 
-        {{-- <div class="botton-center">
-            <a href="#" class="nav-link mt-auto mb-3">
+        <div class="botton-center">
+            <a href="{{ route('support') }}" class="nav-link mt-auto mb-3">
                 <img src="{{ asset('assets/admin/images/svg/fi_headphones.svg') }}" /> <span>Contact Support</span>
             </a>
-        </div> --}}
+        </div>
         <a href="{{ route('logout') }}" class="nav-link mt-auto mb-3">
             <i class='bx bx-log-out'></i> <span>Logout</span>
         </a>
