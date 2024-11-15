@@ -978,6 +978,7 @@
 </script>
 <script>
     $(document).ready(function() {
+        let chatInterval;
         const firstContact = $('#chat_user_list .contact').first();
         // Search Users
         $('#searchInput').on('input', function() {
@@ -1014,6 +1015,10 @@
 
             // Load chat messages for the first contact
             loadChat(userId, contactName, contactImage);
+
+            chatInterval = setInterval(function() {
+                loadChat(userId, contactName, contactImage);
+            }, 5000); // 5000ms = 5 seconds
         }
 
 
@@ -1056,9 +1061,14 @@
             const userId = $(this).data('user-id');
             const contactName = $('#user_name' + userId).text();
             const contactImage = $('#user_image' + userId).attr('src')
-
+            if (chatInterval) {
+                clearInterval(chatInterval);
+            }
             // Load chat messages for the selected user
             loadChat(userId, contactName, contactImage);
+            chatInterval = setInterval(function() {
+                loadChat(userId, contactName, contactImage);
+            }, 5000); // 5000ms = 5 seconds
         });
         $('#sendMessageButton').on('click', function() {
 
