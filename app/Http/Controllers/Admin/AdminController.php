@@ -52,6 +52,7 @@ class AdminController extends Controller
     public function orders(){
         return view('admin.pages.orders');
     }
+
     public function customersView($id){
         $data['user'] = User::with('orders')->find($id);
         if ($data['user']) {

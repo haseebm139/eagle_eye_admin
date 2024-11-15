@@ -777,7 +777,7 @@
                                             @endphp
                                             <img id="previewImage5" class="previewImage" src="{{ asset($img) }} "
                                                 alt="Additional Image Preview 1"
-                                                
+
                                                 style="width: 100%; transition: 0.5s; height: 100%; position: absolute; top: 0px; left: 0px; object-fit: cover;" />
 
                                             <div class="layer">

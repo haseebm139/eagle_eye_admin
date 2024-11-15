@@ -193,7 +193,7 @@
 
 
         <div class="botton-center">
-            <a href="{{ route('support') }}" class="nav-link mt-auto mb-3">
+            <a href="{{ route('chat.support') }}" class="nav-link mt-auto mb-3">
                 <img src="{{ asset('assets/admin/images/svg/fi_headphones.svg') }}" /> <span>Contact Support</span>
             </a>
         </div>

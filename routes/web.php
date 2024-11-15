@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('employee-create','employeeCreate')->name('employee.create');
             Route::Get('/employee', 'employees')->name('employee.index');
 
+            // admin.pages.support
         });
 
         Route::controller(ProductController::class)->name('product.')->group(function(){
@@ -142,10 +144,16 @@ Route::middleware(['auth'])->group(function () {
             Route::Get('/get-order-chart', 'getChart')->name('chart');
 
         });
+        Route::controller(ChatController::class)->name('chat.')->group(function(){
 
-        Route::get('/support', function () {
-            return view('admin.pages.support');
-        })->name('support');
+            Route::Get('/support', 'index')->name('support');
+            Route::Get('/chat', 'chat')->name('chat');
+            Route::post('/chat/sendMessage','sendMessage')->name('sendMessage');
+        });
+
+        // Route::get('/support', function () {
+        //     return view('admin.pages.support');
+        // })->name('support');
     });
 
 
