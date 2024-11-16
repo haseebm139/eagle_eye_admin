@@ -715,8 +715,8 @@ align-items: center;
   width: 50px;
   padding: 12px 0;
   cursor: pointer;
-  background: #32465a;
-  color: #f5f5f5;
+  background: #FFD014;
+  color: #000;
 }
 @media screen and (max-width: 735px) {
   #frame .content .message-input .wrap button {
