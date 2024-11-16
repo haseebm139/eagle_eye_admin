@@ -434,7 +434,7 @@
 
         @media screen and (max-width: 735px) {
             #frame #sidepanel #contacts ul li.contact {
-                padding: 6px 0 46px 8px;
+                padding: 6px 0 0px 8px;
             }
         }
 
@@ -508,13 +508,28 @@
 
         @media screen and (max-width: 735px) {
             #frame #sidepanel #contacts ul li.contact .wrap .meta {
-                display: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
             }
 
+            #frame #sidepanel #contacts ul li.contact .wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
             #frame {
                 padding: 0px;
                 display: flex;
             }
+            
+        #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
+            font-weight: 600;
+            font-size: 10px;
+            text-align: center;
+        }
         }
 
         #frame #sidepanel #contacts ul li.contact .wrap .meta .name {
@@ -619,8 +634,8 @@
 
         @media screen and (max-width: 735px) {
             #frame .content {
-                width: calc(100% - 58px);
-                min-width: 300px !important;
+                width: calc(100% - 80px);
+                min-width: 250px !important;
             }
 
             #frame .content {
