@@ -721,146 +721,124 @@
             flex-direction: column;
             gap: 10px;
 
-        }
-
-        #frame .content .messages ul li.sent span {
-            padding-left: 20px;
-        }
-
-        #frame .content .messages ul li.sent p {
-            background: #ffff;
-            color: #000;
-            border-radius: 20px 20px 20px 0px;
-        }
-
-        #frame .content .messages ul li.replies {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        #frame .content .messages ul li.replies span {
-            float: right;
-        }
-
-        #frame .content .messages ul li.replies img {
-            float: right;
-            margin: 6px 0 0 8px;
-        }
-
-        #frame .content .messages ul li.replies p {
-            background: #000;
-            color: #fff;
-            float: right;
-            border-radius: 20px 20px 0px 20px;
-        }
-
-        #frame .content .messages ul li img {
-            width: 22px;
-            border-radius: 50%;
-            float: left;
-        }
-
-        #frame .content .messages ul li p {
-            display: inline-block;
-            padding: 10px 15px;
-            border-radius: 20px;
-            max-width: 205px;
-            line-height: 130%;
-        }
-
-        @media screen and (min-width: 735px) {
-            #frame .content .messages ul li p {
-                max-width: 300px;
-            }
-
-            #frame .content .messages ul li {
-                margin: 0px;
-            }
-        }
-
-        #frame .content .message-input {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            z-index: 99;
-            background: #F5F5F5;
-            padding: 0px 20px 20px 20px;
-            border: 1px solid #000;
-            border-top: 0px;
-            border-radius: 0px 0px 20px 20px;
-        }
-
-        #frame .content .message-input .wrap {
-            position: relative;
-        }
-
-        #frame .content .message-input .wrap input {
-            font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-            float: left;
-            border: none;
-            width: calc(100% - 90px);
-            padding: 11px 32px 10px 8px;
-            font-size: 0.8em;
-            color: #32465a;
-        }
-
-        @media screen and (max-width: 735px) {
-            #frame .content .message-input .wrap input {
-                padding: 15px 32px 16px 8px;
-            }
-        }
-
-        #frame .content .message-input .wrap input:focus {
-            outline: none;
-        }
-
-        #frame .content .message-input .wrap .attachment {
-            position: absolute;
-            right: 60px;
-            z-index: 4;
-            margin-top: 10px;
-            font-size: 1.1em;
-            color: #435f7a;
-            opacity: 0.5;
-            cursor: pointer;
-        }
-
-        @media screen and (max-width: 735px) {
-            #frame .content .message-input .wrap .attachment {
-                margin-top: 17px;
-                right: 65px;
-            }
-        }
-
-        #frame .content .message-input .wrap .attachment:hover {
-            opacity: 1;
-        }
-
-        #frame .content .message-input .wrap button {
-            float: right;
-            border: none;
-            width: 50px;
-            padding: 12px 0;
-            cursor: pointer;
-            background: #32465a;
-            color: #f5f5f5;
-        }
-
-        @media screen and (max-width: 735px) {
-            #frame .content .message-input .wrap button {
-                padding: 16px 0;
-            }
-        }
-
-        #frame .content .message-input .wrap button:hover {
-            background: #435f7a;
-        }
-
-        #frame .content .message-input .wrap button:focus {
-            outline: none;
-        }
+}
+#frame .content .messages ul li.sent span{
+  padding-left: 20px;
+}
+#frame .content .messages ul li.sent p {
+  background: #ffff;
+  color: #000;
+  border-radius: 20px 20px 20px 0px;
+}
+#frame .content .messages ul li.replies{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap:10px;
+}
+#frame .content .messages ul li.replies span{
+  float: right;
+}
+#frame .content .messages ul li.replies img {
+  float: right;
+  margin: 6px 0 0 8px;
+}
+#frame .content .messages ul li.replies p {
+  background: #000;
+  color: #fff;
+  float: right;
+  border-radius: 20px 20px 0px 20px;
+}
+#frame .content .messages ul li img {
+  width: 22px;
+  border-radius: 50%;
+  float: left;
+}
+#frame .content .messages ul li p {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 205px;
+  line-height: 130%;
+}
+@media screen and (min-width: 735px) {
+  #frame .content .messages ul li p {
+    max-width: 300px;
+  }
+  #frame .content .messages ul li {
+    margin: 0px;
+  }
+}
+#frame .content .message-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  background: #F5F5F5;
+  padding:0px 20px 20px 20px;
+  border: 1px solid #000;
+  border-top:0px;
+  border-radius:0px 0px 20px 20px;
+}
+#frame .content .message-input .wrap {
+  position: relative;
+}
+#frame .content .message-input .wrap input {
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+  float: left;
+  border: none;
+  width: calc(100% - 90px);
+  padding: 11px 32px 10px 8px;
+  font-size: 0.8em;
+  color: #32465a;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap input {
+    padding: 15px 32px 16px 8px;
+  }
+}
+#frame .content .message-input .wrap input:focus {
+  outline: none;
+}
+#frame .content .message-input .wrap .attachment {
+  position: absolute;
+  right: 60px;
+  z-index: 4;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #435f7a;
+  opacity: 0.5;
+  cursor: pointer;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap .attachment {
+    margin-top: 17px;
+    right: 65px;
+  }
+}
+#frame .content .message-input .wrap .attachment:hover {
+  opacity: 1;
+}
+#frame .content .message-input .wrap button {
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: pointer;
+  background: #32465a;
+  color: #f5f5f5;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap button {
+    padding: 16px 0;
+  }
+}
+#frame .content .message-input .wrap button:hover {
+  background: #435f7a;
+}
+#frame .content .message-input .wrap button:focus {
+  outline: none;
+}
     </style>
 @endsection
 @section('content')
