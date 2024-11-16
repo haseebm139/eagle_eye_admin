@@ -59,6 +59,26 @@ class ChatController extends Controller
         ]);
     }
 
+    public function fatchChat(Request $request){
+        $senderId = auth()->id();
+
+
+        $chat = Chat::where(function ($query) use ($senderId ) {
+            $query->where('sender_id', $senderId) ;
+        })
+        ->orWhere(function ($query) use ($senderId ) {
+            $query ->where('receiver_id', $senderId);
+        })
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+
+        return response()->json([
+            'html' => view('user.components.messages',compact('chat'))->render(),
+        ]);
+
+    }
+
     public function sendMessage(Request $request)
     {
         // Validate the input
@@ -77,6 +97,34 @@ class ChatController extends Controller
         $message = new Chat();
         $message->sender_id = $senderId;
         $message->receiver_id = $userId;
+        $message->message = $messageContent;
+        $message->save();
+
+        // Return a response
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Message sent successfully',
+            'data' => $message,
+        ]);
+    }
+
+    public function userSendMessage(Request $request)
+    {
+        // Validate the input
+        $validated = $request->validate([
+
+            'message' => 'required|string|max:1000', // Validate the message input
+        ]);
+
+
+        $messageContent = $validated['message'];
+
+        $admin = User::where('type','admin')->first();
+        $senderId = auth()->id();
+
+        $message = new Chat();
+        $message->sender_id = $senderId;
+        $message->receiver_id = $admin->id??1;
         $message->message = $messageContent;
         $message->save();
 

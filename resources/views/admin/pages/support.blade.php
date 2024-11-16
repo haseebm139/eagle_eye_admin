@@ -996,7 +996,7 @@
 
             chatInterval = setInterval(function() {
                 loadChat(userId, contactName, contactImage);
-            }, 5000); // 5000ms = 5 seconds
+            }, 2000); // 5000ms = 5 seconds
         }
 
 
@@ -1046,7 +1046,7 @@
             loadChat(userId, contactName, contactImage);
             chatInterval = setInterval(function() {
                 loadChat(userId, contactName, contactImage);
-            }, 5000); // 5000ms = 5 seconds
+            }, 2000); // 5000ms = 5 seconds
         });
         $('#sendMessageButton').on('click', function() {
 

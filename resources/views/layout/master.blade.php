@@ -37,10 +37,11 @@
         .desktop-hide {
             display: none;
         }
-        #profile-image 
-        {
+
+        #profile-image {
             width: 50px;
         }
+
         @media(max-width:600px) {
             .mob-none {
                 display: none;
@@ -74,8 +75,8 @@
                 <h3 id="page-title">@yield('heading')</h3>
                 <div class="d-flex align-items-center gap-3">
                     <div class="dropdown-container position-relative">
-                       
-                        
+
+
 
                         <div class="dropdown ">
                             <!-- The dropdown toggle -->

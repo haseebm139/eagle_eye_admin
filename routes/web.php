@@ -84,7 +84,12 @@ Route::middleware(['auth'])->group(function () {
         Route::POST('/place-order', 'placeOrder')->name('place.order');
     });
 
+    Route::controller(ChatController::class)->name('chat.')->group(function(){
 
+
+        Route::Get('/fetch/chat', 'fatchChat')->name('fetch');
+        Route::post('user/chat/sendMessage','userSendMessage')->name('user.sendMessage');
+    });
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::resource('roles', RoleController::class);
@@ -148,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::Get('/support', 'index')->name('support');
             Route::Get('/chat', 'chat')->name('chat');
+
             Route::post('/chat/sendMessage','sendMessage')->name('sendMessage');
         });
 
