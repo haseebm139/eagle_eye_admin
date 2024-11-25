@@ -109,9 +109,11 @@
                     <div class="our_story_sec_two_content_wrapper padding-right">
                         <h4 class="yellow_small_heading">Who We Are</h4>
                         <h1 class="bigg_heading">Who We Are</h1>
-                        <p class="content_our">Established in [Year of Establishment], [Your Travel Agency Name] has been
-                            dedicated to creating unforgettable travel experiences. Our journey started with a simple idea:
-                            to make travel extraordinary. Today, we continue to turn dreams into reality</p>
+                        <p class="content_our">We are a large format digital printing service that creates signs, graphics
+                            and banners up to 10' wide! You know our work and you have seen it everywhere. We have been the
+                            "go to" shop for most printing, design, and marketing firms since we are a wholesale printer to
+                            the trade.
+                        </p>
                         <img src="{{ asset('assets/website/images/our_story_one.png') }}">
                     </div>
 
@@ -121,9 +123,9 @@
                         style="flex-direction: column;">
                         <h4 class="yellow_small_heading">Why Us</h4>
                         <h1 class="bigg_heading">Why Us</h1>
-                        <p class="content_our">What makes us unique is our unwavering commitment to excellence. We're not
-                            just a travel agency; we're your trusted travel companion. Discover the reasons why travelers
-                            like you choose us for their adventures</p>
+                        <p class="content_our"> We are a well respected company in the DFW area with over 30 years of
+                            experience in the sign business. Many companies look to us for advice, consultation, and
+                            solutions for all their signage needs.</p>
                         <img src="{{ asset('assets/website/images/our_story_two.png') }} ">
                     </div>
                 </div>

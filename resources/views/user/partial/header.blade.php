@@ -34,23 +34,23 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
-                @auth
 
 
-                    {{-- @dd($categories) --}}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">Your Product's</a>
-                        <ul class="dropdown-menu">
-                            @foreach ($categories as $category)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
-                                </li>
-                            @endforeach
 
-                        </ul>
-                    </li>
-                @endauth
+                {{-- @dd($categories) --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" href="#">Your Product's</a>
+                    <ul class="dropdown-menu">
+                        @foreach ($categories as $category)
+                            <li><a class="dropdown-item"
+                                    href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Products Offered</a>
                 </li>
