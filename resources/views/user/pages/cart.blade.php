@@ -899,7 +899,7 @@
 
                                             @foreach ($data['shipping_rates'] as $key => $item)
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value={{ $item->id ?? '' }}
+                                                    <input type="radio" name="shipping_rate" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
                                                         data-price={{ $item->price ?? 0.0 }}
                                                         @if ($key == 0) checked @endif
                                                         class="shipping-rate" />
@@ -1065,33 +1065,18 @@
                                                 <div>
 
 
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio" name="shipping_rate" id="onee"
-                                                            class="shipping-rate2" value="0" />
-                                                        <p>Pickup from Eagle Eye</p>
-                                                    </div>
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio" name="shipping_rate" id="twoo"
-                                                            class="shipping-rate2" value="150" />
+                                                    @if (isset($data['shipping_rates'][0]))
 
-                                                        <p> Flat Rate Shipping: <Span class="span" value="15.991">
-                                                                $15.99</Span></p>
-                                                    </div>
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio"name="shipping_rate" id="threee"
-                                                            class="shipping-rate2" value="36.95" />
-                                                        <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
-                                                    </div>
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio" name="shipping_rate" id="fourr"
-                                                            class="shipping-rate2" value="0" />
-                                                        <p> Use My Carrier</p>
-                                                    </div>
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio"name="shipping_rate" id="fivee"
-                                                            class="shipping-rate2" value="150" />
-                                                        <p> Air Freight: <span class="span"> $150.00</span></p>
-                                                    </div>
+                                                    @foreach ($data['shipping_rates'] as $key => $item)
+                                                        <div class="d-flex gap-2">
+                                                            <input type="radio" name="shipping_rate1" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
+                                                                data-price={{ $item->price ?? 0.0 }}
+                                                                @if ($key == 0) checked @endif
+                                                                class="shipping-rate" />
+                                                            <p>{{ $item->name ?? '' }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
                                                     <p class="span">
                                                         Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                                     </p>
@@ -1165,31 +1150,18 @@
                                         <td>
                                             <div>
 
-                                                <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value="0"
-                                                        id="one" class="shipping-rate1" />
-                                                    <p>Pickup from Eagle Eye</p>
-                                                </div>
-                                                <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value="15.99"
-                                                        id="two" class="shipping-rate1" />
-                                                    <p> Flat Rate Shipping: <Span class="span"> $15.99</Span></p>
-                                                </div>
-                                                <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value="36.95"
-                                                        id="three" class="shipping-rate1" />
-                                                    <p> Flat Rate: Over 47": <Span class="span">$36.95</Span></p>
-                                                </div>
-                                                <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value="0"
-                                                        id="four" class="shipping-rate1" />
-                                                    <p> Use My Carrier</p>
-                                                </div>
-                                                <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" value="150.00"
-                                                        id="five" class="shipping-rate1" />
-                                                    <p> Air Freight: <span class="span"> $150.00</span></p>
-                                                </div>
+                                                @if (isset($data['shipping_rates'][0]))
+
+                                                @foreach ($data['shipping_rates'] as $key => $item)
+                                                    <div class="d-flex gap-2">
+                                                        <input type="radio" name="shipping_rate2" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
+                                                            data-price={{ $item->price ?? 0.0 }}
+                                                            @if ($key == 0) checked @endif
+                                                            class="shipping-rate" />
+                                                        <p>{{ $item->name ?? '' }}</p>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                                 <p class="span">
                                                     Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                                 </p>
@@ -1541,6 +1513,29 @@
         });
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Synchronize radio button check between the three groups.
+    document.querySelectorAll('input[name="shipping_rate"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            // When a radio button in the shipping_rate group is changed
+            var selectedValue = radio.value;
+
+            // Check the corresponding radio buttons in shipping_rate1 and shipping_rate2
+            document.querySelectorAll('input[name="shipping_rate1"]').forEach(function (radio1) {
+                if (radio1.value == selectedValue) {
+                    radio1.checked = true;
+                }
+            });
+
+            document.querySelectorAll('input[name="shipping_rate2"]').forEach(function (radio2) {
+                if (radio2.value == selectedValue) {
+                    radio2.checked = true;
+                }
+            });
+        });
+    });
+});
+
         document.addEventListener('DOMContentLoaded', function() {
             const rushServices = document.querySelectorAll('.rush-service');
 
@@ -1754,18 +1749,18 @@
                     event.preventDefault(); // Prevent form submission
                     alert('Please select a shipping rate.');
                 } else {
-                    var shippingRate = $('input[name="shipping_rate"]:checked').val();
-
+                    var shippingRate = $('input[name="shipping_rate"]:checked').data('value');
+  
                     // Reset all checkboxes and enable them initially
                     $('.shipping-checkbox').prop('checked', false).prop('disabled', false);
 
                     // Define shipping options and their corresponding checkboxes
                     var options = {
                         'Pickup from Eagle Eye': ['#one', '#onee'],
-                        'Flat Rate Shipping: $15.99': ['#two', '#twoo'],
+                        'Flat Rate Shipping': ['#two', '#twoo'],
                         'Flat Rate: Over 47': ['#three', '#threee'],
                         'Use My Carrier': ['#four', '#fourr'],
-                        'Air Freight: $150.00': ['#five', '#fivee']
+                        'Air Freight': ['#five', '#fivee']
                     };
 
                     // Check and enable the corresponding checkboxes based on the selected shipping rate
