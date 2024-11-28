@@ -936,6 +936,7 @@
 </head>
 
 <body>
+
     @php
         $total_cart_item = count(\Cart::getContent());
     @endphp
@@ -1123,6 +1124,30 @@
 
         jQuery(document).ready(function($) {
 
+
+            jQuery('.category_drop').on('click', function(e) {
+                e.preventDefault(); // Prevent the default link behavior
+
+                let categoryId = $(this).data('category-id');
+                alert(categoryId)
+                $.ajax({
+                    url: "{{ route('category.save') }}", // Replace with your route
+                    method: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'), // Laravel CSRF token
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+                        console.log('Category ID saved successfully:', response);
+                        // Optionally, redirect or perform further actions
+                        window.location.href = $(e.target).attr(
+                            'href'); // Redirect to the original link
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error saving category ID:', error);
+                    }
+                });
+            });
             jQuery('#vutton_open').on('click', function(e) {
                 e.preventDefault();
                 jQuery('#botIcon').toggleClass('showBotSubject');

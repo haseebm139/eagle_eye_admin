@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
     </style>
 @endsection
 @section('content')
@@ -899,7 +899,8 @@
 
                                             @foreach ($data['shipping_rates'] as $key => $item)
                                                 <div class="d-flex gap-2">
-                                                    <input type="radio" name="shipping_rate" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
+                                                    <input type="radio" name="shipping_rate"
+                                                        data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
                                                         data-price={{ $item->price ?? 0.0 }}
                                                         @if ($key == 0) checked @endif
                                                         class="shipping-rate" />
@@ -1067,16 +1068,18 @@
 
                                                     @if (isset($data['shipping_rates'][0]))
 
-                                                    @foreach ($data['shipping_rates'] as $key => $item)
-                                                        <div class="d-flex gap-2">
-                                                            <input type="radio" name="shipping_rate1" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
-                                                                data-price={{ $item->price ?? 0.0 }}
-                                                                @if ($key == 0) checked @endif
-                                                                class="shipping-rate" />
-                                                            <p>{{ $item->name ?? '' }}</p>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                                                        @foreach ($data['shipping_rates'] as $key => $item)
+                                                            <div class="d-flex gap-2">
+                                                                <input type="radio" name="shipping_rate1"
+                                                                    data-value="{{ $item->name ?? '' }}"
+                                                                    value={{ $item->id ?? '' }}
+                                                                    data-price={{ $item->price ?? 0.0 }}
+                                                                    @if ($key == 0) checked @endif
+                                                                    class="shipping-rate" />
+                                                                <p>{{ $item->name ?? '' }}</p>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                     <p class="span">
                                                         Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                                     </p>
@@ -1123,7 +1126,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1152,16 +1155,18 @@
 
                                                 @if (isset($data['shipping_rates'][0]))
 
-                                                @foreach ($data['shipping_rates'] as $key => $item)
-                                                    <div class="d-flex gap-2">
-                                                        <input type="radio" name="shipping_rate2" data-value="{{ $item->name ?? '' }}" value={{ $item->id ?? '' }}
-                                                            data-price={{ $item->price ?? 0.0 }}
-                                                            @if ($key == 0) checked @endif
-                                                            class="shipping-rate" />
-                                                        <p>{{ $item->name ?? '' }}</p>
-                                                    </div>
-                                                @endforeach
-                                            @endif
+                                                    @foreach ($data['shipping_rates'] as $key => $item)
+                                                        <div class="d-flex gap-2">
+                                                            <input type="radio" name="shipping_rate2"
+                                                                data-value="{{ $item->name ?? '' }}"
+                                                                value={{ $item->id ?? '' }}
+                                                                data-price={{ $item->price ?? 0.0 }}
+                                                                @if ($key == 0) checked @endif
+                                                                class="shipping-rate" />
+                                                            <p>{{ $item->name ?? '' }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
                                                 <p class="span">
                                                     Shipping to 13375 N Stemmons, Farmers Branch, TX 75234.
                                                 </p>
@@ -1513,28 +1518,30 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // Synchronize radio button check between the three groups.
-    document.querySelectorAll('input[name="shipping_rate"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            // When a radio button in the shipping_rate group is changed
-            var selectedValue = radio.value;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Synchronize radio button check between the three groups.
+            document.querySelectorAll('input[name="shipping_rate"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    // When a radio button in the shipping_rate group is changed
+                    var selectedValue = radio.value;
 
-            // Check the corresponding radio buttons in shipping_rate1 and shipping_rate2
-            document.querySelectorAll('input[name="shipping_rate1"]').forEach(function (radio1) {
-                if (radio1.value == selectedValue) {
-                    radio1.checked = true;
-                }
-            });
+                    // Check the corresponding radio buttons in shipping_rate1 and shipping_rate2
+                    document.querySelectorAll('input[name="shipping_rate1"]').forEach(function(
+                        radio1) {
+                        if (radio1.value == selectedValue) {
+                            radio1.checked = true;
+                        }
+                    });
 
-            document.querySelectorAll('input[name="shipping_rate2"]').forEach(function (radio2) {
-                if (radio2.value == selectedValue) {
-                    radio2.checked = true;
-                }
+                    document.querySelectorAll('input[name="shipping_rate2"]').forEach(function(
+                        radio2) {
+                        if (radio2.value == selectedValue) {
+                            radio2.checked = true;
+                        }
+                    });
+                });
             });
         });
-    });
-});
 
         document.addEventListener('DOMContentLoaded', function() {
             const rushServices = document.querySelectorAll('.rush-service');
@@ -1750,7 +1757,7 @@
                     alert('Please select a shipping rate.');
                 } else {
                     var shippingRate = $('input[name="shipping_rate"]:checked').data('value');
-  
+
                     // Reset all checkboxes and enable them initially
                     $('.shipping-checkbox').prop('checked', false).prop('disabled', false);
 

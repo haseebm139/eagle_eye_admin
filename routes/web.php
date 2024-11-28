@@ -51,9 +51,14 @@ Route::controller(HomeController::class)->group(function(){
 
     Route::get('/contact-us', 'aboutUs')->name('about.us');
     Route::get('/our-story', 'ourStory')->name('our.story');
+    Route::post('/save-category','saveCategory')->name('category.save');
+});
+Route::controller(ChatController::class)->name('chat.')->group(function(){
+
+
+    Route::Get('/fetch/chat', 'fatchChat')->name('fetch');
 
 });
-
 Route::middleware(['auth'])->group(function () {
 
     Route::controller(HomeController::class)->group(function(){
@@ -87,7 +92,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ChatController::class)->name('chat.')->group(function(){
 
 
-        Route::Get('/fetch/chat', 'fatchChat')->name('fetch');
+        // Route::Get('/fetch/chat', 'fatchChat')->name('fetch');
         Route::post('user/chat/sendMessage','userSendMessage')->name('user.sendMessage');
     });
     // Admin Routes

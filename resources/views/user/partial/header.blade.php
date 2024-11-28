@@ -37,19 +37,37 @@
 
 
 
-                {{-- @dd($categories) --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" href="#">Your Product's</a>
-                    <ul class="dropdown-menu">
-                        @foreach ($categories as $category)
-                            <li><a class="dropdown-item"
+                @guest()
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">Your Product's</a>
+                        <ul class="dropdown-menu">
+                            @foreach ($categories as $category)
+                                <li><a class="dropdown-item category_drop" data-category-id="{{ $category->id }}"
+                                        href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+                    </li>
+                @endguest
+
+                @auth()
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">Your Product's</a>
+                        <ul class="dropdown-menu">
+                            @php
+                                $category = getUserCategory();
+                            @endphp
+                            <li><a class="dropdown-item  " data-category-id="{{ $category->id }}"
                                     href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
                             </li>
-                        @endforeach
 
-                    </ul>
-                </li>
+
+                        </ul>
+                    </li>
+                @endauth
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">Products Offered</a>

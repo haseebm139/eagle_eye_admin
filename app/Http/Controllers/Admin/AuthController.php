@@ -17,6 +17,8 @@ class AuthController extends Controller
 {
     public function login()
     {
+
+
         return view('auth.login');
     }
     public function register()
@@ -43,6 +45,12 @@ class AuthController extends Controller
                 return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
             }else if(auth()->user()->type == 'user')
             {
+                $categoryId = session('category_id');
+                if ($categoryId && auth()->user()->category_id == NULL) {
+                    // Update only if the user's category_id is null
+                    auth()->user()->update(['category_id' => $categoryId]);
+                    session()->forget('category_id');
+                }
                 return redirect()->route('dashboard')->with(array('message'=>'Login success','type'=>'success'));
 
             }
@@ -77,15 +85,17 @@ class AuthController extends Controller
             return redirect()->back()->with(array('message'=>$validator->errors()->first(),'type'=>'error'));
         }
 
+        $categoryId = session('category_id');
         $users = $request->except(['password','confirm_password','checkbox'],$request->all());
 
 
         $users['password'] = Hash::make($request->password);
-
+        $users['category_id'] = $categoryId;
 
         $user = User::create($users);
         if($user)
         {
+            session()->forget('category_id');
             return redirect()->route('login')->with(array('message'=>'Register Successfully','type'=>'success'));
         }else{
             return redirect()->with(array('message'=>'Something went wrong please try again','type'=>'error'));

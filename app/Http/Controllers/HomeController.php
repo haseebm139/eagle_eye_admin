@@ -23,12 +23,22 @@ class HomeController extends Controller
         return view('user.pages.equipments',compact('data'));
     }
     public function equipmentsCategory($slug){
-          $data['categories'] = Category::where('slug',$slug)->with(['products' => function ($query) {
+            $data['categories'] = Category::where('slug',$slug)->with(['products' => function ($query) {
             $query->with('images');
         }])->orderBy('id','DESC')->first();
 
         $data['products'] = Product::with('image')->select('id','name','slug' )->get();
         return view('user.pages.equipments',compact('data'));
+    }
+
+    public function saveCategory(Request $request)
+    {
+        $categoryId = $request->input('category_id');
+
+        // Save the category ID to the session
+        session(['category_id' => $categoryId]);
+
+        return response()->json(['message' => 'Category ID saved successfully', 'category_id' => $categoryId]);
     }
     public function productDetail($slug){
 

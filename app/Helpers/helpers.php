@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Category;
 use App\Models\CartProduct;
 
 if (! function_exists('productCount')) {
@@ -95,6 +96,17 @@ if (! function_exists('abandonedCart')) {
     }
 }
 
+if (! function_exists('getUserCategory')) {
+    function getUserCategory()
+    {
+        $categoryId = auth()->user()->category_id;
+        $category = Category::find($categoryId);
+        return $category;
+
+    }
+}
+
+
 if (! function_exists('abandonedCartProducts')) {
     function abandonedCartProducts()
     {
@@ -108,5 +120,14 @@ if (! function_exists('convertMdyToYmd')) {
     function convertMdyToYmd($date)
     {
         return Carbon::createFromFormat('m-d-Y', $date)->format('Y-m-d');
+    }
+}
+if (! function_exists('getUserCategory')) {
+    function getUserCategory()
+    {
+        $categoryId = auth()->user()->category_id;
+        $category = Category::find($categoryId);
+        return $category;
+
     }
 }
