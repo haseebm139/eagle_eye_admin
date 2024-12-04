@@ -709,11 +709,11 @@
         }
 
         /* ::-webkit-scrollbar{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ::-webkit-scrollbar-track{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: #000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          width: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ::-webkit-scrollbar-track{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
     </style>
 @endsection
 @section('content')
@@ -1126,7 +1126,7 @@
 
 
             <!-- <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="btn btn-primary next-step">Next</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="btn btn-primary next-step">Next</button> -->
 
 
         </div>
@@ -1192,7 +1192,8 @@
                                 <div class="payment d-flex flex-column  align-items-start">
                                     <h5>Payment Methods</h5>
                                     <div class="d-flex gap-2 align-items-start">
-                                        <input type="radio" name="pay_type" value="cash_on_delivery" checked />
+                                        <input type="radio" name="pay_type" value="cash_on_delivery" checked
+                                            onclick="toggleCardInputs(false)" />
                                         <div class="d-flex flex-column align-items-start">
                                             <p class="p-0 m-0 uppertext">Pay on Delivery</p>
                                             <p class="p-0 m-0 lowertext">Pay with cash on delivery</p>
@@ -1204,7 +1205,8 @@
 
                                     <div class="d-flex justify-content-between visa-align">
                                         <div class="d-flex gap-2 align-items-start">
-                                            <input type="radio" name="pay_type" value="credit_debit_card" />
+                                            <input type="radio" name="pay_type" value="credit_debit_card"
+                                                onclick="toggleCardInputs(true)" />
                                             <div class="d-flex flex-column align-items-start">
                                                 <p class="p-0 m-0 uppertext">Credit/Debit Cards</p>
                                                 <p class="p-0 m-0 lowertext">Pay with your Credit / Debit Card</p>
@@ -1217,7 +1219,7 @@
                                             <img src="{{ asset('assets/website/images/image_5.png ') }} " />
                                         </div>
                                     </div>
-                                    <div class="cardAlign mt-3 mb-3">
+                                    <div class="cardAlign mt-3 mb-3 card-inputs d-none" id="card-fields">
                                         <div class="card">
                                             <input type="number" placeholder="Card Number" name="card_number"
                                                 id="card_number" />
@@ -1235,7 +1237,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between visa-align">
+                                    {{-- <div class="d-flex justify-content-between visa-align">
                                         <div class="d-flex gap-2 align-items-start">
                                             <input type="radio" name="pay_type" value="other_method" />
                                             <div class="d-flex flex-column align-items-start">
@@ -1251,7 +1253,7 @@
                                             <img src="{{ asset('assets/website/images/Group_3705.png ') }} " />
                                             <img src="{{ asset('assets/website/images/Ellipse_14.png ') }} " />
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex mt-3 justify-content-start align-items-start">
                                     <a class="btn-font btn  prev-step  btn-warning ms-lg-3 next-step-back" data-step="3">
@@ -1502,7 +1504,7 @@
 
 @endsection
 @section('script')
-
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 4, // Number of slides visible at a time
@@ -1555,9 +1557,12 @@
                     const rushCost = parseFloat(this.value) || 0; // Handle unselected radio
                     const total = (subTotal + rushCost).toFixed(2);
                     document.getElementById('total-amount2').textContent = `$${total}`;
+                    document.getElementById('total-amount1').textContent = `$${total}`;
 
                 });
             });
+
+
         });
         document.querySelectorAll('.shipping-rate').forEach((radio) => {
 
@@ -1573,6 +1578,15 @@
 
             });
         });
+
+        function toggleCardInputs(show) {
+            const cardFields = document.getElementById('card-fields');
+            if (show) {
+                cardFields.classList.remove('d-none');
+            } else {
+                cardFields.classList.add('d-none');
+            }
+        }
         document.querySelectorAll('.shipping-rate1').forEach((radio) => {
 
 
@@ -1720,7 +1734,7 @@
 
                 // Send AJAX request to remove the item from the cart
                 $.ajax({
-                    url: '{{ route('cart.remove') }}', // Route for removing item from cart
+                    url: "{{ route('cart.remove') }}", // Route for removing item from cart
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
