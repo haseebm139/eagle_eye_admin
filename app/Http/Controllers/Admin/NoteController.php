@@ -13,9 +13,10 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notes = Note::all();
+        $order_id = $request->order_id;
+        $notes = Note::where('order_id',$order_id)->get();
         return response()->json($notes);
     }
 
@@ -36,7 +37,11 @@ class NoteController extends Controller
             'description' => 'required|string|max:255',
         ]);
 
-        $note = Note::create($request->all());
+        $note = Note::create([
+            'description'=> $request->description,
+            'user_id'=>auth()->id(),
+            'order_id'=> $request->order_id,
+        ] );
         return response()->json(['message' => 'Note created successfully', 'note' => $note]);
     }
 

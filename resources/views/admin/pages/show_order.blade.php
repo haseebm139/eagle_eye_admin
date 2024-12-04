@@ -11,7 +11,7 @@
 
 <div id="dynamic-content">
     <div class="red tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-
+        <input type="hidden" id="order_id" name="order_id" value="{{ $data['orders']->id ?? 0 }}">
         <div class="viewOrder px-3" id="viewOrder">
             <div class="Width d-flex flex-wrap gap-3 justify-content-between align-items-center customer2">
                 <div class="d-flex align-items-center justify-content-center gap-3">
@@ -447,6 +447,10 @@
             $.ajax({
                 url: "{{ route('notes.index') }}",
                 type: "GET",
+                data: {
+
+                    order_id: $('#order_id').val()
+                },
                 success: function(data) {
                     let tableRows = '';
                     data.forEach((note, index) => {
@@ -476,6 +480,7 @@
         // Save or Update Note
         $('#noteForm').on('submit', function(e) {
             e.preventDefault();
+            const order_id = $('#order_id').val();
             const noteId = $('#noteId').val();
             let eurl = "{{ route('notes.show', ':id') }}";
             eurl = eurl.replace(':id', noteId);
@@ -486,7 +491,8 @@
                 url: url,
                 type: method,
                 data: {
-                    description: $('#description').val()
+                    description: $('#description').val(),
+                    order_id: $('#order_id').val()
                 },
                 success: function() {
                     newCompanyDiv.style.display = "none"; // Hide the div
