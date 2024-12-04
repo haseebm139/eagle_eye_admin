@@ -616,6 +616,7 @@
 @section('heading', 'Customers')
 <div id="dynamic-content">
     <div class="tab-content" id="myTabContent">
+        <input type="hidden" id="user_id" name="user_id" value="{{ $data['user']->id ?? 0 }}">
         <div class="black tab-pane fade show active" id="customers" role="tabpanel" aria-labelledby="customers-tab">
             <div class="container-fluid">
                 <div
@@ -720,11 +721,7 @@
                                 <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
 
                                 <div class="dropdown-container position-relative">
-                                    <select id="data-category" class="form-control2 d-inline w-auto">
-                                        <option value="Revenue">All time</option>
-                                        <option value="Expenses">This Week</option>
-                                        <option value="Profit Margin">This Week</option>
-                                    </select>
+
                                     <span class="dropdown-icon"></span>
                                     <!-- Down arrow icon -->
                                 </div>
@@ -739,6 +736,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-4  mb-4">
                         <div class="card text-center">
@@ -746,11 +744,7 @@
                                 <img src="{{ asset('assets/admin/images/svg/icon3.svg') }} " />
                                 <div class="leftAlignement">
                                     <div class="dropdown-container position-relative">
-                                        <select id="data-category" class="form-control2 d-inline w-auto">
-                                            <option value="Revenue">All time</option>
-                                            <option value="Expenses">This Week</option>
-                                            <option value="Profit Margin">This Week</option>
-                                        </select>
+
                                         <span class="dropdown-icon"></span>
                                         <!-- Down arrow icon -->
                                     </div>
@@ -820,6 +814,58 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12  mb-4">
+                        <div class="card text-center">
+                            <div class="alignemnt">
+                                <div class="d-flex gap-3">
+                                    <img src="{{ asset('assets/admin/images/svg/notes.svg') }} " />
+                                    <div class="">
+                                        <h2 class="mediumFont2 m-0 p-0 text-left">
+                                            Notes
+                                        </h2>
+
+                                    </div>
+                                </div>
+                                <div class="leftAlignement">
+
+                                    <button class="CustomerStatusPending order-btn d-flex align-items-center"
+                                        id="addCompanyBtn">
+                                        <i class="fa-solid fa-plus mr-1"></i>
+                                        Add Note
+                                    </button>
+                                    <!-- <p class="side-text">This Week</p> -->
+                                </div>
+                            </div>
+
+                            <div class="bottomContent">
+                                <div class="table-responsive">
+                                    <table class="table order mt-3">
+                                        <thead>
+                                            <tr class="orderTable1">
+                                                <th scope="col">
+                                                    #
+                                                </th>
+                                                <th>Description</th>
+                                                <th scope="col">Actions</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="notesTable">
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
                 <div class="product2 mt-4">
                     <div class="row justify-content-between">
                         <div class="col-md-6">
@@ -831,7 +877,7 @@
                                     <img src="{{ asset('assets/admin/images/svg/Search.svg') }} " />
                                     <input type="text" id="searchInput" placeholder="Search.." />
                                 </div>
-                                <button class="filter-btn">
+                                {{-- <button class="filter-btn">
                                     <img src="{{ asset('assets/admin/images/svg/Calendar.svg') }} " />
                                     Filter
                                 </button>
@@ -850,7 +896,7 @@
                                         <option value="5">page</option>
                                         <option value="10">per page</option>
                                     </select>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -926,12 +972,176 @@
 
 </div>
 
+<div class="NewCompany" id="newCompanyDiv">
+    <div class="model d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="my-2" id="noteModalLabel">Add New Notes</span>
+            <button class="cancel" id="cancelBtn">
+                <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }}" />
+            </button>
+        </div>
+        <form id="noteForm">
+            @csrf
+            <div>
+                <input type="hidden" id="noteId">
+                <p class="CustomerPopup">Note Description </p>
+                <div class="d-flex flex-column">
 
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                </div>
+
+                <div class="d-flex gap-3 mt-3">
+                    <button class="cancel-btn2">Cancel</button>
+                    <button type="submit" class="add-btn" id="saveNoteBtn">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 @endsection
 @section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
 
+        const addCompanyBtn = document.getElementById("addCompanyBtn");
+
+        const newCompanyDiv = document.getElementById("newCompanyDiv");
+        // Show the new company div when the button is clicked
+        addCompanyBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "flex"; // Show the div
+        });
+        const cancelBtn = document.getElementById("cancelBtn");
+        // Hide the new company div when the cancel button is clicked
+        cancelBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "none"; // Hide the div
+        });
+
+
+
+        // Show the new company div when the button is clicked
+        addCompanyBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "flex"; // Show the div
+        });
+
+        // Hide the new company div when the cancel button is clicked
+        cancelBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "none"; // Hide the div
+        });
+
+
+
+        // CSRF Token setup for AJAX
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // Fetch all notes
+        function fetchNotes() {
+            $.ajax({
+                url: "{{ route('notes.index') }}",
+                type: "GET",
+                data: {
+
+                    user_id: $('#user_id').val()
+                },
+                success: function(data) {
+                    let tableRows = '';
+                    data.forEach((note, index) => {
+                        tableRows += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${note.description}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm editBtn" data-id="${note.id}"><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-sm deleteBtn" data-id="${note.id}"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>`;
+                    });
+                    $('#notesTable').html(tableRows);
+                }
+            });
+        }
+
+        // Open Add Note Modal
+        $('#addCompanyBtn').on('click', function() {
+            $('#noteModalLabel').text('Add Note');
+            $('#saveNoteBtn').text('Save');
+
+            $('#noteForm')[0].reset();
+            $('#noteId').val('');
+
+        });
+
+        // Save or Update Note
+        $('#noteForm').on('submit', function(e) {
+            e.preventDefault();
+            const user_id = $('#user_id').val();
+            const noteId = $('#noteId').val();
+            let eurl = "{{ route('notes.show', ':id') }}";
+            eurl = eurl.replace(':id', noteId);
+            const url = noteId ? eurl : "{{ route('notes.store') }}";
+            const method = noteId ? "PUT" : "POST";
+
+            $.ajax({
+                url: url,
+                type: method,
+                data: {
+                    description: $('#description').val(),
+                    user_id: $('#user_id').val()
+                },
+                success: function() {
+                    newCompanyDiv.style.display = "none"; // Hide the div
+                    fetchNotes();
+                }
+            });
+        });
+
+        // Edit Note
+        $(document).on('click', '.editBtn', function() {
+            const noteId = $(this).data('id');
+            let url = "{{ route('notes.show', ':id') }}";
+            url = url.replace(':id', noteId);
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(note) {
+                    $('#noteModalLabel').text('Edit Note');
+                    $('#saveNoteBtn').text('Update');
+                    $('#description').val(note.description);
+                    $('#noteId').val(note.id);
+                    newCompanyDiv.style.display = "flex"; // Show the div
+                }
+            });
+        });
+
+        // Delete Note
+        $(document).on('click', '.deleteBtn', function() {
+            const noteId = $(this).data('id');
+            let url = "{{ route('notes.destroy', ':id') }}";
+            url = url.replace(':id', noteId);
+            if (confirm('Are you sure you want to delete this note?')) {
+                $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    success: function() {
+                        fetchNotes();
+                    }
+                });
+            }
+        });
+
+        // Initial Fetch
+        fetchNotes();
+
+
+
+    });
+</script>
 
 <script>
     $(document).ready(function() {

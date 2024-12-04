@@ -11,7 +11,7 @@
 
 <div id="dynamic-content">
     <div class="red tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-        <input type="hidden" id="order_id" name="order_id" value="{{ $data['orders']->id ?? 0 }}">
+
         <div class="viewOrder px-3" id="viewOrder">
             <div class="Width d-flex flex-wrap gap-3 justify-content-between align-items-center customer2">
                 <div class="d-flex align-items-center justify-content-center gap-3">
@@ -165,58 +165,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex gap-3 mt-3">
-                <div class="" style="width: 100%">
-                    <div class="card text-center">
-                        <div class="alignemnt">
-                            <div class="d-flex gap-3">
-                                <img src="{{ asset('assets/admin/images/svg/notes.svg') }} " />
-                                <div class="">
-                                    <h2 class="mediumFont2 m-0 p-0 text-left">
-                                        Notes
-                                    </h2>
 
-                                </div>
-                            </div>
-                            <div class="leftAlignement">
-
-                                <button class="CustomerStatusPending order-btn d-flex align-items-center"
-                                    id="addCompanyBtn">
-                                    <i class="fa-solid fa-plus mr-1"></i>
-                                    Add Note
-                                </button>
-                                <!-- <p class="side-text">This Week</p> -->
-                            </div>
-                        </div>
-
-                        <div class="bottomContent">
-                            <div class="table-responsive">
-                                <table class="table order mt-3">
-                                    <thead>
-                                        <tr class="orderTable1">
-                                            <th scope="col">
-                                                #
-                                            </th>
-                                            <th>Description</th>
-                                            <th scope="col">Actions</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody id="notesTable">
-
-                                    </tbody>
-                                </table>
-
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-            </div>
             <div class="product2 my-4">
                 <div class="d-flex justify-content-between">
 
@@ -435,107 +384,7 @@
 
 
 
-        // CSRF Token setup for AJAX
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-        // Fetch all notes
-        function fetchNotes() {
-            $.ajax({
-                url: "{{ route('notes.index') }}",
-                type: "GET",
-                data: {
-
-                    order_id: $('#order_id').val()
-                },
-                success: function(data) {
-                    let tableRows = '';
-                    data.forEach((note, index) => {
-                        tableRows += `
-                            <tr>
-                                <td>${index + 1}</td>
-                                <td>${note.description}</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm editBtn" data-id="${note.id}"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-sm deleteBtn" data-id="${note.id}"><i class="fa-solid fa-trash"></i></button>
-                                </td>
-                            </tr>`;
-                    });
-                    $('#notesTable').html(tableRows);
-                }
-            });
-        }
-
-        // Open Add Note Modal
-        $('#addCompanyBtn').on('click', function() {
-
-            $('#noteForm')[0].reset();
-            $('#noteId').val('');
-
-        });
-
-        // Save or Update Note
-        $('#noteForm').on('submit', function(e) {
-            e.preventDefault();
-            const order_id = $('#order_id').val();
-            const noteId = $('#noteId').val();
-            let eurl = "{{ route('notes.show', ':id') }}";
-            eurl = eurl.replace(':id', noteId);
-            const url = noteId ? eurl : "{{ route('notes.store') }}";
-            const method = noteId ? "PUT" : "POST";
-
-            $.ajax({
-                url: url,
-                type: method,
-                data: {
-                    description: $('#description').val(),
-                    order_id: $('#order_id').val()
-                },
-                success: function() {
-                    newCompanyDiv.style.display = "none"; // Hide the div
-                    fetchNotes();
-                }
-            });
-        });
-
-        // Edit Note
-        $(document).on('click', '.editBtn', function() {
-            const noteId = $(this).data('id');
-            let url = "{{ route('notes.show', ':id') }}";
-            url = url.replace(':id', noteId);
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function(note) {
-                    $('#noteModalLabel').text('Edit Note');
-                    $('#description').val(note.description);
-                    $('#noteId').val(note.id);
-                    newCompanyDiv.style.display = "flex"; // Show the div
-                }
-            });
-        });
-
-        // Delete Note
-        $(document).on('click', '.deleteBtn', function() {
-            const noteId = $(this).data('id');
-            let url = "{{ route('notes.destroy', ':id') }}";
-            url = url.replace(':id', noteId);
-            if (confirm('Are you sure you want to delete this note?')) {
-                $.ajax({
-                    url: url,
-                    type: "DELETE",
-                    success: function() {
-                        fetchNotes();
-                    }
-                });
-            }
-        });
-
-        // Initial Fetch
-        fetchNotes();
 
 
 

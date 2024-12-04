@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable(); // Adjust 'after' as needed
-            $table->integer('order_id')->nullable(); // Adjust 'after' as needed
+
             $table->longText('description')->nullable();
             $table->enum('status', [0,1])->nullable()->default(1)->comment('0 = Inactive, 1 = Active');
             $table->timestamps();
