@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ShippingRate;
 use App\Models\Category;
-
+use Auth;
 
 class HomeController extends Controller
 {
@@ -37,7 +37,12 @@ class HomeController extends Controller
 
         // Save the category ID to the session
         session(['category_id' => $categoryId]);
-
+        if (Auth::check()) {
+            $user = Auth::user(); // Get the authenticated user
+            $user->category_id = $categoryId; // Update the category_id field
+            $user->save(); // Save changes to the database
+            session()->forget('category_id');
+        }
         return response()->json(['message' => 'Category ID saved successfully', 'category_id' => $categoryId]);
     }
     public function productDetail($slug){

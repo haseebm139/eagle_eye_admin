@@ -53,20 +53,35 @@
                 @endguest
 
                 @auth()
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">Your Product's</a>
-                        <ul class="dropdown-menu">
-                            @php
-                                $category = getUserCategory();
-                            @endphp
-                            <li><a class="dropdown-item  " data-category-id="{{ $category->id }}"
-                                    href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
-                            </li>
+                    @if (auth()->user()->category_id == null)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" href="#">Your Product's</a>
+                            <ul class="dropdown-menu">
+                                @foreach ($categories as $category)
+                                    <li><a class="dropdown-item category_drop" data-category-id="{{ $category->id }}"
+                                            href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" href="#">Your Product's</a>
+                            <ul class="dropdown-menu">
+                                @php
+                                    $category = getUserCategory();
+                                @endphp
+                                <li><a class="dropdown-item  " data-category-id="{{ $category->id }}"
+                                        href="{{ route('equipments.category', $category->slug) }}">{{ $category->name }}</a>
+                                </li>
 
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    @endif
                 @endauth
 
                 <li class="nav-item">

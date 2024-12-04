@@ -1129,7 +1129,7 @@
                 e.preventDefault(); // Prevent the default link behavior
 
                 let categoryId = $(this).data('category-id');
-                alert(categoryId)
+
                 $.ajax({
                     url: "{{ route('category.save') }}", // Replace with your route
                     method: 'POST',
@@ -1138,10 +1138,10 @@
                         category_id: categoryId
                     },
                     success: function(response) {
-                        console.log('Category ID saved successfully:', response);
+                        // console.log('Category ID saved successfully:', response);
                         // Optionally, redirect or perform further actions
                         window.location.href = $(e.target).attr(
-                            'href'); // Redirect to the original link
+                            'href');
                     },
                     error: function(xhr, status, error) {
                         console.error('Error saving category ID:', error);
