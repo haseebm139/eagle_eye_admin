@@ -35,13 +35,13 @@
                     </span>
                 </div>
                 <div class="d-flex gap-3">
-                    <div class="dropdown-container dropdown2 position-relative">
+                    {{-- <div class="dropdown-container dropdown2 position-relative">
                         <select id="data-category" class="form-control4 d-inline w-auto">
                             <option value="Revenue">Ready to Ship</option>
                             <option value="Expenses">This Week</option>
                             <option value="Profit Margin">This Week</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <button class="order-btn d-flex align-items-center">
                         Print Invoice
                     </button>
@@ -150,11 +150,7 @@
                             <img src="{{ asset('assets/admin/images/svg/orders.svg') }} " />
 
                             <div class="dropdown-container position-relative">
-                                <select id="data-category" class="form-control2 d-inline w-auto">
-                                    <option value="Revenue">All time</option>
-                                    <option value="Expenses">This Week</option>
-                                    <option value="Profit Margin">This Week</option>
-                                </select>
+
                                 <span class="dropdown-icon"></span>
                                 <!-- Down arrow icon -->
                             </div>
@@ -169,7 +165,58 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex gap-3 mt-3">
+                <div class="" style="width: 100%">
+                    <div class="card text-center">
+                        <div class="alignemnt">
+                            <div class="d-flex gap-3">
+                                <img src="{{ asset('assets/admin/images/svg/notes.svg') }} " />
+                                <div class="">
+                                    <h2 class="mediumFont2 m-0 p-0 text-left">
+                                        Notes
+                                    </h2>
 
+                                </div>
+                            </div>
+                            <div class="leftAlignement">
+
+                                <button class="CustomerStatusPending order-btn d-flex align-items-center"
+                                    id="addCompanyBtn">
+                                    <i class="fa-solid fa-plus mr-1"></i>
+                                    Add Note
+                                </button>
+                                <!-- <p class="side-text">This Week</p> -->
+                            </div>
+                        </div>
+
+                        <div class="bottomContent">
+                            <div class="table-responsive">
+                                <table class="table order mt-3">
+                                    <thead>
+                                        <tr class="orderTable1">
+                                            <th scope="col">
+                                                #
+                                            </th>
+                                            <th>Description</th>
+                                            <th scope="col">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="notesTable">
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
             <div class="product2 my-4">
                 <div class="d-flex justify-content-between">
 
@@ -317,116 +364,36 @@
                 </div>
             </div>
         </div>
-        <div class="NewCompany" id="newCompanyDiv1">
-            <div class="model Ordermodel d-flex flex-column">
+        <div class="NewCompany" id="newCompanyDiv">
+            <div class="model d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class="my-2">Create New Order</span>
-                    <button class="cancel" id="cancelBtn1">
-                        <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }} " />
+                    <span class="my-2" id="noteModalLabel">Add New Notes</span>
+                    <button class="cancel" id="cancelBtn">
+                        <img src="{{ asset('assets/admin/images/svg/Frame_5800.svg') }}" />
                     </button>
                 </div>
-                <form>
+                <form id="noteForm">
+                    @csrf
                     <div>
-                        <div class="d-flex gap-3">
-                            <div class="orderLeftConatiner">
-                                <div class="d-flex justify-content-between">
-                                    <p class="CustomerPopup">Order Details</p>
-                                    <div class="d-flex gap-3">
-                                        <p class="CustomerPopup">New Customer</p>
-                                        <div class="">
-                                            <label class="switch switch2">
-                                                <input type="checkbox" id="toggleSwitch" />
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <select class="inputBox" id="customer" size="1">
-                                        <option value="" selected="selected">
-                                            Select Customer
-                                        </option>
-                                        <option value="" selected="selected">
-                                            Select Customer
-                                        </option>
-                                        <option value="" selected="selected">
-                                            Select Customer
-                                        </option>
-                                    </select>
-                                    <div class="d-flex gap-2">
-                                        <select class="inputBox" id="customer" size="1">
-                                            <option value="" selected="selected">
-                                                Payment Type
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Select Customer
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Select Customer
-                                            </option>
-                                        </select>
-                                        <select class="inputBox" id="customer" size="1">
-                                            <option value="" selected="selected">
-                                                Order Type
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Select Customer
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Select Customer
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="mt-3">
-                                        <p>Order Date & Time</p>
-                                        <div class="d-flex gap-3">
-                                            <input type="date" id="date" name="date" class="date"
-                                                value="2024-01-01" />
-                                            <input type="time" id="time" name="time" class="date"
-                                                value="00:00" />
-                                        </div>
-                                    </div>
+                        <input type="hidden" id="noteId">
+                        <p class="CustomerPopup">Note Description </p>
+                        <div class="d-flex flex-column">
 
-                                    <div class="mt-3">
-                                        <p>Order Status</p>
-                                        <select class="inputBox" id="customerPending" size="1">
-                                            <option value="" selected="selected">
-                                                Pending
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Pending
-                                            </option>
-                                            <option value="" selected="selected">
-                                                Pending
-                                            </option>
-                                        </select>
+                            <textarea name="description" id="description" cols="30" rows="10"></textarea>
 
-                                        <textarea class="NoteDescription" id="OrderNote" name="OrderNote" rows="4" cols="50"
-                                            placeholder="Order Note"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <p class="CustomerPopup">Order Details</p>
-                                <div
-                                    class="h-100 d-flex flex-column text-center justify-content-center align-items-center">
-                                    <img src="./assests/iconContainer.png" class="lock" />
-                                    <div>
-                                        <h6>Add Products to Your Order</h6>
-                                        <p>Search and add products to this order.</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <div class="d-flex justify-content-center gap-3 mt-3">
-                            <button class="cancel-btn2 w-25">Cancel</button>
-                            <button class="add-btn w-25" id="btn00">Add</button>
+                        <div class="d-flex gap-3 mt-3">
+                            <button class="cancel-btn2">Cancel</button>
+                            <button type="submit" class="add-btn" id="saveNoteBtn">Add</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+
+
+
     </div>
 </div>
 
@@ -436,7 +403,137 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/admin/js/CountryData.js') }}"></script>
+{{-- Notes --}}
+<script></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const addCompanyBtn = document.getElementById("addCompanyBtn");
+
+        const newCompanyDiv = document.getElementById("newCompanyDiv");
+        // Show the new company div when the button is clicked
+        addCompanyBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "flex"; // Show the div
+        });
+        const cancelBtn = document.getElementById("cancelBtn");
+        // Hide the new company div when the cancel button is clicked
+        cancelBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "none"; // Hide the div
+        });
+
+
+
+        // Show the new company div when the button is clicked
+        addCompanyBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "flex"; // Show the div
+        });
+
+        // Hide the new company div when the cancel button is clicked
+        cancelBtn.addEventListener("click", () => {
+            newCompanyDiv.style.display = "none"; // Hide the div
+        });
+
+
+
+        // CSRF Token setup for AJAX
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // Fetch all notes
+        function fetchNotes() {
+            $.ajax({
+                url: "{{ route('notes.index') }}",
+                type: "GET",
+                success: function(data) {
+                    let tableRows = '';
+                    data.forEach((note, index) => {
+                        tableRows += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${note.description}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm editBtn" data-id="${note.id}"><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-sm deleteBtn" data-id="${note.id}"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>`;
+                    });
+                    $('#notesTable').html(tableRows);
+                }
+            });
+        }
+
+        // Open Add Note Modal
+        $('#addCompanyBtn').on('click', function() {
+
+            $('#noteForm')[0].reset();
+            $('#noteId').val('');
+
+        });
+
+        // Save or Update Note
+        $('#noteForm').on('submit', function(e) {
+            e.preventDefault();
+            const noteId = $('#noteId').val();
+            let eurl = "{{ route('notes.show', ':id') }}";
+            eurl = eurl.replace(':id', noteId);
+            const url = noteId ? eurl : "{{ route('notes.store') }}";
+            const method = noteId ? "PUT" : "POST";
+
+            $.ajax({
+                url: url,
+                type: method,
+                data: {
+                    description: $('#description').val()
+                },
+                success: function() {
+                    newCompanyDiv.style.display = "none"; // Hide the div
+                    fetchNotes();
+                }
+            });
+        });
+
+        // Edit Note
+        $(document).on('click', '.editBtn', function() {
+            const noteId = $(this).data('id');
+            let url = "{{ route('notes.show', ':id') }}";
+            url = url.replace(':id', noteId);
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(note) {
+                    $('#noteModalLabel').text('Edit Note');
+                    $('#description').val(note.description);
+                    $('#noteId').val(note.id);
+                    newCompanyDiv.style.display = "flex"; // Show the div
+                }
+            });
+        });
+
+        // Delete Note
+        $(document).on('click', '.deleteBtn', function() {
+            const noteId = $(this).data('id');
+            let url = "{{ route('notes.destroy', ':id') }}";
+            url = url.replace(':id', noteId);
+            if (confirm('Are you sure you want to delete this note?')) {
+                $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    success: function() {
+                        fetchNotes();
+                    }
+                });
+            }
+        });
+
+        // Initial Fetch
+        fetchNotes();
+
+
+
+    });
     document.getElementById('cancelOrderBtn').addEventListener('click', function() {
         const orderId = this.getAttribute('data-order-id');
 

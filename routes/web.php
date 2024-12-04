@@ -11,8 +11,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\ChatController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,6 +98,7 @@ Route::middleware(['auth'])->group(function () {
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::resource('roles', RoleController::class);
+        Route::resource('notes', NoteController::class);
         Route::get('role-change-status', [RoleController::class, 'roleChangeStatus'])->name('role-change-status');
         Route::controller(AdminController::class)->group(function(){
             Route::get('/', 'dashboard');

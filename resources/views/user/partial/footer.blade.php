@@ -1,9 +1,9 @@
 <style>
-    .map{
+    .map {
         border: 10px solid #fff;
         border-radius: 10px;
     }
-    </style>
+</style>
 
 <div class="footer">
     <div class="container d-flex flex-direcction-column">
@@ -18,7 +18,8 @@
 
 
             <ul class="ul">
-                <li>Mon - Fri :<span> 9am - 5pm</span></li>
+                <li>Mon - Thu :<span> 8am - 5pm</span></li>
+                <li>Fri:<span> 9am - 1pm</span></li>
                 <li>Sat - Sun : <span>Closed</span></li>
                 <li>Contact no : <span>972.466.2100</span></li>
                 <li>Email : <span>info@eagleeyesigns.net</span></li>
@@ -48,10 +49,10 @@
                             <li class="para color"><a>Privacy Policy</a></li>
                             <li class="para color"><a>Terms of Services</a></li>
                             <li class="para color"><a>Refund Policy</a></li>
-        
-        
+
+
                         </ul>
-        
+
                         <ul class="">
                             <h6 class="">Services</h6>
                             <li class="para color"><a>Service-1</a></li>
@@ -59,16 +60,16 @@
                             <li class="para color"><a>Service-3</a></li>
                             <li class="para color"><a>Service-4</a></li>
                             <li class="para color"><a>Service-5</a></li>
-        
-        
-        
+
+
+
                         </ul>
-        
+
                         <div class="d-flex flex-wrap flex-column inner">
                             <h2>Do you have any questions?</h2>
                             <p class="para color">Lorem ipsum dolor sit amet consectetur. Proin lectus lectus lectus
                                 imperdiet </p>
-        
+
                             <div class="searchBar">
                                 <input type="search para" placeholder="ENTER YOUR EMAIL"></input>
                                 <a class="btn2 btn1 para ">SEND</a>
@@ -94,9 +95,9 @@
                     </div>
                 </div>
             </div>
-            
 
-          
+
+
         </div>
     </div>
 

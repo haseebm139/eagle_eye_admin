@@ -82,7 +82,6 @@ class AdminController extends Controller
 
         $data['orders'] = Order::with(['customer','employee','items.product.image'])
         ->has('customer')
-        ->has('employee')
         ->has('items')
         ->has('items.product')
         ->has('items.product.image')
