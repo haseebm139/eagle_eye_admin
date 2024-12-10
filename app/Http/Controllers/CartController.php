@@ -9,6 +9,12 @@ use App\Models\OrderItem;
 use App\Models\CartProduct;
 use Cart;
 use Str;
+use Stripe\Customer;
+use Stripe\Stripe;
+use Stripe\Charge;
+use Stripe\Token;
+use Stripe\Exception\ApiErrorException;
+
 class CartController extends Controller
 {
     public function addToCart(Request $request)
@@ -151,25 +157,206 @@ class CartController extends Controller
             return response()->json(['success' => false, 'message' => 'Something Went Wrong']);
         }
     }
-    public function placeOrder(Request $request){
-        $user_id = auth()->id();
-        $create_order = $this->createOrder($request);
-        $order_id = $create_order->id??1;
-        $create_item = $this->createItem($order_id);
-        \Cart::clear();
-        $db_cart_item = CartProduct::where('user_id',$user_id)->get();
-        if (isset($db_cart_item[0]) ) {
-            foreach ($db_cart_item as $item) {
-                $item->delete();
+    public function placeOrder1(Request $request)
+     {
+
+
+         if (!$request->has('stripeToken')) {
+            return redirect()->back()->with(['message' => 'Payment token is missing', 'type' => 'error']);
+        }
+
+         Stripe::setApiKey(env('STRIPE_SECRET'));
+         $user_id = auth()->id();
+         $customer = \Stripe\Customer::create(array(
+
+            "address" => [
+                    'line1' => $request->streetone,
+                    'line2' => $request->streettwo,
+                    'city' => $request->city,
+                    'state' => $request->region,
+                    'postal_code' => $request->postcode,
+                    'country' => $request->country,
+
+                ],
+
+            "email" => "demo@gmail.com",
+
+            "name" => "Hardik Savani",
+
+            "source" => $request->stripeToken
+
+         ));
+
+           $subtotal =  Cart::getTotal();
+            $rush_service_charges = $request->rush_service_charges??0.00;
+            $shipping_rate = $request->shipping_rate??0.00;
+            $total_amount = $subtotal + $shipping_rate + $rush_service_charges;
+
+
+
+           $charge = \Stripe\Charge::create ([
+
+                "amount" => (int) ($total_amount * 100),
+
+                "currency" => "usd",
+
+                "customer" => $customer->id,
+
+                "description" => "Test payment from itsolutionstuff.com.",
+
+                "shipping" => [
+
+                  "name" => "Jenny Rosen",
+
+                  "address" => [
+
+                    "line1" => "510 Townsend St",
+
+                    "postal_code" => "98140",
+
+                    "city" => "San Francisco",
+
+                    "state" => "CA",
+
+                    "country" => "US",
+
+                  ],
+                ]
+
+           ]);
+
+        //   return $charge;
+            return $transaction_id = $charge->id;
+            $create_order = $this->createOrder($request);
+            $order_id = $create_order->id??1;
+            $create_item = $this->createItem($order_id);
+            // \Cart::clear();
+            $db_cart_item = CartProduct::where('user_id',$user_id)->get();
+            if (isset($db_cart_item[0]) ) {
+                foreach ($db_cart_item as $item) {
+                    $item->delete();
+                }
+
             }
 
+            // Haseeb jani please use the try catch for code security
+
+            return redirect()->route('home')->with(array('message'=>'Order Place Successfully!','type'=>'success'));
+     }
+    public function placeOrder(Request $request){
+        if (!$request->has('stripeToken')) {
+            return redirect()->back()->with(['message' => 'Payment token is missing', 'type' => 'error']);
         }
-        return redirect()->route('home')->with(array('message'=>'Order Place Successfully!','type'=>'success'));
+
+        $user_id = auth()->id();
         try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
-            return redirect()->route('home')->with(array('message'=>'Something Went Wrong','type'=>'error'));
+            Stripe::setApiKey(env('STRIPE_SECRET')); // Your Stripe Secret Key
+
+
+            $customerEmail = $request->email;
+            $customer = $this->getOrCreateStripeCustomer($customerEmail, $request);
+
+            $subtotal =  Cart::getTotal();
+            $rush_service_charges = $request->rush_service??0.00;
+            $shipping_rate = $request->shipping_rate??0.00;
+            $total_amount = $subtotal + $shipping_rate + $rush_service_charges;
+
+
+
+
+            $charge = \Stripe\Charge::create ([
+
+                "amount" => (int) ($total_amount * 100),
+
+                "currency" => "usd",
+
+                "customer" => $customer->id,
+
+                "description" => "Test payment from itsolutionstuff.com.",
+
+                "shipping" => [
+
+                  "name" => "Jenny Rosen",
+
+                  "address" => [
+
+                    "line1" => "510 Townsend St",
+
+                    "postal_code" => "98140",
+
+                    "city" => "San Francisco",
+
+                    "state" => "CA",
+
+                    "country" => "US",
+
+                  ],
+                ]
+
+           ]);
+
+            if ($charge->status !== 'succeeded') {
+
+                return redirect()->back()->with(['message' => 'Payment failed. Please try again.', 'type' => 'error']);
+            }
+            $transaction_id = $charge->id;
+            $create_order = $this->createOrder($request,$transaction_id);
+            $order_id = $create_order->id??1;
+            $create_item = $this->createItem($order_id);
+            // \Cart::clear();
+            $db_cart_item = CartProduct::where('user_id',$user_id)->get();
+            if (isset($db_cart_item[0]) ) {
+                foreach ($db_cart_item as $item) {
+                    $item->delete();
+                }
+
+            }
+            return redirect()->route('home')->with(array('message'=>'Order Place Successfully!','type'=>'success'));
+        } catch (ApiErrorException $e) {
+            // Handle Stripe API errors
+
+            return redirect()->route('home')->with(['message' => 'Payment error: ' . $e->getMessage(), 'type' => 'error']);
+        } catch (\Exception $e) {
+            // Handle other errors
+
+            return redirect()->route('home')->with(['message' => 'Something went wrong: ' . $e->getMessage(), 'type' => 'error']);
+        }
+    }
+    public function getOrCreateStripeCustomer($email, $request)
+    {
+        try {
+
+            // Check if the customer exists in Stripe
+            $customers = \Stripe\Customer::all([
+                'email' => $email,
+                'limit' => 1,
+            ]);
+
+            if (!empty($customers->data)) {
+                return $customers->data[0];
+            }
+
+            // Create a new customer if one doesn't exist
+            return \Stripe\Customer::create([
+                "address" => [
+                        'line1' => $request->streetone,
+                        'line2' => $request->streettwo,
+                        'city' => $request->city,
+                        'state' => $request->region,
+                        'postal_code' => $request->postcode,
+                        'country' => $request->country,
+
+                    ],
+
+                "email" => $email,
+
+                "name" => $request->first_name??''.' '.$request->last_name??'',
+
+                "source" => $request->stripeToken
+            ]);
+
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to retrieve or create customer: ' . $e->getMessage());
         }
     }
     public function createItem($order_id){
@@ -202,7 +389,7 @@ class CartController extends Controller
         return true;
 
     }
-    public function createOrder($form){
+    public function createOrder($form,$transaction_id){
 
         $user_id = auth()->id();
         // Generate a unique order number
@@ -211,7 +398,7 @@ class CartController extends Controller
 
         $cart_qty = \Cart::getTotalQuantity();
         $subtotal =  Cart::getTotal();
-        $rush_service_charges = $form->rush_service_charges??0.00;
+        $rush_service_charges = $form->rush_service??0.00;
         $shipping_rate = $form->shipping_rate??0.00;
         $total_amount = $subtotal + $shipping_rate + $rush_service_charges;
         // Check for uniqueness
@@ -221,6 +408,7 @@ class CartController extends Controller
         $data = Order::create([
             'user_id'=>$user_id,
             'order_number'=>$order_number ,
+            'transaction_id'=>$transaction_id ,
             'first_name'=>$form->first_name,
             'last_name'=>$form->last_name,
             'company_name'=>$form->company_name,
