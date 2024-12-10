@@ -133,7 +133,7 @@
         }
 
         #contact_info_section .timing {
-            font-size: 20px;
+            font-size: 17px;
             font-weight: 400;
             line-height: 32px;
             margin-top: 30px;
@@ -334,18 +334,20 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-6 col-lg-6 col-md-12 col-sm-12">
                             <h5 class="title mt-5">Email Address</h5>
-                            <p class="email">Contactus@info.com</p>
+                            <p class="email">info@eagleeyesigns.net</p>
                             <p class="timing">
                                 Assistance hours: <br>
-                                Monday - Friday 6 am to 8 pm EST
+                                Mon-Thurs 8 am to 5 pm EST<br>
+                                Fri 9 am to 1pm EST<br>
                             </p>
                         </div>
                         <div class="col-xxl-6 col-lg-6 col-md-12 col-sm-12">
                             <h5 class="title mt-5">Number</h5>
-                            <p class="email">(808) 998-34256</p>
+                            <p class="email">+1 (972) 466 2100</p>
                             <p class="timing">
                                 Assistance hours: <br>
-                                Monday - Friday 6 am to 8 pm EST
+                                Mon-Thurs 8 am to 5 pm EST<br>
+                                Fri 9 am to 1pm EST<br>
                             </p>
                         </div>
                     </div>

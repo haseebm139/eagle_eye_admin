@@ -33,9 +33,10 @@
                 <div class="col-md-12">
                     <div class="footerRight">
                         {{-- <img src="{{ asset('assets/website/images/Rectangle_4126.png') }} " class="map" /> --}}
+
                         <iframe class="map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214557.78696047762!2d-96.90877096670188!3d32.83292656015419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX%2C%20USA!5e0!3m2!1sen!2s!4v1731334271456!5m2!1sen!2s"
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.95295009715!2d-96.90673481783067!3d32.92584130553584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c26345af0ff47%3A0x3740141747336b85!2s13375%20N%20Stemmons%20Fwy%2C%20Dallas%2C%20TX%2075234!5e0!3m2!1sen!2sus!4v1733859006861!5m2!1sen!2sus"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-md-12">

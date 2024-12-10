@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-xxl-8 col-xm-8 col-lg-8 col-md-12 col-sm-12">
                     <p class="Equipment_para">
-                        As a leading sign company in Kansas City, KS, we handle every aspect of <br />the sign creation
+                        As a leading sign company in Dallas City, Texas, we handle every aspect of <br />the sign creation
                         process. This means we not only fabricate your signs, we <br />also offer complete design
                         assistance, professional installation, and any <br />repairs/maintenance you need to keep your
                         signage looking

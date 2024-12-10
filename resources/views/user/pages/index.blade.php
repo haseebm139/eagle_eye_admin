@@ -13,8 +13,7 @@
                     High-Quality Custom <br /> Banners. <span class="light"> Fast, Reliable <br /> Printing</span>
                 </p>
                 <p>
-                    You can manage your finances very easily and quickly <br /> with this platform. You can focus on
-                    results faster.You can <br /> manage your finances very easily
+                    Bring Your Vision to Life with Custom Signs and Banners – Designed <br /> to Impress, Printed to Last!
                 </p>
 
                 <div class="d-flex gap-3 mt-5">
@@ -29,50 +28,55 @@
 
         </div>
     </div>
+    @auth
 
-    <div class="container ">
-        <div class="d-flex justify-content-between align-items-center mb-2 flex-direcction-column">
-            <h2>Your Products</h2>
-            <p class="para">
-                As a leading sign company in Kansas City, KS, we handle <br /> every aspect of the sign creation
-                process.
-                This means <br /> we not only fabricate your signs, we also offer complete design <br /> assistance,
-                professional installation,
-                and any repairs/maintenance <br /> you need to keep your signage looking great.
-            </p>
+        <div class="container ">
+            <div class="d-flex justify-content-between align-items-center mb-2 flex-direcction-column">
+                <h2>Your Products</h2>
+                <p class="para">
+                    As trusted sign experts, we bring your vision to life <br /> with custom-crafted signs that make a lasting
+                    impression.<br /> From innovative designs to high-quality fabrication,<br /> we handle every detail to
+                    ensure your
+                    signage stands out<br /> and represents your brand with excellence.
 
-            <div class="controls">
-                <button class="btn1 prev11"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"
-                        alt="Prev" /></button>
-                <button class="btn1 btn2 next11"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"
-                        alt="Next" /></button>
+                </p>
+
+                <div class="controls">
+                    <button class="btn1 prev11"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"
+                            alt="Prev" /></button>
+                    <button class="btn1 btn2 next11"><img src="{{ asset('assets/website/images/svg/Vector.svg') }}"
+                            alt="Next" /></button>
+                </div>
             </div>
-        </div>
-        <div class="swiper mySwiper111 mt-3">
-            <div class="swiper-wrapper">
-                @if (isset($data['products'][0]))
-                    @foreach ($data['products'] as $item)
-                        @php
-                            $img = $item->image->path ?? 'assets/website/images/image_(1).png';
-                        @endphp
-                        <div class="swiper-slide">
-                            <div>
-                                <img src="{{ asset($img) }} " />
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <p> {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}</p>
-                                    <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
-                                        class="btn1 btn2"><img
-                                            src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+            <div class="swiper mySwiper111 mt-3">
+                <div class="swiper-wrapper">
+                    @if (isset($data['products'][0]))
+                        @foreach ($data['products'] as $item)
+                            @php
+                                $img = $item->image->path ?? 'assets/website/images/image_(1).png';
+                            @endphp
+                            <div class="swiper-slide">
+                                <div>
+                                    <img src="{{ asset($img) }} " />
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <p> {{ $item->name ?? '1 Mimaki UJV100-160 64" UV printer' }}</p>
+                                        <a href="{{ route('product_detail', ['slug' => $item->slug ?? $item->id]) }}"
+                                            class="btn1 btn2"><img
+                                                src="{{ asset('assets/website/images/svg/Vector.svg') }}" /></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
+                </div>
+                <!-- <div class="swiper-pagination"></div> -->
             </div>
-            <!-- <div class="swiper-pagination"></div> -->
         </div>
-    </div>
-    @include('user.partial.product_offer')
+    @endauth
+    @auth
+
+        @include('user.partial.product_offer')
+    @endauth
 
 
 

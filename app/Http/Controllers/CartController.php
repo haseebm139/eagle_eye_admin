@@ -244,66 +244,68 @@ class CartController extends Controller
             return redirect()->route('home')->with(array('message'=>'Order Place Successfully!','type'=>'success'));
      }
     public function placeOrder(Request $request){
-        if (!$request->has('stripeToken')) {
-            return redirect()->back()->with(['message' => 'Payment token is missing', 'type' => 'error']);
-        }
-
         $user_id = auth()->id();
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET')); // Your Stripe Secret Key
-
-
-            $customerEmail = $request->email;
-            $customer = $this->getOrCreateStripeCustomer($customerEmail, $request);
-
+            $transaction_id = null;
             $subtotal =  Cart::getTotal();
             $rush_service_charges = $request->rush_service??0.00;
             $shipping_rate = $request->shipping_rate??0.00;
             $total_amount = $subtotal + $shipping_rate + $rush_service_charges;
+            if ($request->pay_type == 'credit_debit_card') {
 
+                if (!$request->has('stripeToken')) {
+                    return redirect()->back()->with(['message' => 'Payment token is missing', 'type' => 'error']);
+                }
+                Stripe::setApiKey(env('STRIPE_SECRET')); // Your Stripe Secret Key
+                # code...
+                $customerEmail = $request->email;
+                $customer = $this->getOrCreateStripeCustomer($customerEmail, $request);
+                $charge = \Stripe\Charge::create ([
 
+                    "amount" => (int) ($total_amount * 100),
 
+                    "currency" => "usd",
 
-            $charge = \Stripe\Charge::create ([
+                    "customer" => $customer->id,
 
-                "amount" => (int) ($total_amount * 100),
+                    "description" => "Test payment from itsolutionstuff.com.",
 
-                "currency" => "usd",
+                    "shipping" => [
 
-                "customer" => $customer->id,
+                      "name" => "Jenny Rosen",
 
-                "description" => "Test payment from itsolutionstuff.com.",
+                      "address" => [
 
-                "shipping" => [
+                        "line1" => "510 Townsend St",
 
-                  "name" => "Jenny Rosen",
+                        "postal_code" => "98140",
 
-                  "address" => [
+                        "city" => "San Francisco",
 
-                    "line1" => "510 Townsend St",
+                        "state" => "CA",
 
-                    "postal_code" => "98140",
+                        "country" => "US",
 
-                    "city" => "San Francisco",
+                      ],
+                    ]
 
-                    "state" => "CA",
+               ]);
 
-                    "country" => "US",
+                if ($charge->status !== 'succeeded') {
 
-                  ],
-                ]
-
-           ]);
-
-            if ($charge->status !== 'succeeded') {
-
-                return redirect()->back()->with(['message' => 'Payment failed. Please try again.', 'type' => 'error']);
+                    return redirect()->back()->with(['message' => 'Payment failed. Please try again.', 'type' => 'error']);
+                }
+                $transaction_id = $charge->id;
             }
-            $transaction_id = $charge->id;
+
+
+
+
+
             $create_order = $this->createOrder($request,$transaction_id);
             $order_id = $create_order->id??1;
             $create_item = $this->createItem($order_id);
-            // \Cart::clear();
+            \Cart::clear();
             $db_cart_item = CartProduct::where('user_id',$user_id)->get();
             if (isset($db_cart_item[0]) ) {
                 foreach ($db_cart_item as $item) {

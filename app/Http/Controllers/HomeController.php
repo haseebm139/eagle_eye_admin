@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ShippingRate;
 use App\Models\Category;
+use App\Models\ProductCategory;
+
 use Auth;
 
 class HomeController extends Controller
 {
     public function index(){
-        $data['products'] = Product::with('image')->select('id','name','slug' )->get();
+        $data =[];
+        if (Auth::check()) {
+            $user = Auth::user();
+            $categoryId = $user->category_id;
+            $productIds =ProductCategory::where('category_id',$categoryId)->pluck('product_id');
+            $data['products'] = Product::with('image')->whereIn('id',$productIds)->select('id','name','slug' )->get();
+        }
         return view('user.pages.index',compact('data'));
     }
     public function equipments(){

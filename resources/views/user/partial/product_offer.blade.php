@@ -2,10 +2,9 @@
     <div class="d-flex flex-column para2   mb-2">
         <h2>Products Offered</h2>
         <p class="para">
-            As a leading sign company in Kansas City, KS, we handle every aspect of the sign creation process.
-            This means we not only fabricate your signs, we also offer complete design assistance, professional
-            installation,
-            and any repairs/maintenance you need to keep your signage looking great.
+            We specialize in creating premium custom signage solutions tailored to elevate your brand. From vibrant
+            banners and striking posters to unique decals, our products are designed to help your business stand out and
+            leave a lasting impression.
         </p>
 
         <div class="controls">
