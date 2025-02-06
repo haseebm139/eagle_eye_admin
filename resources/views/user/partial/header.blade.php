@@ -40,7 +40,7 @@
                 @guest()
                     <li class="nav-item dropdown">
                         <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">Your Product's</a>
+                            aria-expanded="false" href="#">Product Offered</a>
                         <ul class="dropdown-menu">
                             @foreach ($categories as $category)
                                 <li><a class="dropdown-item category_drop" data-category-id="{{ $category->id }}"
@@ -84,9 +84,7 @@
                     @endif
                 @endauth
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Products Offered</a>
-                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('our.story') }}">Our Story</a>

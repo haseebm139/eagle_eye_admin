@@ -194,6 +194,9 @@
                                     <input type="text" id="searchInput" placeholder="Search.." />
                                 </div>
 
+                                <a href="{{ route('export.customers') }}" class="filter-btn">
+                                    <i class="fa-solid fa-file-export"></i>
+                                </a>
                             </div>
                         </div>
 

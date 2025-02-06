@@ -10,7 +10,7 @@
         <div class="container ">
             <div class="ms-5">
                 <p class="heading">
-                    High-Quality Custom <br /> Banners. <span class="light"> Fast, Reliable <br /> Printing</span>
+                    High-Quality Custom Banners. <br /><span class="light"> Fast, Reliable Printing</span>
                 </p>
                 <p>
                     Bring Your Vision to Life with Custom Signs and Banners – Designed <br /> to Impress, Printed to Last!

@@ -108,6 +108,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/customer-view/{id}', 'customersView')->name('customers.view');
             Route::get('/add/product', 'addProduct')->name('add.product');
             Route::get('/orders', 'orders')->name('orders');
+            Route::get('/export-orders', 'exportOrders')->name('export.orders');
+            Route::get('/export-customers', 'exportCustomers')->name('export.customers');
             Route::get('/orders/view/{id}', 'orderView')->name('orders.view');
             Route::get('/settings', 'settings')->name('settings');
             Route::post('update-profile','updateProfile')->name('profile');

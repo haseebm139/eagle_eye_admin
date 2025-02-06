@@ -948,14 +948,16 @@
 
 
 
+    @auth
 
-
-    <div class="botIconContainer" id="vutton_open">
-        <div class="iconInner">
-            <i class="fa-regular fa-comment-dots"></i>
-            Live Chat
+        <div class="botIconContainer" id="vutton_open">
+            <div class="iconInner">
+                <i class="fa-regular fa-comment-dots"></i>
+                Live Chat
+            </div>
         </div>
-    </div>
+    @endauth
+
     <!-- Chatbot -->
     <div class="botIcon" id="botIcon">
 

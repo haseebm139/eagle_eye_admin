@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Category;
+use Carbon\Carbon;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 use Hash;
+
+use Spatie\SimpleExcel\SimpleExcelWriter;
+use Illuminate\Support\Facades\Response;
 class AdminController extends Controller
 {
 
@@ -52,7 +56,84 @@ class AdminController extends Controller
     public function orders(){
         return view('admin.pages.orders');
     }
+    public function exportCustomers(){
 
+        $filePath = storage_path('app/users.xlsx');
+
+        // Create a writer instance
+        $writer = SimpleExcelWriter::create($filePath);
+
+        // Add headers
+        $writer->addHeader([
+            'Name',
+            'Last Name',
+            'Phone',
+            'Email',
+            'Country',
+            'State',
+            'City',
+            'Address',
+            'Profile',
+            'Since',
+        ]);
+
+        // Add rows
+        $users = User::where('type','user')->get();
+
+        foreach ($users as $user) {
+            $writer->addRow([
+                $user->name,
+                $user->last_name,
+                $user->phone,
+                $user->email,
+                $user->country,
+                $user->state,
+                $user->city,
+                $user->address,
+                $user->profile,
+                $user->since ? Carbon::parse($user->since)->format('Y-m-d') : 'N/A',
+            ]);
+        }
+        $writer->close();
+        return Response::download($filePath)->deleteFileAfterSend(true);
+    }
+    public function exportOrders(){
+
+        $filePath = storage_path('app/orders.xlsx');
+
+        // Create a writer instance
+        $writer = SimpleExcelWriter::create($filePath);
+
+        // Add headers
+        $writer->addHeader([
+            'Order ID',
+            'Order Number',
+            'Customer Name',
+            'Email',
+            'Phone',
+            'Total Amount',
+            'Order Status',
+            'Order Date',
+        ]);
+
+        // Add rows
+        $orders = Order::with('customer')->has('customer')->get() ;
+
+        foreach ($orders as $order) {
+            $writer->addRow([
+                'Order ID'      => $order->id,
+                'Order Number'  => $order->order_number,
+                'Customer Name' => $order->customer ? $order->customer->name : 'No User Assigned',
+                'Email'         => $order->email,
+                'Phone'         => $order->phone,
+                'Total Amount'  => $order->total,
+                'Order Status'  => $order->status == 0 ? 'Pending' : ($order->status == 1 ? 'Completed' : 'Cancelled'),
+                'Order Date'    => $order->created_at->format('Y-m-d H:i:s'),
+            ]);
+        }
+        $writer->close();
+        return Response::download($filePath)->deleteFileAfterSend(true);
+    }
     public function customersView($id){
         $data['user'] = User::with('orders')->find($id);
         if ($data['user']) {
@@ -86,6 +167,7 @@ class AdminController extends Controller
         ->has('items.product')
         ->has('items.product.image')
         ->find($id);
+
         if (!isset($data['orders'])) {
             return redirect()->back()->with(array('message'=>'Invalid Order ID','type'=>'error'));
         }

@@ -134,11 +134,15 @@
                             <span class="bottomSpan">
                                 <p class="sales">Billing Address</p>
                                 <p class="bold">
-                                    {{ $data['orders']->address ?? '' }}<span>,</span>
+                                    {{-- {{ $data['orders']->address ?? '' }}<span>,</span>
                                     {{ $data['orders']->address1 ?? '' }}<span>,</span>
                                     {{ $data['orders']->city ?? '' }}<span>,</span>
                                     {{ $data['orders']->state ?? '' }}<span>,</span>
-                                    {{ $data['orders']->country ?? '' }}
+                                    {{ $data['orders']->country ?? '' }} --}}
+                                    {{ $data['orders']->customer->address ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->city ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->state ?? '' }}<span>,</span>
+                                    {{ $data['orders']->customer->country ?? '' }}
                                 </p>
                             </span>
                         </div>
@@ -193,6 +197,7 @@
                             </tr>
                         </thead>
                         <tbody id="table-body1">
+
                             @foreach ($data['orders']->items as $item)
                                 <tr>
                                     <td>
@@ -210,12 +215,55 @@
                                         </div>
                                     </td>
 
-                                    <td>{{ $item->product->name ?? '' }}</td>
+                                    <td>{{ $item->product->name ?? '' }}
+
+                                        @if (
+                                            $item->height ||
+                                                $item->width ||
+                                                $item->material ||
+                                                $item->printed_sides ||
+                                                $item->flute_direction ||
+                                                $item->special_instructions ||
+                                                $item->additional_file_notes)
+                                            <h4>Sizes</h4>
+                                        @endif
+                                        @if ($item->height)
+                                            <strong>Height:</strong><span>{{ $item->height ?? 0 }}</span>
+                                        @endif
+                                        @if ($item->width)
+                                            <br>
+                                            <strong>Width:</strong><span>{{ $item->width ?? 0 }}</span>
+                                        @endif
+                                        @if ($item->material)
+                                            <br>
+                                            <strong>Material:</strong><span>{{ $item->material ?? '' }}</span>
+                                        @endif
+                                        @if ($item->printed_sides)
+                                            <br>
+                                            <strong>Printed
+                                                Sides:</strong><span>{{ $item->printed_sides ?? '' }}</span>
+                                        @endif
+                                        @if ($item->flute_direction)
+                                            <br>
+                                            <strong>Flute Direction
+                                                :</strong><span>{{ $item->flute_direction ?? '' }}</span>
+                                        @endif
+                                        @if ($item->special_instructions)
+                                            <br>
+                                            <strong>Special Instructions
+                                                :</strong><span>{{ $item->special_instructions ?? '' }}</span>
+                                        @endif
+                                        @if ($item->additional_file_notes)
+                                            <br>
+                                            <strong>Additional File Notes
+                                                :</strong><span>{{ $item->additional_file_notes ?? '' }}</span>
+                                        @endif
+                                    </td>
                                     <td>Home Delivery</td>
-                                    <td>{{ $item->product->sell_price ?? '' }}</td>
+                                    <td>{{ $item->product->cost_price ?? '' }}</td>
                                     <td>{{ $item->qty ?? '' }}</td>
                                     <td>0%</td>
-                                    <td>{{ ($item->product->sell_price ?? 0) * ($item->product->qty ?? 0) }}
+                                    <td>{{ $data['orders']->total ?? 0 }}
                                     </td>
                                     <td></td>
                                     <td>
